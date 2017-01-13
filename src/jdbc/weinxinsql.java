@@ -48,5 +48,57 @@ public class weinxinsql {
 	}
 	return json;
 	}
+	/**
+	 *获取科室信息
+	 * @return
+	 */
+	public String getksjson(){
+		Connection conn = JDBC.getConnection();	
+		String json = null;
+		String sql="select Rtrim(ksbm)as ksbm,Rtrim(ksmc) as ksmc  from gyb_ks  where tybz=0 and sfghks=1";
+	try {
+		json=new JSONValidatingWriter().write(
+			        new QueryRunner().query(conn, sql, new MapListHandler()));
+		conn.close();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return json;
+	}
+	/**
+	 * 通过医疗卡号获取常用就诊人是否以前注册
+	 * @return
+	 */
+	public String getfriendinfotocheck(String ylkh){
+		Connection conn = JDBC.getConnection();	
+		String json = null;
+		String sql="select top 1 RTRIM(ylkh) as ylkh,Rtrim(ghxh)ghxh,ghrq ,Rtrim(ylklxbm)as ylklxbm,Rtrim(brid) brid,Rtrim(sfzh)sfzh,Rtrim(brxm)brxm,Rtrim(brnl)brnl,Rtrim(brnldw)brnldw,Rtrim(mzbm)mzbm,Rtrim(brxb)brxb,Rtrim(jtzz)jtzz,Rtrim(sj)sj from v_his_brjbxx where ylkh='"+ylkh+"' order by ghrq desc";
+	try {
+		json=new JSONValidatingWriter().write(
+			        new QueryRunner().query(conn, sql, new MapListHandler()));
+		conn.close();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return json;
+	}
+	
+	
+	public String getfriendIsRigster(String ylkh,String sfzh){
+		Connection conn = JDBC.getConnection();	
+		String json = null;
+		String sql="select top 1 Rtrim(sfzh)sfzh,Rtrim(brxm)brxm,Rtrim(brxb)brxb,Rtrim(brnl)brnl,Rtrim(brjtzz)brjtzz,Rtrim(ph)ph,Rtrim(brdh)brdh,Rtrim(ylkh)ylkh,JDSJ,Rtrim(brid)brid,Rtrim(brnldw)brnldw from gyb_user_friend where (sfzh='"+sfzh+"'or ylkh='"+ylkh+"')";
+	try {
+		json=new JSONValidatingWriter().write(
+			        new QueryRunner().query(conn, sql, new MapListHandler()));
+		conn.close();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return json;
+	}
 	
 }

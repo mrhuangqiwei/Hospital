@@ -20,5 +20,11 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="D:/Demo/J2eeStudentManage/J2eeStudentManage/WebRoot/WEB-INF/lib/struts2-core-2.1.8.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Administrator/AppData/Local/MyEclipse 2015 CI/plugins/com.genuitec.eclipse.j2eedt.core_13.0.0.me201406122219/data/libraryset/EE_7/javaee-api-7.0.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://docs.oracle.com/javaee/7/api/"/>
+			<attribute name="me-identifier" value="data/libraryset/EE_7//javaee-api-7.0.jar"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

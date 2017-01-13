@@ -11,8 +11,7 @@ import utils.WeiXinUtil;
 public class sqltest {
 	public static void main(String[] args){
 		weinxinsql weinxinsql=new weinxinsql();
-		String Openid="owEWzwQKO7G_uy4C0X_Wn2boPVI4";
-		String json=weinxinsql.userinfotojison(Openid);
+	   String json=weinxinsql.getfriendIsRigster(null, "513427199309232818");
 		System.out.print(json);
 	}
 }

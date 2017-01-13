@@ -60,6 +60,7 @@ public class Hello extends HttpServlet {
 	
 		result = "已发送";
 		out.print(echostr);
+		out.close();
 		/**
 		if(CheckUtil.checkSignature(signature, timestamp, nonce)){
 		out.print(echostr);	
