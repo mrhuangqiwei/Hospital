@@ -201,11 +201,12 @@ public class StudentService {
 	
 	public boolean  insertweixinuser (WeiXinUserBean bean) {
 		boolean ok = false;
-		String sql = "insert gyb_user(userid, username,sex,subscribe,city,province,county,headimgurl,subscribe_time,remark,groupid,tagid_list)"
+		String sql = "insert gyb_user(userid, username,sex,subscribe,city,province,county,headimgurl,subscribe_time,remark,groupid,tagid_list,isaddbz,isfriendbz)"
 				+ "values('"+bean.getOpenid()+"','"+bean.getNickname()+"'"
 						+ ",'"+bean.getSex()+"','"+bean.getSubscribe()+"'"
 								+ ",'"+bean.getCity()+"','"+bean.getProvince()+"','"+bean.getCountry()+"',"
-										+ "'"+bean.getHeadimgurl()+"','"+bean.getSubscribe_time()+"','"+bean.getRemark()+"','"+bean.getGroupid()+"','"+bean.getTagid_list()+"')" ;
+										+ "'"+bean.getHeadimgurl()+"','"+bean.getSubscribe_time()+"','"+bean.getRemark()+"','"+bean.getGroupid()+"','"+bean.getTagid_list()+"','"+0+"'"
+												+ ",'"+0+"')" ;
 		ok = dao.insert(sql);
 		return ok;
 	}

@@ -10,10 +10,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import jdbc.StudentService;
+import jdbc.weinxinsql;
 import net.sf.json.JSONObject;
 
+import org.apache.catalina.Session;
 import org.dom4j.DocumentException;
 
 import checkutil.IsWeixinUser;
@@ -144,6 +147,14 @@ public class Hello extends HttpServlet {
 				}
 				 else if (MessaugeUtil.MESSAGE_VIEW.equals(eventType)) {
 					 String url=map.get("Eventkey");
+					 if(url.equals("http://mrhuangqiwei.6655.la/Hospital")){
+						 weinxinsql weinxinsql=new weinxinsql();
+						 String json=weinxinsql.userinfotojison(FromUserName);
+						 HttpSession session=request.getSession(true);
+						 
+						 session.setAttribute("userinfo", json);
+						
+					 }
 					 message=MessaugeUtil.initText(ToUserName, FromUserName, url);
 				}
 				
