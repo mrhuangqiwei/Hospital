@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -138,23 +139,30 @@ public class Hello extends HttpServlet {
 					JSONObject jsonObject=WeiXinUtil.getWxuserInfo(token.getToken(), FromUserName);
 					String result=jsonObject.toString();
 				
-				WeiXinUserBean bean= JSON.parseObject(result.toString(), WeiXinUserBean.class);
-			boolean k1=	IsWeixinUser.Isweixinuser(bean);
+				   WeiXinUserBean bean= JSON.parseObject(result.toString(), WeiXinUserBean.class);
+			       boolean k1=	IsWeixinUser.Isweixinuser(bean);
 					System.out.print("---"+k1+"----"+result);
 				}
 				 else if (MessaugeUtil.MESSAGE_CLICK.equals(eventType)) {
 					 message=MessaugeUtil.initText(ToUserName, FromUserName, MessaugeUtil.menuText());
 				}
 				 else if (MessaugeUtil.MESSAGE_VIEW.equals(eventType)) {
-					 String url=map.get("Eventkey");
+					 String url=map.get("EventKey");
+					 System.out.print("----这是url-----'"+url+"'\n------'"+map.toString()+"'-");
+					/**
 					 if(url.equals("http://mrhuangqiwei.6655.la/Hospital")){
 						 weinxinsql weinxinsql=new weinxinsql();
 						 String json=weinxinsql.userinfotojison(FromUserName);
-						 HttpSession session=request.getSession(true);
-						 
+						 HttpSession session=request.getSession();
+						 if(session.getAttribute("userinfo")==null){
 						 session.setAttribute("userinfo", json);
+						 System.out.print(json);}
 						
-					 }
+					 }**/
+					 weinxinsql weinxinsql=new weinxinsql();
+					 String json=weinxinsql.userinfotojison(FromUserName);
+					 Cookie userCookie=new Cookie("userinfo", json);
+					 response.addCookie(userCookie);
 					 message=MessaugeUtil.initText(ToUserName, FromUserName, url);
 				}
 				
