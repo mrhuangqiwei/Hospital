@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
     <title>普定县人民医院</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
     <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="renderer" content="webkit">
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
     <link rel="stylesheet" href="libs/css/amazeui.min.css">
     <link rel="stylesheet" href="libs/css/style.css">
     <link rel="stylesheet" href="libs/css/wap.css">
+    <script src="libs/js/vue.min.js"></script>
 </head>
 <body>
 
@@ -75,7 +75,7 @@
                 </a>
             </li>
             <li>
-                <a href="javascript:;" class="">
+                <a href="#" class="">
                     <span class="am-icon-user"></span>
                     <span class="am-navbar-label">我的</span>
                 </a>
@@ -84,16 +84,14 @@
     </div>
 </div>
 
+<div id="app">
+    {{ message }}
+</div>
+
 <script src="libs/js/jquery.min.js"></script>
 <script src="libs/js/amazeui.min.js"></script>
 <script src="libs/js/jquery.cookie.js"></script>
-<script>
-    $(function () {
-        //$.cookie('userinfo', 'I am a god!');
-        let userInfo = $.cookie('userinfo');
-        alert(userInfo);
-    })
-</script>
+<script src="js/index.js"></script>
 
 </body>
 </html>
