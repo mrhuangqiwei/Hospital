@@ -12,6 +12,7 @@ import bean.Brjbxxbean;
 
 import com.alibaba.fastjson.JSON;
 
+import jdbc.StudentService;
 import jdbc.weinxinsql;
 import checkutil.IsWeixinUser;
 
@@ -56,15 +57,17 @@ public class AddFriend extends HttpServlet {
 		
 		System.out .print("----'"+Openid+"'---'"+sfzh+"'------'"+ylkh+"'’-----"
 				+ "'"+brxm+"'----'"+brxb+"'-----'"+brjtzz+"'-------'"+nl+"'------"
-								+ "'"+nldw+"'-----'"+sj+"'---'"+"'---");
+								+ "'"+nldw+"'-----'"+sj+"'----");
 		int k=0;
 		weinxinsql weinxinsql=new weinxinsql();
+		
+		StudentService service=new StudentService();
 		if(IsWeixinUser.IsFriend(Openid, sfzh, ylkh)==true){
 			if(!ylkh.endsWith("")){
 			if(IsWeixinUser.IsFriendRegster(ylkh)==true){
 				  String json=weinxinsql.getfriendinfotocheck(ylkh);
 				    Brjbxxbean bean= JSON.parseObject(json, Brjbxxbean.class);
-				    boolean kk=	weinxinsql.insertfriend(bean.getSfzh(),bean.getBrxm(),bean.getBrnl(), bean.getBrxb(), bean.getJtzz(),Openid,bean.getSj(), ylkh, bean.getBrnldw());
+				    boolean kk=	service.insertfriend(bean.getSfzh(),bean.getBrxm(),bean.getBrnl(), bean.getBrxb(), bean.getJtzz(),Openid,bean.getSj(), ylkh, bean.getBrnldw());
 				    if(kk==true){
 						//绑卡成功
 						k=3;
@@ -81,7 +84,7 @@ public class AddFriend extends HttpServlet {
 				k=2;
 			}}
 			else{
-	 	    boolean kk=	weinxinsql.insertfriend(sfzh,brxm,nl, brxb, brjtzz,Openid,sj, ylkh, nldw);
+	 	    boolean kk=	service.insertfriend(sfzh,brxm,nl, brxb, brjtzz,Openid,sj, ylkh, nldw);
 				if(kk==true){
 					//绑卡成功
 					k=3;
