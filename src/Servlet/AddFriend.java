@@ -53,7 +53,7 @@ public class AddFriend extends HttpServlet {
 		String nl =request.getParameter("nl");
 		String nldw =request.getParameter("nldw");
 		String sj=request.getParameter("lxdh");
-		String JDSJ=request.getParameter("JDSJ");
+		String JDSJ="2016-11-25 13:11:03.000";
 		
 		System.out .print("----'"+Openid+"'---'"+sfzh+"'------'"+ylkh+"'’-----"
 				+ "'"+brxm+"'----'"+brxb+"'-----'"+brjtzz+"'-------'"+nl+"'------"
