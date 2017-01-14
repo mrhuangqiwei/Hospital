@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>普定县人民医院</title>
+    <title>绑定医疗卡</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -15,42 +15,17 @@
 <body>
 
 <div class="container">
-    <!--头部banner-->
-    <div class="pet_mian" id="top">
-        <div data-am-widget="slider" class="am-slider am-slider-a1" data-am-slider='{"directionNav":false}'>
-            <ul class="am-slides">
-                <li>
-                    <a href="#" class="">
-                        <img src="images/fl01.png">
-                        <div class="pet_slider_shadow"></div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="">
-                        <img src="images/fl02.png">
-                        <div class="pet_slider_shadow"></div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="">
-                        <img src="images/fl03.png">
-                        <div class="pet_slider_shadow"></div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <!--中部按钮-->
-    <div class="pet_circle_nav">
-        <ul class="pet_circle_nav_list">
-            <li><a href="" class="iconfont pet_nav_xinxianshi ">&#xe61e;</a><span>科室医生</span></li>
-            <li><a href="" class="iconfont pet_nav_zhangzhishi ">&#xe607;</a><span>预约挂号</span></li>
-            <li><a href="" class="iconfont pet_nav_kantuya ">&#xe62c;</a><span>查询系统</span></li>
-            <li><a href="" class="iconfont pet_nav_mengzhuanti ">&#xe622;</a><span>满意度</span></li>
-            <li><a href="" class="iconfont pet_nav_meirong ">&#xe629;</a><span>名医管</span></li>
-            <li><a href="" class="iconfont pet_nav_yiyuan ">&#xe602;</a><span>医院导航</span></li>
-        </ul>
+    <div class="cart-panel">
+        <form class="am-form">
+            <div class="am-form-group am-form-icon">
+                <i class="am-icon-credit-card" style="color:#329cd9"></i>
+                <input type="text" class="am-form-field my-radius"
+                       placeholder="请输入医疗卡号">
+            </div>
+            <p class="am-text-center">
+                <button type="submit" class="am-btn am-btn-primary am-radius am-btn-block">立即绑定</button>
+            </p>
+        </form>
     </div>
 
     <!--底部导航-->

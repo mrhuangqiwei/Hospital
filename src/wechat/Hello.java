@@ -17,7 +17,6 @@ import jdbc.StudentService;
 import jdbc.weinxinsql;
 import net.sf.json.JSONObject;
 
-import org.apache.catalina.Session;
 import org.dom4j.DocumentException;
 
 import checkutil.IsWeixinUser;
