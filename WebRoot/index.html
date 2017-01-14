@@ -86,6 +86,14 @@
 
 <script src="libs/js/jquery.min.js"></script>
 <script src="libs/js/amazeui.min.js"></script>
+<script src="libs/js/jquery.cookie.js"></script>
+<script>
+    $(function () {
+        //$.cookie('userinfo', 'I am a god!');
+        let userInfo = $.cookie('userinfo');
+        alert(userInfo);
+    })
+</script>
 
 </body>
 </html>
