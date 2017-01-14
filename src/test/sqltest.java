@@ -11,7 +11,7 @@ import utils.WeiXinUtil;
 public class sqltest {
 	public static void main(String[] args){
 		weinxinsql weinxinsql=new weinxinsql();
-	   String json=weinxinsql.getfriendIsRigster(null, "513427199309232818");
+	    String json=weinxinsql.getfriendIsRigster(null, "513427199309232818","15577616194");
 		System.out.print(json);
 	}
 }

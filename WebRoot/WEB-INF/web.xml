@@ -19,6 +19,13 @@
     <servlet-name>Ksbmservlet</servlet-name>
     <servlet-class>Servlet.Ksbmservlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>AddFriend</servlet-name>
+    <servlet-class>Servlet.AddFriend</servlet-class>
+  </servlet>
+
+
+
 
 <servlet-mapping>
 <servlet-name>ksser</servlet-name>
@@ -32,6 +39,11 @@
     <servlet-name>Ksbmservlet</servlet-name>
     <url-pattern>/Ksbmservlet</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddFriend</servlet-name>
+    <url-pattern>/AddFriend</url-pattern>
+  </servlet-mapping>
+
 
 
 </web-app>
