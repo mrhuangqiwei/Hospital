@@ -53,11 +53,10 @@ public class AddFriend extends HttpServlet {
 		String nl =request.getParameter("nl");
 		String nldw =request.getParameter("nldw");
 		String sj=request.getParameter("lxdh");
-		String JDSJ="2016-11-25 13:11:03.000";
 		
 		System.out .print("----'"+Openid+"'---'"+sfzh+"'------'"+ylkh+"'’-----"
 				+ "'"+brxm+"'----'"+brxb+"'-----'"+brjtzz+"'-------'"+nl+"'------"
-								+ "'"+nldw+"'-----'"+sj+"'---'"+JDSJ+"'---");
+								+ "'"+nldw+"'-----'"+sj+"'---'"+"'---");
 		int k=0;
 		weinxinsql weinxinsql=new weinxinsql();
 		if(IsWeixinUser.IsFriend(Openid, sfzh, ylkh)==true){
@@ -65,7 +64,7 @@ public class AddFriend extends HttpServlet {
 			if(IsWeixinUser.IsFriendRegster(ylkh)==true){
 				  String json=weinxinsql.getfriendinfotocheck(ylkh);
 				    Brjbxxbean bean= JSON.parseObject(json, Brjbxxbean.class);
-				    boolean kk=	weinxinsql.insertfriend(bean.getSfzh(),bean.getBrxm(),bean.getBrnl(), bean.getBrxb(), bean.getJtzz(),Openid,bean.getSj(), ylkh, JDSJ, bean.getBrnldw());
+				    boolean kk=	weinxinsql.insertfriend(bean.getSfzh(),bean.getBrxm(),bean.getBrnl(), bean.getBrxb(), bean.getJtzz(),Openid,bean.getSj(), ylkh, bean.getBrnldw());
 				    if(kk==true){
 						//绑卡成功
 						k=3;
@@ -82,7 +81,7 @@ public class AddFriend extends HttpServlet {
 				k=2;
 			}}
 			else{
-	 	    boolean kk=	weinxinsql.insertfriend(sfzh,brxm,nl, brxb, brjtzz,Openid,sj, ylkh, JDSJ, nldw);
+	 	    boolean kk=	weinxinsql.insertfriend(sfzh,brxm,nl, brxb, brjtzz,Openid,sj, ylkh, nldw);
 				if(kk==true){
 					//绑卡成功
 					k=3;

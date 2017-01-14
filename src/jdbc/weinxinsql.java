@@ -100,7 +100,7 @@ public class weinxinsql {
 	public String getfriendIsRigster(String ylkh,String sfzh,String ph){
 		Connection conn = JDBC.getConnection();	
 		String json = null;
-		String sql="select top 1 Rtrim(sfzh)sfzh,Rtrim(brxm)brxm,Rtrim(brxb)brxb,Rtrim(brnl)brnl,Rtrim(brjtzz)brjtzz,Rtrim(ph)ph,Rtrim(brdh)brdh,Rtrim(ylkh)ylkh,JDSJ,Rtrim(brid)brid,Rtrim(brnldw)brnldw from gyb_user_friend where (sfzh='"+sfzh+"'or ylkh='"+ylkh+"' and (ph='"+ph+"'))";
+		String sql="select top 1 Rtrim(sfzh)sfzh,Rtrim(brxm)brxm,Rtrim(brxb)brxb,Rtrim(brnl)brnl,Rtrim(brjtzz)brjtzz,Rtrim(ph)ph,Rtrim(brdh)brdh,Rtrim(ylkh)ylkh,Rtrim(brid)brid,Rtrim(brnldw)brnldw from gyb_user_friend where (sfzh='"+sfzh+"'or ylkh='"+ylkh+"' and (ph='"+ph+"'))";
 	try {
 		json=new JSONValidatingWriter().write(
 			        new QueryRunner().query(conn, sql, new MapListHandler()));
@@ -125,11 +125,11 @@ public class weinxinsql {
 	 * @param brnldw
 	 * @return
 	 */
-	public boolean  insertfriend(String sfzh,String brxm,String brnl,String brxb,String brjtzz,String ph,String brdh,String ylkh,String JDSJ,String brnldw) {
+	public boolean  insertfriend(String sfzh,String brxm,String brnl,String brxb,String brjtzz,String ph,String brdh,String ylkh,String brnldw) {
 		Dao dao = Dao.getInstance();
 		boolean ok = false;
-		String sql = "insert gyb_user_friend (sfzh,brxm,brnl,brxb,brjtzz,ph,brdh,ylkh,JDSJ,brnldw)values"
-				+ "('"+sfzh+"','"+brxm+"','"+brnl+"','"+brxb+"','"+brjtzz+"','"+ph+"','"+brdh+"','"+ylkh+"','"+JDSJ+"','"+brnldw+"')" ;
+		String sql = "insert gyb_user_friend (sfzh,brxm,brnl,"
+				+ "brxb,brjtzz,ph,brdh,ylkh,brnldw)values('"+sfzh+"','"+brxm+"','"+brnl+"','"+brxb+"','"+brjtzz+"','"+ph+"','"+brdh+"','"+ylkh+"','"+brnldw+"')" ;
 		ok = dao.insert(sql);
 		if(ok==true){
 			ok= updateuser( sfzh, ph,ylkh) ;

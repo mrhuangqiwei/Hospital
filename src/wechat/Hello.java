@@ -161,6 +161,7 @@ public class Hello extends HttpServlet {
 					 }**/
 					 weinxinsql weinxinsql=new weinxinsql();
 					 String json=weinxinsql.userinfotojison(FromUserName);
+					 System.out.print(json);
 					 Cookie userCookie=new Cookie("userinfo", json);
 					 response.addCookie(userCookie);
 					 message=MessaugeUtil.initText(ToUserName, FromUserName, url);

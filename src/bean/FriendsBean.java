@@ -12,7 +12,7 @@ private String ph;
 private String brdh;
 private String ylkh;
 
-private String JDSJ;
+
 private String brid;
 private String brnldw;
 public String getSfzh() {
@@ -63,12 +63,7 @@ public String getYlkh() {
 public void setYlkh(String ylkh) {
 	this.ylkh = ylkh;
 }
-public String getJDSJ() {
-	return JDSJ;
-}
-public void setJDSJ(String jDSJ) {
-	JDSJ = jDSJ;
-}
+
 public String getBrid() {
 	return brid;
 }
