@@ -1,6 +1,6 @@
 package test;
 
-import java.io.IOException;
+import java.io.IOException; 
 import java.text.ParseException;
 
 import jdbc.StudentService;
@@ -21,6 +21,6 @@ public class sqltest {
 	//	StudentService service=new StudentService();
 		//boolean k= weinxinsql.insertfriend("5123271993", "zhangs", "li", "1","2", "owEWzwQKO7G_uy4C0X_Wn2boPVI4", "23", "", "1");
 		//boolean k=weinxinsql.updateuser("9999", "owEWzweXEgfBaf9ZW_XN03slsDlI", "45");
-		System.out.print("---------"+k);
+		//System.out.print("---------"+k);
 	}
 }

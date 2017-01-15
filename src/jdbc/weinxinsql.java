@@ -57,6 +57,22 @@ public class weinxinsql {
 	}
 	return json;
 	}
+	public String Getfriendsinfo(String Openid){
+		Connection conn = JDBC.getConnection();	
+		String json = null;
+		String sql="select Rtrim(sfzh)sfzh,Rtrim(ylkh)ylkh,Rtrim(brdh)brdh, Rtrim(brxm)brxm,Rtrim(brnl)brnl,Rtrim(brxb)brxb,Rtrim(brjtzz)jtzz,Rtrim(brnldw)nldw,RTRIM(ph)ph from gyb_user_friend where ph='"+Openid+"' ";
+	try {
+		json=new JSONValidatingWriter().write(
+			        new QueryRunner().query(conn, sql, new MapListHandler()));
+		//conn.close();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return json;
+	}
+	
+	
 	/**
 	 *获取科室信息
 	 * @return
