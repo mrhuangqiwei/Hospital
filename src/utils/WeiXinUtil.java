@@ -69,7 +69,7 @@ public class WeiXinUtil {
 	 JSONObject jsonObject=null;
 	 try {
 		httpPost.setEntity(new StringEntity(outStr, "UTF-8"));
-	} catch (UnsupportedEncodingException e1) {
+	} catch (Exception e1) {
 		// TODO Auto-generated catch block
 		e1.printStackTrace();
 	}
