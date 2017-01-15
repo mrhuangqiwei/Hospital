@@ -10,6 +10,8 @@ import java.util.Vector;
 import org.omg.CORBA.PUBLIC_MEMBER;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.parser.Feature;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 
 import bean.WeiXinUserBean;
 import bean.userinfobean;
@@ -214,59 +216,6 @@ public class StudentService {
 		return ok;
 	}
 	
-	/**
-	 * 插入常用就诊人表操作
-	 * @param sfzh
-	 * @param brxm
-	 * @param brnl
-	 * @param brxb
-	 * @param brjtzz
-	 * @param ph
-	 * @param brdh
-	 * @param ylkh
-	 * @param JDSJ
-	 * @param brnldw
-	 * @return
-	 */
-	public boolean  insertfriend(String sfzh,String brxm,String brnl,String brxb,String brjtzz,String ph,String brdh,String ylkh,String brnldw) {
-	
-		boolean ok = false;
-		String sql = "insert gyb_user_friend (sfzh,brxm,brnl,brxb,brjtzz,ph,brdh,ylkh,brnldw)values('"+sfzh+"','"+brxm+"','"+brnl+"','"+brxb+"','"+brjtzz+"','"+ph+"','"+brdh+"','"+ylkh+"','"+brnldw+"')" ;
-		ok = dao.insert(sql);
-		if(ok==true){
-			ok= updateuser( sfzh, ph,ylkh) ;
-		}
-		return ok;
-	}
-	/**更新用户表**/
-	public boolean  updateuser(String sfzh,String ph,String ylkh) {
-
-		weinxinsql weinxinsql=new weinxinsql();
-		 String json=weinxinsql.userinfotojison(ph);
-		 System.out.print(json);
-		 userinfobean ufbean=JSON.parseObject(json, userinfobean.class);
-		 String addfrien="0";
-				 int k=Integer.parseInt(ufbean.getIsfriendbz())+1;
-				 if(k==3){
-					 addfrien="1";
-				 }
-			String	 s=String.valueOf(k);
-			String sql=null;
-		 if((ufbean.getFriend1()==null)&&(ufbean.getYlkh1()==null)){
-			sql = " update gyb_user set  friend1='" + sfzh + "',ylkh1='"+ylkh+"',isfriendbz='"+s+"',isaddbz='"+addfrien+"' where userid='"+ph+"'";
-		 }
-		 else if ((ufbean.getFriend2()==null)&&(ufbean.getYlkh2()==null)) {
-				sql = " update gyb_user set  friend2='" + sfzh + "',ylkh2='"+ylkh+"',isfriendbz='"+s+"',isaddbz='"+addfrien+"' where userid='"+ph+"'";
-		}
-		 else if ((ufbean.getFriend3().length()<2)&&(ufbean.getYlkh3().length()<2)) {
-				sql = " update gyb_user set  friend3='" + sfzh + "',ylkh3='"+ylkh+"',isfriendbz='"+s+"',isaddbz='"+addfrien+"' where userid='"+ph+"'";
-		}
-				
-		boolean ok = false;
-
-		ok = dao.insert(sql);
-		return ok;
-	}
 	
 	
 

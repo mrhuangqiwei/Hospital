@@ -1,15 +1,14 @@
 package jdbc;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class JDBC {
-	private static final String DRIVERCLASS = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	private static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=hospital";
-	private static final String USERNAME = "sa";
-	private static final String PASSWORD = "873245huang";
-	private static final ThreadLocal<Connection> threadLocal = new ThreadLocal<Connection>();
+	public  static final String DRIVERCLASS = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+	public static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=hospital";
+     public static final String USERNAME = "sa";
+	public  static final String PASSWORD = "873245huang";
+	public  static final ThreadLocal<Connection> threadLocal = new ThreadLocal<Connection>();
 
 	static {											// 在静态代码块中加载数据库驱动
 		try {
@@ -48,3 +47,4 @@ public class JDBC {
 	}
 
 }
+

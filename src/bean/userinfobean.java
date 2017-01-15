@@ -22,7 +22,7 @@ public class userinfobean {
 	private String jtzz;
 	private String headimgurl;
 	private String subscribe;
-	private String subcribe_time;
+	private String subscribe_time;
 	private String isaddbz;
 	private String isfriendbz;
 	public String getUserid() {
@@ -115,11 +115,11 @@ public class userinfobean {
 	public void setSubscribe(String subscribe) {
 		this.subscribe = subscribe;
 	}
-	public String getSubcribe_time() {
-		return subcribe_time;
+	public String getSubscribe_time() {
+		return subscribe_time;
 	}
-	public void setSubcribe_time(String subcribe_time) {
-		this.subcribe_time = subcribe_time;
+	public void setSubscribe_time(String subscribe_time) {
+		this.subscribe_time = subscribe_time;
 	}
 	public String getIsaddbz() {
 		return isaddbz;
@@ -133,7 +133,7 @@ public class userinfobean {
 	public void setIsfriendbz(String isfriendbz) {
 		this.isfriendbz = isfriendbz;
 	}
-	
+
 	
 	
 }

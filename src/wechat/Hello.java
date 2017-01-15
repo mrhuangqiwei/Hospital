@@ -147,8 +147,8 @@ public class Hello extends HttpServlet {
 					 message=MessaugeUtil.initText(ToUserName, FromUserName, MessaugeUtil.menuText());
 				}
 				 else if (MessaugeUtil.MESSAGE_VIEW.equals(eventType)) {
-					 String url=map.get("EventKey");
-					 System.out.print("----这是url-----'"+url+"'\n------'"+map.toString()+"'-");
+					// String url=map.get("EventKey");
+					 System.out.print("----这是url-----\n------'"+map.toString()+"'-");
 					/**
 					 if(url.equals("http://mrhuangqiwei.6655.la/Hospital")){
 						 weinxinsql weinxinsql=new weinxinsql();
@@ -164,7 +164,10 @@ public class Hello extends HttpServlet {
 					 System.out.print(json);
 					 Cookie userCookie=new Cookie("userinfo", json);
 					 response.addCookie(userCookie);
-					 message=MessaugeUtil.initText(ToUserName, FromUserName, url);
+					 String url="http://mrhuangqiwei.6655.la/Hospital/UserInfoServlet";
+					 response.sendRedirect(url);
+					 //request.getRequestDispatcher("http://mrhuangqiwei.6655.la/Hospital/UserInfoServlet").forward(request, response);
+					// message=MessaugeUtil.initText(ToUserName, FromUserName, url);
 				}
 				
 				 else if (MessaugeUtil.MESSAGE_SCANCODE.equals(eventType)) {

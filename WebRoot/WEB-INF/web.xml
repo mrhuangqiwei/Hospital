@@ -24,7 +24,10 @@
     <servlet-class>Servlet.AddFriend</servlet-class>
   </servlet>
 
-
+<servlet>
+    <servlet-name>UserInfoServlet</servlet-name>
+    <servlet-class>Servlet.UserInfoServlet</servlet-class>
+  </servlet>
 
 
 <servlet-mapping>
@@ -42,6 +45,11 @@
   <servlet-mapping>
     <servlet-name>AddFriend</servlet-name>
     <url-pattern>/AddFriend</url-pattern>
+  </servlet-mapping>
+  
+   <servlet-mapping>
+    <servlet-name>UserInfoServlet</servlet-name>
+    <url-pattern>/UserInfoServlet</url-pattern>
   </servlet-mapping>
 
 

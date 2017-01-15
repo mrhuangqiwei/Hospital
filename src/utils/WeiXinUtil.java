@@ -172,7 +172,7 @@ public static Menu initMenu2(){
 	 ViewButton button11=new ViewButton();
 	 button11.setName("首页");
 	 button11.setType("view");
-	 button11.setUrl("http://mrhuangqiwei.6655.la/Hospital");
+	 button11.setUrl("http://mrhuangqiwei.6655.la/Hospital/UserInfoServlet");
 	 ClickButton button21=new  ClickButton();
 	 button21.setName("联系医院");
 	 button21.setType("click");
