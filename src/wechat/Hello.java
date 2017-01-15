@@ -159,13 +159,14 @@ public class Hello extends HttpServlet {
 						 System.out.print(json);}
 						
 					 }**/
+					 /**
 					 weinxinsql weinxinsql=new weinxinsql();
 					 String json=weinxinsql.userinfotojison(FromUserName);
 					 System.out.print(json);
 					 Cookie userCookie=new Cookie("userinfo", json);
 					 response.addCookie(userCookie);
 					 String url="http://mrhuangqiwei.6655.la/Hospital/UserInfoServlet";
-					 response.sendRedirect(url);
+					 response.sendRedirect(url);**/
 					 //request.getRequestDispatcher("http://mrhuangqiwei.6655.la/Hospital/UserInfoServlet").forward(request, response);
 					// message=MessaugeUtil.initText(ToUserName, FromUserName, url);
 				}

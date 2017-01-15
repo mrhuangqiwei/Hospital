@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import jdbc.weinxinsql;
+
 public class UserInfoServlet extends HttpServlet {
 
 	@Override
@@ -15,16 +17,12 @@ public class UserInfoServlet extends HttpServlet {
 			throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		resp.setCharacterEncoding("UTF-8");
-		String info="";
-		Cookie[] cookies=req.getCookies();
-		if(cookies!=null &&cookies.length>0){
-			for(Cookie c:cookies){
-				if(c.getName().equals("userinfo"));
-				info=c.getValue();
-				System.out.print(info+"ooooooooooooooo");
-			}
-		}
-		System.out.print("方法被调用");
+		resp.setHeader("content-type", "text/html;charset=UTF-8");//浏览器编码
+		String Openid = new String(req.getParameter("openid").getBytes("ISO-8859-1"),"UTF-8");
+		 weinxinsql weinxinsql=new weinxinsql();
+		 String json=weinxinsql.userinfotojison(Openid);
+		 resp.getOutputStream().write(json.getBytes("UTF-8"));
+	//	System.out.print("方法被调用");
 		
 		
 	}

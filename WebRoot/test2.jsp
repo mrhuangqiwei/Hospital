@@ -16,7 +16,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
     <h1> 用户登录</h1>
     <hr>
-    <form action="/Hospital/GetFriendinfo" name="login" method="get"  >
+    <form action="/Hospital/UserInfoServlet" name="login" method="get"  >
    <table>
    <tr>
    <td> Openid：</td>

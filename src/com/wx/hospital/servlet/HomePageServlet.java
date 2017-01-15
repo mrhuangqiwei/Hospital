@@ -27,6 +27,7 @@ public class HomePageServlet extends BaseServlet {
             String redirectUrl = OAuthManager.generateRedirectURI(SERVER_URL + "oauth2",
                     "snsapi_userinfo", "index.html");
             resp.sendRedirect(redirectUrl);
+            return;
         }
         req.getRequestDispatcher("index.html").forward(req, resp);
     }
