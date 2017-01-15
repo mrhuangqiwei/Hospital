@@ -14,23 +14,20 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "xml")
 public class PayApiException extends Exception {
 
+    private String return_code;
+    private String return_msg;
+
     public PayApiException() {
     }
-
-
 
     public PayApiException(PayCode payCode, String return_msg) {
         this.return_code = payCode.toString();
         this.return_msg = return_msg;
     }
-
     public PayApiException(String return_code, String return_msg) {
         this.return_code = return_code;
         this.return_msg = return_msg;
     }
-
-    private String return_code;
-    private String return_msg;
 
     public String getReturn_code() {
         return return_code;

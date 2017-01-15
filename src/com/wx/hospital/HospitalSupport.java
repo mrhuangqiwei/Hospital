@@ -1,6 +1,8 @@
 package com.wx.hospital;
 
 import org.sword.wechat4j.WechatSupport;
+import org.sword.wechat4j.user.User;
+import org.sword.wechat4j.user.UserManager;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,8 +22,7 @@ public class HospitalSupport extends WechatSupport {
 
     @Override
     protected void onText() {
-        String userName = wechatRequest.getFromUserName();
-        String content = "test ok: " + userName;
+        String content = "您发来的消息是: " + wechatRequest.getContent();
         responseText(content);
     }
 
@@ -67,12 +68,17 @@ public class HospitalSupport extends WechatSupport {
 
     @Override
     protected void subscribe() {
-
+        String openId = wechatRequest.getFromUserName();
+        UserManager manager = new UserManager();
+        User user = manager.getUserInfo(openId);
+        String content = "用户关注了: " + user.toString();
+        responseText(content);
     }
 
     @Override
     protected void unSubscribe() {
-
+        String content = "用户取消关注了: " + wechatRequest.getFromUserName();
+        responseText(content);
     }
 
     @Override

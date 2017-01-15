@@ -13,18 +13,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "xml")
 public class PayBusinessException extends Exception {
 
+    private String result_code;
+    private String err_code;
+    private String err_code_des;
     public PayBusinessException() {
     }
-
     public PayBusinessException(PayCode payCode, String err_code, String err_code_des) {
         this.result_code = payCode.toString();
         this.err_code = err_code;
         this.err_code_des = err_code_des;
     }
-
-    private String result_code;
-    private String err_code;
-    private String err_code_des;
 
     public String getResult_code() {
         return result_code;

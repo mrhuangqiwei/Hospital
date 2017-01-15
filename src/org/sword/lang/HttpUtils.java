@@ -21,9 +21,8 @@ import java.io.InputStream;
  * @date 2014年12月12日
  */
 public class HttpUtils {
-    private static Logger logger = Logger.getLogger(HttpUtils.class);
-
     public static final int timeout = 10;
+    private static Logger logger = Logger.getLogger(HttpUtils.class);
 
     /**
      * post 请求
@@ -158,7 +157,7 @@ public class HttpUtils {
         try {
             HttpEntity entity = Request.Get(url).
                     execute().returnResponse().getEntity();
-            return entity != null ? EntityUtils.toString(entity) : null;
+            return entity != null ? EntityUtils.toString(entity, "UTF-8") : null;
         } catch (Exception e) {
             logger.error("get请求异常，" + e.getMessage() + "\n get url:" + url);
             e.printStackTrace();

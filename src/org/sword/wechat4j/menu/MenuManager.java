@@ -16,12 +16,10 @@ import org.sword.wechat4j.util.WeChatUtil;
  * @version 2015-7-4
  */
 public class MenuManager {
-    private static Logger logger = Logger.getLogger(MenuManager.class);
-
     private static final String MENU_CREATE_POST_URL = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=";
     private static final String MENU_GET_GET_URL = "https://api.weixin.qq.com/cgi-bin/menu/get?access_token=";
     private static final String MENU_DEL_GET_URL = "https://api.weixin.qq.com/cgi-bin/menu/delete?access_token=";
-
+    private static Logger logger = Logger.getLogger(MenuManager.class);
     private String accessToken;
 
     public MenuManager() {

@@ -6,16 +6,15 @@ package org.sword.wechat4j.oauth;
  */
 public class OAuthException extends Exception {
 
+    private String errcode;
+    private String errmsg;
+
     public OAuthException() {
     }
-
     public OAuthException(String errcode, String errmsg) {
         this.errcode = errcode;
         this.errmsg = errmsg;
     }
-
-    private String errcode;
-    private String errmsg;
 
     public String getErrcode() {
         return errcode;

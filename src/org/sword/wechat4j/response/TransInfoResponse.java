@@ -4,29 +4,30 @@ import javax.xml.bind.annotation.XmlElement;
 
 /**
  * 指定客服
+ *
  * @author Zhangxs
  * @version 2015-7-7
  */
 
 public class TransInfoResponse {
-	private String KfAccount;//指定会话接入的客服账号
-	
-	public TransInfoResponse() {
-		super();
-	}
+    private String KfAccount;//指定会话接入的客服账号
 
-	public TransInfoResponse(String kfAccount) {
-		super();
-		KfAccount = kfAccount;
-	}
+    public TransInfoResponse() {
+        super();
+    }
 
-	@XmlElement(name="KfAccount")
-	public String getKfAccount() {
-		return KfAccount;
-	}
+    public TransInfoResponse(String kfAccount) {
+        super();
+        KfAccount = kfAccount;
+    }
 
-	public void setKfAccount(String kfAccount) {
-		KfAccount = kfAccount;
-	}
-	
+    @XmlElement(name = "KfAccount")
+    public String getKfAccount() {
+        return KfAccount;
+    }
+
+    public void setKfAccount(String kfAccount) {
+        KfAccount = kfAccount;
+    }
+
 }

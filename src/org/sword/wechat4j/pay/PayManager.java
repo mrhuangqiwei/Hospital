@@ -8,8 +8,8 @@ import org.apache.http.entity.ContentType;
 import org.apache.log4j.Logger;
 import org.sword.lang.JaxbParser;
 import org.sword.wechat4j.common.Config;
-import org.sword.wechat4j.pay.exception.PayBusinessException;
 import org.sword.wechat4j.pay.exception.PayApiException;
+import org.sword.wechat4j.pay.exception.PayBusinessException;
 import org.sword.wechat4j.pay.exception.SignatureException;
 import org.sword.wechat4j.pay.protocol.closeorder.CloseorderRequest;
 import org.sword.wechat4j.pay.protocol.closeorder.CloseorderResponse;
@@ -53,8 +53,6 @@ import java.util.*;
  */
 public class PayManager {
 
-    private static Logger logger = Logger.getLogger(PayManager.class);
-
     /**
      * 统一下单
      */
@@ -83,6 +81,7 @@ public class PayManager {
      * 测速上报
      */
     private static final String HTTPS_API_MCH_WEIXIN_QQ_COM_PAYITIL_REPORT = "https://api.mch.weixin.qq.com/payitil/report";
+    private static Logger logger = Logger.getLogger(PayManager.class);
 
     /**
      * 统一下单

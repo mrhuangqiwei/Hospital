@@ -8,14 +8,13 @@ import org.sword.wechat4j.common.Config;
  */
 public class GetAccessTokenRequest {
 
-    public GetAccessTokenRequest(String code) {
-        this.code = code;
-    }
-
     private String appid = Config.instance().getAppid();
     private String secret = Config.instance().getAppSecret();
     private String code;
     private String grant_type = "authorization_code";
+    public GetAccessTokenRequest(String code) {
+        this.code = code;
+    }
 
     public String getAppid() {
         return appid;

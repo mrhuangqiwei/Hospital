@@ -8,13 +8,12 @@ import org.sword.wechat4j.common.Config;
  */
 public class RefreshAccessTokenRequest {
 
-    public RefreshAccessTokenRequest(String refresh_token) {
-        this.refresh_token = refresh_token;
-    }
-
     private String appid = Config.instance().getAppid();
     private String grant_type = "refresh_token";
     private String refresh_token;
+    public RefreshAccessTokenRequest(String refresh_token) {
+        this.refresh_token = refresh_token;
+    }
 
     public String getAppid() {
         return appid;
