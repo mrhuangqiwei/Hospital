@@ -55,13 +55,14 @@ public class BindcardServlet extends BaseServlet {
         }
         String ylkh = getParam(req, "ylkh");
         String sfzh = getParam(req, "sfzh");
-        String nldw = "1";
+
         if (IsWeixinUser.IsFriend(openId, sfzh, ylkh)) {
-            String brxm = getParam(req, "ylkh");
-            String brxb = getParam(req, "ylkh");
-            String brjtzz = getParam(req, "ylkh");
-            String lxdh = getParam(req, "ylkh");
-            String nl = getParam(req, "ylkh");
+            String nldw = "1";
+            String brxm = getParam(req, "brxm");
+            String brxb = getParam(req, "brxb");
+            String brjtzz = getParam(req, "brjtzz");
+            String lxdh = getParam(req, "lxdh");
+            String nl = getParam(req, "nl");
             weinxinsql weinxinsql = new weinxinsql();
             boolean status = false;
             if (TextUtils.isEmpty(ylkh)) {
