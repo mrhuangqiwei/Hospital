@@ -12,7 +12,7 @@ import static com.wx.hospital.HospitalConfig.COOKIES_OPENID;
  */
 public class BaseServlet extends HttpServlet {
 
-    protected String getCookie(HttpServletRequest req, String key) {
+    String getCookie(HttpServletRequest req, String key) {
         Cookie[] cookies = req.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
@@ -24,7 +24,20 @@ public class BaseServlet extends HttpServlet {
         return null;
     }
 
-    protected String getOpenId(HttpServletRequest req) {
+    String getOpenId(HttpServletRequest req) {
         return getCookie(req, COOKIES_OPENID);
     }
+
+    protected String getParam(HttpServletRequest req, String key, String defaultVal) {
+        String val = req.getParameter(key);
+        if (val == null) {
+            val = defaultVal;
+        }
+        return val;
+    }
+
+    protected String getParam(HttpServletRequest req, String key) {
+        return getParam(req, key, "");
+    }
+
 }

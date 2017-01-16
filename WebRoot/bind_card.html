@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>完善用户信息</title>
+    <title>绑定医疗卡</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -15,35 +15,27 @@
 <body>
 
 <div class="container">
+
+    <!--分享的图标-->
+    <div id='wx_pic' style='margin:0 auto;display:none;'>
+        <img src='images/icon.png'/>
+    </div>
+
     <div class="cart-panel">
-        <form class="am-form">
+        <form class="am-form" action="bindcard" method="post">
             <div class="am-form-group am-form-icon">
-                <i class="am-icon-user" style="color:#329cd9"></i>
-                <input type="text" maxlength="18" minlength="15" class="am-form-field my-radius"
-                       placeholder="请输入身份证号">
-            </div>
-            <div class="am-form-group">选择性别：
-                <label class="am-radio-inline">
-                    <input type="radio" value="" name="docInlineRadio" checked>男
-                </label>
-                <label class="am-radio-inline">
-                    <input type="radio" name="docInlineRadio">女
-                </label>
-            </div>
-            <div class="am-form-group am-form-icon">
-                <i class="am-icon-phone" style="color:#e9c740"></i>
-                <input type="text" class="am-form-field my-radius" maxlength="11"
-                       minlength="11" placeholder="请输入手机号">
-            </div>
-            <div class="am-form-group am-form-icon">
-                <i class="am-icon-ticket" style="color:#78c3ca"></i>
-                <input type="text" class="am-form-field  my-radius" maxlength="64"
-                       minlength="1" placeholder="请输入职业">
+                <i class="am-icon-credit-card" style="color:#329cd9"></i>
+                <input type="text" class="am-form-field my-radius"
+                       minlength="6" maxlength="20" name="ylkh"
+                       placeholder="请输入医疗卡号">
             </div>
             <p class="am-text-center">
                 <button type="submit" class="am-btn am-btn-primary am-radius am-btn-block">立即绑定</button>
             </p>
         </form>
+        <p class="am-text-center">
+            <a class="am-btn am-btn-default am-radius am-btn-block" href="bindcard?action=idcard">还没有卡，去绑定身份证</a>
+        </p>
     </div>
 
     <!--底部导航-->

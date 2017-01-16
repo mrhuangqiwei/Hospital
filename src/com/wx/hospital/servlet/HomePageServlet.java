@@ -25,7 +25,7 @@ public class HomePageServlet extends BaseServlet {
         String openId = getOpenId(req);
         if (openId == null || TextUtils.isBlank(openId)) {
             String redirectUrl = OAuthManager.generateRedirectURI(SERVER_URL + "oauth2",
-                    "snsapi_userinfo", "index.html");
+                    "snsapi_userinfo", "homepage");
             resp.sendRedirect(redirectUrl);
             return;
         }
