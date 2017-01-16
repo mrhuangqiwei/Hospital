@@ -6,6 +6,7 @@ import java.util.List;
 
 import jdbc.StudentService;
 import jdbc.Ysbcsql;
+import jdbc.YyghSql;
 import jdbc.weinxinsql;
 import net.sf.json.JSONObject;
 import po.AccessToken;
@@ -16,9 +17,10 @@ public class sqltest {
 		
 		weinxinsql weinxinsql=new weinxinsql();
 		Ysbcsql ysbcsql =new Ysbcsql();
-		String json=ysbcsql.yspb("0004");
-		//List<String> kList=ysbcsql.getyspb("0004", 1);
-		System.out.print("------\t "+json);
+		YyghSql yyghSql=new YyghSql();
+	String json=yyghSql.getdatetime();
+		//List<String> kList=yyghSql.getusertime();
+		System.out.print("----'"+json+"'--\t ");
 		/**
 	    String json=weinxinsql.getfriendIsRigster(null, "513427199309232818","15577616194");
 		System.out.print(json);
