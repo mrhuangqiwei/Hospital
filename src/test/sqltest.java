@@ -16,8 +16,9 @@ public class sqltest {
 		
 		weinxinsql weinxinsql=new weinxinsql();
 		Ysbcsql ysbcsql =new Ysbcsql();
-		List<String> kList=ysbcsql.getjdbclist();
-		System.out.print("---'"+kList.size()+"'---\t "+kList.toString());
+		String json=ysbcsql.yspb("0004");
+		//List<String> kList=ysbcsql.getyspb("0004", 1);
+		System.out.print("------\t "+json);
 		/**
 	    String json=weinxinsql.getfriendIsRigster(null, "513427199309232818","15577616194");
 		System.out.print(json);
