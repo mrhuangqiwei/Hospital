@@ -56,7 +56,7 @@ public class AddFriend extends HttpServlet {
 		String nl =new String(request.getParameter("nl").getBytes("ISO-8859-1"),"UTF-8");
 		String nldw =new String(request.getParameter("nldw").getBytes("ISO-8859-1"),"UTF-8");
 		String sj=new String(request.getParameter("lxdh").getBytes("ISO-8859-1"),"UTF-8");
-		
+		System.out.print("添加常用就诊人被调用\t");
 		System.out .print("----'"+Openid+"'---'"+sfzh+"'------'"+ylkh+"'’-----"
 				+ "'"+brxm+"'----'"+brxb+"'-----'"+brjtzz+"'-------'"+nl+"'------"
 		
