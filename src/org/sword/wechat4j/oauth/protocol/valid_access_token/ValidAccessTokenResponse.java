@@ -25,7 +25,7 @@ public class ValidAccessTokenResponse {
         this.errmsg = errmsg;
     }
 
-    public boolean ok(){
+    public boolean ok() {
         return this.errmsg != null && "ok".equals(this.errmsg);
     }
 

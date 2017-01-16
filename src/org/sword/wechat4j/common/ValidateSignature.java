@@ -5,7 +5,9 @@ package org.sword.wechat4j.common;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
-import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * 用于微信的前面验证
@@ -57,9 +59,21 @@ public class ValidateSignature {
      * @return
      */
     private String encode() {
-        String[] sa = {this.token, this.timestamp, this.nonce};
-        Arrays.sort(sa);
-        String sortStr = sa[0] + sa[1] + sa[2];
-        return DigestUtils.sha1Hex(sortStr);
+        List<String> params = new LinkedList<String>();
+        if (this.token != null) {
+            params.add(this.token);
+        }
+        if (this.timestamp != null) {
+            params.add(this.timestamp);
+        }
+        if (this.nonce != null) {
+            params.add(this.nonce);
+        }
+        Collections.sort(params);
+        StringBuilder buffer = new StringBuilder();
+        for (String param : params) {
+            buffer.append(param);
+        }
+        return DigestUtils.sha1Hex(buffer.toString());
     }
 }

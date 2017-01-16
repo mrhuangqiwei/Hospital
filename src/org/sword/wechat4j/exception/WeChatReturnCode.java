@@ -5,9 +5,9 @@ import java.util.Map;
 
 /**
  * 微信全局返回码
+ *
  * @author Zhangxs
- * @date 2015-7-8 
- * @version
+ * @date 2015-7-8
  */
 public class WeChatReturnCode {
 
@@ -62,8 +62,8 @@ public class WeChatReturnCode {
         returnCodeMap.put(40117, "分组名字不合法");
         returnCodeMap.put(40118, "media_id大小不合法");
         returnCodeMap.put(40119, "button类型错误");
-		returnCodeMap.put(40120, "button类型错误");
-		returnCodeMap.put(40121, "不合法的media_id类型");
+        returnCodeMap.put(40120, "button类型错误");
+        returnCodeMap.put(40121, "不合法的media_id类型");
         returnCodeMap.put(40132, "微信号不合法");
         returnCodeMap.put(41001, "缺少access_token参数");
         returnCodeMap.put(41002, "缺少appid参数");
@@ -151,6 +151,7 @@ public class WeChatReturnCode {
 
     /**
      * 返回异常信息
+     *
      * @param returnCode
      * @return
      */

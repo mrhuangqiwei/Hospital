@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package org.sword.wechat4j.param;
 
@@ -7,55 +7,55 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * 微信身份认证参数
+ *
  * @author ChengNing
- * @date   2014年12月6日
+ * @date 2014年12月6日
  */
 public class SignatureParam {
-	
-	private String signature;
-	private String timestamp ;
-	private String nonce;
-	private String echostr;
-	
-	public SignatureParam(HttpServletRequest request){
-		signature = request.getParameter(WechatParamName.SIGNATURE);
-		timestamp = request.getParameter(WechatParamName.TIMESTAMP);
-		nonce = request.getParameter(WechatParamName.NONCE);
-		echostr = request.getParameter(WechatParamName.ECHOSTR);
-	}
 
-	public String getSignature() {
-		return signature;
-	}
+    private String signature;
+    private String timestamp;
+    private String nonce;
+    private String echostr;
 
-	public void setSignature(String signature) {
-		this.signature = signature;
-	}
+    public SignatureParam(HttpServletRequest request) {
+        signature = request.getParameter(WechatParamName.SIGNATURE);
+        timestamp = request.getParameter(WechatParamName.TIMESTAMP);
+        nonce = request.getParameter(WechatParamName.NONCE);
+        echostr = request.getParameter(WechatParamName.ECHOSTR);
+    }
 
-	public String getTimestamp() {
-		return timestamp;
-	}
+    public String getSignature() {
+        return signature;
+    }
 
-	public void setTimestamp(String timestamp) {
-		this.timestamp = timestamp;
-	}
+    public void setSignature(String signature) {
+        this.signature = signature;
+    }
 
-	public String getNonce() {
-		return nonce;
-	}
+    public String getTimestamp() {
+        return timestamp;
+    }
 
-	public void setNonce(String nonce) {
-		this.nonce = nonce;
-	}
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
+    }
 
-	public String getEchostr() {
-		return echostr;
-	}
+    public String getNonce() {
+        return nonce;
+    }
 
-	public void setEchostr(String echostr) {
-		this.echostr = echostr;
-	}
-	
-	
-	
+    public void setNonce(String nonce) {
+        this.nonce = nonce;
+    }
+
+    public String getEchostr() {
+        return echostr;
+    }
+
+    public void setEchostr(String echostr) {
+        this.echostr = echostr;
+    }
+
+
 }

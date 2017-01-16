@@ -17,12 +17,11 @@ import org.sword.wechat4j.util.WeChatUtil;
  * @version 2015-7-5
  */
 public class AccountManager {
-    Logger logger = Logger.getLogger(AccountManager.class);
-
     //长链接转短链接接口
     private static final String SHORTURL_POST_URL = "https://api.weixin.qq.com/cgi-bin/shorturl?access_token=";
     //生成带参数的二维码
     private static final String QRCODE_POST_URL = "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=";
+    Logger logger = Logger.getLogger(AccountManager.class);
 
     /**
      * 长链接转短链接接口

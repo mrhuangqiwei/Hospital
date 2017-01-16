@@ -32,8 +32,6 @@ import java.util.List;
  */
 public class OAuthManager {
 
-    private static Logger logger = Logger.getLogger(OAuthManager.class);
-
     /*生成OAuth重定向URI（用户同意授权，获取code）*/
     private static final String HTTPS_OPEN_WEIXIN_QQ_COM_CONNECT_OAUTH2_AUTHORIZE = "https://open.weixin.qq.com/connect/oauth2/authorize";
     /*通过code换取网页授权access_token*/
@@ -44,6 +42,7 @@ public class OAuthManager {
     private static final String HTTPS_API_WEIXIN_QQ_COM_SNS_USERINFO = "https://api.weixin.qq.com/sns/userinfo";
     /*检验授权凭证（access_token）是否有效*/
     private static final String HTTPS_API_WEIXIN_QQ_COM_SNS_AUTH = "https://api.weixin.qq.com/sns/auth";
+    private static Logger logger = Logger.getLogger(OAuthManager.class);
 
     /**
      * 生成OAuth重定向URI（用户同意授权，获取code）

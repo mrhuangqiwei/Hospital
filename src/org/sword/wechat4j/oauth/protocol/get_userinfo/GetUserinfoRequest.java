@@ -6,20 +6,18 @@ package org.sword.wechat4j.oauth.protocol.get_userinfo;
  */
 public class GetUserinfoRequest {
 
+    private String access_token;
+    private String openid;
+    private String lang = "zh_CN";
     public GetUserinfoRequest(String access_token, String openid) {
         this.access_token = access_token;
         this.openid = openid;
     }
-
     public GetUserinfoRequest(String access_token, String openid, String lang) {
         this.access_token = access_token;
         this.openid = openid;
         this.lang = lang;
     }
-
-    private String access_token;
-    private String openid;
-    private String lang = "zh_CN";
 
     public String getAccess_token() {
         return access_token;

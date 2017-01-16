@@ -6,13 +6,12 @@ package org.sword.wechat4j.oauth.protocol.valid_access_token;
  */
 public class ValidAccessTokenRequest {
 
+    private String access_token;
+    private String openid;
     public ValidAccessTokenRequest(String access_token, String openid) {
         this.access_token = access_token;
         this.openid = openid;
     }
-
-    private String access_token;
-    private String openid;
 
     public String getAccess_token() {
         return access_token;
