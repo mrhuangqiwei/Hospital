@@ -37,6 +37,7 @@ public class OAuth2Servlet extends HttpServlet {
             GetAccessTokenResponse token;
             try {
                 token = OAuthManager.getAccessToken(new GetAccessTokenRequest(code));
+                logger.info(token);
                 Cookie cookie = new Cookie(HospitalConfig.COOKIES_OPENID, token.getOpenid());
                 resp.addCookie(cookie);
                 resp.sendRedirect(SERVER_URL + state);
