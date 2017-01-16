@@ -1,8 +1,17 @@
 package com.wx.hospital;
 
+import net.sf.json.JSONObject;
+
 import org.sword.wechat4j.WechatSupport;
 import org.sword.wechat4j.user.User;
 import org.sword.wechat4j.user.UserManager;
+
+import po.AccessToken;
+import utils.WeiXinUtil;
+import bean.WeiXinUserBean;
+import checkutil.IsWeixinUser;
+
+import com.alibaba.fastjson.JSON;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -71,6 +80,12 @@ public class HospitalSupport extends WechatSupport {
         String openId = wechatRequest.getFromUserName();
         UserManager manager = new UserManager();
         User user = manager.getUserInfo(openId);
+        AccessToken token=WeiXinUtil.getAccessToken();
+		JSONObject jsonObject=WeiXinUtil.getWxuserInfo(token.getToken(), openId);
+		String result=jsonObject.toString();
+	
+	   WeiXinUserBean bean= JSON.parseObject(result.toString(), WeiXinUserBean.class);
+       boolean k1=	IsWeixinUser.Isweixinuser(bean);
         String content = "用户关注了: " + user.toString();
         responseText(content);
     }
