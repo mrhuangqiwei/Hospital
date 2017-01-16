@@ -119,7 +119,7 @@ public class weinxinsql {
 	public String getfriendIsRigster(String ylkh,String sfzh,String ph){
 		Connection conn = JDBC.getConnection();	
 		String json = null;
-		String sql="select top 1 Rtrim(sfzh)sfzh,Rtrim(brxm)brxm,Rtrim(brxb)brxb,Rtrim(brnl)brnl,Rtrim(brjtzz)brjtzz,Rtrim(ph)ph,Rtrim(brdh)brdh,Rtrim(ylkh)ylkh,Rtrim(brid)brid,Rtrim(brnldw)brnldw from gyb_user_friend where (sfzh='"+sfzh+"'or ylkh='"+ylkh+"' and (ph='"+ph+"'))";
+		String sql="select top 1 Rtrim(sfzh)sfzh,Rtrim(brxm)brxm,Rtrim(brxb)brxb,Rtrim(brnl)brnl,Rtrim(brjtzz)brjtzz,Rtrim(ph)ph,Rtrim(brdh)brdh,Rtrim(ylkh)ylkh,Rtrim(brid)brid,Rtrim(brnldw)brnldw from gyb_user_friend where ((sfzh='"+sfzh+"'or ylkh='"+ylkh+"' ) and (ph='"+ph+"'))";
 	try {
 		json=new JSONValidatingWriter().write(
 			        new QueryRunner().query(conn, sql, new MapListHandler()));

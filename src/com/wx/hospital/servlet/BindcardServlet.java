@@ -2,8 +2,11 @@ package com.wx.hospital.servlet;
 
 import bean.Brjbxxbean;
 import checkutil.IsWeixinUser;
+
 import com.alibaba.fastjson.JSON;
+
 import jdbc.weinxinsql;
+
 import org.apache.http.util.TextUtils;
 import org.apache.log4j.Logger;
 import org.sword.wechat4j.oauth.OAuthManager;
@@ -12,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 
 import static com.wx.hospital.HospitalConfig.SERVER_URL;
@@ -55,6 +59,7 @@ public class BindcardServlet extends BaseServlet {
         }
         String ylkh = getParam(req, "ylkh");
         String sfzh = getParam(req, "sfzh");
+        System.out.print("dopost方法被调用");
 
         if (IsWeixinUser.IsFriend(openId, sfzh, ylkh)) {
             String nldw = "1";
@@ -67,11 +72,17 @@ public class BindcardServlet extends BaseServlet {
             boolean status = false;
             if (TextUtils.isEmpty(ylkh)) {
                 status = weinxinsql.insertfriend(sfzh, brxm, nl, brxb, brjtzz, openId, lxdh, ylkh, nldw);
+                
+                
+                System.out.print("----'"+sfzh+"'------'"+brxm+"'-------'"+nl+"'----'"+brxb+"'-----'"+openId+"'-");
             } else if (IsWeixinUser.IsFriendRegster(ylkh)) {
                 String json = weinxinsql.getfriendinfotocheck(ylkh);
-                Brjbxxbean bean = JSON.parseObject(json, Brjbxxbean.class);
+                String  json1=json.substring(1, json.length() - 1);
+                Brjbxxbean bean = JSON.parseObject(json1, Brjbxxbean.class);
                 status = weinxinsql.insertfriend(bean.getSfzh(), bean.getBrxm(), bean.getBrnl(), bean.getBrxb(),
                         bean.getJtzz(), openId, bean.getSj(), ylkh, bean.getBrnldw());
+                System.out.print("医疗卡号相等");
+                System.out.print("----'"+sfzh+"'------'"+brxm+"'-------'"+nl+"'----'"+brxb+"'-----'"+openId+"'-");
             }
             if (status) {
                 resp.sendRedirect("homepage");
@@ -80,6 +91,8 @@ public class BindcardServlet extends BaseServlet {
             }
         } else {
             resp.sendRedirect("homepage");
+            
+            System.out.print("不满足条件");
         }
     }
 }
