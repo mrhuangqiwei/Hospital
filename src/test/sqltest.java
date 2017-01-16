@@ -18,9 +18,33 @@ public class sqltest {
 		weinxinsql weinxinsql=new weinxinsql();
 		Ysbcsql ysbcsql =new Ysbcsql();
 		YyghSql yyghSql=new YyghSql();
-	String json=yyghSql.getdatetime();
+	//String json=yyghSql.getdatetime();
+	
+	String mxfyxmbnString="130002";
+	String yyghid="20161018000002";
+	String czybm="0269";
+	String ywckbm="01";
+	String yydjrq="2016-10-21 12:19:19.327";
+	String yyghrq="2016-10-21 12:19:19.327";
+	String yyyxrq="2016-11-21 12:19:19.327";
+	String brxm="张三";
+	String   brxb="1";
+	String brsr="1900-01-01 00:00:00.000";
+	String brnl="23";
+	String brnldw="1";
+	String sfzh="513427196907132813";   
+	String sj="15577616194";
+	String yyys="0004";
+	String yyks="0004";
+	String jtzz="宁南县";
+	String mxfyxmbm="130002";
+	String yyjfbz="1";
+	String  yf=yyghSql.appointment(yyghrq, brxm, brxb, brnldw, sfzh, jtzz, sj, yyys, yyks, yydjrq, yyyxrq, mxfyxmbm, yyjfbz);
+			
+			
+			
 		//List<String> kList=yyghSql.getusertime();
-		System.out.print("----'"+json+"'--\t ");
+		System.out.print("----'"+yf+"'--\t ");
 		/**
 	    String json=weinxinsql.getfriendIsRigster(null, "513427199309232818","15577616194");
 		System.out.print(json);
