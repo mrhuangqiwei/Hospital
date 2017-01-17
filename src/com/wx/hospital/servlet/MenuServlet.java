@@ -27,6 +27,7 @@ import static com.wx.hospital.HospitalConfig.SERVER_URL;
 @WebServlet("/configMenu")
 public class MenuServlet extends HttpServlet {
 
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String actionType = req.getParameter("action");
@@ -67,9 +68,8 @@ public class MenuServlet extends HttpServlet {
         buttons.add(button);
 
         button = new MenuButton();
-        button.setName("百度");
-        button.setType(EventType.view);
-        button.setUrl("http://www.baidu.com");
+        button.setName("联系方式");
+        button.setSubButton(getSubButtons());
         buttons.add(button);
 
         menu.setButton(buttons);
@@ -80,5 +80,18 @@ public class MenuServlet extends HttpServlet {
         } catch (WeChatException e) {
             e.printStackTrace();
         }
+    }
+
+    private List<MenuButton> getSubButtons() {
+        List<MenuButton> subButtons = new LinkedList<>();
+        String[] subNames = {"临床科室", "其他科室", "其他部门"};
+        for (String name : subNames) {
+            MenuButton button = new MenuButton();
+            button.setName(name);
+            button.setType(EventType.view);
+            button.setUrl("http://www.soso.com/");
+            subButtons.add(button);
+        }
+        return subButtons;
     }
 }

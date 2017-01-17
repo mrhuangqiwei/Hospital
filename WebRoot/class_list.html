@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>科室列表</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <link rel="stylesheet" href="libs/css/amazeui.min.css">
+    <link rel="stylesheet" href="libs/css/style.css">
+    <link rel="stylesheet" href="libs/css/wap.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!--分享的图标-->
+    <div id='wx_pic' style='margin:0 auto;display:none;'>
+        <img src='images/icon.png'/>
+    </div>
+
+    <div class="cart-panel">
+        <form class="am-form" action="bindcard" method="post">
+            <div class="am-form-group am-form-icon">
+                <i class="am-icon-credit-card" style="color:#329cd9"></i>
+                <input type="text" class="am-form-field my-radius"
+                       minlength="6" maxlength="20" name="ylkh"
+                       placeholder="请输入医疗卡号">
+            </div>
+            <p class="am-text-center">
+                <button type="submit" class="am-btn am-btn-primary am-radius am-btn-block">立即绑定</button>
+            </p>
+        </form>
+        <p class="am-text-center">
+            <a class="am-btn am-btn-default am-radius am-btn-block" href="bindcard?action=idcard">还没有卡，去绑定身份证</a>
+        </p>
+    </div>
+
+    <!--底部导航-->
+    <div data-am-widget="navbar" class="am-navbar am-cf my-nav-footer" id="">
+        <ul class="am-navbar-nav am-cf am-avg-sm-4 my-footer-ul">
+            <li>
+                <a href="index.html" class="">
+                    <span class="am-icon-home"></span>
+                    <span class="am-navbar-label">首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="">
+                    <span class=" am-icon-comments"></span>
+                    <span class="am-navbar-label">微信</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="">
+                    <span class=" am-icon-map-marker"></span>
+                    <span class="am-navbar-label">地图</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;" class="">
+                    <span class="am-icon-user"></span>
+                    <span class="am-navbar-label">我的</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script src="libs/js/jquery.min.js"></script>
+<script src="libs/js/amazeui.min.js"></script>
+<script src="libs/js/vue.min.js"></script>
+<script src="js/class_list.js"></script>
+
+</body>
+</html>

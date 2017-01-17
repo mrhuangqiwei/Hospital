@@ -5,8 +5,6 @@ import checkutil.IsWeixinUser;
 import com.alibaba.fastjson.JSON;
 import net.sf.json.JSONObject;
 import org.sword.wechat4j.WechatSupport;
-import org.sword.wechat4j.user.User;
-import org.sword.wechat4j.user.UserManager;
 import po.AccessToken;
 import utils.WeiXinUtil;
 
@@ -81,8 +79,8 @@ public class HospitalSupport extends WechatSupport {
 
         WeiXinUserBean bean = JSON.parseObject(result, WeiXinUserBean.class);
         boolean k1 = IsWeixinUser.Isweixinuser(bean);
-        String content = "用户关注了: " + result;
-        responseText(content);
+        responseText("您好，欢迎你关注普定县人民医院！我们将为你提供医学专业知识，分享品质生活资讯，" +
+                "让您了解医院新闻和动态，还可推荐医院相关专家，为您提供更专业的治疗方案！");
     }
 
     @Override
