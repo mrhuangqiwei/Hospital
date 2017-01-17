@@ -239,4 +239,6 @@ public class weinxinsql {
 	    return ok;  
 	}
 	
+
+	
 }

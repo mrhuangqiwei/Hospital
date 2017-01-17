@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
+import jdbc.Deletefriend;
 import jdbc.StudentService;
 import jdbc.Ysbcsql;
 import jdbc.YyghSql;
@@ -18,6 +19,7 @@ public class sqltest {
 		weinxinsql weinxinsql=new weinxinsql();
 		Ysbcsql ysbcsql =new Ysbcsql();
 		YyghSql yyghSql=new YyghSql();
+		Deletefriend deletefriend =new Deletefriend();
 	//String json=yyghSql.getdatetime();
 	
 	String mxfyxmbnString="130002";
@@ -39,12 +41,14 @@ public class sqltest {
 	String jtzz="宁南县";
 	String mxfyxmbm="130002";
 	String yyjfbz="1";
-	String  yf=yyghSql.appointment(yyghrq, brxm, brxb, brnldw, sfzh, jtzz, sj, yyys, yyks, yydjrq, yyyxrq, mxfyxmbm, yyjfbz);
-			
+	//String  yf=yyghSql.appointment(yyghrq, brxm, brxb, brnldw, sfzh, jtzz, sj, yyys, yyks, yydjrq, yyyxrq, mxfyxmbm, yyjfbz);
+		
+	boolean ok=false;
+	ok=deletefriend.deletefriendinfo("owEWzwQKO7G_uy4C0X_Wn2boPVI4", "558842685569842688", "");
 			
 			
 		//List<String> kList=yyghSql.getusertime();
-		System.out.print("----'"+yf+"'--\t ");
+		System.out.print("----'"+ok+"'--\t ");
 		/**
 	    String json=weinxinsql.getfriendIsRigster(null, "513427199309232818","15577616194");
 		System.out.print(json);
