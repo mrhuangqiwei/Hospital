@@ -9,7 +9,7 @@ import java.io.IOException;
 /**
  * Created by hzy on 1/17/17.
  */
-@WebServlet("classlist")
+@WebServlet("/classlist")
 public class ClassListServlet extends BaseServlet {
 
     @Override
@@ -19,6 +19,6 @@ public class ClassListServlet extends BaseServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        doGet(req, resp);
     }
 }
