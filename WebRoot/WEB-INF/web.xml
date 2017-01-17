@@ -52,6 +52,14 @@
     <servlet-name>deletefriend</servlet-name>
     <servlet-class>Servlet.deletefriend</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>getuserRecord</servlet-name>
+    <servlet-class>Servlet.getuserRecord</servlet-class>
+  </servlet>
+
+
 
 
 
@@ -94,6 +102,11 @@
   <servlet-mapping>
     <servlet-name>deletefriend</servlet-name>
     <url-pattern>/deletefriend</url-pattern>
+  </servlet-mapping>
+ 
+  <servlet-mapping>
+    <servlet-name>getuserRecord</servlet-name>
+    <url-pattern>/getuserRecord</url-pattern>
   </servlet-mapping>
 
 
