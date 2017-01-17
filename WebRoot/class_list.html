@@ -21,21 +21,15 @@
         <img src='images/icon.png'/>
     </div>
 
-    <div class="cart-panel">
-        <form class="am-form" action="bindcard" method="post">
-            <div class="am-form-group am-form-icon">
-                <i class="am-icon-credit-card" style="color:#329cd9"></i>
-                <input type="text" class="am-form-field my-radius"
-                       minlength="6" maxlength="20" name="ylkh"
-                       placeholder="请输入医疗卡号">
-            </div>
-            <p class="am-text-center">
-                <button type="submit" class="am-btn am-btn-primary am-radius am-btn-block">立即绑定</button>
-            </p>
-        </form>
-        <p class="am-text-center">
-            <a class="am-btn am-btn-default am-radius am-btn-block" href="bindcard?action=idcard">还没有卡，去绑定身份证</a>
-        </p>
+    <div id="app">
+        <ul class="am-list">
+            <li class="am-g am-list-item-desced am-list-item-thumbed pet_hd_list"
+                v-for="todo in todos">
+                <a href="{{ todo.type }}" class="pet_hd_block" style="padding: 18px">
+                    <div class="pet_hd_block_title">{{ todo.type }}</div>
+                </a>
+            </li>
+        </ul>
     </div>
 
     <!--底部导航-->
