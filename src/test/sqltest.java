@@ -1,11 +1,19 @@
 package test;
 
 import java.io.IOException; 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import jdbc.Deletefriend;
+import jdbc.JDBC;
 import jdbc.StudentService;
+import jdbc.Userzyfymx;
 import jdbc.Ysbcsql;
 import jdbc.YyghSql;
 import jdbc.weinxinsql;
@@ -20,6 +28,8 @@ public class sqltest {
 		Ysbcsql ysbcsql =new Ysbcsql();
 		YyghSql yyghSql=new YyghSql();
 		Deletefriend deletefriend =new Deletefriend();
+		Userzyfymx userzyfymx =new Userzyfymx();
+		
 	//String json=yyghSql.getdatetime();
 	
 	String mxfyxmbnString="130002";
@@ -43,12 +53,13 @@ public class sqltest {
 	String yyjfbz="1";
 	//String  yf=yyghSql.appointment(yyghrq, brxm, brxb, brnldw, sfzh, jtzz, sj, yyys, yyks, yydjrq, yyyxrq, mxfyxmbm, yyjfbz);
 		
-	boolean ok=false;
-	ok=deletefriend.deletefriendinfo("owEWzwQKO7G_uy4C0X_Wn2boPVI4", "558842685569842688", "");
-			
+	//boolean ok=false;
+	//ok=deletefriend.deletefriendinfo("owEWzwQKO7G_uy4C0X_Wn2boPVI4", "558842685569842688", "");
+	//Map<String, String> map=userzyfymx.getmxfcbm();
+String list= userzyfymx.getuserfymx("2016003423");
 			
 		//List<String> kList=yyghSql.getusertime();
-		System.out.print("----'"+ok+"'--\t ");
+		System.out.print("----'"+list.toString()+"'--\t ");
 		/**
 	    String json=weinxinsql.getfriendIsRigster(null, "513427199309232818","15577616194");
 		System.out.print(json);
@@ -60,4 +71,6 @@ public class sqltest {
 		//boolean k=weinxinsql.updateuser("9999", "owEWzweXEgfBaf9ZW_XN03slsDlI", "45");
 		//System.out.print("---------"+k);
 	}
+	
+	
 }

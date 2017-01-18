@@ -1,11 +1,13 @@
 package bean;
 
+import java.util.List;
+
 public class YspbfaBean {
-private String  swpb;
-private String xwpb;
+private List<YspbBean>  swpb;
+private List<YspbBean> xwpb;
 
 
-public YspbfaBean(String swpb, String xwpb) {
+public YspbfaBean(List<YspbBean> swpb, List<YspbBean> xwpb) {
 	
 	this.swpb = swpb;
 	this.xwpb = xwpb;
@@ -13,25 +15,25 @@ public YspbfaBean(String swpb, String xwpb) {
 /**
  * @return the swpb
  */
-public String getSwpb() {
+public List<YspbBean> getSwpb() {
 	return swpb;
 }
 /**
  * @param swpb the swpb to set
  */
-public void setSwpb(String swpb) {
+public void setSwpb(List<YspbBean> swpb) {
 	this.swpb = swpb;
 }
 /**
  * @return the xwpb
  */
-public String getXwpb() {
+public List<YspbBean> getXwpb() {
 	return xwpb;
 }
 /**
  * @param xwpb the xwpb to set
  */
-public void setXwpb(String xwpb) {
+public void setXwpb(List<YspbBean> xwpb) {
 	this.xwpb = xwpb;
 }
 

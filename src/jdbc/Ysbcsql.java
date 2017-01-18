@@ -20,8 +20,8 @@ public class Ysbcsql {
  * @return
  */
 	public String yspb(String ksbm){
-		String json1=Getyspbsw(ksbm);
-		String json2=Getyspbxw(ksbm);
+		List<YspbBean> json1=Getyspbsw(ksbm);
+		List<YspbBean> json2=Getyspbxw(ksbm);
 		YspbfaBean yspbfaBean=new YspbfaBean(json1, json2);
 		String json=JSON.toJSONString(yspbfaBean);
 		return json;
@@ -34,7 +34,7 @@ public class Ysbcsql {
 	 * @param ksbm
 	 * @return
 	 */
-	public String  Getyspbsw(String ksbm){
+	public List<YspbBean>  Getyspbsw(String ksbm){
 	List<String> list1 = new ArrayList<String>(); List<String> list2 =new ArrayList<String>(); List<String> list3 =new ArrayList<String>();
     List<String> list4 = new ArrayList<String>(); List<String> list5 = new ArrayList<String>(); List<String> list6 = new ArrayList<String>(); List<String> list7 =new ArrayList<String>();
     list1 = getyspb(0, ksbm); list2 = getyspb(1, ksbm); list3 = getyspb(2, ksbm); list4 = getyspb(3, ksbm); list5 = getyspb(4, ksbm); list6 = getyspb(5, ksbm);
@@ -67,8 +67,8 @@ public class Ysbcsql {
     }
     
     
-    String json=JSON.toJSONString(lBeans);
-    return json;
+   // String json=JSON.toJSONString(lBeans);
+    return lBeans;
 
 	}
 	/****
@@ -76,7 +76,7 @@ public class Ysbcsql {
 	 * @param ksbm
 	 * @return
 	 */
-	public String  Getyspbxw(String ksbm){
+	public List<YspbBean>  Getyspbxw(String ksbm){
 		List<String> list1 = new ArrayList<String>(); List<String> list2 =new ArrayList<String>(); List<String> list3 =new ArrayList<String>();
 	    List<String> list4 = new ArrayList<String>(); List<String> list5 = new ArrayList<String>(); List<String> list6 = new ArrayList<String>(); List<String> list7 =new ArrayList<String>();
 	    list1 = getyspb(0, ksbm); list2 = getyspb(1, ksbm); list3 = getyspb(2, ksbm); list4 = getyspb(3, ksbm); list5 = getyspb(4, ksbm); list6 = getyspb(5, ksbm);
@@ -108,9 +108,8 @@ public class Ysbcsql {
 	    lBeans.add(yspbBean);
 	    }
 	    
-	    
-	    String json=JSON.toJSONString(lBeans);
-	    return json;
+	    return lBeans;
+	  
 
 		}
 	
