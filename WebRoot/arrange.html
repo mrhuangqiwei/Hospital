@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>科室列表</title>
+    <title>医生排班</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -25,9 +25,17 @@
     <div id="app">
         <ul class="am-list">
             <li class="am-g am-list-item-desced am-list-item-thumbed pet_hd_list"
-                v-for="d in todos">
-                <a :href="'arrange?id='+d.ksbm" class="pet_hd_block" style="padding-left: 18px">
-                    <div class="pet_hd_block_title">{{ d.ksmc }}</div>
+                v-for="d in swpb">
+                <a class="pet_hd_block" style="padding-left: 18px">
+                    <div class="pet_hd_block_title">{{ d.czyxm }}</div>
+                </a>
+            </li>
+        </ul>
+        <ul class="am-list">
+            <li class="am-g am-list-item-desced am-list-item-thumbed pet_hd_list"
+                v-for="d in xwpb">
+                <a class="pet_hd_block" style="padding-left: 18px">
+                    <div class="pet_hd_block_title">{{ d.czyxm }}</div>
                 </a>
             </li>
         </ul>
@@ -66,7 +74,8 @@
 
 <script src="libs/js/jquery.min.js"></script>
 <script src="libs/js/amazeui.min.js"></script>
-<script src="js/class_list.js"></script>
+<script src="libs/js/jquery.cookie.js"></script>
+<script src="js/arrange.js"></script>
 
 </body>
 </html>
