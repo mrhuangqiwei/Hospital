@@ -39,13 +39,13 @@
                 </tr>
                 <tr>
                     <td>就诊人</td>
-                    <td><select data-am-selected="{dropUp: 1}">
-                        <option value="sfzh" ng-repeat="f in friends">{{f.brxm}}</option>
+                    <td class="am-form"><select ng-model="myValue" class="am-btn-default"
+                                ng-options="f.brxm for f in friends">
                     </select></td>
                 </tr>
             </table>
             <p class="am-text-center">
-                <button type="submit" class="am-btn am-btn-primary am-radius am-btn-block">预约挂号</button>
+                <button ng-click="submitOrder()" class="am-btn am-btn-primary am-radius am-btn-block">预约挂号</button>
             </p>
         </div>
     </div>
