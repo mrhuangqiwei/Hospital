@@ -18,7 +18,11 @@ import com.alibaba.fastjson.JSONArray;
 
 import bean.FymxBean;
 import bean.userzymxfybean;
-
+/**
+ * 获取病人费用明细清单
+ * @author Administrator
+ *
+ */
 public class Userzyfymx {
 	Dao dao = Dao.getInstance();
 	
@@ -75,8 +79,7 @@ public class Userzyfymx {
 				{
 				list.add(rs.getString("mxfyxmbm"));
 				list.add(rs.getString("mxfyxmmc"));
-			
-				
+
 				}
 				stmt.close();								// 关闭连接状态对象
 				conn.commit();
@@ -154,6 +157,48 @@ public class Userzyfymx {
 		}
 		return list;
 	}
-	
+	/**
+	 * 获取门诊费用明细
+	 * @param zyh
+	 * @return
+	 */
+	public static List<String>getmzfymx(String ghxh){
+		List<String> list=new ArrayList<String>();
+		Connection conn = JDBC.getConnection();	
+		Statement stmt;
+		String sql="select convert(varchar(16),mzb_brfy.sfrq,120)as sfrq , RTRIM( mzb_brfy.ryghxh)ghxh,RTRIM( mzb_brfy.brxm)brxm,RTRIM( mzb_brfy.mxfyxmbm)mxfyxmbm,RTRIM( mzb_brfy.fphm)fphm,    RTRIM(mzb_brfy.yhbl)yhbl,   RTRIM(mzb_brfy.yhje)yhje,  Rtrim(mzb_brfy.fysl)fysl,   Rtrim(mzb_brfy.ytsl)ytsl,   Rtrim(mzb_brfy.fydj)fydj,   Rtrim(mzb_brfy.fyje)fyje,  RTRIM(mzb_brfy.mzys)mzys,   RTRIM( mzb_brfy.mzks)mzks,    RTRIM(mzb_brfy.hsks)hsks,   RTRIM( mzb_brfy.zxks)zxks,    RTRIM(mzb_brfy.yzlx)yzlx, mzb_brfy.tfid   FROM v_mzb_brfy mzb_brfy WITH(NOLOCK) LEFT OUTER JOIN v_ghb_brgh ghb_brgh ON mzb_brfy.ryghxh = ghb_brgh.ghxh where ghxh='"+ghxh+"'  and sfjs=1 ";
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs=stmt.executeQuery(sql);
+			//循环输出每一条记录
+			while(rs.next())
+			{list.add(rs.getString("sfrq"));
+			list.add(rs.getString("ghxh"));
+			list.add(rs.getString("brxm"));
+			list.add(rs.getString("mxfyxmbm"));
+			list.add(rs.getString("fphm"));
+			list.add(rs.getString("yhbl"));
+			list.add(rs.getString("yhje"));
+			list.add(rs.getString("fysl"));
+			list.add(rs.getString("ytsl"));
+			list.add(rs.getString("fydj"));
+			list.add(rs.getString("fyje"));
+			list.add(rs.getString("mzys"));
+			list.add(rs.getString("mzks"));
+			list.add(rs.getString("hsks"));
+			list.add(rs.getString("zxks"));
+			list.add(rs.getString("yzlx"));
+			list.add(rs.getString("tfid"));
+
+			
+			}
+			stmt.close();								// 关闭连接状态对象
+			conn.commit();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}	
 	
 }
