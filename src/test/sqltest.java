@@ -53,12 +53,14 @@ public class sqltest {
 	String jtzz="宁南县";
 	String mxfyxmbm="130002";
 	String yyjfbz="1";
-	//String  yf=yyghSql.appointment(yyghrq, brxm, brxb, brnldw, sfzh, jtzz, sj, yyys, yyks, yydjrq, yyyxrq, mxfyxmbm, yyjfbz);
+String  yf=yyghSql.appointment(yyghrq, brxm, brxb, brnldw, sfzh, jtzz, sj, yyys, yyks, yydjrq, yyyxrq, mxfyxmbm, yyjfbz);
 		
 	//boolean ok=false;
 	//ok=deletefriend.deletefriendinfo("owEWzwQKO7G_uy4C0X_Wn2boPVI4", "558842685569842688", "");
 	//Map<String, String> map=userzyfymx.getmxfcbm();
       //  List<String> list= userzyfymx.getmzfymx("20100407000001");
+ //String ssString=ysbcsql.yspb("0004");
+ /**
         List<String> list=getrq();
      
         SimpleDateFormat sdf= new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
@@ -72,9 +74,9 @@ public class sqltest {
 			e.printStackTrace();
 		}
       //继续转换得到秒数的long型
-      long lTime = dt2.getTime();
+      long lTime = dt2.getTime();**/
 		//List<String> kList=yyghSql.getusertime();
-		System.out.print("----'"+list.get(0)+"'--\t "+lTime);
+		System.out.print("----'"+yf+"'--\t ");
 		/**
 	    String json=weinxinsql.getfriendIsRigster(null, "513427199309232818","15577616194");
 		System.out.print(json);

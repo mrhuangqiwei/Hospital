@@ -46,7 +46,7 @@ public class YyghSql {
     if (k >= 1)
     {
         updateYwxhb1(xh, ssrq);
-   Long   f = Long.parseLong(getyyghid().trim());
+   Long   f = Long.parseLong(getyyghid().trim())+1;
 		   //Double.parseDouble(getyyghid().trim());
     		//Integer.parseInt(getyyghid().trim())+1;
         String yyid = String.valueOf(f);;

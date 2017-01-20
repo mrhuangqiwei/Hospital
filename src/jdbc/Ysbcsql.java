@@ -49,20 +49,20 @@ public class Ysbcsql {
     String tc = "";
     leather(list1, tc, max); leather(list2, tc, max); leather(list3, tc, max); leather(list4, tc, max); leather(list5, tc, max); leather(list6, tc, max); leather(list7, tc, max);
     List<YspbBean>lBeans=new ArrayList<YspbBean>();
-    for (int i = 0; i < max - 17; i = i + 17)
-    {   YspbBean yspbBean=new YspbBean(list1.get(i),list1.get(i+1),list1.get(i+2),list1.get(i+3),list1.get(i+4),list1.get(i+5),list1.get(i+6),list1.get(i+7),list1.get(i+8),list1.get(i+9),list1.get(i+10),list1.get(i+11),list1.get(i+12),list1.get(i+13),list1.get(i+14),list1.get(i+15),list1.get(i+16));
+    for (int i = 0; i < max - 17; i = i + 19)
+    {   YspbBean yspbBean=new YspbBean(list1.get(i),list1.get(i+1),list1.get(i+2),list1.get(i+3),list1.get(i+4),list1.get(i+5),list1.get(i+6),list1.get(i+7),list1.get(i+8),list1.get(i+9),list1.get(i+10),list1.get(i+11),list1.get(i+12),list1.get(i+13),list1.get(i+14),list1.get(i+15),list1.get(i+16),list1.get(i+17),list1.get(i+18));
     lBeans.add(yspbBean);
-    yspbBean=new YspbBean(list2.get(i),list2.get(i+1),list2.get(i+2),list2.get(i+3),list2.get(i+4),list2.get(i+5),list2.get(i+6),list2.get(i+7),list2.get(i+8),list2.get(i+9),list2.get(i+10),list2.get(i+11),list2.get(i+12),list2.get(i+13),list2.get(i+14),list2.get(i+15),list2.get(i+16));
+    yspbBean=new YspbBean(list2.get(i),list2.get(i+1),list2.get(i+2),list2.get(i+3),list2.get(i+4),list2.get(i+5),list2.get(i+6),list2.get(i+7),list2.get(i+8),list2.get(i+9),list2.get(i+10),list2.get(i+11),list2.get(i+12),list2.get(i+13),list2.get(i+14),list2.get(i+15),list2.get(i+16),list2.get(i+17),list2.get(i+18));
     lBeans.add(yspbBean);
-    yspbBean=new YspbBean(list3.get(i),list3.get(i+1),list3.get(i+2),list3.get(i+3),list3.get(i+4),list3.get(i+5),list3.get(i+6),list3.get(i+7),list3.get(i+8),list3.get(i+9),list3.get(i+10),list3.get(i+11),list3.get(i+12),list3.get(i+13),list3.get(i+14),list3.get(i+15),list3.get(i+16));
+    yspbBean=new YspbBean(list3.get(i),list3.get(i+1),list3.get(i+2),list3.get(i+3),list3.get(i+4),list3.get(i+5),list3.get(i+6),list3.get(i+7),list3.get(i+8),list3.get(i+9),list3.get(i+10),list3.get(i+11),list3.get(i+12),list3.get(i+13),list3.get(i+14),list3.get(i+15),list3.get(i+16),list3.get(i+17),list3.get(i+18));
     lBeans.add(yspbBean);
-    yspbBean=new YspbBean(list4.get(i),list4.get(i+1),list4.get(i+2),list4.get(i+3),list4.get(i+4),list4.get(i+5),list4.get(i+6),list4.get(i+7),list4.get(i+8),list4.get(i+9),list4.get(i+10),list4.get(i+11),list4.get(i+12),list4.get(i+13),list4.get(i+14),list4.get(i+15),list4.get(i+16));
+    yspbBean=new YspbBean(list4.get(i),list4.get(i+1),list4.get(i+2),list4.get(i+3),list4.get(i+4),list4.get(i+5),list4.get(i+6),list4.get(i+7),list4.get(i+8),list4.get(i+9),list4.get(i+10),list4.get(i+11),list4.get(i+12),list4.get(i+13),list4.get(i+14),list4.get(i+15),list4.get(i+16),list4.get(i+17),list4.get(i+18));
     lBeans.add(yspbBean);
-    yspbBean=new YspbBean(list5.get(i),list5.get(i+1),list5.get(i+2),list5.get(i+3),list5.get(i+4),list5.get(i+5),list5.get(i+6),list5.get(i+7),list5.get(i+8),list5.get(i+9),list5.get(i+10),list5.get(i+11),list5.get(i+12),list5.get(i+13),list5.get(i+14),list5.get(i+15),list5.get(i+16));
+    yspbBean=new YspbBean(list5.get(i),list5.get(i+1),list5.get(i+2),list5.get(i+3),list5.get(i+4),list5.get(i+5),list5.get(i+6),list5.get(i+7),list5.get(i+8),list5.get(i+9),list5.get(i+10),list5.get(i+11),list5.get(i+12),list5.get(i+13),list5.get(i+14),list5.get(i+15),list5.get(i+16),list5.get(i+17),list5.get(i+18));
     lBeans.add(yspbBean);
-    yspbBean=new YspbBean(list6.get(i),list6.get(i+1),list6.get(i+2),list6.get(i+3),list6.get(i+4),list6.get(i+5),list6.get(i+6),list6.get(i+7),list6.get(i+8),list6.get(i+9),list6.get(i+10),list6.get(i+11),list6.get(i+12),list6.get(i+13),list6.get(i+14),list6.get(i+15),list6.get(i+16));
+    yspbBean=new YspbBean(list6.get(i),list6.get(i+1),list6.get(i+2),list6.get(i+3),list6.get(i+4),list6.get(i+5),list6.get(i+6),list6.get(i+7),list6.get(i+8),list6.get(i+9),list6.get(i+10),list6.get(i+11),list6.get(i+12),list6.get(i+13),list6.get(i+14),list6.get(i+15),list6.get(i+16),list6.get(i+17),list6.get(i+18));
     lBeans.add(yspbBean);
-    yspbBean=new YspbBean(list7.get(i),list7.get(i+1),list7.get(i+2),list7.get(i+3),list7.get(i+4),list7.get(i+5),list7.get(i+6),list7.get(i+7),list7.get(i+8),list7.get(i+9),list7.get(i+10),list7.get(i+11),list7.get(i+12),list7.get(i+13),list7.get(i+14),list7.get(i+15),list7.get(i+16));
+    yspbBean=new YspbBean(list7.get(i),list7.get(i+1),list7.get(i+2),list7.get(i+3),list7.get(i+4),list7.get(i+5),list7.get(i+6),list7.get(i+7),list7.get(i+8),list7.get(i+9),list7.get(i+10),list7.get(i+11),list7.get(i+12),list7.get(i+13),list7.get(i+14),list7.get(i+15),list7.get(i+16),list7.get(i+17),list7.get(i+18));
     lBeans.add(yspbBean);
     }
     
@@ -91,20 +91,20 @@ public class Ysbcsql {
 	    String tc = "";
 	    leather(list1, tc, max); leather(list2, tc, max); leather(list3, tc, max); leather(list4, tc, max); leather(list5, tc, max); leather(list6, tc, max); leather(list7, tc, max);
 	    List<YspbBean>lBeans=new ArrayList<YspbBean>();
-	    for (int i = 0; i < max - 17; i = i + 17)
-	    {   YspbBean yspbBean=new YspbBean(list1.get(i),list1.get(i+1),list1.get(i+2),list1.get(i+3),list1.get(i+4),list1.get(i+5),list1.get(i+6),list1.get(i+7),list1.get(i+8),list1.get(i+9),list1.get(i+10),list1.get(i+11),list1.get(i+12),list1.get(i+13),list1.get(i+14),list1.get(i+15),list1.get(i+16));
+	    for (int i = 0; i < max - 17; i = i + 19)
+	    {   YspbBean yspbBean=new YspbBean(list1.get(i),list1.get(i+1),list1.get(i+2),list1.get(i+3),list1.get(i+4),list1.get(i+5),list1.get(i+6),list1.get(i+7),list1.get(i+8),list1.get(i+9),list1.get(i+10),list1.get(i+11),list1.get(i+12),list1.get(i+13),list1.get(i+14),list1.get(i+15),list1.get(i+16),list1.get(i+17),list1.get(i+18));
 	    lBeans.add(yspbBean);
-	    yspbBean=new YspbBean(list2.get(i),list2.get(i+1),list2.get(i+2),list2.get(i+3),list2.get(i+4),list2.get(i+5),list2.get(i+6),list2.get(i+7),list2.get(i+8),list2.get(i+9),list2.get(i+10),list2.get(i+11),list2.get(i+12),list2.get(i+13),list2.get(i+14),list2.get(i+15),list2.get(i+16));
+	    yspbBean=new YspbBean(list2.get(i),list2.get(i+1),list2.get(i+2),list2.get(i+3),list2.get(i+4),list2.get(i+5),list2.get(i+6),list2.get(i+7),list2.get(i+8),list2.get(i+9),list2.get(i+10),list2.get(i+11),list2.get(i+12),list2.get(i+13),list2.get(i+14),list2.get(i+15),list2.get(i+16),list2.get(i+17),list2.get(i+18));
 	    lBeans.add(yspbBean);
-	    yspbBean=new YspbBean(list3.get(i),list3.get(i+1),list3.get(i+2),list3.get(i+3),list3.get(i+4),list3.get(i+5),list3.get(i+6),list3.get(i+7),list3.get(i+8),list3.get(i+9),list3.get(i+10),list3.get(i+11),list3.get(i+12),list3.get(i+13),list3.get(i+14),list3.get(i+15),list3.get(i+16));
+	    yspbBean=new YspbBean(list3.get(i),list3.get(i+1),list3.get(i+2),list3.get(i+3),list3.get(i+4),list3.get(i+5),list3.get(i+6),list3.get(i+7),list3.get(i+8),list3.get(i+9),list3.get(i+10),list3.get(i+11),list3.get(i+12),list3.get(i+13),list3.get(i+14),list3.get(i+15),list3.get(i+16),list3.get(i+17),list3.get(i+18));
 	    lBeans.add(yspbBean);
-	    yspbBean=new YspbBean(list4.get(i),list4.get(i+1),list4.get(i+2),list4.get(i+3),list4.get(i+4),list4.get(i+5),list4.get(i+6),list4.get(i+7),list4.get(i+8),list4.get(i+9),list4.get(i+10),list4.get(i+11),list4.get(i+12),list4.get(i+13),list4.get(i+14),list4.get(i+15),list4.get(i+16));
+	    yspbBean=new YspbBean(list4.get(i),list4.get(i+1),list4.get(i+2),list4.get(i+3),list4.get(i+4),list4.get(i+5),list4.get(i+6),list4.get(i+7),list4.get(i+8),list4.get(i+9),list4.get(i+10),list4.get(i+11),list4.get(i+12),list4.get(i+13),list4.get(i+14),list4.get(i+15),list4.get(i+16),list4.get(i+17),list4.get(i+18));
 	    lBeans.add(yspbBean);
-	    yspbBean=new YspbBean(list5.get(i),list5.get(i+1),list5.get(i+2),list5.get(i+3),list5.get(i+4),list5.get(i+5),list5.get(i+6),list5.get(i+7),list5.get(i+8),list5.get(i+9),list5.get(i+10),list5.get(i+11),list5.get(i+12),list5.get(i+13),list5.get(i+14),list5.get(i+15),list5.get(i+16));
+	    yspbBean=new YspbBean(list5.get(i),list5.get(i+1),list5.get(i+2),list5.get(i+3),list5.get(i+4),list5.get(i+5),list5.get(i+6),list5.get(i+7),list5.get(i+8),list5.get(i+9),list5.get(i+10),list5.get(i+11),list5.get(i+12),list5.get(i+13),list5.get(i+14),list5.get(i+15),list5.get(i+16),list5.get(i+17),list5.get(i+18));
 	    lBeans.add(yspbBean);
-	    yspbBean=new YspbBean(list6.get(i),list6.get(i+1),list6.get(i+2),list6.get(i+3),list6.get(i+4),list6.get(i+5),list6.get(i+6),list6.get(i+7),list6.get(i+8),list6.get(i+9),list6.get(i+10),list6.get(i+11),list6.get(i+12),list6.get(i+13),list6.get(i+14),list6.get(i+15),list6.get(i+16));
+	    yspbBean=new YspbBean(list6.get(i),list6.get(i+1),list6.get(i+2),list6.get(i+3),list6.get(i+4),list6.get(i+5),list6.get(i+6),list6.get(i+7),list6.get(i+8),list6.get(i+9),list6.get(i+10),list6.get(i+11),list6.get(i+12),list6.get(i+13),list6.get(i+14),list6.get(i+15),list6.get(i+16),list6.get(i+17),list6.get(i+18));
 	    lBeans.add(yspbBean);
-	    yspbBean=new YspbBean(list7.get(i),list7.get(i+1),list7.get(i+2),list7.get(i+3),list7.get(i+4),list7.get(i+5),list7.get(i+6),list7.get(i+7),list7.get(i+8),list7.get(i+9),list7.get(i+10),list7.get(i+11),list7.get(i+12),list7.get(i+13),list7.get(i+14),list7.get(i+15),list7.get(i+16));
+	    yspbBean=new YspbBean(list7.get(i),list7.get(i+1),list7.get(i+2),list7.get(i+3),list7.get(i+4),list7.get(i+5),list7.get(i+6),list7.get(i+7),list7.get(i+8),list7.get(i+9),list7.get(i+10),list7.get(i+11),list7.get(i+12),list7.get(i+13),list7.get(i+14),list7.get(i+15),list7.get(i+16),list7.get(i+17),list7.get(i+18));
 	    lBeans.add(yspbBean);
 	    }
 	    
@@ -130,7 +130,7 @@ public class Ysbcsql {
 		List<String> list=new ArrayList<String>();
 		Connection conn = JDBC.getConnection();	
 		Statement stmt;
-		String sql="select  Yzrq,sbsj,xbsj, xhzs,xyzs,czybm,czyxm,ghfybm,fydj,zcmc,xq,mzsbdd,ksmc , ksbm, (select CONVERT(varchar(30),GETDATE(),120)+':'+DATENAME(MILLISECOND,GETDATE()))as yydjsj,(select CONVERT(varchar(10),GETDATE()+" + k + ",120)+' 07:00:00.000')as yyghsj,(select CONVERT(varchar(30),GETDATE()+1+" + k + ",120)+':'+DATENAME(MILLISECOND,GETDATE())) as yyyxsj from v_yspb where Yzrq>=(select CONVERT(varchar(10),GETDATE()+" + k + ",120)+' 00:00:00.000')and Yzrq<(select CONVERT(varchar(10),GETDATE()+1+" + k + ",120)+' 00:00:00.000') and  sbsj>='1900-01-01 06:00:00.000' and sbsj<'1900-01-01 12:00:00.000'  and xbsj>='1900-01-01 12:00:00.000' and ksbm='"+ksbm+"'";
+		String sql="select  Yzrq,sbsj,xbsj, xhzs,xyzs,czybm,czyxm,ghfybm,fydj,zcmc,xq,mzsbdd,ksmc , ksbm, (select CONVERT(varchar(30),GETDATE(),120)+':'+DATENAME(MILLISECOND,GETDATE()))as yydjsj,(select CONVERT(varchar(10),GETDATE()+" + k + ",120)+' 07:00:00.000')as yyghsj,(select CONVERT(varchar(30),GETDATE()+1+" + k + ",120)+':'+DATENAME(MILLISECOND,GETDATE())) as yyyxsj, yghs,yyys from v_yspb where Yzrq>=(select CONVERT(varchar(10),GETDATE()+" + k + ",120)+' 00:00:00.000')and Yzrq<(select CONVERT(varchar(10),GETDATE()+1+" + k + ",120)+' 00:00:00.000') and  sbsj>='1900-01-01 06:00:00.000' and sbsj<'1900-01-01 12:00:00.000'  and xbsj>='1900-01-01 12:00:00.000' and ksbm='"+ksbm+"'";
 		try {
 			stmt = conn.createStatement();
 			ResultSet rs=stmt.executeQuery(sql);
@@ -154,7 +154,8 @@ public class Ysbcsql {
 			list.add(rs.getString("yydjsj"));
 			list.add(rs.getString("yyghsj"));
 			list.add(rs.getString("yyyxsj"));
-			
+			list.add(rs.getString("yghs"));
+			list.add(rs.getString("yyys"));
 			}
 			stmt.close();								// 关闭连接状态对象
 			conn.commit();
@@ -169,7 +170,7 @@ public class Ysbcsql {
 		List<String> list=new ArrayList<String>();
 		Connection conn = JDBC.getConnection();	
 		Statement stmt;
-		String sql="select  Yzrq,sbsj,xbsj, xhzs,xyzs,czybm,czyxm,ghfybm,fydj,zcmc,xq,mzsbdd,ksmc , ksbm, (select CONVERT(varchar(30),GETDATE(),120)+':'+DATENAME(MILLISECOND,GETDATE()))as yydjsj,(select CONVERT(varchar(10),GETDATE()+" + k + ",120)+' 14:00:00.000')as yyghsj,(select CONVERT(varchar(30),GETDATE()+1+" + k + ",120)+':'+DATENAME(MILLISECOND,GETDATE())) as yyyxsj from from v_yspb where Yzrq>=(select CONVERT(varchar(10),GETDATE()+" + k + ",120)+' 00:00:00.000')and Yzrq<(select CONVERT(varchar(10),GETDATE()+1+" + k + ",120)+' 00:00:00.000')   and xbsj>='1900-01-01 17:30:00.000' and ksbm='" + ksbm + "'";
+		String sql="select  Yzrq,sbsj,xbsj, xhzs,xyzs,czybm,czyxm,ghfybm,fydj,zcmc,xq,mzsbdd,ksmc , ksbm, (select CONVERT(varchar(30),GETDATE(),120)+':'+DATENAME(MILLISECOND,GETDATE()))as yydjsj,(select CONVERT(varchar(10),GETDATE()+" + k + ",120)+' 14:00:00.000')as yyghsj,(select CONVERT(varchar(30),GETDATE()+1+" + k + ",120)+':'+DATENAME(MILLISECOND,GETDATE())) as yyyxsj,yghs,yyys from from v_yspb where Yzrq>=(select CONVERT(varchar(10),GETDATE()+" + k + ",120)+' 00:00:00.000')and Yzrq<(select CONVERT(varchar(10),GETDATE()+1+" + k + ",120)+' 00:00:00.000')   and xbsj>='1900-01-01 17:30:00.000' and ksbm='" + ksbm + "'";
 		try {
 			stmt = conn.createStatement();
 			ResultSet rs=stmt.executeQuery(sql);
@@ -193,7 +194,8 @@ public class Ysbcsql {
 			list.add(rs.getString("yydjsj"));
 			list.add(rs.getString("yyghsj"));
 			list.add(rs.getString("yyyxsj"));
-			
+			list.add(rs.getString("yghs"));
+			list.add(rs.getString("yyys"));
 			}
 			stmt.close();								// 关闭连接状态对象
 			conn.commit();

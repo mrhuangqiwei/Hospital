@@ -20,8 +20,47 @@ private String ksbm ;
 private String yydjsj;
 private String yyghsj;
 private String yyyxsj;
+private String yghs;
+private String yyys;
 
 
+public YspbBean(String yzrq, String sbsj, String xbsj, String xhzs,
+		String xyzs, String czybm, String czyxm, String ghfybm, String fydj,
+		String zcmc, String xq, String mzsbdd, String ksmc, String ksbm,
+		String yydjsj, String yyghsj, String yyyxsj, String yghs, String yyys) {
+	super();
+	Yzrq = yzrq;
+	this.sbsj = sbsj;
+	this.xbsj = xbsj;
+	this.xhzs = xhzs;
+	this.xyzs = xyzs;
+	this.czybm = czybm;
+	this.czyxm = czyxm;
+	this.ghfybm = ghfybm;
+	this.fydj = fydj;
+	this.zcmc = zcmc;
+	this.xq = xq;
+	this.mzsbdd = mzsbdd;
+	this.ksmc = ksmc;
+	this.ksbm = ksbm;
+	this.yydjsj = yydjsj;
+	this.yyghsj = yyghsj;
+	this.yyyxsj = yyyxsj;
+	this.yghs = yghs;
+	this.yyys = yyys;
+}
+public String getYghs() {
+	return yghs;
+}
+public void setYghs(String yghs) {
+	this.yghs = yghs;
+}
+public String getYyys() {
+	return yyys;
+}
+public void setYyys(String yyys) {
+	this.yyys = yyys;
+}
 public YspbBean(String yzrq, String sbsj, String xbsj, String xhzs,
 		String xyzs, String czybm, String czyxm, String ghfybm, String fydj,
 		String zcmc, String xq, String mzsbdd, String ksmc, String ksbm,
