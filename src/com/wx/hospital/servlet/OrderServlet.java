@@ -1,5 +1,12 @@
 package com.wx.hospital.servlet;
 
+import org.sword.wechat4j.pay.PayManager;
+import org.sword.wechat4j.pay.exception.PayApiException;
+import org.sword.wechat4j.pay.exception.PayBusinessException;
+import org.sword.wechat4j.pay.exception.SignatureException;
+import org.sword.wechat4j.pay.protocol.unifiedorder.UnifiedorderRequest;
+import org.sword.wechat4j.pay.protocol.unifiedorder.UnifiedorderResponse;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +15,7 @@ import java.io.IOException;
 
 /**
  * Created by hzy on 1/20/17.
+ * 用于处理预约挂号订单相关的事物
  */
 @WebServlet("/fillorder")
 public class OrderServlet extends BaseServlet {
@@ -19,6 +27,23 @@ public class OrderServlet extends BaseServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        String reqType = req.getParameter("type");
+        if (reqType == null) {
+            resp.getWriter().write("error request!");
+            return;
+        }
+        /***
+         * 前端请求了微信支付的接口，此时需要后端请求微信支付接口完成支付
+         * */
+        if (reqType.equals("weixin_pay")) {
+            String openId = req.getParameter("openid");
+            UnifiedorderRequest request = new UnifiedorderRequest();
+            request.setOpenid(openId);
+            try {
+                UnifiedorderResponse respond = PayManager.unifiedorder(request);
+            } catch (SignatureException | PayApiException | PayBusinessException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
