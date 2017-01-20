@@ -1,22 +1,24 @@
 var classId = $.cookie('class_id');
 
-new Vue({
-    el: '#app',
-    data: {swpb: [], xwpb: []},
-    beforeCreate: function () {
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function ($scope, $http) {
+    $scope.swpb = [];
+    $scope.xwpb = [];
+
+    $scope.getData = function () {
         if (!classId) {
             return;
         }
         var url = "yspb?ksbm=" + classId;
-        var _self = this;
-        $.get(url, function (data, status) {
-            if (status === 'success') {
-                var infos = eval('(' + data + ')')
-                _self.swpb = infos.swpb;
-                _self.xwpb = infos.xwpb;
-            } else {
-                alert("请求失败！");
-            }
-        })
-    }
+        $http.get(url).success(function (data) {
+            $scope.swpb = data.swpb;
+            $scope.xwpb = data.xwpb;
+        });
+    };
+    $scope.getData();
+
+    $scope.onDoctorClick = function (doc) {
+        $.cookie('operate_doc', JSON.stringify(doc));
+        window.location.href = 'fillorder';
+    };
 });
