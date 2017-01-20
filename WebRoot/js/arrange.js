@@ -19,6 +19,6 @@ app.controller('myCtrl', function ($scope, $http) {
 
     $scope.onDoctorClick = function (doc) {
         $.cookie('operate_doc', JSON.stringify(doc));
-        window.location.href = 'fill_order.html';
+        window.location.href = 'fillorder';
     };
 });
