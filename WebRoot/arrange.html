@@ -23,19 +23,27 @@
     </div>
 
     <div id="app">
-        <ul class="am-list">
-            <li class="am-g am-list-item-desced am-list-item-thumbed pet_hd_list"
+        <ul class="am-list am-avg-sm-7">
+            <li class="am-g"
                 ng-repeat="x in swpb" ng-click="onDoctorClick(x)">
-                <div class="pet_hd_block" style="padding-left: 18px">
-                    <div class="pet_hd_block_title">{{x.czyxm+x.xq + '上午'}}</div>
+                <div class="am-panel-bd">
+                    <ul>
+                        <li style="font-size: 8px">{{x.czyxm}}</li>
+                        <li style="font-size: 8px">{{x.xq}}</li>
+                        <li style="font-size: 8px">上午</li>
+                    </ul>
                 </div>
             </li>
         </ul>
-        <ul class="am-list">
-            <li class="am-g am-list-item-desced am-list-item-thumbed pet_hd_list"
+        <ul class="am-list am-avg-sm-7">
+            <li class="am-g"
                 ng-repeat="x in xwpb" ng-click="onDoctorClick(x)">
-                <div class="pet_hd_block" style="padding-left: 18px">
-                    <div class="pet_hd_block_title">{{x.czyxm+x.xq+'下午'}}</div>
+                <div class="am-panel-bd">
+                    <ul>
+                        <li style="font-size: 8px">{{x.czyxm}}</li>
+                        <li style="font-size: 8px">{{x.xq}}</li>
+                        <li style="font-size: 8px">下午</li>
+                    </ul>
                 </div>
             </li>
         </ul>

@@ -38,12 +38,12 @@ app.controller('myCtrl', function ($scope, $http) {
         $http({
             method: 'post',
             url: 'fillorder',
-            data: {
+            params: {
                 type: 'weixin_pay',
                 openid: $.cookie('wx_openid'),
                 user_name: $scope.myValue.brxm,
                 user_id: $scope.myValue.sfzh,
-                doc_name: $scope.doc.czyxm,
+                doc_name: $scope.doc.czyxm
             }
         }).success(function (req) {
             console.log(req);

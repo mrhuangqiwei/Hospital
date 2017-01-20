@@ -32,6 +32,9 @@ public class OrderServlet extends BaseServlet {
             resp.getWriter().write("error request!");
             return;
         }
+        /***
+         * 前端请求了微信支付的接口，此时需要后端请求微信支付接口完成支付
+         * */
         if (reqType.equals("weixin_pay")) {
             String openId = req.getParameter("openid");
             UnifiedorderRequest request = new UnifiedorderRequest();
