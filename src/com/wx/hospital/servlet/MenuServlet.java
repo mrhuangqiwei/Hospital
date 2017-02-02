@@ -62,7 +62,9 @@ public class MenuServlet extends HttpServlet {
         List<MenuButton> buttons = new LinkedList<MenuButton>();
 
         MenuButton button = new MenuButton();
+        MenuButton button1 = new MenuButton();
         button.setName("首页");
+        button.setKey("2");
         button.setType(EventType.view);
         button.setUrl(SERVER_URL + "homepage");
         buttons.add(button);
@@ -71,7 +73,13 @@ public class MenuServlet extends HttpServlet {
         button.setName("联系方式");
         button.setSubButton(getSubButtons());
         buttons.add(button);
-
+        
+        button1 = new MenuButton();
+        button1.setKey("1");
+        button1.setName("医院官网");
+        button1.setType(EventType.view);
+        button1.setUrl("http://www.pdxrmyy.com/");
+        buttons.add(button1);
         menu.setButton(buttons);
 
         try {

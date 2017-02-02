@@ -12,12 +12,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import bean.YyxxBean;
+import jdbc.Brghsql;
 import jdbc.Deletefriend;
 import jdbc.JDBC;
 import jdbc.StudentService;
 import jdbc.Userzyfymx;
 import jdbc.Ysbcsql;
 import jdbc.YyghSql;
+import jdbc.jycx;
+import jdbc.ris_report_sql;
 import jdbc.weinxinsql;
 import net.sf.json.JSONObject;
 import po.AccessToken;
@@ -31,7 +35,9 @@ public class sqltest {
 		YyghSql yyghSql=new YyghSql();
 		Deletefriend deletefriend =new Deletefriend();
 		Userzyfymx userzyfymx =new Userzyfymx();
-		
+		Brghsql brghsql=new Brghsql();
+		jycx jycx=new jycx();
+		ris_report_sql  ris=new ris_report_sql();
 	//String json=yyghSql.getdatetime();
 	
 	String mxfyxmbnString="130002";
@@ -53,15 +59,18 @@ public class sqltest {
 	String jtzz="宁南县";
 	String mxfyxmbm="130002";
 	String yyjfbz="1";
-String  yf=yyghSql.appointment(yyghrq, brxm, brxb, brnldw, sfzh, jtzz, sj, yyys, yyks, yydjrq, yyyxrq, mxfyxmbm, yyjfbz);
-		
+//自动挂号	
+//	brghsql.zdgh();
+//String  yf=yyghSql.appointment(yyghrq, brxm, brxb, brnldw, sfzh, jtzz, sj, yyys, yyks, yydjrq, yyyxrq, mxfyxmbm, yyjfbz);
+		//List<YyxxBean> list=brghsql.getbuseryyxx();
 	//boolean ok=false;
 	//ok=deletefriend.deletefriendinfo("owEWzwQKO7G_uy4C0X_Wn2boPVI4", "558842685569842688", "");
 	//Map<String, String> map=userzyfymx.getmxfcbm();
-      //  List<String> list= userzyfymx.getmzfymx("20100407000001");
+      //  List<String> list= userzyfymx.getmzfymx("20100407000001"); 
+		//brghsql.zdgh();;
  //String ssString=ysbcsql.yspb("0004");
  /**
-        List<String> list=getrq();
+        List<String> list=getrq();             
      
         SimpleDateFormat sdf= new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
       
@@ -75,8 +84,17 @@ String  yf=yyghSql.appointment(yyghrq, brxm, brxb, brnldw, sfzh, jtzz, sj, yyys,
 		}
       //继续转换得到秒数的long型
       long lTime = dt2.getTime();**/
-		//List<String> kList=yyghSql.getusertime();
-		System.out.print("----'"+yf+"'--\t ");
+		//List<String> kList=jycx.getuserjymx("161017000194");
+	//检验结果
+	//String jString=jycx.getjyjg("2016003850");
+	//检查结果
+	String jString=ris.GetRisReport("2016003857");
+	//病人费用
+	//String jString=userzyfymx.getuserfymx("2016003850");
+		System.out.print(jString);
+		
+		//List<String> kList=ris.getrismx("987");
+		//System.out.print("---'"+kList.toString()+"'-");
 		/**
 	    String json=weinxinsql.getfriendIsRigster(null, "513427199309232818","15577616194");
 		System.out.print(json);
@@ -99,8 +117,7 @@ String  yf=yyghSql.appointment(yyghrq, brxm, brxb, brnldw, sfzh, jtzz, sj, yyys,
 			//循环输出每一条记录
 			while(rs.next())
 			{list.add(rs.getString("yyghrq"));
-		
-			
+
 			}
 			stmt.close();								// 关闭连接状态对象
 			conn.commit();

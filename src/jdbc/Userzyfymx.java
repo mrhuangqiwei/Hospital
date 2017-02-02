@@ -15,6 +15,7 @@ import org.stringtree.json.JSONValidatingWriter;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 
 import bean.FymxBean;
 import bean.userzymxfybean;
@@ -31,12 +32,13 @@ public class Userzyfymx {
 		Map<String, String>map=getmxfcbm();
 		list=getbrfymx(zyh);
 		List<FymxBean> fymxBeans=new ArrayList<FymxBean>();
+		/**
 		 System.out.print("这是get4"+list.get(4)+"\t");
     	 System.out.print("这是get3"+list.get(3)+"\t");
     	 System.out.print("这是map3"+map.get(list.get(3))+"\t");
     	 if(list.get(4).equals("")){
     		 System.out.print("--------\t");
-    	 }
+    	 }**/
 		for(int i=0;i<list.size();i=i+14){
 			 String ypmc="";
 			
@@ -53,12 +55,17 @@ public class Userzyfymx {
 
  
 		}
-		 String jString=ZyUserinfo(zyh);
+		List<String>jbxx=new ArrayList<String>();
+		jbxx=ZyUserinfo(zyh);
+		
+		
+	
 		 //JSONArray jsonArr=(JSONArray) JSONArray.toJSON(jString);
 		 
 		//JS   json=JSON.toJSONString(fymxBeans);
-		 userzymxfybean userzymxfybean=new userzymxfybean(jString,  fymxBeans);
-		 String userfy=JSON.toJSONString(userzymxfybean);
+		 userzymxfybean userzymxfybean=new userzymxfybean(jbxx.get(0),jbxx.get(1), 
+jbxx.get(2),jbxx.get(3),jbxx.get(4),jbxx.get(5),jbxx.get(6),jbxx.get(7), jbxx.get(8),jbxx.get(9),jbxx.get(10),jbxx.get(11),jbxx.get(12),jbxx.get(13), jbxx.get(14),fymxBeans);
+		 String userfy=JSON.toJSONString(userzymxfybean,SerializerFeature.WriteMapNullValue,SerializerFeature.WriteNullStringAsEmpty);
 		 return userfy;
 	}
 	
@@ -99,20 +106,48 @@ public class Userzyfymx {
 	 * @param zyh
 	 * @return
 	 */
-	public String ZyUserinfo(String zyh){
+	public List<String> ZyUserinfo(String zyh){
+		List<String> list=new ArrayList<String>();
 		Connection conn = JDBC.getConnection();	
-		String sql="select Rtrim(zyh) as zyh,convert(varchar(16),ryrq ,120)as ryrq,convert(varchar(16),cyrq ,120)as cyrq,Rtrim(rycwid) as rycwid,cyks,ryks,ksmc,brxm,cast(v_zyb_zcxx.brnl as int) as brnl,Rtrim(v_zyb_rydj.brnldw) as brnldw, Rtrim(brxb)as brxb ,jtzz,fbmc,(SELECT sum ( fyje ) FROM v_zyb_brfy zyb_brfy WITH( NOLOCK ) WHERE zyh ='"+zyh+"'AND yxbz ='1' ) as fyje ,(SELECT sum ( yjje )FROM v_zyb_yjjl WHERE zyh ='"+zyh+"' ) as yjje from v_zyb_rydj,v_zyb_zcxx,gyb_brfb,gyb_ks  where zyh='"+zyh+"' and v_zyb_rydj.brid=v_zyb_zcxx.brid and v_zyb_rydj.fbbm=gyb_brfb.fbbm and(v_zyb_rydj.ryks=gyb_ks.ksbm)";
-		String json="";
+		Statement stmt;
+		String sql="select Rtrim(zyh) as zyh,convert(varchar(16),ryrq ,120)as ryrq,"
+				+ "convert(varchar(16),cyrq ,120)as cyrq,Rtrim(rycwid) as rycwid,"
+				+ "cyks,ryks,ksmc,brxm,cast(v_zyb_zcxx.brnl as int) as brnl,"
+				+ "Rtrim(v_zyb_rydj.brnldw) as brnldw, Rtrim(brxb)as brxb ,jtzz,fbmc,"
+				+ "(SELECT sum ( fyje ) FROM v_zyb_brfy zyb_brfy WITH( NOLOCK ) "
+				+ "WHERE zyh ='"+zyh+"'AND yxbz ='1' ) as fyje ,(SELECT sum ( yjje )"
+						+ "FROM v_zyb_yjjl WHERE zyh ='"+zyh+"' ) as yjje from v_zyb_rydj,"
+								+ "v_zyb_zcxx,gyb_brfb,gyb_ks  where zyh='"+zyh+"'"
+										+ " and v_zyb_rydj.brid=v_zyb_zcxx.brid and v_zyb_rydj.fbbm=gyb_brfb.fbbm and(v_zyb_rydj.ryks=gyb_ks.ksbm)";
 		try {
-			json=new JSONValidatingWriter().write(
-				        new QueryRunner().query(conn, sql, new MapListHandler()));
-			//conn.close();
+			stmt = conn.createStatement();
+			ResultSet rs=stmt.executeQuery(sql);
+			//循环输出每一条记录
+			while(rs.next())
+			{list.add(rs.getString("zyh"));
+			list.add(rs.getString("ryrq"));
+			list.add(rs.getString("cyrq"));
+			list.add(rs.getString("rycwid"));
+			list.add(rs.getString("cyks"));
+			list.add(rs.getString("ryks"));
+			list.add(rs.getString("ksmc"));
+			list.add(rs.getString("brxm"));
+			list.add(rs.getString("brnl"));
+			list.add(rs.getString("brnldw"));
+			list.add(rs.getString("brxb"));
+			list.add(rs.getString("jtzz"));
+			list.add(rs.getString("fbmc"));
+			list.add(rs.getString("fyje"));
+			list.add(rs.getString("yjje"));
+			
+			}
+			stmt.close();								// 关闭连接状态对象
+			conn.commit();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String json1=json.substring(1, json.length() - 1);
-		return json1;
+		return list;
 	}
 	/**
 	 * 获取住院费用明细

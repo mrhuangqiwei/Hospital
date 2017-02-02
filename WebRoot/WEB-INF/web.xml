@@ -64,6 +64,20 @@
     <servlet-name>userzyfymx</servlet-name>
     <servlet-class>Servlet.userzyfymx</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Lisreport</servlet-name>
+    <servlet-class>Servlet.Lisreport</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>RisReport</servlet-name>
+    <servlet-class>Servlet.RisReport</servlet-class>
+  </servlet>
+
+
 
 
 
@@ -118,6 +132,14 @@
   <servlet-mapping>
     <servlet-name>userzyfymx</servlet-name>
     <url-pattern>/userzyfymx</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Lisreport</servlet-name>
+    <url-pattern>/Lisreport</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RisReport</servlet-name>
+    <url-pattern>/RisReport</url-pattern>
   </servlet-mapping>
 
 

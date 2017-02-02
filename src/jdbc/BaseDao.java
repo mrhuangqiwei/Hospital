@@ -97,7 +97,7 @@ public class BaseDao {
 		boolean isLongHaul = true;						// 默认持久化成功
 		Connection conn = JDBC.getConnection();			// 获得数据库连接
 		try {
-					// 设置为手动提交
+			conn.setAutoCommit(false);					// 设置为手动提交
 			Statement stmt = conn.createStatement();	// 创建连接状态对象
 			stmt.executeUpdate(sql);					// 执行SQL语句
 											// 关闭连接状态对象
