@@ -46,7 +46,9 @@ public class AddFriend extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		
 		response.setContentType("text/html;charset=UTF-8");
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		String Openid = new String(request.getParameter("openid").getBytes("ISO-8859-1"),"UTF-8");
 		String sfzh =new String(request.getParameter("sfzh").getBytes("ISO-8859-1"),"UTF-8");
 		String ylkh =new String(request.getParameter("ylkh").getBytes("ISO-8859-1"),"UTF-8");

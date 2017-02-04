@@ -20,6 +20,7 @@ public class getuserRecord extends HttpServlet {
 	 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		String sfzh =new String(request.getParameter("sfzh").getBytes("ISO-8859-1"),"UTF-8");
 		String ylkh =new String(request.getParameter("ylkh").getBytes("ISO-8859-1"),"UTF-8");
 		UserRecordSql userRecordSql=new UserRecordSql();

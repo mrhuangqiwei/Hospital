@@ -26,6 +26,7 @@ public class userzyfymx extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		response.setContentType("text/html");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");//服务器编码

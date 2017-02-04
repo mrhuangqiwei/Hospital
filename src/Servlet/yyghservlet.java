@@ -46,6 +46,7 @@ public class yyghservlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		response.setContentType("text/html;charset=UTF-8");
 		String yyghrq = new String(request.getParameter("yyghrq").getBytes("ISO-8859-1"),"UTF-8");
 		String brxm =new String(request.getParameter("brxm").getBytes("ISO-8859-1"),"UTF-8");

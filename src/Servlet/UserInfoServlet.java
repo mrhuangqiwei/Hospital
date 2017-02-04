@@ -15,6 +15,7 @@ public class UserInfoServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		resp.setHeader("Access-Control-Allow-Origin", "*");
 		req.setCharacterEncoding("UTF-8");
 		resp.setCharacterEncoding("UTF-8");
 		resp.setHeader("content-type", "text/html;charset=UTF-8");//浏览器编码

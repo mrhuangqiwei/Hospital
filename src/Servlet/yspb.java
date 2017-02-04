@@ -40,6 +40,7 @@ public class yspb extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		String ksbm = new String(request.getParameter("ksbm").getBytes("ISO-8859-1"),"UTF-8");
 		response.setContentType("text/html");
 		request.setCharacterEncoding("UTF-8");
