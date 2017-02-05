@@ -15,6 +15,7 @@ import java.util.Map;
 import bean.YyxxBean;
 import jdbc.Brghsql;
 import jdbc.Deletefriend;
+import jdbc.GetFriendInfosql;
 import jdbc.JDBC;
 import jdbc.StudentService;
 import jdbc.Userzyfymx;
@@ -25,6 +26,7 @@ import jdbc.ris_report_sql;
 import jdbc.weinxinsql;
 import net.sf.json.JSONObject;
 import po.AccessToken;
+import utils.ConvertTime;
 import utils.WeiXinUtil;
 
 public class sqltest {
@@ -38,6 +40,7 @@ public class sqltest {
 		Brghsql brghsql=new Brghsql();
 		jycx jycx=new jycx();
 		ris_report_sql  ris=new ris_report_sql();
+		GetFriendInfosql getFriendInfosql=new GetFriendInfosql();
 	//String json=yyghSql.getdatetime();
 	
 	String mxfyxmbnString="130002";
@@ -88,9 +91,17 @@ public class sqltest {
 	//检验结果
 	//String jString=jycx.getjyjg("2016003850");
 	//检查结果
-	String jString=ris.GetRisReport("2016003857");
+	//String jString=ris.GetRisReport("2016003857");
 	//病人费用
 	//String jString=userzyfymx.getuserfymx("2016003850");
+	//获取病人信息
+String jString=getFriendInfosql.userinfotojison("513427199708082028", "00007250 ");
+	
+	//String jString = null;
+//时间格式转化
+	//	jString = ConvertTime.dateToStamp("2016-06-30 16:12:29.330");
+	
+	
 		System.out.print(jString);
 		
 		//List<String> kList=ris.getrismx("987");

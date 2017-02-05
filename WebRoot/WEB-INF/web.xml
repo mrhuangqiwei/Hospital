@@ -76,6 +76,12 @@
     <servlet-name>RisReport</servlet-name>
     <servlet-class>Servlet.RisReport</servlet-class>
   </servlet>
+  <servlet>
+    
+    <servlet-name>FriendInfo</servlet-name>
+    <servlet-class>Servlet.FriendInfo</servlet-class>
+  </servlet>
+
 
 
 
@@ -140,6 +146,10 @@
   <servlet-mapping>
     <servlet-name>RisReport</servlet-name>
     <url-pattern>/RisReport</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FriendInfo</servlet-name>
+    <url-pattern>/FriendInfo</url-pattern>
   </servlet-mapping>
 
 

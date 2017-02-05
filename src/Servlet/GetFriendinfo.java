@@ -39,6 +39,7 @@ public class GetFriendinfo extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		String Openid = new String(request.getParameter("openid").getBytes("ISO-8859-1"),"UTF-8");
 		response.setContentType("text/html");
 		request.setCharacterEncoding("UTF-8");
@@ -50,16 +51,7 @@ public class GetFriendinfo extends HttpServlet {
 		response.getOutputStream().write(json.getBytes("UTF-8"));
 	}
 
-	/**
-	 * The doPost method of the servlet. <br>
-	 *
-	 * This method is called when a form has its tag value method equals to post.
-	 * 
-	 * @param request the request send by the client to the server
-	 * @param response the response send by the server to the client
-	 * @throws ServletException if an error occurred
-	 * @throws IOException if an error occurred
-	 */
+	
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
