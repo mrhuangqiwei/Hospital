@@ -16,16 +16,19 @@ import org.sword.lang.DateTime;
 
 public class YyghSql {
 	Dao dao = Dao.getInstance();
-	 public String appointment(String yyghrq,String brxm,String brxb,String brnl,String sfzh,String jtzz,String sj,String yyys,String yyks,String yydjrq,String yyyxrq,String mxfyxmbm,
-			 String yyjfbz)
-     { String yy ="";
+	 public boolean appointment(String yyghrq,String brxm,String brxb,String brnl,String sfzh,String jtzz,String sj,String yyys,String yyks,String yydjrq,String yyyxrq,String mxfyxmbm,
+		
+			 String yyjfbz,String ylkh)
+     { boolean ok = false;	
+		 
+		 String yy ="";
      List<String> list = new ArrayList<String>();
      List<String> list2 = new ArrayList<String>();
      list = getywxhidyy();
      list2 = getusertime();
    Long  yyid1 = Long.parseLong(getyyghid().trim());
     		// Double.parseDouble(getyyghid().trim());
-     System.out.print("--------yyid1-----'"+yyid1+"'--");
+    // System.out.print("--------yyid1-----'"+yyid1+"'--");
     		 //Integer.parseInt(getyyghid().trim());
      int m = Integer.parseInt(list.get(1).replace("0", "").trim())+1;	 
      String xh1 = "";
@@ -45,59 +48,74 @@ public class YyghSql {
     String zcrq = getdatetime();
     if (k >= 1)
     {
-        updateYwxhb1(xh, ssrq);
-   Long   f = Long.parseLong(getyyghid().trim())+1;
+    	ok= updateYwxhb1(xh, ssrq);
+    	//   System.out.print("大于1"+ok);
+      Long   f = Long.parseLong(getyyghid().trim())+1;
 		   //Double.parseDouble(getyyghid().trim());
     		//Integer.parseInt(getyyghid().trim())+1;
         String yyid = String.valueOf(f);;
-        Insertyygh(yyid, "01", "0269", yyghrq, brxm, brxb, "", brnl,
-            "1", sfzh, jtzz, sj, yyys, yyks, yydjrq, yyyxrq, "0022",mxfyxmbm,yyjfbz);
+        ok=  Insertyygh(yyid, "01", "0269", yyghrq, brxm, brxb, "", brnl,
+            "1", sfzh, jtzz, sj, yyys, yyks, yydjrq, yyyxrq, "0022",mxfyxmbm,yyjfbz,ylkh);
+       //System.out.print("大于1插入"+ok);
         int j = getdatedifference(list2.get(2));
         if (j > 1)
         {
-            updateYwxhb2("000001", ssrq);
+        	ok=    updateYwxhb2("000001", ssrq);
+        ///	System.out.print("大于1更新2"+ok);
        Long  q = yyid1 + 1;
             String brid = String.valueOf(q);   
               
-            Insertbrzc(brid, brxm, brxb, brnl, sfzh, jtzz, sj, zcrq);
-            updateyyghbrid(brid, yyid);
+            ok=   Insertbrzc(brid, brxm, brxb, brnl, sfzh, jtzz, sj, zcrq);
+           // System.out.print("大于1插入注册"+ok);
+            ok=  updateyyghbrid(brid, yyid);
+           // System.out.print("更新111"+ok);
                 }
         else {
-            updateYwxhb2(bridxh, ssrq);
+        	ok=   updateYwxhb2(bridxh, ssrq);
+        	//   System.out.print("更新222"+ok);
         Long f1 = yyid1 + k1;
             String brid = String.valueOf(f1);
-            Insertbrzc(brid, brxm, brxb, brnl, sfzh, jtzz, sj, zcrq);
-            updateyyghbrid(brid, yyid);
+            ok=   Insertbrzc(brid, brxm, brxb, brnl, sfzh, jtzz, sj, zcrq);
+         //   System.out.print("更新333"+ok);
+            ok=   updateyyghbrid(brid, yyid);
+           // System.out.print("更新444"+ok);
             }
         }
     else{
     yy = xh1;
-    updateYwxhb1(xh1, ssrq);
+    ok=   updateYwxhb1(xh1, ssrq);
+   // System.out.print("更新555"+ok);
 Long  f1 = yyid1 + m ;
     String yyid = String.valueOf(f1);
     
-    Insertyygh(yyid, "01", "0269", yyghrq, brxm, brxb, "", brnl,
-            "1", sfzh, jtzz, sj, yyys, yyks, yydjrq, yyyxrq, "0022",mxfyxmbm,yyjfbz);
-   
+    ok=   Insertyygh(yyid, "01", "0269", yyghrq, brxm, brxb, "", brnl,
+            "1", sfzh, jtzz, sj, yyys, yyks, yydjrq, yyyxrq, "0022",mxfyxmbm,yyjfbz,ylkh);
+   // System.out.print("更新666"+ok);
    int ww = getdatedifference(list2.get(2));
 	 
    if (ww > 1)
    {
-       updateYwxhb2("000001", ssrq);
+	   ok=    updateYwxhb2("000001", ssrq);
+	 //  System.out.print("更新777"+ok);
   Long q = yyid1 + 1;
        String brid = String.valueOf(q);
-       Insertbrzc(brid, brxm, brxb, brnl, sfzh, jtzz, sj, zcrq);
-       updateyyghbrid(brid, yyid);
+       ok=   Insertbrzc(brid, brxm, brxb, brnl, sfzh, jtzz, sj, zcrq);
+     //  System.out.print("更新888"+ok);
+       ok=  updateyyghbrid(brid, yyid);
+      // System.out.print("更新999"+ok);
 
    }
    {
-       updateYwxhb2(bridxh, ssrq);
+	   ok=  updateYwxhb2(bridxh, ssrq);
+	  /// System.out.print("更新122"+ok);
      Long f2 = yyid1 + k2;
        String brid = String.valueOf(f2);    
-       Insertbrzc(brid, brxm, brxb, brnl, sfzh, jtzz, sj, zcrq);
-       updateyyghbrid(brid, yyid);
+       ok=  Insertbrzc(brid, brxm, brxb, brnl, sfzh, jtzz, sj, zcrq);
+     //  System.out.print("更新133"+ok);
+       ok=  updateyyghbrid(brid, yyid);
+      // System.out.print("更新144"+ok);
    }}
-   return "yy";
+ return ok;
     }
 	
 	
@@ -280,10 +298,10 @@ Long  f1 = yyid1 + m ;
     }
     
     /**插入预约挂号表**/
-    public boolean Insertyygh( String yyghid,String ywckbm,String czybm,String yyghrq,String brxm,String brxb,String brsr,String brnl,String brnldw,String sfzh,String jtzz,String sj,String yyys, String yyks, String yydjrq, String yyyxrq, String czyks,String mxfyxmbm,String yyjfbz)
+    public boolean Insertyygh( String yyghid,String ywckbm,String czybm,String yyghrq,String brxm,String brxb,String brsr,String brnl,String brnldw,String sfzh,String jtzz,String sj,String yyys, String yyks, String yydjrq, String yyyxrq, String czyks,String mxfyxmbm,String yyjfbz,String ylkh )
     {boolean ok=false;
     	
-    	String sql = "INSERT INTO ghb_yygh ( yyghid, ywckbm, czybm, yyghrq, brxm, brxb, brsr, brnl, brnldw, sfzh, jtzz, sj,yyys, yyks, yydjrq, yyyxrq, czyks,mxfyxmbm,yyjfbz ) VALUES ( '" + yyghid + "', '" + ywckbm + "', '" + czybm + "', '" + yyghrq + "', '" + brxm + "', '" + brxb + "', '" + brsr + "'," + brnl + ", '" + brnldw + "', '" + sfzh + "', '" + jtzz + "', '" + sj + "', '" + yyys + "', '" + yyks + "', '" + yydjrq + "', '" + yyyxrq + "', '" + czyks + "', '"+mxfyxmbm+"','"+yyjfbz+"')" ;
+    	String sql = "INSERT INTO ghb_yygh ( yyghid, ywckbm, czybm, yyghrq, brxm, brxb, brsr, brnl, brnldw, sfzh, jtzz, sj,yyys, yyks, yydjrq, yyyxrq, czyks,mxfyxmbm,yyjfbz,ylkh ) VALUES ( '" + yyghid + "', '" + ywckbm + "', '" + czybm + "', '" + yyghrq + "', '" + brxm + "', '" + brxb + "', '" + brsr + "'," + brnl + ", '" + brnldw + "', '" + sfzh + "', '" + jtzz + "', '" + sj + "', '" + yyys + "', '" + yyks + "', '" + yydjrq + "', '" + yyyxrq + "', '" + czyks + "', '"+mxfyxmbm+"','"+yyjfbz+"','"+ylkh+"')" ;
     ok=dao.insert(sql);
   return ok;
     }
@@ -294,7 +312,7 @@ Long  f1 = yyid1 + m ;
     	boolean ok=false;
     	String sql="BEGIN TRAN update ghb_ywxhb Set xh ='" + xh + "' , ssrq ='" + ssrq + "' Where xhlx ='yyghid' COMMIT TRAN";
     	 ok=dao.insert(sql);
-    	 if(ok=false){
+    	 if(ok==false){
     		 System.out.print("更新业务序号表1失败");
     	 }
     	  return ok;
@@ -305,7 +323,7 @@ Long  f1 = yyid1 + m ;
     	boolean ok=false;
     	String sql="update ghb_ywxhb Set xh ='" + xh + "' , ssrq ='" + ssrq + "' Where xhlx ='brid'";
     	 ok=dao.insert(sql);
-    	 if(ok=false){
+    	 if(ok==false){
     		 System.out.print("更新业务序号表2失败");
     	 }
     	  return ok;
@@ -319,7 +337,7 @@ Long  f1 = yyid1 + m ;
     	
     	String sql = "  INSERT into ghb_zcxx ( brid , czybm , ywckbm , brxm , pydm , brxb , brsr , brnl , brnldw , brxx , sfzh , jtzz , gzdw , dwdz , sj , email , yzbm , lxr , lxrdh , zcrq , czyks )VALUES ( '"+brid+"' , '0000' , '01' , '"+brxm+"' , 'ZRT' , '"+brxb+"' , null , '"+brnl+"' , '1' , null , '"+sfzh+"' ,'"+jtzz+"' , null , null , '"+sj+"' , null , null , null , null , '"+zcrq+"' , '0001' ) " ;
     ok=dao.insert(sql);
-    if(ok=false){
+    if(ok==false){
     System.out.print("插入注册表失败");	
     
     }
@@ -333,7 +351,7 @@ Long  f1 = yyid1 + m ;
     	
     	String sql = " update ghb_yygh set brid ='"+brid+"' where yyghid ='"+yyghid+"' " ;
     ok=dao.insert(sql);
-    if(ok=false){
+    if(ok==false){
     System.out.print("更新挂号表信息失败");	
     
     }

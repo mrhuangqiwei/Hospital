@@ -16,6 +16,7 @@ import bean.YyxxBean;
 import jdbc.Brghsql;
 import jdbc.Deletefriend;
 import jdbc.GetFriendInfosql;
+import jdbc.GetFriendsYyInfo;
 import jdbc.JDBC;
 import jdbc.StudentService;
 import jdbc.Userzyfymx;
@@ -41,6 +42,7 @@ public class sqltest {
 		jycx jycx=new jycx();
 		ris_report_sql  ris=new ris_report_sql();
 		GetFriendInfosql getFriendInfosql=new GetFriendInfosql();
+		GetFriendsYyInfo getFriendsYyInfo=new GetFriendsYyInfo();
 	//String json=yyghSql.getdatetime();
 	
 	String mxfyxmbnString="130002";
@@ -95,8 +97,9 @@ public class sqltest {
 	//病人费用
 	//String jString=userzyfymx.getuserfymx("2016003850");
 	//获取病人信息
-String jString=getFriendInfosql.userinfotojison("513427199708082028", "00007250 ");
-	
+//String jString=getFriendInfosql.userinfotojison("513427199708082028", "00007250 ");
+	//获取病人预约信息
+	String jString=getFriendsYyInfo.getfriendsYyinfo("owEWzwQKO7G_uy4C0X_Wn2boPVI4");
 	//String jString = null;
 //时间格式转化
 	//	jString = ConvertTime.dateToStamp("2016-06-30 16:12:29.330");

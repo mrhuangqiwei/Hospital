@@ -15,34 +15,10 @@ import bean.Brjbxxbean;
 import checkutil.IsWeixinUser;
 
 import com.alibaba.fastjson.JSON;
-
+//预约挂号
 public class yyghservlet extends HttpServlet {
 
-	/**
-	 * Constructor of the object.
-	 */
-	public yyghservlet() {
-		super();
-	}
-
-	/**
-	 * Destruction of the servlet. <br>
-	 */
-	public void destroy() {
-		super.destroy(); // Just puts "destroy" string in log
-		// Put your code here
-	}
-
-	/**
-	 * The doGet method of the servlet. <br>
-	 *
-	 * This method is called when a form has its tag value method equals to get.
-	 * 
-	 * @param request the request send by the client to the server
-	 * @param response the response send by the server to the client
-	 * @throws ServletException if an error occurred
-	 * @throws IOException if an error occurred
-	 */
+	
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
@@ -64,10 +40,14 @@ public class yyghservlet extends HttpServlet {
 		String yyjfbz=new String(request.getParameter("yyjfbz").getBytes("ISO-8859-1"),"UTF-8");
 		String ylkh=new String(request.getParameter("ylkh").getBytes("ISO-8859-1"),"UTF-8");
 		YyghSql yyghSql=new YyghSql();
-		String  yf=yyghSql.appointment(yyghrq, brxm, brxb, nl, sfzh, jtzz, sj, 
-				yyys, yyks, yydjrq, yyyxrq, mxfyxmbm, yyjfbz);
-		System.out.print("预约挂号\t");
-		System.out .print("----'"+yf);
+		boolean  yf= yyghSql.appointment(yyghrq, brxm, brxb, nl, sfzh, jtzz, sj, 
+				yyys, yyks, yydjrq, yyyxrq, mxfyxmbm, yyjfbz,ylkh);
+		if(yf==false){
+			System.out.print("预约挂号失败，位置在yyghservlet");
+		}
+		response.getWriter().write(""+yf);
+		//System.out.print("预约挂号\t");
+		//System.out .print("----'"+yf);
 	
 		
 		
