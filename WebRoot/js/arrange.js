@@ -9,7 +9,8 @@ app.controller('myCtrl', function ($scope, $http) {
         if (!classId) {
             return;
         }
-        var url = "yspb?ksbm=" + classId;
+        //var url = "yspb?ksbm=" + classId;
+        var url = "http://mrhuangqiwei.6655.la/Hospital/yspb?ksbm=" + classId;
         $http.get(url).success(function (data) {
             $scope.swpb = data.swpb;
             $scope.xwpb = data.xwpb;

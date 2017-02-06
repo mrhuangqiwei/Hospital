@@ -22,7 +22,9 @@ app.controller('myCtrl', function ($scope, $http) {
                 window.location.href = 'homepage';
                 return;
             }
-            $http.get("GetFriendinfo?openid=" + openId)
+            //var url = "GetFriendinfo?openid=" + openId;
+            var url = "http://mrhuangqiwei.6655.la/Hospital/GetFriendinfo?openid=" + openId;
+            $http.get(url)
                 .success(function (data) {
                     $scope.friends = data;
                     if ($scope.friends.length > 0) {
