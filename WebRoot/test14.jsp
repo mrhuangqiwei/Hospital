@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <form action="/Hospital/yspb" name="login" method="get"  >
    <table>
    <tr>
-   <td> ksbm:</td>
+   <td> ksbm：</td>
    <td><input type="text" name="ksbm" ></td>
    </tr>
 

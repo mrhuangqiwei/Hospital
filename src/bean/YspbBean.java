@@ -10,8 +10,8 @@ private String xhzs;
 private  String xyzs;
 private String czybm;
 private String czyxm;
-private String ghfybm;
-private String fydj;
+private String czyjj;
+private String kyzs;
 private String zcmc;
 private  String xq;
 private String mzsbdd;
@@ -22,12 +22,14 @@ private String yyghsj;
 private String yyyxsj;
 private String yghs;
 private String yyys;
+private String ghfy;
 
 
 public YspbBean(String yzrq, String sbsj, String xbsj, String xhzs,
-		String xyzs, String czybm, String czyxm, String ghfybm, String fydj,
+		String xyzs, String czybm, String czyxm, String czyjj, String kyzs,
 		String zcmc, String xq, String mzsbdd, String ksmc, String ksbm,
-		String yydjsj, String yyghsj, String yyyxsj, String yghs, String yyys) {
+		String yydjsj, String yyghsj, String yyyxsj, String yghs, String yyys,
+		String ghfy) {
 	super();
 	Yzrq = yzrq;
 	this.sbsj = sbsj;
@@ -36,8 +38,8 @@ public YspbBean(String yzrq, String sbsj, String xbsj, String xhzs,
 	this.xyzs = xyzs;
 	this.czybm = czybm;
 	this.czyxm = czyxm;
-	this.ghfybm = ghfybm;
-	this.fydj = fydj;
+	this.czyjj = czyjj;
+	this.kyzs = kyzs;
 	this.zcmc = zcmc;
 	this.xq = xq;
 	this.mzsbdd = mzsbdd;
@@ -48,6 +50,25 @@ public YspbBean(String yzrq, String sbsj, String xbsj, String xhzs,
 	this.yyyxsj = yyyxsj;
 	this.yghs = yghs;
 	this.yyys = yyys;
+	this.ghfy = ghfy;
+}
+public String getGhfy() {
+	return ghfy;
+}
+public void setGhfy(String ghfy) {
+	this.ghfy = ghfy;
+}
+public String getCzyjj() {
+	return czyjj;
+}
+public void setCzyjj(String czyjj) {
+	this.czyjj = czyjj;
+}
+public String getKyzs() {
+	return kyzs;
+}
+public void setKyzs(String kyzs) {
+	this.kyzs = kyzs;
 }
 public String getYghs() {
 	return yghs;
@@ -61,28 +82,7 @@ public String getYyys() {
 public void setYyys(String yyys) {
 	this.yyys = yyys;
 }
-public YspbBean(String yzrq, String sbsj, String xbsj, String xhzs,
-		String xyzs, String czybm, String czyxm, String ghfybm, String fydj,
-		String zcmc, String xq, String mzsbdd, String ksmc, String ksbm,
-		String yydjsj, String yyghsj, String yyyxsj) {
-	this.Yzrq = yzrq;
-	this.sbsj = sbsj;
-	this.xbsj = xbsj;
-	this.xhzs = xhzs;
-	this.xyzs = xyzs;
-	this.czybm = czybm;
-	this.czyxm = czyxm;
-	this.ghfybm = ghfybm;
-	this.fydj = fydj;
-	this.zcmc = zcmc;
-	this.xq = xq;
-	this.mzsbdd = mzsbdd;
-	this.ksmc = ksmc;
-	this.ksbm = ksbm;
-	this.yydjsj = yydjsj;
-	this.yyghsj = yyghsj;
-	this.yyyxsj = yyyxsj;
-}
+
 public String getYzrq() {
 	return Yzrq;
 }
@@ -124,18 +124,6 @@ public String getCzyxm() {
 }
 public void setCzyxm(String czyxm) {
 	this.czyxm = czyxm;
-}
-public String getGhfybm() {
-	return ghfybm;
-}
-public void setGhfybm(String ghfybm) {
-	this.ghfybm = ghfybm;
-}
-public String getFydj() {
-	return fydj;
-}
-public void setFydj(String fydj) {
-	this.fydj = fydj;
 }
 public String getZcmc() {
 	return zcmc;

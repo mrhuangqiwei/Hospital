@@ -36,12 +36,12 @@ public class yyghservlet extends HttpServlet {
 		String yyks=new String(request.getParameter("yyks").getBytes("ISO-8859-1"),"UTF-8");
 		String yydjrq=new String(request.getParameter("yydjrq").getBytes("ISO-8859-1"),"UTF-8");
 		String yyyxrq=new String(request.getParameter("yyyxrq").getBytes("ISO-8859-1"),"UTF-8");
-		String  mxfyxmbm=new String(request.getParameter("mxfyxmbm").getBytes("ISO-8859-1"),"UTF-8");
-		String yyjfbz=new String(request.getParameter("yyjfbz").getBytes("ISO-8859-1"),"UTF-8");
+		String  ysbm=new String(request.getParameter("ysbm").getBytes("ISO-8859-1"),"UTF-8");
+	
 		String ylkh=new String(request.getParameter("ylkh").getBytes("ISO-8859-1"),"UTF-8");
 		YyghSql yyghSql=new YyghSql();
 		boolean  yf= yyghSql.appointment(yyghrq, brxm, brxb, nl, sfzh, jtzz, sj, 
-				yyys, yyks, yydjrq, yyyxrq, mxfyxmbm, yyjfbz,ylkh);
+				ysbm, yyks, yydjrq, yyyxrq,ylkh,yyys);
 		if(yf==false){
 			System.out.print("预约挂号失败，位置在yyghservlet");
 		}

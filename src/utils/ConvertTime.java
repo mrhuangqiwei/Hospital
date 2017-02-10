@@ -20,7 +20,22 @@ public static  String  converttimetoYYMMDDHH(String date){
 	  SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH");
       String tablename=dateFormat.format(date1);
       return tablename;
+}/**转换时间格式如2017-08-12 08 00**/
+public static  String  converttimetoYYMMDDHH00(String date){
+	
+	  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	  Date date1 = null;
+	  try {
+       date1=sdf.parse(date);
+        
+    } catch (ParseException ex) {
+        System.out.print("jycx"+"时间转换有错误");
+    }
+	  SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd 00:00.000");
+    String tablename=dateFormat.format(date1);
+    return tablename;
 }
+
 /* 
  * 将时间转换为时间戳
  */    

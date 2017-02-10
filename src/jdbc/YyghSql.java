@@ -14,13 +14,16 @@ import java.util.logging.Logger;
 
 import org.sword.lang.DateTime;
 
+import utils.ConvertTime;
+
 public class YyghSql {
 	Dao dao = Dao.getInstance();
-	 public boolean appointment(String yyghrq,String brxm,String brxb,String brnl,String sfzh,String jtzz,String sj,String yyys,String yyks,String yydjrq,String yyyxrq,String mxfyxmbm,
-		
-			 String yyjfbz,String ylkh)
+	 public boolean appointment(String yyghrq,String brxm,String brxb,String brnl,String sfzh,
+			 String jtzz,String sj,String ysbm,String yyks,String yydjrq,String yyyxrq,String ylkh,String yyys)
+
      { boolean ok = false;	
-		 
+		 String Yzrq=""; 
+		 Yzrq=ConvertTime.converttimetoYYMMDDHH00(yyghrq);
 		 String yy ="";
      List<String> list = new ArrayList<String>();
      List<String> list2 = new ArrayList<String>();
@@ -55,7 +58,8 @@ public class YyghSql {
     		//Integer.parseInt(getyyghid().trim())+1;
         String yyid = String.valueOf(f);;
         ok=  Insertyygh(yyid, "01", "0269", yyghrq, brxm, brxb, "", brnl,
-            "1", sfzh, jtzz, sj, yyys, yyks, yydjrq, yyyxrq, "0022",mxfyxmbm,yyjfbz,ylkh);
+            "1", sfzh, jtzz, sj, ysbm, yyks, yydjrq, yyyxrq, "0022",ylkh);
+      ok=  updateYzxhb( ysbm, Yzrq,yyys);
        //System.out.print("大于1插入"+ok);
         int j = getdatedifference(list2.get(2));
         if (j > 1)
@@ -89,7 +93,7 @@ Long  f1 = yyid1 + m ;
     String yyid = String.valueOf(f1);
     
     ok=   Insertyygh(yyid, "01", "0269", yyghrq, brxm, brxb, "", brnl,
-            "1", sfzh, jtzz, sj, yyys, yyks, yydjrq, yyyxrq, "0022",mxfyxmbm,yyjfbz,ylkh);
+            "1", sfzh, jtzz, sj, ysbm, yyks, yydjrq, yyyxrq, "0022",ylkh);
    // System.out.print("更新666"+ok);
    int ww = getdatedifference(list2.get(2));
 	 
@@ -175,7 +179,7 @@ Long  f1 = yyid1 + m ;
 }
 		
 	//获取时间
-	public String  getyyghid(){
+	public String  getyyghid(){ 
 	String fString="";
 		Connection conn = JDBC.getConnection();	
 		Statement stmt;
@@ -298,10 +302,10 @@ Long  f1 = yyid1 + m ;
     }
     
     /**插入预约挂号表**/
-    public boolean Insertyygh( String yyghid,String ywckbm,String czybm,String yyghrq,String brxm,String brxb,String brsr,String brnl,String brnldw,String sfzh,String jtzz,String sj,String yyys, String yyks, String yydjrq, String yyyxrq, String czyks,String mxfyxmbm,String yyjfbz,String ylkh )
+    public boolean Insertyygh( String yyghid,String ywckbm,String czybm,String yyghrq,String brxm,String brxb,String brsr,String brnl,String brnldw,String sfzh,String jtzz,String sj,String ysbm, String yyks, String yydjrq, String yyyxrq, String czyks,String ylkh)
     {boolean ok=false;
     	
-    	String sql = "INSERT INTO ghb_yygh ( yyghid, ywckbm, czybm, yyghrq, brxm, brxb, brsr, brnl, brnldw, sfzh, jtzz, sj,yyys, yyks, yydjrq, yyyxrq, czyks,mxfyxmbm,yyjfbz,ylkh ) VALUES ( '" + yyghid + "', '" + ywckbm + "', '" + czybm + "', '" + yyghrq + "', '" + brxm + "', '" + brxb + "', '" + brsr + "'," + brnl + ", '" + brnldw + "', '" + sfzh + "', '" + jtzz + "', '" + sj + "', '" + yyys + "', '" + yyks + "', '" + yydjrq + "', '" + yyyxrq + "', '" + czyks + "', '"+mxfyxmbm+"','"+yyjfbz+"','"+ylkh+"')" ;
+    	String sql = "INSERT INTO ghb_yygh ( yyghid, ywckbm, czybm, yyghrq, brxm, brxb, brsr, brnl, brnldw, sfzh, jtzz, sj,yyys, yyks, yydjrq, yyyxrq, czyks,ylkh) VALUES ( '" + yyghid + "', '" + ywckbm + "', '" + czybm + "', '" + yyghrq + "', '" + brxm + "', '" + brxb + "', '" + brsr + "'," + brnl + ", '" + brnldw + "', '" + sfzh + "', '" + jtzz + "', '" + sj + "', '" + ysbm + "', '" + yyks + "', '" + yydjrq + "', '" + yyyxrq + "', '" + czyks + "','"+ylkh+"')" ;
     ok=dao.insert(sql);
   return ok;
     }
@@ -357,6 +361,54 @@ Long  f1 = yyid1 + m ;
     }
   return ok;
     }
+    
+    
+    /**跟新医嘱序号表**/
+    public boolean updateYzxhb(String ysbm, String yzxh,String yyys){
+    	boolean ok=false;
+    	int k=Integer.valueOf(yyys)+1;
+    
+    	String sql="update ghb_yzhb set yyys='"+k+"' where czybm='"+ysbm+"' and Yzrq='"+yzxh+"'";
+    	 ok=dao.insert(sql);
+    	 if(ok==false){
+    		 System.out.print("跟新医嘱序号表失败!");
+    	 }
+    	  return ok;
+    }
+    
+    public  List<String> GetpycfTT(String cfh ){
+		List<String> list=new ArrayList<String>();
+		Connection conn = JDBC.getConnection();	
+		Statement stmt;
+		String sql="select cfh,ghxh,cflxbm,yfbm,brxm,fysm,zz,zf,fyts,cyxm,ksmc,cfrq ,cfje, mzzd from view_yfb_ypcf where cfh='"+cfh+"'";
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs=stmt.executeQuery(sql);
+			//循环输出每一条记录
+			while(rs.next())
+			{list.add(rs.getString("cfh"));
+			list.add(rs.getString("ghxh"));
+			list.add(rs.getString("cflxbm"));
+			list.add(rs.getString("yfbm"));
+			list.add(rs.getString("brxm"));
+			list.add(rs.getString("fysm"));
+			list.add(rs.getString("zz"));
+			list.add(rs.getString("zf"));
+			list.add(rs.getString("fyts"));
+			list.add(rs.getString("cyxm"));
+			list.add(rs.getString("ksmc"));
+			list.add(rs.getString("cfrq"));
+			list.add(rs.getString("cfje"));
+			list.add(rs.getString("mzzd"));
+			}
+			stmt.close();								// 关闭连接状态对象
+			conn.commit();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	} 
     
     
 }

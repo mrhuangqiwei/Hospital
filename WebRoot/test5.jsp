@@ -51,8 +51,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <td><input type="text" name="sj" ></td>
    </tr>
    <tr>
-   <td> yyys：</td>
-   <td><input type="text" name="yyys" ></td>
+   <td> ysbm：</td>
+   <td><input type="text" name="ysbm" ></td>
    </tr>
      <tr>
    <td> yyks：</td>
@@ -66,17 +66,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <td> yyyxrq：</td>
    <td><input type="text" name="yyyxrq" ></td>
    </tr>
-     <tr>
-   <td> mxfyxmbm：</td>
-   <td><input type="text" name="mxfyxmbm" ></td>
-   </tr>
-     <tr>
-   <td> yyjfbz：</td>
-   <td><input type="text" name="yyjfbz" ></td>
-   </tr>
-     <tr>
+  <tr>
    <td> ylkh：</td>
    <td><input type="text" name="ylkh" ></td>
+   </tr>
+   <tr>
+    <tr>
+   <td> yyys：</td>
+   <td><input type="text" name="yyys" ></td>
    </tr>
    <tr>
    <td  >提交：</td><td><input type="submit" name="提交"></td>

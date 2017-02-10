@@ -18,6 +18,7 @@ import jdbc.Deletefriend;
 import jdbc.GetFriendInfosql;
 import jdbc.GetFriendsYyInfo;
 import jdbc.JDBC;
+import jdbc.JdbcUtilSql;
 import jdbc.StudentService;
 import jdbc.Userzyfymx;
 import jdbc.Ysbcsql;
@@ -99,13 +100,16 @@ public class sqltest {
 	//获取病人信息
 //String jString=getFriendInfosql.userinfotojison("513427199708082028", "00007250 ");
 	//获取病人预约信息
-	String jString=getFriendsYyInfo.getfriendsYyinfo("owEWzwQKO7G_uy4C0X_Wn2boPVI4");
+	//String jString=getFriendsYyInfo.getfriendsYyinfo("owEWzwQKO7G_uy4C0X_Wn2boPVI4");
+	//获取病人处方信息
+	//List<String>list=new ArrayList<String>();
+	//list.add("20161022000176");
+	//String jString=JdbcUtilSql.getmzcf(list);
 	//String jString = null;
 //时间格式转化
 	//	jString = ConvertTime.dateToStamp("2016-06-30 16:12:29.330");
-	
-	
-		System.out.print(jString);
+
+		System.out.print(ConvertTime.converttimetoYYMMDDHH00("2016-07-07 21:28:08.133"));
 		
 		//List<String> kList=ris.getrismx("987");
 		//System.out.print("---'"+kList.toString()+"'-");

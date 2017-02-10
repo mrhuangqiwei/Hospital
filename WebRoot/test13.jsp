@@ -16,11 +16,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
     <h1> 用户登录</h1>
     <hr>
-    <form action="/Hospital/yspb" name="login" method="get"  >
+    <form action="/Hospital/Mzzycf" name="login" method="get"  >
    <table>
    <tr>
-   <td> ksbm:</td>
-   <td><input type="text" name="ksbm" ></td>
+   <td> ghxh：</td>
+   <td><input type="text" name="ghxh" ></td>
    </tr>
 
    <tr>
