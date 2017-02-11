@@ -66,7 +66,7 @@ public class sqltest {
 	String mxfyxmbm="130002";
 	String yyjfbz="1";
 //自动挂号	
-//	brghsql.zdgh();
+	brghsql.zdgh();
 //String  yf=yyghSql.appointment(yyghrq, brxm, brxb, brnldw, sfzh, jtzz, sj, yyys, yyks, yydjrq, yyyxrq, mxfyxmbm, yyjfbz);
 		//List<YyxxBean> list=brghsql.getbuseryyxx();
 	//boolean ok=false;
@@ -109,7 +109,7 @@ public class sqltest {
 //时间格式转化
 	//	jString = ConvertTime.dateToStamp("2016-06-30 16:12:29.330");
 
-		System.out.print(ConvertTime.converttimetoYYMMDDHH00("2016-07-07 21:28:08.133"));
+	//	System.out.print(ConvertTime.converttimetoYYMMDDHH00("2016-07-07 21:28:08.133"));
 		
 		//List<String> kList=ris.getrismx("987");
 		//System.out.print("---'"+kList.toString()+"'-");

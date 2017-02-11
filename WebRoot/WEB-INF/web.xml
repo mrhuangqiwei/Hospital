@@ -93,6 +93,13 @@
     <servlet-name>Mzzycf</servlet-name>
     <servlet-class>Servlet.Mzzycf</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>updatefriend</servlet-name>
+    <servlet-class>Servlet.updatefriend</servlet-class>
+  </servlet>
+
 
 <listener>
 <listener-class>Timer.MyTimerListener</listener-class>
@@ -174,6 +181,10 @@
   <servlet-mapping>
     <servlet-name>Mzzycf</servlet-name>
     <url-pattern>/Mzzycf</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>updatefriend</servlet-name>
+    <url-pattern>/updatefriend</url-pattern>
   </servlet-mapping>
 
 

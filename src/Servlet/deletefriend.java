@@ -51,7 +51,7 @@ public class deletefriend extends HttpServlet {
 		Deletefriend deletefriend=new Deletefriend();
 		boolean ok=deletefriend.deletefriendinfo(Openid, sfzh, ylkh);
 		String yy="false";
-		if(ok=true){
+		if(ok==true){
 			yy="true";
 		}
 		 System.out.print("'"+ok+"'\n");

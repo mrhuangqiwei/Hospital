@@ -11,6 +11,7 @@ import java.util.Map;
 
 import org.apache.jasper.tagplugins.jstl.core.If;
 
+import bean.GhfyxmbmBean;
 import bean.YyxxBean;
 /**
  * 当检测到时间到达挂号时间是自动进行病人挂号程序
@@ -30,13 +31,16 @@ List<String> list1=new ArrayList<String>();
 Map<String, String>map=new HashMap<String, String>();
 //诊疗项目编码
 map=getghzlbm();
-Map<String, String>map1=new HashMap<String, String>();
+//Map<String, String>map1=new HashMap<String, String>();
 //获取明细费用单价
-map1=getmxxmdj();
+//map1=getmxxmdj();
 //获取上次结算记录时间
 
 
 String xhmw = "000001";
+Map<String, String>czyghfyMap=new HashMap<String, String>();
+//操作员挂号费用
+czyghfyMap=JdbcUtilSql.Getczyghfy();
 List<YyxxBean> list3= new ArrayList<YyxxBean>();
 //获取病人预约信息
 list3=getbuseryyxx();
@@ -60,9 +64,12 @@ int 	k=yyghSql.getdatedifference(list.get(2));
 	String xh1=getxh(xh);
 	int jsxh=Integer.parseInt(list1.get(1).replace("0", "").trim()) + 1;
 	String jsxh1=getxh(jsxh);
-	 System.out.print(map1.get(list3.get(i).getMxfyxmbm())+"\t");
-	 
-	 
+	// System.out.print(map1.get(list3.get(i).getMxfyxmbm())+"\t");
+	 List<GhfyxmbmBean>ghfyxmbmBeans= new ArrayList<GhfyxmbmBean>();
+	 //获取挂号费用明细费用项目编码
+	 ghfyxmbmBeans=JdbcUtilSql.Getysghmxfybm(list3.get(i).getYyys());
+	 String fyhj="";
+	 if(czyghfyMap.containsKey(list3.get(i).getYyys().trim())){fyhj=czyghfyMap.get(list3.get(i).getYyys().trim());}else{fyhj="";}
 	 if(k>=1&&m>=1){
 		  ghxh= String.valueOf(id+1)   ;
 		  jsjlid=String.valueOf(id+1) ;
@@ -74,10 +81,12 @@ int 	k=yyghSql.getdatedifference(list.get(2));
 	    		  list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getYyghrq(),
 	    		  list3.get(i).getYyks(), list3.get(i).getYyys(), "01", "", "", "", "0", "0",  "0022", 
 	    		  "0",  list3.get(i).getYyghrq(),  list3.get(i).getBrnl(),  list3.get(i).getBrnldw(),"2", "0");
-	      String fyhj=map1.get(list3.get(i).getMxfyxmbm());
+	      updateYyghb(list3.get(i).getYyghid());
+	      
 	 inserjsjl(jsjlid, ghxh, list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getBrid(), fyhj, "0", fyhj, "0", "0", "0", "0", list3.get(i).getYyghrq(), list3.get(i).getCzyks());
-	insertmzbbrfy(list3.get(i).getYwckbm(),list3.get(i).getMxfyxmbm(),list3.get(i).getCzybm(), ssrq ,list3.get(i).getBrid(),ghxh, list3.get(i).getBrxm(), fyhj, fyhj,list3.get(i).getYyghid(), list3.get(i).getYyks(), list3.get(i).getYyks(), jsjlid);
-
+	for(int y=0;y< ghfyxmbmBeans.size();y++){
+	 insertmzbbrfy(list3.get(i).getYwckbm(),ghfyxmbmBeans.get(y).getXlbm(),ghfyxmbmBeans.get(y).getMxfyxmbm(),list3.get(i).getCzybm(),ghfyxmbmBeans.get(y).getDlbm(), ssrq ,list3.get(i).getBrid(),ghxh, list3.get(i).getBrxm(),ghfyxmbmBeans.get(y).getFydj(), ghfyxmbmBeans.get(y).getFydj(),list3.get(i).getYyghid(), list3.get(i).getYyks(), list3.get(i).getYyks(), jsjlid);
+	}
 	 }
 	 else if (k>=1&&m<1) {
 		 ghxh=String.valueOf(id+1)  ;
@@ -89,10 +98,12 @@ int 	k=yyghSql.getdatedifference(list.get(2));
 	    		  list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getYyghrq(),
 	    		  list3.get(i).getYyks(), list3.get(i).getYyys(), "01", "", "", "", "0", "0",  "0022", 
 	    		  "0",  list3.get(i).getYyghrq(),  list3.get(i).getBrnl(),  list3.get(i).getBrnldw(),"2", "0");
-	      String fyhj=map1.get(list3.get(i).getMxfyxmbm());
+	      updateYyghb(list3.get(i).getYyghid());
+	     
 	 inserjsjl(jsjlid, ghxh, list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getBrid(), fyhj, "0", fyhj, "0", "0", "0", "0", list3.get(i).getYyghrq(), list3.get(i).getCzyks());
-	insertmzbbrfy(list3.get(i).getYwckbm(),list3.get(i).getMxfyxmbm(),list3.get(i).getCzybm(), ssrq ,list3.get(i).getBrid(),ghxh, list3.get(i).getBrxm(), fyhj, fyhj,list3.get(i).getYyghid(), list3.get(i).getYyks(), list3.get(i).getYyks(), jsjlid);
-
+	 for(int y=0;y< ghfyxmbmBeans.size();y++){
+		 insertmzbbrfy(list3.get(i).getYwckbm(),ghfyxmbmBeans.get(y).getXlbm(),ghfyxmbmBeans.get(y).getMxfyxmbm(),list3.get(i).getCzybm(),ghfyxmbmBeans.get(y).getDlbm(), ssrq ,list3.get(i).getBrid(),ghxh, list3.get(i).getBrxm(), ghfyxmbmBeans.get(y).getFydj(), ghfyxmbmBeans.get(y).getFydj(),list3.get(i).getYyghid(), list3.get(i).getYyks(), list3.get(i).getYyks(), jsjlid);
+		}
 	}
 	 else if (k<1&&m>=1) {
 		 ghxh=String.valueOf(id+1)  ;
@@ -104,10 +115,13 @@ int 	k=yyghSql.getdatedifference(list.get(2));
 	    		  list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getYyghrq(),
 	    		  list3.get(i).getYyks(), list3.get(i).getYyys(), "01", "", "", "", "0", "0",  "0022", 
 	    		  "0",  list3.get(i).getYyghrq(),  list3.get(i).getBrnl(),  list3.get(i).getBrnldw(),"2", "0");
-	      String fyhj=map1.get(list3.get(i).getMxfyxmbm());
+	      updateYyghb(list3.get(i).getYyghid());
+	   
 	 inserjsjl(jsjlid, ghxh, list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getBrid(), fyhj, "0", fyhj, "0", "0", "0", "0", list3.get(i).getYyghrq(), list3.get(i).getCzyks());
-	insertmzbbrfy(list3.get(i).getYwckbm(),list3.get(i).getMxfyxmbm(),list3.get(i).getCzybm(), ssrq ,list3.get(i).getBrid(),ghxh, list3.get(i).getBrxm(), fyhj, fyhj,list3.get(i).getYyghid(), list3.get(i).getYyks(), list3.get(i).getYyks(), jsjlid);
-
+	 
+	 for(int y=0;y< ghfyxmbmBeans.size();y++){
+		 insertmzbbrfy(list3.get(i).getYwckbm(),ghfyxmbmBeans.get(y).getXlbm(),ghfyxmbmBeans.get(y).getMxfyxmbm(),list3.get(i).getCzybm(),ghfyxmbmBeans.get(y).getDlbm(), ssrq ,list3.get(i).getBrid(),ghxh, list3.get(i).getBrxm(), ghfyxmbmBeans.get(y).getFydj(), ghfyxmbmBeans.get(y).getFydj(),list3.get(i).getYyghid(), list3.get(i).getYyks(), list3.get(i).getYyks(), jsjlid);
+		}
 	}
 	 else {
 			ghxh=String.valueOf(id+xh)  ;
@@ -121,12 +135,12 @@ int 	k=yyghSql.getdatedifference(list.get(2));
 		  		  list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getYyghrq(),
 		  		  list3.get(i).getYyks(), list3.get(i).getYyys(), "01", "", "", "", "0", "0",  "0022", 
 		  		  "0",  list3.get(i).getYyghrq(),  list3.get(i).getBrnl(),  list3.get(i).getBrnldw(),"2", "0");
-		    String fyhj=map1.get(list3.get(i).getMxfyxmbm());
-		    
-		    
+		    updateYyghb(list3.get(i).getYyghid());
+    
 		inserjsjl(jsjlid, ghxh, list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getBrid(), fyhj, "0", fyhj, "0", "0", "0", "0", list3.get(i).getYyghrq(), list3.get(i).getCzyks());
-		insertmzbbrfy(list3.get(i).getYwckbm(),list3.get(i).getMxfyxmbm(),list3.get(i).getCzybm(), ssrq ,list3.get(i).getBrid(),ghxh, list3.get(i).getBrxm(), fyhj, fyhj,list3.get(i).getYyghid(), list3.get(i).getYyks(), list3.get(i).getYyks(), jsjlid);
-
+		for(int y=0;y< ghfyxmbmBeans.size();y++){
+			 insertmzbbrfy(list3.get(i).getYwckbm(),ghfyxmbmBeans.get(y).getXlbm(),ghfyxmbmBeans.get(y).getMxfyxmbm(),list3.get(i).getCzybm(),ghfyxmbmBeans.get(y).getDlbm(), ssrq ,list3.get(i).getBrid(),ghxh, list3.get(i).getBrxm(), ghfyxmbmBeans.get(y).getFydj(), ghfyxmbmBeans.get(y).getFydj(),list3.get(i).getYyghid(), list3.get(i).getYyks(), list3.get(i).getYyks(), jsjlid);
+			}
 	}
 	 
 
@@ -292,7 +306,7 @@ public List<YyxxBean>getbuseryyxx(){
 	List<String> list=new ArrayList<String>();
 	Connection conn = JDBC.getConnection();	
 	Statement stmt;
-	String sql="select Rtrim(ghb_yygh.yyghid)yyghid,Rtrim(ghb_yygh.ywckbm)ywckbm,Rtrim(ghb_yygh.brid)brid,Rtrim(ghb_yygh.czybm)czybm,yyghrq,Rtrim(ghb_yygh.czyks)czyks,Rtrim(ghb_yygh.brxm)brxm,Rtrim(yyks)yyks,Rtrim(yyys)yyys ,Rtrim(yyjfbz)yyjfbz,Rtrim(mxfyxmbm)mxfyxmbm ,Rtrim(ghb_zcxx.brnl)brnl ,Rtrim(ghb_zcxx.brnldw)brnldw from ghb_yygh,ghb_zcxx  where ghb_yygh.brid=ghb_zcxx.brid and yydjrq>='2017-01-21 00:00:00.000'";
+	String sql="select Rtrim(ghb_yygh.yyghid)yyghid,Rtrim(ghb_yygh.ywckbm)ywckbm,Rtrim(ghb_yygh.brid)brid,Rtrim(ghb_yygh.czybm)czybm,yyghrq,Rtrim(ghb_yygh.czyks)czyks,Rtrim(ghb_yygh.brxm)brxm,Rtrim(yyks)yyks,Rtrim(yyys)yyys ,Rtrim(yyjfbz)yyjfbz,Rtrim(mxfyxmbm)mxfyxmbm ,Rtrim(ghb_zcxx.brnl)brnl ,Rtrim(ghb_zcxx.brnldw)brnldw from ghb_yygh,ghb_zcxx  where ghb_yygh.brid=ghb_zcxx.brid and yydjrq>='2017-02-10 00:00:00.000'";
 	try {
 		stmt = conn.createStatement();
 		ResultSet rs=stmt.executeQuery(sql);
@@ -394,14 +408,14 @@ return ok;
 插入门诊表--病人费用
  * @return
  */
-public boolean insertmzbbrfy(String ywckbm,String mxfyxmbm,String czybm,String sfrq,
+public boolean insertmzbbrfy(String ywckbm,String xlbm, String mxfyxmbm,String czybm,String dlbm, String sfrq,
 		String rybrid,String ryghxh ,String brxm,String fydj,String fyje,String mzys,String mzks,
 		String hsks,String ryjsjlid){
 
 	String sql="INSERT INTO mzb_brfy ( fbbm, ywckbm, xlbm, mxfyxmbm, czybm, dlbm, "
 			+ "sfrq, rybrid, ryghxh, brxm, fysl, fydj, fyje, yhbl, yhje, mzys, mzks,"
 			+ " hsks, yzlx, sfjs, jscs, ryjsjlid, sflx, fzxh ) "
-			+ "VALUES ( '02', '"+ywckbm+"', '10', '"+mxfyxmbm+"', '"+czybm+"', '10',"
+			+ "VALUES ( '02', '"+ywckbm+"', '"+xlbm+"', '"+mxfyxmbm+"', '"+czybm+"', '"+dlbm+"',"
 			+ " '"+sfrq+"', '"+rybrid+"', '"+ryghxh+"',"
 			+ " '"+brxm+"', 1, '"+fydj+"', '"+fyje+"', 0.00, 0.00,  '"+mzys+"', '"+mzks+"', "
 			+ "'"+hsks+"', '1', 1, 1, '"+ryjsjlid+"', '0', 2 )";
@@ -474,6 +488,15 @@ try {
 }
 return list;
 }
-
+/**跟新预约挂号表yyclbz**/
+public boolean updateYyghb(String yyghid ){
+	boolean ok=false;
+	String sql="update ghb_yygh set yyclbz='1' where yyghid='"+yyghid+"'";
+	 ok=dao.insert(sql);
+	 if(ok=false){
+		 System.out.print("更新预约挂号表失败");
+	 }
+	  return ok;
+}
 
 }

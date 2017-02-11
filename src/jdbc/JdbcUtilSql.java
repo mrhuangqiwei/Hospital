@@ -13,6 +13,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 
 import utils.ConvertTime;
+import bean.GhfyxmbmBean;
 import bean.MzcfBean;
 import bean.YppfmxBean;
 
@@ -278,5 +279,41 @@ public  class JdbcUtilSql {
 			map.put(list.get(i), list.get(i+1));
 		}
 		return map;
+	}
+	/**
+	 * 获取医生挂号明细费用项目编码
+	 * @param cfh
+	 * @return
+	 */
+	public static List<GhfyxmbmBean> Getysghmxfybm(String czybm){
+		List<String> list=new ArrayList<String>();
+		Connection conn = JDBC.getConnection();	
+		Statement stmt;
+		String sql="select Rtrim(czybm)czybm,Rtrim(czyxm)czyxm,Rtrim(gyb_mxfyxm.mxfyxmbm)mxfyxmbm,Rtrim(gyb_mxfyxm.mxfyxmmc)mxfyxmmc,gyb_mxfyxm.xlbm,dlbm, fydj from gyb_czy,ghb_hbsfxm ,gyb_mxfyxm,gyb_fyxl where czybm='"+czybm+"'and (gyb_czy.ghzlbm=ghb_hbsfxm.ghzlbm) and  (ghb_hbsfxm.mxfyxmbm=gyb_mxfyxm.mxfyxmbm) and(gyb_mxfyxm.xlbm=gyb_fyxl.xlbm)";
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs=stmt.executeQuery(sql);
+			//循环输出每一条记录
+			while(rs.next())
+			{list.add(rs.getString("czybm"));
+			list.add(rs.getString("czyxm"));
+			list.add(rs.getString("mxfyxmbm"));
+			list.add(rs.getString("mxfyxmmc"));
+			list.add(rs.getString("xlbm"));
+			list.add(rs.getString("dlbm"));
+			list.add(rs.getString("fydj"));
+			}
+			stmt.close();								// 关闭连接状态对象
+			conn.commit();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List<GhfyxmbmBean>ghfyxmbmBeans=new ArrayList<GhfyxmbmBean>();
+		for(int i=0;i<list.size();i=i+7){
+			GhfyxmbmBean gBean=new GhfyxmbmBean(list.get(i), list.get(i+1),list.get(i+2), list.get(i+3), list.get(i+4), list.get(i+5), list.get(i+6));
+		ghfyxmbmBeans.add(gBean);
+		}
+		return ghfyxmbmBeans;
 	}
 }
