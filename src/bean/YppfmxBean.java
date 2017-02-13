@@ -15,10 +15,12 @@ public class YppfmxBean {
 	private String pcmc;
 	private String fyjl;
 	private String fydw;
-
+    private String yfdwmc;
+	
 	public YppfmxBean(String cfh, String xssx, String ryypbm, String jldw,
 			String jldwmc, String zl, String ypmc, String yyff, String yyffmc,
-			String ypgg, String pcbm, String pcmc, String fyjl, String fydw) {
+			String ypgg, String pcbm, String pcmc, String fyjl, String fydw,
+			String yfdwmc) {
 		super();
 		this.cfh = cfh;
 		this.xssx = xssx;
@@ -34,6 +36,13 @@ public class YppfmxBean {
 		this.pcmc = pcmc;
 		this.fyjl = fyjl;
 		this.fydw = fydw;
+		this.yfdwmc = yfdwmc;
+	}
+	public String getYfdwmc() {
+		return yfdwmc;
+	}
+	public void setYfdwmc(String yfdwmc) {
+		this.yfdwmc = yfdwmc;
 	}
 	public String getJldwmc() {
 		return jldwmc;

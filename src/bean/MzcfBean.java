@@ -22,13 +22,15 @@ public class MzcfBean {
  private String cfrq;
  private String cfje;
  private String mzzd;
+ private String cflxmc;
  private List<YppfmxBean>yppfmxBeans;
+
 
 
 public MzcfBean(String cfh, String ghxh, String cflxbm, String yfbm,
 		String brxm, String fysm, String zz, String zf, String fyts,
 		String cyxm, String ksmc, String cfrq, String cfje, String mzzd,
-		List<YppfmxBean> yppfmxBeans) {
+		String cflxmc, List<YppfmxBean> yppfmxBeans) {
 	super();
 	this.cfh = cfh;
 	this.ghxh = ghxh;
@@ -44,7 +46,14 @@ public MzcfBean(String cfh, String ghxh, String cflxbm, String yfbm,
 	this.cfrq = cfrq;
 	this.cfje = cfje;
 	this.mzzd = mzzd;
+	this.cflxmc = cflxmc;
 	this.yppfmxBeans = yppfmxBeans;
+}
+public String getCflxmc() {
+	return cflxmc;
+}
+public void setCflxmc(String cflxmc) {
+	this.cflxmc = cflxmc;
 }
 public List<YppfmxBean> getYppfmxBeans() {
 	return yppfmxBeans;

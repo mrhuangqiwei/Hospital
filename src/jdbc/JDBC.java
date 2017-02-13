@@ -5,9 +5,9 @@ import java.sql.SQLException;
 
 public class JDBC {
 	public  static final String DRIVERCLASS = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	public static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=hospital";
+	public static final String URL = "jdbc:sqlserver://192.168.2.253:1433;databaseName=cs";
      public static final String USERNAME = "sa";
-	public  static final String PASSWORD = "873245huang";
+	public  static final String PASSWORD = "ztkj";
 	public  static final ThreadLocal<Connection> threadLocal = new ThreadLocal<Connection>();
 
 	static {											// 在静态代码块中加载数据库驱动

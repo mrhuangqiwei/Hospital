@@ -99,6 +99,11 @@
     <servlet-name>updatefriend</servlet-name>
     <servlet-class>Servlet.updatefriend</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>getbrmzfyServlet</servlet-name>
+    <servlet-class>Servlet.getbrmzfyServlet</servlet-class>
+  </servlet>
+
 
 
 <listener>
@@ -185,6 +190,10 @@
   <servlet-mapping>
     <servlet-name>updatefriend</servlet-name>
     <url-pattern>/updatefriend</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>getbrmzfyServlet</servlet-name>
+    <url-pattern>/getbrmzfyServlet</url-pattern>
   </servlet-mapping>
 
 

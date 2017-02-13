@@ -12,8 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContextEvent;
+
+import Timer.MyTimerListener;
 import bean.YyxxBean;
 import jdbc.Brghsql;
+import jdbc.Brmzfymx;
 import jdbc.Deletefriend;
 import jdbc.GetFriendInfosql;
 import jdbc.GetFriendsYyInfo;
@@ -44,6 +48,7 @@ public class sqltest {
 		ris_report_sql  ris=new ris_report_sql();
 		GetFriendInfosql getFriendInfosql=new GetFriendInfosql();
 		GetFriendsYyInfo getFriendsYyInfo=new GetFriendsYyInfo();
+		Brmzfymx brmzfymx=new Brmzfymx();
 	//String json=yyghSql.getdatetime();
 	
 	String mxfyxmbnString="130002";
@@ -66,7 +71,7 @@ public class sqltest {
 	String mxfyxmbm="130002";
 	String yyjfbz="1";
 //自动挂号	
-	brghsql.zdgh();
+	//brghsql.zdgh();
 //String  yf=yyghSql.appointment(yyghrq, brxm, brxb, brnldw, sfzh, jtzz, sj, yyys, yyks, yydjrq, yyyxrq, mxfyxmbm, yyjfbz);
 		//List<YyxxBean> list=brghsql.getbuseryyxx();
 	//boolean ok=false;
@@ -102,9 +107,11 @@ public class sqltest {
 	//获取病人预约信息
 	//String jString=getFriendsYyInfo.getfriendsYyinfo("owEWzwQKO7G_uy4C0X_Wn2boPVI4");
 	//获取病人处方信息
-	//List<String>list=new ArrayList<String>();
-	//list.add("20161022000176");
-	//String jString=JdbcUtilSql.getmzcf(list);
+
+	//String jString=JdbcUtilSql.getmzcf("20161127000001");
+	//String jString=JdbcUtilSql.getmzcf("20161127000001");
+	//获取病人门诊费用信息
+	String jString=brmzfymx.Getmzfyxx("20110830000");
 	//String jString = null;
 //时间格式转化
 	//	jString = ConvertTime.dateToStamp("2016-06-30 16:12:29.330");
@@ -112,7 +119,7 @@ public class sqltest {
 	//	System.out.print(ConvertTime.converttimetoYYMMDDHH00("2016-07-07 21:28:08.133"));
 		
 		//List<String> kList=ris.getrismx("987");
-		//System.out.print("---'"+kList.toString()+"'-");
+		System.out.print(jString);
 		/**
 	    String json=weinxinsql.getfriendIsRigster(null, "513427199309232818","15577616194");
 		System.out.print(json);
@@ -128,13 +135,13 @@ public class sqltest {
 		List<String> list=new ArrayList<String>();
 		Connection conn = JDBC.getConnection();	
 		Statement stmt;
-		String sql="select yyghrq from ghb_yygh where yyghid='20160701000001            ' ";
+		String sql="select * from gyb_czy ";
 		try {
 			stmt = conn.createStatement();
 			ResultSet rs=stmt.executeQuery(sql);
 			//循环输出每一条记录
 			while(rs.next())
-			{list.add(rs.getString("yyghrq"));
+			{list.add(rs.getString("czybm"));
 
 			}
 			stmt.close();								// 关闭连接状态对象
