@@ -14,7 +14,7 @@ app.controller('myCtrl', function ($scope, $http) {
                 ['科室位置', $scope.doc.mzsbdd],
                 ['预约时间', $scope.doc.xq],
                 ['上班信息', $scope.doc.zcmc],
-                ['挂号费用', $scope.doc.fydj + '元']
+                ['挂号费用', $scope.doc.ghfy + '元']
             ];
             var openId = $.cookie('wx_openid');
             if (!openId) {
