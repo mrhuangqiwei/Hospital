@@ -8,7 +8,6 @@ app.controller('myCtrl', function ($scope, $http) {
     $scope.init = function () {
         $scope.doc = JSON.parse($.cookie('operate_doc'));
         if ($scope.doc) {
-            console.log($scope.doc);
             $scope.tabs = [
                 ['预约科室', $scope.doc.ksmc],
                 ['挂号医生', $scope.doc.czyxm],
@@ -23,7 +22,7 @@ app.controller('myCtrl', function ($scope, $http) {
                 return;
             }
             //var url = "GetFriendinfo?openid=" + openId;
-            var url = "http://mrhuangqiwei.6655.la/Hospital/GetFriendinfo?openid=" + openId;
+            var url = "http://219.141.78.173/Hospital/GetFriendinfo?openid=" + openId;
             $http.get(url)
                 .success(function (data) {
                     $scope.friends = data;
@@ -36,7 +35,6 @@ app.controller('myCtrl', function ($scope, $http) {
     $scope.init();
 
     $scope.submitOrder = function () {
-        console.log($scope.myValue);
         $http({
             method: 'post',
             url: 'fillorder',

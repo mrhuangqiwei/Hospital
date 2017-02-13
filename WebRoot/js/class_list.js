@@ -3,7 +3,7 @@ new Vue({
     data: {todos: []},
     beforeCreate: function () {
         // var url = "Ksbmservlet";
-        var url = "http://mrhuangqiwei.6655.la/Hospital/Ksbmservlet";
+        var url = "http://219.141.78.173/Hospital/Ksbmservlet";
         var _self = this;
         $.get(url, function (data, status) {
             if (status === 'success') {
