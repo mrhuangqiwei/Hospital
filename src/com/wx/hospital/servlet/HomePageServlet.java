@@ -24,7 +24,7 @@ public class HomePageServlet extends BaseServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String openId = getOpenId(req);
         if (openId == null || TextUtils.isBlank(openId)) {
-            String redirectUrl = OAuthManager.generateRedirectURI(SERVER_URL + "oauth2",
+            String redirectUrl = OAuthManager.generateRedirectURI("http://219.141.78.173/Hospital/"+ "oauth2",
                     "snsapi_userinfo", "homepage");
             resp.sendRedirect(redirectUrl);
             return;

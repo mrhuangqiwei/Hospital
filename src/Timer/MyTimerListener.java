@@ -1,5 +1,7 @@
 package Timer;
 
+import java.text.ParseException;
+
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
@@ -14,7 +16,12 @@ public class MyTimerListener implements ServletContextListener{
 	@Override
 	public void contextInitialized(ServletContextEvent arg0) {
 		// TODO Auto-generated method stub
-		mytimer.timerStart();
+		try {
+			mytimer.timerStart();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

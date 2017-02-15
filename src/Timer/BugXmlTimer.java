@@ -10,28 +10,26 @@ public class BugXmlTimer {
 	public   Timer timer;
 	 
 	  
-   public void timerStart(){
+   public void timerStart() throws ParseException{
 	       timer = new Timer();
-	       Date datetime=new Date();
-	       Date midnightDate=new Date();
-	
-	      SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
-      SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	       long daySpan=24*60*60*1000;
+	     // 规定的每天时间15:33:30运行
+	       final SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd '21:02:00'");
+
+	     //首次运行时间
+	       Date startTime=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(sdf.format(new Date()));
 	       
-	    try {
-	               
-	        midnightDate = sdf2.parse(sdf1.format(datetime)+" 23:00:00");
-	    } catch (ParseException e) {
-	        // TODO Auto-generated catch block
-	        e.printStackTrace();
-	    }
-	       
-	       long in=midnightDate.getTime()-datetime.getTime();
+ //如果今天的已经过了 首次运行时间就改为明天
+	       if(System.currentTimeMillis()>startTime.getTime()){
+	    	   startTime=new Date(startTime.getTime()+daySpan);
+	       }
+  
 	  
 	        System.out.println("before task");
+	        timer.scheduleAtFixedRate(new BugXmlTimerTask(), startTime, daySpan);
 	//立刻执行，然后每隔30s执行一次
-	        timer.schedule(new BugXmlTimerTask(), 0,30000);
-	       
+	     //   timer.schedule(new BugXmlTimerTask(), midnightDate,3000);
+	      
    
 	  }
    
@@ -40,7 +38,7 @@ public class BugXmlTimer {
 	         timer.cancel();
 	   }
 	
-	  public static void main(String[] args){
+	  public static void main(String[] args) throws ParseException{
 	       BugXmlTimer myTimer=new BugXmlTimer();
 	        
 	

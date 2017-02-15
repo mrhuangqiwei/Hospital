@@ -40,12 +40,10 @@ public class yyghservlet extends HttpServlet {
 	
 		String ylkh=new String(request.getParameter("ylkh").getBytes("ISO-8859-1"),"UTF-8");
 		YyghSql yyghSql=new YyghSql();
-		boolean  yf= yyghSql.appointment(yyghrq, brxm, brxb, nl, sfzh, jtzz, sj, 
+		String  yf= yyghSql.appointment(yyghrq, brxm, brxb, nl, sfzh, jtzz, sj, 
 				ysbm, yyks, yydjrq, yyyxrq,ylkh,yyys);
-		if(yf==false){
-			System.out.print("预约挂号失败，位置在yyghservlet");
-		}
-		response.getWriter().write(""+yf);
+		
+		response.getWriter().write(yf);
 		//System.out.print("预约挂号\t");
 		//System.out .print("----'"+yf);
 	

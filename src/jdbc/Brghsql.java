@@ -11,6 +11,8 @@ import java.util.Map;
 
 import org.apache.jasper.tagplugins.jstl.core.If;
 
+import utils.ConvertTime;
+import utils.GlobalConfigUtil;
 import bean.GhfyxmbmBean;
 import bean.YyxxBean;
 /**
@@ -28,118 +30,121 @@ YyghSql yyghSql=new YyghSql();
 
 List<String> list=new ArrayList<String>();
 List<String> list1=new ArrayList<String>();
-Map<String, String>map=new HashMap<String, String>();
+Map<String, String>ghzlMap=new HashMap<String, String>();
 //诊疗项目编码
-map=getghzlbm();
+ghzlMap=getghzlbm();
 //Map<String, String>map1=new HashMap<String, String>();
-//获取明细费用单价
+
 //map1=getmxxmdj();
-//获取上次结算记录时间
-
-
-String xhmw = "000001";
+//获取明细费用单价
 Map<String, String>czyghfyMap=new HashMap<String, String>();
 //操作员挂号费用
 czyghfyMap=JdbcUtilSql.Getczyghfy();
 List<YyxxBean> list3= new ArrayList<YyxxBean>();
-//获取病人预约信息
+//获取需要插入挂号表和结算记录表，门诊费用表的病人信息
 list3=getbuseryyxx();
 
+String csxh="000001";
 
-//序号前段数字
-Long id=getyyghid();
-String ghxh;
-String jsjlid;
 for(int i=0;i<list3.size();i++){
+	//序号前段数字如20170213000000
+	Long id=getyyghid();
+	String ghxh;
+	String jsjlid;
+	//获取结算记录的xhlx , xh , ssrq , cslx
 	list1=getuserjsjltime();
-	//获取上次挂号时间
+	//获取上次挂号 xhlx , xh , ssrq , cslx 
 	list=getusertime();
+	//获取系统当前日期
 	String ssrq = yyghSql.getdatetime();
-	//获取挂号ssrq和当前日期的差
-int 	k=yyghSql.getdatedifference(list.get(2));
-////获取结算时间和当前时间的差
+	//获取挂号时间和当前日期的差
+    int k=yyghSql.getdatedifference(list.get(2));
+    //获取结算时间和当前时间的差
 	int m=yyghSql.getdatedifference(list1.get(2));
 	//获取挂号序号的尾数
-	int xh = Integer.parseInt(list.get(1).replace("0", "").trim()) + 1;
+	int xh = Integer.parseInt(list.get(1).trim()) + 1;
+	//根据输入的尾号如“23”返回如"000023"的字符串，用来更新业务序号表
 	String xh1=getxh(xh);
-	int jsxh=Integer.parseInt(list1.get(1).replace("0", "").trim()) + 1;
+	int jsxh=Integer.parseInt(list1.get(1).trim()) + 1;
+	//结算记录的 末尾序号表
 	String jsxh1=getxh(jsxh);
 	// System.out.print(map1.get(list3.get(i).getMxfyxmbm())+"\t");
 	 List<GhfyxmbmBean>ghfyxmbmBeans= new ArrayList<GhfyxmbmBean>();
 	 //获取挂号费用明细费用项目编码
 	 ghfyxmbmBeans=JdbcUtilSql.Getysghmxfybm(list3.get(i).getYyys());
+	 //挂号诊疗编码
+	 String ghzlbm="";
+	 if(ghzlMap.containsKey(list3.get(i).getYyys().trim())){
+		 ghzlbm=ghzlMap.get(list3.get(i).getYyys().trim());
+	 }else{ghzlbm="";}
+	 String ghfsbm= GlobalConfigUtil.getGhfsbm();
+	 String fbbm=GlobalConfigUtil.getFbbm();
+	 String ghxq=GlobalConfigUtil.getGhxq();
+	 String sfjz="0";
+	 String jzxe="0.00";
+	 //费用合计
 	 String fyhj="";
 	 if(czyghfyMap.containsKey(list3.get(i).getYyys().trim())){fyhj=czyghfyMap.get(list3.get(i).getYyys().trim());}else{fyhj="";}
-	 if(k>=1&&m>=1){
+	//情况1 当两个流水号时间都大于等于1时
+	 if(k>=1&&m>=1){ 
+		 System.out.print("k>=1&&m>=1");
 		  ghxh= String.valueOf(id+1)   ;
 		  jsjlid=String.valueOf(id+1) ;
-		 
-		 
-	      updateYwxhb("000001", ssrq);
-	      updatejsjl("000001", ssrq);
-	      insertbrgh(ghxh, map.get(list3.get(i).getYyys()), "02", "02", list3.get(i).getBrid(),
-	    		  list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getYyghrq(),
-	    		  list3.get(i).getYyks(), list3.get(i).getYyys(), "01", "", "", "", "0", "0",  "0022", 
-	    		  "0",  list3.get(i).getYyghrq(),  list3.get(i).getBrnl(),  list3.get(i).getBrnldw(),"2", "0");
+	      updateYwxhb(csxh, ssrq);
+	      updatejsjl(csxh, ssrq);
+	      insertbrgh(ghxh, ghzlbm, ghfsbm, fbbm,list3.get(i).getBrid(), list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getYyghrq(), ghxq, list3.get(i).getYyks(), list3.get(i).getYyys(), sfjz, list3.get(i).getCzyks(), jzxe, list3.get(i).getBrnl(), list3.get(i).getBrnldw());
 	      updateYyghb(list3.get(i).getYyghid());
 	      
 	 inserjsjl(jsjlid, ghxh, list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getBrid(), fyhj, "0", fyhj, "0", "0", "0", "0", list3.get(i).getYyghrq(), list3.get(i).getCzyks());
 	for(int y=0;y< ghfyxmbmBeans.size();y++){
-	 insertmzbbrfy(list3.get(i).getYwckbm(),ghfyxmbmBeans.get(y).getXlbm(),ghfyxmbmBeans.get(y).getMxfyxmbm(),list3.get(i).getCzybm(),ghfyxmbmBeans.get(y).getDlbm(), ssrq ,list3.get(i).getBrid(),ghxh, list3.get(i).getBrxm(),ghfyxmbmBeans.get(y).getFydj(), ghfyxmbmBeans.get(y).getFydj(),list3.get(i).getYyghid(), list3.get(i).getYyks(), list3.get(i).getYyks(), jsjlid);
+	 insertmzbbrfy(fbbm,list3.get(i).getYwckbm(),ghfyxmbmBeans.get(y).getXlbm(),ghfyxmbmBeans.get(y).getMxfyxmbm(),list3.get(i).getCzybm(),ghfyxmbmBeans.get(y).getDlbm(), ssrq ,list3.get(i).getBrid(),ghxh, list3.get(i).getBrxm(),ghfyxmbmBeans.get(y).getFydj(), ghfyxmbmBeans.get(y).getFydj(),list3.get(i).getYyghid(), list3.get(i).getYyks(), list3.get(i).getYyks(), jsjlid);
 	}
 	 }
+	 //情况2 当挂号时间大于等于1 结算时间小于1时
 	 else if (k>=1&&m<1) {
-		 ghxh=String.valueOf(id+1)  ;
+		 System.out.print("k>=1&&m<1");
+		  ghxh=String.valueOf(id+1)  ;
 	      jsjlid=String.valueOf(id+jsxh) ; 
-	      
-	      updateYwxhb("000001", ssrq);
+	      updateYwxhb(csxh, ssrq);
 	      updatejsjl(jsxh1, ssrq);
-	      insertbrgh(ghxh, map.get(list3.get(i).getYyys()), "02", "02", list3.get(i).getBrid(),
-	    		  list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getYyghrq(),
-	    		  list3.get(i).getYyks(), list3.get(i).getYyys(), "01", "", "", "", "0", "0",  "0022", 
-	    		  "0",  list3.get(i).getYyghrq(),  list3.get(i).getBrnl(),  list3.get(i).getBrnldw(),"2", "0");
+	      insertbrgh(ghxh, ghzlbm, ghfsbm, fbbm,list3.get(i).getBrid(), list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getYyghrq(), ghxq, list3.get(i).getYyks(), list3.get(i).getYyys(), sfjz, list3.get(i).getCzyks(), jzxe, list3.get(i).getBrnl(), list3.get(i).getBrnldw());
 	      updateYyghb(list3.get(i).getYyghid());
 	     
 	 inserjsjl(jsjlid, ghxh, list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getBrid(), fyhj, "0", fyhj, "0", "0", "0", "0", list3.get(i).getYyghrq(), list3.get(i).getCzyks());
 	 for(int y=0;y< ghfyxmbmBeans.size();y++){
-		 insertmzbbrfy(list3.get(i).getYwckbm(),ghfyxmbmBeans.get(y).getXlbm(),ghfyxmbmBeans.get(y).getMxfyxmbm(),list3.get(i).getCzybm(),ghfyxmbmBeans.get(y).getDlbm(), ssrq ,list3.get(i).getBrid(),ghxh, list3.get(i).getBrxm(), ghfyxmbmBeans.get(y).getFydj(), ghfyxmbmBeans.get(y).getFydj(),list3.get(i).getYyghid(), list3.get(i).getYyks(), list3.get(i).getYyks(), jsjlid);
+		 insertmzbbrfy(fbbm,list3.get(i).getYwckbm(),ghfyxmbmBeans.get(y).getXlbm(),ghfyxmbmBeans.get(y).getMxfyxmbm(),list3.get(i).getCzybm(),ghfyxmbmBeans.get(y).getDlbm(), ssrq ,list3.get(i).getBrid(),ghxh, list3.get(i).getBrxm(), ghfyxmbmBeans.get(y).getFydj(), ghfyxmbmBeans.get(y).getFydj(),list3.get(i).getYyghid(), list3.get(i).getYyks(), list3.get(i).getYyks(), jsjlid);
 		}
 	}
+	 //情况3当挂号时间小于1结算时间大于等于1时
 	 else if (k<1&&m>=1) {
-		 ghxh=String.valueOf(id+1)  ;
-	      jsjlid=String.valueOf(id+jsxh) ; 
+		 System.out.print("k<1&&m>=1");
+		 ghxh=String.valueOf(id+xh)  ;
+	      jsjlid=String.valueOf(id+1) ; 
 	      
 	      updateYwxhb(xh1, ssrq);
-	      updatejsjl("000001", ssrq);
-	      insertbrgh(ghxh, map.get(list3.get(i).getYyys()), "02", "02", list3.get(i).getBrid(),
-	    		  list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getYyghrq(),
-	    		  list3.get(i).getYyks(), list3.get(i).getYyys(), "01", "", "", "", "0", "0",  "0022", 
-	    		  "0",  list3.get(i).getYyghrq(),  list3.get(i).getBrnl(),  list3.get(i).getBrnldw(),"2", "0");
+	      updatejsjl(csxh, ssrq);
+	      insertbrgh(ghxh, ghzlbm, ghfsbm, fbbm,list3.get(i).getBrid(), list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getYyghrq(), ghxq, list3.get(i).getYyks(), list3.get(i).getYyys(), sfjz, list3.get(i).getCzyks(), jzxe, list3.get(i).getBrnl(), list3.get(i).getBrnldw());
 	      updateYyghb(list3.get(i).getYyghid());
 	   
 	 inserjsjl(jsjlid, ghxh, list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getBrid(), fyhj, "0", fyhj, "0", "0", "0", "0", list3.get(i).getYyghrq(), list3.get(i).getCzyks());
 	 
 	 for(int y=0;y< ghfyxmbmBeans.size();y++){
-		 insertmzbbrfy(list3.get(i).getYwckbm(),ghfyxmbmBeans.get(y).getXlbm(),ghfyxmbmBeans.get(y).getMxfyxmbm(),list3.get(i).getCzybm(),ghfyxmbmBeans.get(y).getDlbm(), ssrq ,list3.get(i).getBrid(),ghxh, list3.get(i).getBrxm(), ghfyxmbmBeans.get(y).getFydj(), ghfyxmbmBeans.get(y).getFydj(),list3.get(i).getYyghid(), list3.get(i).getYyks(), list3.get(i).getYyks(), jsjlid);
+		 insertmzbbrfy(fbbm,list3.get(i).getYwckbm(),ghfyxmbmBeans.get(y).getXlbm(),ghfyxmbmBeans.get(y).getMxfyxmbm(),list3.get(i).getCzybm(),ghfyxmbmBeans.get(y).getDlbm(), ssrq ,list3.get(i).getBrid(),ghxh, list3.get(i).getBrxm(), ghfyxmbmBeans.get(y).getFydj(), ghfyxmbmBeans.get(y).getFydj(),list3.get(i).getYyghid(), list3.get(i).getYyks(), list3.get(i).getYyks(), jsjlid);
 		}
 	}
-	 else {
+	 //情况四：当结算时间和挂号时间都小于1时执行
+	 else {	 System.out.print("k<1&&m<1");
 			ghxh=String.valueOf(id+xh)  ;
 		    jsjlid=String.valueOf(id+jsxh) ; 
 		    
 		    updateYwxhb(xh1, ssrq);
 		    updatejsjl(jsxh1, ssrq);
-		    
-		  
-		    insertbrgh(ghxh, map.get(list3.get(i).getYyys()), "02", "02", list3.get(i).getBrid(),
-		  		  list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getYyghrq(),
-		  		  list3.get(i).getYyks(), list3.get(i).getYyys(), "01", "", "", "", "0", "0",  "0022", 
-		  		  "0",  list3.get(i).getYyghrq(),  list3.get(i).getBrnl(),  list3.get(i).getBrnldw(),"2", "0");
+		    insertbrgh(ghxh, ghzlbm, ghfsbm, fbbm,list3.get(i).getBrid(), list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getYyghrq(), ghxq, list3.get(i).getYyks(), list3.get(i).getYyys(), sfjz, list3.get(i).getCzyks(), jzxe, list3.get(i).getBrnl(), list3.get(i).getBrnldw());
 		    updateYyghb(list3.get(i).getYyghid());
     
 		inserjsjl(jsjlid, ghxh, list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getBrid(), fyhj, "0", fyhj, "0", "0", "0", "0", list3.get(i).getYyghrq(), list3.get(i).getCzyks());
-		for(int y=0;y< ghfyxmbmBeans.size();y++){
-			 insertmzbbrfy(list3.get(i).getYwckbm(),ghfyxmbmBeans.get(y).getXlbm(),ghfyxmbmBeans.get(y).getMxfyxmbm(),list3.get(i).getCzybm(),ghfyxmbmBeans.get(y).getDlbm(), ssrq ,list3.get(i).getBrid(),ghxh, list3.get(i).getBrxm(), ghfyxmbmBeans.get(y).getFydj(), ghfyxmbmBeans.get(y).getFydj(),list3.get(i).getYyghid(), list3.get(i).getYyks(), list3.get(i).getYyks(), jsjlid);
+	  	for(int y=0;y< ghfyxmbmBeans.size();y++){
+			 insertmzbbrfy(fbbm,list3.get(i).getYwckbm(),ghfyxmbmBeans.get(y).getXlbm(),ghfyxmbmBeans.get(y).getMxfyxmbm(),list3.get(i).getCzybm(),ghfyxmbmBeans.get(y).getDlbm(), ssrq ,list3.get(i).getBrid(),ghxh, list3.get(i).getBrxm(), ghfyxmbmBeans.get(y).getFydj(), ghfyxmbmBeans.get(y).getFydj(),list3.get(i).getYyghid(), list3.get(i).getYyks(), list3.get(i).getYyks(), jsjlid);
 			}
 	}
 	 
@@ -161,7 +166,7 @@ int 	k=yyghSql.getdatedifference(list.get(2));
 
 
 /**
- * 获取挂号序号的ssrq
+ * 获取挂号 xhlx , xh , ssrq , cslx 
  * @return
  */
 public List<String> getusertime(){
@@ -189,7 +194,7 @@ try {
 return list;
 }
 /**
- * 获取jsjl的ssrq
+ * 获取结算记录的xhlx , xh , ssrq , cslx
  * @return
  */
 
@@ -219,7 +224,7 @@ return list;
 }
 
 /**
- * 获取jsjl的ssrq
+ * 获取序号
  * @return
  */
 
@@ -298,15 +303,16 @@ String fString="";
 return Long.parseLong(fString) ;
 }
 /**
- * 获取住院费用明细
- * @param zyh
+ * 获取需要插入挂号表，结算记录表，门诊费用表中的预约信息。
  * @return
  */
 public List<YyxxBean>getbuseryyxx(){
 	List<String> list=new ArrayList<String>();
 	Connection conn = JDBC.getConnection();	
 	Statement stmt;
-	String sql="select Rtrim(ghb_yygh.yyghid)yyghid,Rtrim(ghb_yygh.ywckbm)ywckbm,Rtrim(ghb_yygh.brid)brid,Rtrim(ghb_yygh.czybm)czybm,yyghrq,Rtrim(ghb_yygh.czyks)czyks,Rtrim(ghb_yygh.brxm)brxm,Rtrim(yyks)yyks,Rtrim(yyys)yyys ,Rtrim(yyjfbz)yyjfbz,Rtrim(mxfyxmbm)mxfyxmbm ,Rtrim(ghb_zcxx.brnl)brnl ,Rtrim(ghb_zcxx.brnldw)brnldw from ghb_yygh,ghb_zcxx  where ghb_yygh.brid=ghb_zcxx.brid and yydjrq>='2017-02-10 00:00:00.000'";
+	String befodate=ConvertTime.GetdatebefoYYMMDDHH00();
+	String afterdate=ConvertTime.GetdateafterYYMMDDHH00();
+	String sql="select Rtrim(ghb_yygh.yyghid)yyghid,Rtrim(ghb_yygh.ywckbm)ywckbm,Rtrim(ghb_yygh.brid)brid,Rtrim(ghb_yygh.czybm)czybm,yyghrq,Rtrim(ghb_yygh.czyks)czyks,Rtrim(ghb_yygh.brxm)brxm,Rtrim(yyks)yyks,Rtrim(yyys)yyys ,Rtrim(yyjfbz)yyjfbz,Rtrim(mxfyxmbm)mxfyxmbm ,Rtrim(ghb_zcxx.brnl)brnl ,Rtrim(ghb_zcxx.brnldw)brnldw from ghb_yygh,ghb_zcxx  where yyghrq>='"+befodate+"'and (yyghrq<='"+afterdate+"') and  (ghb_yygh.brid=ghb_zcxx.brid) ";
 	try {
 		stmt = conn.createStatement();
 		ResultSet rs=stmt.executeQuery(sql);
@@ -379,13 +385,19 @@ public Map<String, String> getghzlbm(){
 
 
 
-public boolean insertbrgh(String ghxh,String ghzlbm,String ghfsbm,String fbbm,String brid,String czybm,String ywckbm,String ghrq,
-		String ghks,String jzys,String jzck,String jmyw,String rytszl,String sfysghf,String sfjz,String fzbz,String czyks,
-		String jzxe,String jzrq,String brnl,String brnldw,String fzxh,String  mxbghbz ){
+public boolean insertbrgh(String ghxh,String ghzlbm,String ghfsbm,String 
+		fbbm,String brid,String czybm,String ywckbm,String ghrq, String ghxq,
+		String ghks,String jzys,String sfjz,String czyks,
+		String jzxe,String brnl,String brnldw){
 
-	String sql="INSERT INTO ghb_brgh ( ghxh, ghzlbm, ghfsbm, fbbm, brid, czybm, ywckbm, ghrq, ghxq, ghks,jzys, jzck, gmyw, rytsgz, rytszl, sfysghf, sfjz, fzbz, czyks, jzxe, jzrq, brnl, brnldw, fzxh, mxbghbz ) VALUES ( '"+ghxh+"', '"+ghzlbm+"',"
-			+ " '02', '02', '"+brid+"', '0269', '01',"
-			+ "  '"+ghrq+"', 2, '"+ghks+"', '"+jzys+"', '01', '', '', '', 0, 0, 0, '"+czyks+"', 0.00, '"+jzrq+"', '"+brnl+"', '"+brnldw+"', 2, '0' )";
+	String sql="INSERT INTO ghb_brgh ( ghxh, ghzlbm, ghfsbm, fbbm, brid, "
+			+ "czybm, ywckbm, ghrq,"
+			+ " ghxq, ghks,jzys,"
+			+ " sfjz, czyks, jzxe, brnl, brnldw)"
+			+ " VALUES ( '"+ghxh+"', '"+ghzlbm+"',"
+			+ " '"+ghfsbm+"', '"+fbbm+"', '"+brid+"', '"+czybm+"', '"+ywckbm+"',"
+			+ "  '"+ghrq+"', "+ghxq+", '"+ghks+"', '"+jzys+"', "+sfjz+", "
+					+ "'"+czyks+"', 0.00, '"+brnl+"', '"+brnldw+"')";
 boolean ok=false;
  ok=dao.insert(sql);
 return ok;
@@ -408,14 +420,14 @@ return ok;
 插入门诊表--病人费用
  * @return
  */
-public boolean insertmzbbrfy(String ywckbm,String xlbm, String mxfyxmbm,String czybm,String dlbm, String sfrq,
+public boolean insertmzbbrfy(String fbbm, String ywckbm,String xlbm, String mxfyxmbm,String czybm,String dlbm, String sfrq,
 		String rybrid,String ryghxh ,String brxm,String fydj,String fyje,String mzys,String mzks,
 		String hsks,String ryjsjlid){
 
 	String sql="INSERT INTO mzb_brfy ( fbbm, ywckbm, xlbm, mxfyxmbm, czybm, dlbm, "
 			+ "sfrq, rybrid, ryghxh, brxm, fysl, fydj, fyje, yhbl, yhje, mzys, mzks,"
 			+ " hsks, yzlx, sfjs, jscs, ryjsjlid, sflx, fzxh ) "
-			+ "VALUES ( '02', '"+ywckbm+"', '"+xlbm+"', '"+mxfyxmbm+"', '"+czybm+"', '"+dlbm+"',"
+			+ "VALUES ( '"+fbbm+"', '"+ywckbm+"', '"+xlbm+"', '"+mxfyxmbm+"', '"+czybm+"', '"+dlbm+"',"
 			+ " '"+sfrq+"', '"+rybrid+"', '"+ryghxh+"',"
 			+ " '"+brxm+"', 1, '"+fydj+"', '"+fyje+"', 0.00, 0.00,  '"+mzys+"', '"+mzks+"', "
 			+ "'"+hsks+"', '1', 1, 1, '"+ryjsjlid+"', '0', 2 )";

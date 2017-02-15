@@ -3,11 +3,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import utils.GlobalConfigUtil;
+
 public class JDBC {
 	public  static final String DRIVERCLASS = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	public static final String URL = "jdbc:sqlserver://192.168.2.253:1433;databaseName=cs";
-     public static final String USERNAME = "sa";
-	public  static final String PASSWORD = "ztkj";
+	public static final String URL = GlobalConfigUtil.getJdbcUrl();
+     public static final String USERNAME = GlobalConfigUtil.getJdbcUSERNAME1();
+	public  static final String PASSWORD = GlobalConfigUtil.getPASSWORD();
 	public  static final ThreadLocal<Connection> threadLocal = new ThreadLocal<Connection>();
 
 	static {											// 在静态代码块中加载数据库驱动

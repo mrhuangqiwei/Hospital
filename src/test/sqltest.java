@@ -33,6 +33,7 @@ import jdbc.weinxinsql;
 import net.sf.json.JSONObject;
 import po.AccessToken;
 import utils.ConvertTime;
+import utils.GlobalConfigUtil;
 import utils.WeiXinUtil;
 
 public class sqltest {
@@ -54,26 +55,28 @@ public class sqltest {
 	String mxfyxmbnString="130002";
 	String yyghid="20161018000002";
 	String czybm="0269";
-	String ywckbm="01";
+	String ywckbm="888";
 	String yydjrq="2016-10-21 12:19:19.327";
-	String yyghrq="2016-10-21 12:19:19.327";
-	String yyyxrq="2016-11-21 12:19:19.327";
-	String brxm="张三";
+	String yyghrq="2017-02-15 12:19:19.327";
+	String yyyxrq="2017-11-22 12:19:19.327";
+	String brxm="黄奇伟";
 	String   brxb="1";
 	String brsr="1900-01-01 00:00:00.000";
 	String brnl="23";
 	String brnldw="1";
 	String sfzh="513427196907132813";   
 	String sj="15577616194";
-	String yyys="0004";
+	String yyys="00004";
 	String yyks="0004";
 	String jtzz="宁南县";
 	String mxfyxmbm="130002";
 	String yyjfbz="1";
-//自动挂号	
-	//brghsql.zdgh();
+//自动挂号	/
+//brghsql.zdgh();
 //String  yf=yyghSql.appointment(yyghrq, brxm, brxb, brnldw, sfzh, jtzz, sj, yyys, yyks, yydjrq, yyyxrq, mxfyxmbm, yyjfbz);
-		//List<YyxxBean> list=brghsql.getbuseryyxx();
+		
+
+//List<YyxxBean> list=brghsql.getbuseryyxx();
 	//boolean ok=false;
 	//ok=deletefriend.deletefriendinfo("owEWzwQKO7G_uy4C0X_Wn2boPVI4", "558842685569842688", "");
 	//Map<String, String> map=userzyfymx.getmxfcbm();
@@ -95,6 +98,7 @@ public class sqltest {
 		}
       //继续转换得到秒数的long型
       long lTime = dt2.getTime();**/
+	//System.out.print(Integer.parseInt("000005"));
 		//List<String> kList=jycx.getuserjymx("161017000194");
 	//检验结果
 	//String jString=jycx.getjyjg("2016003850");
@@ -111,7 +115,8 @@ public class sqltest {
 	//String jString=JdbcUtilSql.getmzcf("20161127000001");
 	//String jString=JdbcUtilSql.getmzcf("20161127000001");
 	//获取病人门诊费用信息
-	String jString=brmzfymx.Getmzfyxx("20110830000");
+	//String jString=brmzfymx.Getmzfyxx("20110830000");
+	//boolean ok=ConvertTime.datesdiferrent("2017-02-13 08:28:13.013");
 	//String jString = null;
 //时间格式转化
 	//	jString = ConvertTime.dateToStamp("2016-06-30 16:12:29.330");
@@ -119,13 +124,17 @@ public class sqltest {
 	//	System.out.print(ConvertTime.converttimetoYYMMDDHH00("2016-07-07 21:28:08.133"));
 		
 		//List<String> kList=ris.getrismx("987");
-		System.out.print(jString);
+	//测试全局参数
+
+
+	//  String  jString = GlobalConfigUtil.getGhfsbm();
+		//System.out.print(jString);
 		/**
 	    String json=weinxinsql.getfriendIsRigster(null, "513427199309232818","15577616194");
 		System.out.print(json);
 		
 		**/
-		
+//		System.out.print(GlobalConfigUtil.getFbbm());
 	//	StudentService service=new StudentService();
 		//boolean k= weinxinsql.insertfriend("5123271993", "zhangs", "li", "1","2", "owEWzwQKO7G_uy4C0X_Wn2boPVI4", "23", "", "1");
 		//boolean k=weinxinsql.updateuser("9999", "owEWzweXEgfBaf9ZW_XN03slsDlI", "45");

@@ -66,4 +66,41 @@ public static String stampToDate(String s){
     res = simpleDateFormat.format(date);
     return res;
 }
+ public static boolean  datesdiferrent(String ghrq) {
+	 
+	 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd ");
+	  Date date1 = null;
+	  Date date =new Date();
+	  try {
+      date1=sdf.parse(ghrq);
+       
+   } catch (ParseException ex) {
+       System.out.print("jycx"+"时间转换有错误");
+   }
+	  String Bigdadate=sdf.format(date1);
+	  String nowdateString=sdf.format(date);
+	  boolean ok=false;
+	  if(Bigdadate.equals(nowdateString)){
+		  ok=true;
+	  }else{ok=false;}
+	  return ok;
+ }
+	
+ /**获取当前时间格式如2017-08-12 08 00:00.000**/
+ public static  String  GetdatebefoYYMMDDHH00(){
+ 	Date date1=new Date();
+ 	  SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd 00:00.000");
+     String tablename=dateFormat.format(date1);
+     return tablename;
+ }
+
+	
+/**获取当前时间格式如2017-08-12 08 23:59.000**/
+public static  String  GetdateafterYYMMDDHH00(){
+	Date date1=new Date();
+	  SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd 23:59.000");
+  String tablename=dateFormat.format(date1);
+  return tablename;
+}
+
 }

@@ -19,7 +19,11 @@ import bean.YppfmxBean;
 
 public  class JdbcUtilSql {
 	private static String Tag="JdbcUtilSql";
-	
+	/**
+	 * 输入挂号序号获取门诊处方
+	 * @param ghxh
+	 * @return
+	 */
 	public static String getmzcf(String ghxh){
 		List<String>list=new ArrayList<String>();
 		list=GetpycfTT(ghxh) ;
@@ -355,4 +359,126 @@ public  class JdbcUtilSql {
 			
 			return map;
 		}
+	/**获取和生成挂号序号的尾号如000002**/
+    public static String getywxuxhyyid(int  xh1){
+    	
+    	String fString="";
+		Connection conn = JDBC.getConnection();	
+		Statement stmt;
+		String sql=" declare @book_code varchar(50)set @book_code=(select max(right('000000',6)) where '000000' like '%')+"+xh1+" set @book_code=''+right('000000'+@book_code,6) select @book_code as id";
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs=stmt.executeQuery(sql);
+			//循环输出每一条记录
+			while(rs.next())
+			{
+			fString=rs.getString("id");
+			}
+			stmt.close();								// 关闭连接状态对象
+			conn.commit();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	return fString;
+    
+    }
+/**
+ * 获取挂号序号时间为挂号做准备
+ * @return
+ */
+	public static List<String> getuserghxhtime(){
+	List<String> list=new ArrayList<String>();
+	Connection conn = JDBC.getConnection();	
+	Statement stmt;
+	String sql="SELECT Top 1 xhlx , xh , ssrq , cslx From ghb_ywxhb Where xhlx ='ghxh' ";
+	try {
+		stmt = conn.createStatement();
+		ResultSet rs=stmt.executeQuery(sql);
+		//循环输出每一条记录
+		while(rs.next())
+		{list.add(rs.getString("xhlx"));
+		list.add(rs.getString("xh"));
+		list.add(rs.getString("ssrq"));
+		list.add(rs.getString("cslx"));
+		}
+		stmt.close();								// 关闭连接状态对象
+		conn.commit();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return list;
+}
+    
+/**
+ * 通过身份证号和医疗卡号获取病人信息判断用户以前是否注册
+ * @param sfzh
+ * @param ylkh
+ * @return
+ */
+	public static String getuserghbrxx(String sfzh,String ylkh){
+	String brid=null;
+		Connection conn = JDBC.getConnection();	
+	Statement stmt;
+	String sql="select top 1  Rtrim(brid) as brid from  v_ghb_zcxx where sfzh='"+sfzh+"' union all select top 1  Rtrim(brid) as brid from  ghb_mzylkxx where ylkh='"+ylkh+"'";
+	try {
+		stmt = conn.createStatement();
+		ResultSet rs=stmt.executeQuery(sql);
+		//循环输出每一条记录
+		while(rs.next())
+		{brid=rs.getString("brid");	}
+		stmt.close();								// 关闭连接状态对象
+		conn.commit();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return brid;
+}	
+
+    /**跟新业务序号表中挂号序号的xh 和 ssrq**/
+    public  static  boolean updateYwxhbghxh(String xh, String ssrq ){
+    	Dao dao = Dao.getInstance();
+    	boolean ok=false;
+    	String sql="BEGIN TRAN update ghb_ywxhb Set xh ='" + xh + "' , ssrq ='" + ssrq + "' Where xhlx ='ghxh' COMMIT TRAN";
+    	 ok=dao.insert(sql);
+    	 if(ok==false){
+    		 System.out.print("更新挂号序号失败");
+    	 }
+    	  return ok;
+    }	
+	/**
+	 * 获取操作员挂号诊疗编码map
+	 * @return
+	 */
+    public static Map<String, String> getghzlbm(){
+		List<String> list=new ArrayList<String>();
+		Connection conn = JDBC.getConnection();	
+		Statement stmt;
+		String sql="select Rtrim(gyb_czy.czybm)czybm,Rtrim(gyb_czy.ghzlbm)ghzlbm from gyb_czy,ghb_ghzl where gyb_czy.ghzlbm=ghb_ghzl.ghzlbm";
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs=stmt.executeQuery(sql);
+			//循环输出每一条记录
+			while(rs.next())
+			{
+			list.add(rs.getString("czybm"));
+			list.add(rs.getString("ghzlbm"));
+
+			}
+			stmt.close();								// 关闭连接状态对象
+			conn.commit();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Map<String, String>map=new HashMap<String, String>();
+		for(int i=0;i<list.size();i=i+2){
+			map.put(list.get(i), list.get(i+1));
+		}
+		
+		return map;
+	}
+	
 }
