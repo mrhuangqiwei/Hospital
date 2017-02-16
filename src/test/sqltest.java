@@ -14,6 +14,7 @@ import java.util.Map;
 
 import javax.servlet.ServletContextEvent;
 
+import Servlet.updateyyghservlet;
 import Timer.MyTimerListener;
 import bean.YyxxBean;
 import jdbc.Brghsql;
@@ -37,6 +38,8 @@ import utils.GlobalConfigUtil;
 import utils.WeiXinUtil;
 
 public class sqltest {
+	 static Connection conn = JDBC.getConnection();	
+	 static Statement stmt;
 	public static void main(String[] args){
 		
 		weinxinsql weinxinsql=new weinxinsql();
@@ -44,7 +47,7 @@ public class sqltest {
 		YyghSql yyghSql=new YyghSql();
 		Deletefriend deletefriend =new Deletefriend();
 		Userzyfymx userzyfymx =new Userzyfymx();
-		Brghsql brghsql=new Brghsql();
+		final Brghsql brghsql=new Brghsql();
 		jycx jycx=new jycx();
 		ris_report_sql  ris=new ris_report_sql();
 		GetFriendInfosql getFriendInfosql=new GetFriendInfosql();
@@ -71,6 +74,8 @@ public class sqltest {
 	String jtzz="宁南县";
 	String mxfyxmbm="130002";
 	String yyjfbz="1";
+	
+
 //自动挂号	/
 //brghsql.zdgh();
 //String  yf=yyghSql.appointment(yyghrq, brxm, brxb, brnldw, sfzh, jtzz, sj, yyys, yyks, yydjrq, yyyxrq, mxfyxmbm, yyjfbz);
@@ -133,7 +138,33 @@ public class sqltest {
 	    String json=weinxinsql.getfriendIsRigster(null, "513427199309232818","15577616194");
 		System.out.print(json);
 		
-		**/
+		/**/
+	
+     /**
+      * 
+      for(int k=0;k<100;k++){
+		brghsql.getbuseryyxx();}
+      
+      new Thread() {
+          @Override
+          public void run() {
+              try {
+            	  for(int k=0;k<100;k++){
+            			brghsql.getbuseryyxx();}
+
+              } catch (Exception e) {
+              }
+          }
+      }.start();
+      **/
+      
+	System.out.print(updateyyghservlet.updateghbbrgh("20170216004864"));
+	
+	
+		//updateyyghservlet.updateghbbrgh("20170214000050");
+	
+	//System.out.print(getrq());
+	//ky();
 //		System.out.print(GlobalConfigUtil.getFbbm());
 	//	StudentService service=new StudentService();
 		//boolean k= weinxinsql.insertfriend("5123271993", "zhangs", "li", "1","2", "owEWzwQKO7G_uy4C0X_Wn2boPVI4", "23", "", "1");
@@ -142,8 +173,7 @@ public class sqltest {
 	}
 	public static  List<String> getrq(){
 		List<String> list=new ArrayList<String>();
-		Connection conn = JDBC.getConnection();	
-		Statement stmt;
+		
 		String sql="select * from gyb_czy ";
 		try {
 			stmt = conn.createStatement();
@@ -153,13 +183,32 @@ public class sqltest {
 			{list.add(rs.getString("czybm"));
 
 			}
+			//stmt.close();								// 关闭连接状态对象
+			//conn.commit();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public static void ky(){
+		List<String> list=new ArrayList<String>();
+		String sql="select czyxm from gyb_czy  ";
+	
+		try {
+			ResultSet rs=stmt.executeQuery(sql);
+			while(rs.next())
+			{list.add(rs.getString("czyxm"));
+
+			}
 			stmt.close();								// 关闭连接状态对象
 			conn.commit();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return list;
+		System.out.print("\t"+"这是："+list.toString());
 	}
 	
 }

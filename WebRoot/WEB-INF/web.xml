@@ -103,6 +103,11 @@
     <servlet-name>getbrmzfyServlet</servlet-name>
     <servlet-class>Servlet.getbrmzfyServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>updateyyghservlet</servlet-name>
+    <servlet-class>Servlet.updateyyghservlet</servlet-class>
+  </servlet>
+
 
 
 
@@ -194,6 +199,10 @@
   <servlet-mapping>
     <servlet-name>getbrmzfyServlet</servlet-name>
     <url-pattern>/getbrmzfyServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>updateyyghservlet</servlet-name>
+    <url-pattern>/updateyyghservlet</url-pattern>
   </servlet-mapping>
 
 

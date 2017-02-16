@@ -216,7 +216,7 @@ public class YyghSql {
 		List<String> list = new ArrayList<String>();
 		Connection conn = JDBC.getConnection();
 		Statement stmt;
-		String sql = "SELECT Top 1 xhlx , xh , ssrq , cslx From ghb_ywxhb Where xhlx ='yyghid'";
+		String sql = " SELECT Top 1 xhlx , xh , ssrq , cslx From ghb_ywxhb Where xhlx ='yyghid'";
 		try {
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);

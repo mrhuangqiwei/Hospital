@@ -2,6 +2,7 @@ package utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class ConvertTime {
@@ -103,4 +104,43 @@ public static  String  GetdateafterYYMMDDHH00(){
   return tablename;
 }
 
+
+/**获取当前时间格式如2017-08-12 08 23:59.212**/
+public static  String  Getdnowdatexx(){
+Date date1=new Date();
+  SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+String tablename=dateFormat.format(date1);
+return tablename;
+}
+
+
+/**
+ * 比较当前日期和输入日期相差的天数
+ * @param date
+ * @throws ParseException 
+ */
+public static int  daysBetween( String date) {
+	Date date2=new Date();
+	Date date3=null;
+	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+	  try {
+		date2=sdf.parse(sdf.format(date2));
+	} catch (ParseException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	  try {
+		date3=    sdf.parse(sdf.format(sdf.parse(date)));
+	} catch (ParseException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	  Calendar cal =Calendar.getInstance();
+	  cal.setTime(date2);    
+      long time1 = cal.getTimeInMillis();                 
+      cal.setTime(date3);    
+      long time2 = cal.getTimeInMillis();         
+      long between_days=(time1-time2)/(1000*3600*24);  
+      return Integer.parseInt(String.valueOf(between_days));    
+}
 }

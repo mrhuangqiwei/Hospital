@@ -43,7 +43,7 @@ public class Ysbcsql {
     list7 = getyspb(6, ksbm);
 	Map<String, String>map=new HashMap<String, String>();
 	//获取操作员挂号费用
-	map=JdbcUtilSql.Getczyghfy();
+	map=Getczyghfy();
     int[] arry = { list1.size(), list2.size(), list3.size(), list4.size(), list5.size(), list6.size(), list7.size() };
     int max = arry[0];
     for (int i = 0; i < arry.length; i++)
@@ -96,7 +96,7 @@ public class Ysbcsql {
 	    list7 = getyspb(6, ksbm);
 		Map<String, String>map=new HashMap<String, String>();
 		//获取操作员挂号费用
-		map=JdbcUtilSql.Getczyghfy();
+		map=Getczyghfy();
 	    int[] arry = { list1.size(), list2.size(), list3.size(), list4.size(), list5.size(), list6.size(), list7.size() };
 	    int max = arry[0];
 	    for (int i = 0; i < arry.length; i++)
@@ -134,9 +134,41 @@ public class Ysbcsql {
 	    }
 	    
 	    return lBeans;
-	  
 
 		}
+	
+	/**
+	 * 获取医生挂号费用map
+	 * 
+	 * @param cfh
+	 * @return
+	 */
+	public static Map<String, String> Getczyghfy() {
+		List<String> list = new ArrayList<String>();
+		Connection conn = JDBC.getConnection();
+		Statement stmt;
+		String sql = " select Rtrim(czybm) czybm,sum(fydj)as fydj from gyb_czy,ghb_hbsfxm ,gyb_mxfyxm  where (gyb_czy.ghzlbm=ghb_hbsfxm.ghzlbm) and  (ghb_hbsfxm.mxfyxmbm=gyb_mxfyxm.mxfyxmbm) group by czybm";
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			// 循环输出每一条记录
+			while (rs.next()) {
+				list.add(rs.getString("czybm"));
+				list.add(rs.getString("fydj"));
+
+			}
+			stmt.close(); // 关闭连接状态对象
+			conn.commit();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Map<String, String> map = new HashMap<String, String>();
+		for (int i = 0; i < list.size(); i = i + 2) {
+			map.put(list.get(i), list.get(i + 1));
+		}
+		return map;
+	}
 	
 	
 	  //填充为空的数据
@@ -230,5 +262,9 @@ public class Ysbcsql {
 		}
 		return list;
 	}
+	
+	
+
+	
 	
 }

@@ -14,6 +14,13 @@ public class GlobalConfigUtil {
  private static String PASSWORD="ztkj";
  private static String fbbm="1";
  private static String ghxq="3";
+ private static  String jscs="1";
+public static String getJscs() {
+	return jscs;
+}
+public static void setJscs(String jscs) {
+	GlobalConfigUtil.jscs = jscs;
+}
 public static String getFbbm() {
 	return fbbm;
 }

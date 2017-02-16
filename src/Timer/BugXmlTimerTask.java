@@ -10,7 +10,7 @@ public class BugXmlTimerTask extends TimerTask {
 	public void run() {
 		// TODO Auto-generated method stub
 		Brghsql brghsql=new Brghsql();
-		brghsql.zdgh();
+		brghsql.getbuseryyxx();
 		System.out.print("run task");
 	}
 
