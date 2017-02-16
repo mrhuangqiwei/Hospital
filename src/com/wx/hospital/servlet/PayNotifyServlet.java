@@ -17,7 +17,7 @@ import java.io.IOException;
  * Created by hzy on 2/16/17.
  */
 
-@WebServlet("wcPayNotify")
+@WebServlet("/wcPayNotify")
 public class PayNotifyServlet extends BaseServlet {
 
     Logger logger = Logger.getLogger(PayNotifyServlet.class);
