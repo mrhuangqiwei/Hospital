@@ -19,8 +19,12 @@ public class Config {
     private static String encodingAESKey = "";
     private static String appid = HospitalConfig.APP_ID;
     private static String appSecret = HospitalConfig.APP_SECRET;
+
+    //微信支付_商户ID
     private static String mchId = "";
+    //微信支付_商户密钥
     private static String mchKey = "";
+
     private static String accessTokenServer = "";
     private static String jsApiTicketServer = "";
     private static Config config = new Config();
