@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="libs/css/amazeui.min.css">
     <link rel="stylesheet" href="libs/css/style.css">
     <link rel="stylesheet" href="libs/css/wap.css">
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script type="text/javascript" src="libs/js/angular.min.js"></script>
 </head>
 <body>
@@ -31,8 +32,8 @@
                     <th colspan="2">预约信息</th>
                 </tr>
                 <tr ng-repeat="tab in tabs">
-                    <td width="30%">{{tab[0]}}</td>
-                    <td width="70%">{{tab[1]}}</td>
+                    <td width="30%" ng-bind="tab[0]"></td>
+                    <td width="70%" ng-bind="tab[1]"></td>
                 </tr>
                 <tr>
                     <th colspan="2">就诊人信息</th>
