@@ -41,7 +41,7 @@ public class OAuth2Servlet extends HttpServlet {
                 Cookie cookie = new Cookie(HospitalConfig.COOKIES_OPENID, token.getOpenid());
                 resp.addCookie(cookie);
                 //resp.sendRedirect(SERVER_URL + state);
-                resp.sendRedirect("http://219.141.78.173/Hospital/" + state);
+                resp.sendRedirect(SERVER_URL + state);
             } catch (OAuthException e) {
                 e.printStackTrace();
                 logger.error("获取token出错!");

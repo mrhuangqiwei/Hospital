@@ -30,12 +30,13 @@ public class Brmzfymx {
 	 */
 	public String Getmzfyxx(String ghxh){
 		List<String> list2=new ArrayList<String>();
+		
+		List<String> mzfymxList=new ArrayList<String>();
+		list2=mzfymxtt(ghxh);
 		if(list2.size()<2){
 			return "您提交的挂号序号不正确！请查证";
 		}
 		else{
-		List<String> mzfymxList=new ArrayList<String>();
-		list2=mzfymxtt(ghxh);
 		mzfymxList=getmzfymx(ghxh);
 		Map<String, String>map=new HashMap<String, String>();
 		map=JdbcUtilSql.getmxfcbm();

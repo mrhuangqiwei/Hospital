@@ -29,6 +29,7 @@ import jdbc.Userzyfymx;
 import jdbc.Ysbcsql;
 import jdbc.YyghSql;
 import jdbc.jycx;
+import jdbc.mzyjfjlsql;
 import jdbc.ris_report_sql;
 import jdbc.weinxinsql;
 import net.sf.json.JSONObject;
@@ -41,7 +42,7 @@ public class sqltest {
 	 static Connection conn = JDBC.getConnection();	
 	 static Statement stmt;
 	public static void main(String[] args){
-		
+		mzyjfjlsql  mzyjfjlsql=new mzyjfjlsql();
 		weinxinsql weinxinsql=new weinxinsql();
 		Ysbcsql ysbcsql =new Ysbcsql();
 		YyghSql yyghSql=new YyghSql();
@@ -139,7 +140,7 @@ public class sqltest {
 		System.out.print(json);
 		
 		/**/
-	
+	System.out.print(mzyjfjlsql.getmzyjfy("20170216004865"));
      /**
       * 
       for(int k=0;k<100;k++){
@@ -158,7 +159,8 @@ public class sqltest {
       }.start();
       **/
       
-	System.out.print(updateyyghservlet.updateghbbrgh("20170216004864"));
+	
+	//System.out.print(updateyyghservlet.updateghbbrgh("20170216004864"));
 	
 	
 		//updateyyghservlet.updateghbbrgh("20170214000050");
