@@ -46,14 +46,46 @@ public class mzzfsql {
 			
 			//序号前段数字如20170213000000
 			Long jsid=getyyghid(stmt);
-			
+			//药品处方list
+			List<String> ypcflList=new ArrayList<String>();
+			//检查申请list
+			List<String> jcsqlist=new ArrayList<String>();
+			//检验申请list 
+			List<String> jysqlList=new ArrayList<String>();
+			//治疗处置list 
+			List<String> zlczList=new ArrayList<String>();
+			//门诊手术申请list 
+			List<String> mzssList=new ArrayList<String>();
+			//医疗医嘱list 
+			List<String> ylyzList=new ArrayList<String>();
 			//当当前时间与输入时间的差大于0时执行
+			String sqlString="begin tran" +"\t";
 			if(k>0){
 				 updatejsjl(csxh, ssrq, stmt );
 				 jsjlid=String.valueOf(jsid+1) ;
-				 inserjsjl(jsjlid, ghxh, GlobalConfigUtil.getGhybm(),GlobalConfigUtil.getYwckbm(), brid, fyhj, "0.00", fyhj, "0.00", "0", "0","0", ssrq, GlobalConfigUtil.getGhyks());
-			     
+				 sqlString=sqlString+ inserjsjl(jsjlid, ghxh, GlobalConfigUtil.getGhybm(),GlobalConfigUtil.getYwckbm(), brid, fyhj, "0.00", fyhj, "0.00", "0", "0","0", ssrq, GlobalConfigUtil.getGhyks());
+			   
+				 sqlString=sqlString+"\t";
+				 sqlString=sqlString+ updatemzbbrfy(GlobalConfigUtil.getYwckbm(),GlobalConfigUtil.getGhybm(), ssrq, "1", "1", jsjlid, "0", ghxh);
+				 sqlString=sqlString+"\t";
+				 ypcflList=getyfbcfh(ghxh);
+			     jcsqlist=getjcsqxh(ghxh);
+			     jysqlList=getjysqh(ghxh);
+			     zlczList=getzlczh(ghxh);
+			     mzssList=getmzssh(ghxh);
+			     ylyzList=getmzylyzh(ghxh);
+			     String yString="";
+			    for(int m=0;m<ypcflList.size();m++){
+			    	String yfbString=updateyfbypcf(ypcflList.get(m),GlobalConfigUtil.getGhybm(), ssrq);
+			    	yString=yString+yfbString+"\t";
+			    }
+			    sqlString=sqlString+yString+"\t";
+			    for(int n=0;n<)
 			
+			}
+			else{
+				updatejsjl(upxh, ssrq, stmt);
+				jsjlid=String.valueOf(jsid+jsxh);
 			}
 			
 			stmt.close();								// 关闭连接状态对象
