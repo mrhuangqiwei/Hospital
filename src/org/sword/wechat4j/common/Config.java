@@ -21,9 +21,9 @@ public class Config {
     private static String appSecret = HospitalConfig.APP_SECRET;
 
     //微信支付_商户ID
-    private static String mchId = "";
+    private static String mchId = "1350950201";
     //微信支付_商户密钥
-    private static String mchKey = "";
+    private static String mchKey = "914f21eb84c6fdb2b663dd6f453f65ca";
 
     private static String accessTokenServer = "";
     private static String jsApiTicketServer = "";
