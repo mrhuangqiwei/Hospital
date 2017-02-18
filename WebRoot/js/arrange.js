@@ -9,8 +9,7 @@ app.controller('myCtrl', function ($scope, $http) {
         if (!classId) {
             return;
         }
-        //var url = "yspb?ksbm=" + classId;
-        var url = "http://219.141.78.173/Hospital/yspb?ksbm=" + classId;
+        var url = "http://pd.nnxzyyy.com/Hospital/yspb?ksbm=" + classId;
         $http.get(url).success(function (data) {
             $scope.swpb = data.swpb;
             $scope.xwpb = data.xwpb;

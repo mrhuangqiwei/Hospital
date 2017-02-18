@@ -111,6 +111,11 @@
     <servlet-name>mzyjfyservlet</servlet-name>
     <servlet-class>Servlet.mzyjfyservlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>hismzzfsql</servlet-name>
+    <servlet-class>Servlet.hismzzfsql</servlet-class>
+  </servlet>
+
 
 
 
@@ -212,6 +217,10 @@
   <servlet-mapping>
     <servlet-name>mzyjfyservlet</servlet-name>
     <url-pattern>/mzyjfyservlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>hismzzfsql</servlet-name>
+    <url-pattern>/hismzzfsql</url-pattern>
   </servlet-mapping>
 
 

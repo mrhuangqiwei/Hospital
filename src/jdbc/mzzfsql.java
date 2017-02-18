@@ -26,7 +26,7 @@ public class mzzfsql {
 		Statement stmt;
 		String json="";
 		String jsjlid;
-		String sql=" begin tran  SELECT Top 1 *  From ghb_ywxhb  Where xhlx ='jsjlid')";
+		String sql=" begin tran  SELECT Top 1 *  From ghb_ywxhb  Where xhlx ='jsjlid' ";
 		try {
 			stmt = conn.createStatement();
 			ResultSet rs=stmt.executeQuery(sql);
@@ -68,24 +68,120 @@ public class mzzfsql {
 				 sqlString=sqlString+"\t";
 				 sqlString=sqlString+ updatemzbbrfy(GlobalConfigUtil.getYwckbm(),GlobalConfigUtil.getGhybm(), ssrq, "1", "1", jsjlid, "0", ghxh);
 				 sqlString=sqlString+"\t";
-				 ypcflList=getyfbcfh(ghxh);
-			     jcsqlist=getjcsqxh(ghxh);
-			     jysqlList=getjysqh(ghxh);
-			     zlczList=getzlczh(ghxh);
-			     mzssList=getmzssh(ghxh);
-			     ylyzList=getmzylyzh(ghxh);
+				 ypcflList=getyfbcfh(ghxh,stmt);
+			     jcsqlist=getjcsqxh(ghxh,stmt);
+			     jysqlList=getjysqh(ghxh,stmt);
+			     zlczList=getzlczh(ghxh,stmt);
+			     mzssList=getmzssh(ghxh,stmt);
+			     ylyzList=getmzylyzh(ghxh,stmt);
 			     String yString="";
+			    //药房表药品处方
 			    for(int m=0;m<ypcflList.size();m++){
 			    	String yfbString=updateyfbypcf(ypcflList.get(m),GlobalConfigUtil.getGhybm(), ssrq);
 			    	yString=yString+yfbString+"\t";
 			    }
 			    sqlString=sqlString+yString+"\t";
-			    for(int n=0;n<)
+			    String jcsString="";
+			    //检查申请
+			    for(int n=0;n<jcsqlist.size();n++){
+			    	String jcsqs=updatejcsq(jcsqlist.get(n), GlobalConfigUtil.getGhybm(), ssrq);
+			    	jcsString=jcsString+jcsqs+"\t";
+			    	}
+			    sqlString=sqlString+jcsString+"\t";
+		     String jysqString="";
+		     //检验申请
+		     for(int o=0;o<jysqlList.size();o++ ){
+		    	 String jysq=updatejysq(jysqlList.get(o), GlobalConfigUtil.getGhybm(),ssrq);
+		    	 jysqString=jysqString+jysq+"\t";
+		     }
+			    sqlString=sqlString+jysqString+"\t";
+			    String zlczString="";
+			    //治疗处置
+			    for(int p=0;p<zlczList.size();p++){
+			    	String zlcz=updatezlcz(zlczList.get(p),GlobalConfigUtil.getGhybm(), ssrq);
+			    	zlczString=zlczString+zlcz+"\t";
+			    }
+			    sqlString=sqlString+zlczString+"\t";
+			    String mzssString="";
+			    //门诊手术
+			    for(int q=0;q<mzssList.size();q++){
+			    	String mzss=updatemzss(mzssList.get(q),GlobalConfigUtil.getGhybm(), ssrq);
+			    	mzssString=mzssString+mzss+"\t";
+			    }
+			    sqlString=sqlString+mzssString+"\t";
+			    String ylyzsString="";
+			    //医疗医嘱
+			    for(int r=0;r<ylyzList.size();r++){
+			    	String ylyz=updateylyz(ylyzList.get(r), GlobalConfigUtil.getGhybm(), ssrq);
+			    ylyzsString=ylyzsString+ylyz+"\t";
+			    }
+			    sqlString=sqlString+ylyzsString+"\t";
+			    sqlString=sqlString+"commit tran";
+			    System.out.print(sqlString);
+			    stmt.execute(sqlString);
+			    }
 			
-			}
+			
+			
 			else{
 				updatejsjl(upxh, ssrq, stmt);
 				jsjlid=String.valueOf(jsid+jsxh);
+				 sqlString=sqlString+ inserjsjl(jsjlid, ghxh, GlobalConfigUtil.getGhybm(),GlobalConfigUtil.getYwckbm(), brid, fyhj, "0.00", fyhj, "0.00", "0", "0","0", ssrq, GlobalConfigUtil.getGhyks());
+				   
+				 sqlString=sqlString+"\t";
+				 sqlString=sqlString+ updatemzbbrfy(GlobalConfigUtil.getYwckbm(),GlobalConfigUtil.getGhybm(), ssrq, "1", "1", jsjlid, "0", ghxh);
+				 sqlString=sqlString+"\t";
+				 ypcflList=getyfbcfh(ghxh,stmt);
+			     jcsqlist=getjcsqxh(ghxh,stmt);
+			     jysqlList=getjysqh(ghxh,stmt);
+			     zlczList=getzlczh(ghxh,stmt);
+			     mzssList=getmzssh(ghxh,stmt);
+			     ylyzList=getmzylyzh(ghxh,stmt);
+			     String yString="";
+			    //药房表药品处方
+			    for(int m=0;m<ypcflList.size();m++){
+			    	String yfbString=updateyfbypcf(ypcflList.get(m),GlobalConfigUtil.getGhybm(), ssrq);
+			    	yString=yString+yfbString+"\t";
+			    }
+			    sqlString=sqlString+yString+"\t";
+			    String jcsString="";
+			    //检查申请
+			    for(int n=0;n<jcsqlist.size();n++){
+			    	String jcsqs=updatejcsq(jcsqlist.get(n), GlobalConfigUtil.getGhybm(), ssrq);
+			    	jcsString=jcsString+jcsqs+"\t";
+			    	}
+			    sqlString=sqlString+jcsString+"\t";
+		     String jysqString="";
+		     //检验申请
+		     for(int o=0;o<jysqlList.size();o++ ){
+		    	 String jysq=updatejysq(jysqlList.get(o), GlobalConfigUtil.getGhybm(),ssrq);
+		    	 jysqString=jysqString+jysq+"\t";
+		     }
+			    sqlString=sqlString+jysqString+"\t";
+			    String zlczString="";
+			    //治疗处置
+			    for(int p=0;p<zlczList.size();p++){
+			    	String zlcz=updatezlcz(zlczList.get(p),GlobalConfigUtil.getGhybm(), ssrq);
+			    	zlczString=zlczString+zlcz+"\t";
+			    }
+			    sqlString=sqlString+zlczString+"\t";
+			    String mzssString="";
+			    //门诊手术
+			    for(int q=0;q<mzssList.size();q++){
+			    	String mzss=updatemzss(mzssList.get(q),GlobalConfigUtil.getGhybm(), ssrq);
+			    	mzssString=mzssString+mzss+"\t";
+			    }
+			    sqlString=sqlString+mzssString+"\t";
+			    String ylyzsString="";
+			    //医疗医嘱
+			    for(int r=0;r<ylyzList.size();r++){
+			    	String ylyz=updateylyz(ylyzList.get(r), GlobalConfigUtil.getGhybm(), ssrq);
+			    ylyzsString=ylyzsString+ylyz+"\t";
+			    }
+			    sqlString=sqlString+ylyzsString+"\t";
+			    sqlString=sqlString+"commit tran";
+			    System.out.print(sqlString);
+			    stmt.execute(sqlString);
 			}
 			
 			stmt.close();								// 关闭连接状态对象
@@ -316,21 +412,21 @@ public class mzzfsql {
 	 * @param ghxh
 	 * @return
 	 */
-	public List<String> getyfbcfh(String ghxh){
+	public List<String> getyfbcfh(String ghxh,Statement stmt){
 		List<String> list=new ArrayList<String>();
-		Connection conn = JDBC.getConnection();	
-		Statement stmt;
+		///Connection conn = JDBC.getConnection();	
+		//Statement stmt;
 		String sql="select RTRIM(cfh)as cfh  from yfb_ypcf where  ghxh='"+ghxh+"' and kfbz='0' and zfbz='0'";
 		try {
-			stmt = conn.createStatement();
+		//	stmt = conn.createStatement();
 			ResultSet rs=stmt.executeQuery(sql);
 			//循环输出每一条记录
 			while(rs.next())
 			{
 			list.add(rs.getString("cfh"));
 			}
-			stmt.close();								// 关闭连接状态对象
-			conn.commit();
+			//stmt.close();								// 关闭连接状态对象
+			//conn.commit();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -342,21 +438,20 @@ public class mzzfsql {
 	 * @param ghxh
 	 * @return
 	 */
-	private  List<String> getjcsqxh(String ghxh){
+	private  List<String> getjcsqxh(String ghxh,Statement stmt){
 		List<String> list=new ArrayList<String>();
-		Connection conn = JDBC.getConnection();	
-		Statement stmt;
+		
 		String sql="select RTRIM(jcsqh)as jcsqh  from mzys_jcsq where  ryghxh='"+ghxh+"' and kfbz='0' and zfbz='0'";
 		try {
-			stmt = conn.createStatement();
+	
 			ResultSet rs=stmt.executeQuery(sql);
 			//循环输出每一条记录
 			while(rs.next())
 			{
 			list.add(rs.getString("jcsqh"));
 			}
-			stmt.close();								// 关闭连接状态对象
-			conn.commit();
+			//stmt.close();								// 关闭连接状态对象
+			//conn.commit();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -368,21 +463,21 @@ public class mzzfsql {
 	 * @param ghxh
 	 * @return
 	 */
-	private  List<String> getjysqh(String ghxh){
+	private  List<String> getjysqh(String ghxh,Statement stmt){
 		List<String> list=new ArrayList<String>();
-		Connection conn = JDBC.getConnection();	
-		Statement stmt;
+		////Connection conn = JDBC.getConnection();	
+		//Statement stmt;
 		String sql="select RTRIM(jysqh)as jysqh  from mzys_jysq where  ryghxh='"+ghxh+"' and kfbz='0' and zfbz='0'";
 		try {
-			stmt = conn.createStatement();
+			//stmt = conn.createStatement();
 			ResultSet rs=stmt.executeQuery(sql);
 			//循环输出每一条记录
 			while(rs.next())
 			{
 			list.add(rs.getString("jysqh"));
 			}
-			stmt.close();								// 关闭连接状态对象
-			conn.commit();
+			//stmt.close();								// 关闭连接状态对象
+			//conn.commit();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -394,21 +489,21 @@ public class mzzfsql {
 	 * @param ghxh
 	 * @return
 	 */
-	private  List<String> getzlczh(String ghxh){
+	private  List<String> getzlczh(String ghxh,Statement stmt){
 		List<String> list=new ArrayList<String>();
-		Connection conn = JDBC.getConnection();	
-		Statement stmt;
+	//	Connection conn = JDBC.getConnection();	
+		//Statement stmt;
 		String sql="select RTRIM(zlczh)as zlczh  from mzys_zlcz where  ryghxh='"+ghxh+"' and kfbz='0' and zfbz='0'";
 		try {
-			stmt = conn.createStatement();
+			//stmt = conn.createStatement();
 			ResultSet rs=stmt.executeQuery(sql);
 			//循环输出每一条记录
 			while(rs.next())
 			{
 			list.add(rs.getString("zlczh"));
 			}
-			stmt.close();								// 关闭连接状态对象
-			conn.commit();
+			//stmt.close();								// 关闭连接状态对象
+			//conn.commit();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -420,21 +515,21 @@ public class mzzfsql {
 	 * @param ghxh
 	 * @return
 	 */
-	private  List<String> getmzssh(String ghxh){
+	private  List<String> getmzssh(String ghxh,Statement stmt){
 		List<String> list=new ArrayList<String>();
-		Connection conn = JDBC.getConnection();	
-		Statement stmt;
+		//Connection conn = JDBC.getConnection();	
+		//Statement stmt;
 		String sql="select RTRIM(mzssh)as mzssh  from mzys_mzss where  ryghxh='"+ghxh+"' and kfbz='0' and zfbz='0'";
 		try {
-			stmt = conn.createStatement();
+			//stmt = conn.createStatement();
 			ResultSet rs=stmt.executeQuery(sql);
 			//循环输出每一条记录
 			while(rs.next())
 			{
 			list.add(rs.getString("mzssh"));
 			}
-			stmt.close();								// 关闭连接状态对象
-			conn.commit();
+			//stmt.close();								// 关闭连接状态对象
+			//conn.commit();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -446,21 +541,21 @@ public class mzzfsql {
 	 * @param ghxh
 	 * @return
 	 */
-	private  List<String> getmzylyzh(String ghxh){
+	private  List<String> getmzylyzh(String ghxh,Statement stmt){
 		List<String> list=new ArrayList<String>();
-		Connection conn = JDBC.getConnection();	
-		Statement stmt;
+		//Connection conn = JDBC.getConnection();	
+		//Statement stmt;
 		String sql="select RTRIM(ylyzh)as ylyzh from mzys_ylyz where  ryghxh='"+ghxh+"' and kfbz='0' and zfbz='0'";
 		try {
-			stmt = conn.createStatement();
+			//stmt = conn.createStatement();
 			ResultSet rs=stmt.executeQuery(sql);
 			//循环输出每一条记录
 			while(rs.next())
 			{
 			list.add(rs.getString("ylyzh"));
 			}
-			stmt.close();								// 关闭连接状态对象
-			conn.commit();
+			//stmt.close();								// 关闭连接状态对象
+			//conn.commit();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

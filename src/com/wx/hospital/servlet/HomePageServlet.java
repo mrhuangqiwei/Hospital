@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 
 import static com.wx.hospital.HospitalConfig.SERVER_URL;
@@ -26,6 +27,7 @@ public class HomePageServlet extends BaseServlet {
         if (openId == null || TextUtils.isBlank(openId)) {
             String redirectUrl = OAuthManager.generateRedirectURI(SERVER_URL+ "oauth2",
                     "snsapi_userinfo", "homepage");
+            System.out.println("获取到的微信用户信息\t"+redirectUrl);
             resp.sendRedirect(redirectUrl);
             return;
         }

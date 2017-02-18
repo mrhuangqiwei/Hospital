@@ -1,6 +1,7 @@
 package com.wx.hospital.servlet;
 
 import com.alibaba.fastjson.JSON;
+
 import org.sword.wechat4j.jsapi.JsApiManager;
 import org.sword.wechat4j.jsapi.JsApiParam;
 import org.sword.wechat4j.pay.PayManager;
@@ -15,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -44,6 +46,7 @@ public class OrderServlet extends BaseServlet {
         }
         /** 微信支付*/
         if (reqType.equals("weixin_pay")) {
+        	System.out.println("请求支付");
             UnifiedorderRequest request = new UnifiedorderRequest();
             String openId = req.getParameter("openid");
             request.setOpenid(openId);
@@ -59,7 +62,9 @@ public class OrderServlet extends BaseServlet {
             request.setNotify_url(notifyUrl);
             try {
                 UnifiedorderResponse respond = PayManager.unifiedorder(request);
-                resp.getWriter().write(JSON.toJSONString(respond));
+                String resultString = JSON.toJSONString(respond);
+                System.out.println(resultString);
+                resp.getWriter().write(resultString);
             } catch (SignatureException | PayApiException | PayBusinessException e) {
                 e.printStackTrace();
             }
@@ -67,6 +72,7 @@ public class OrderServlet extends BaseServlet {
             String url = SERVER_URL + "fillorder";
             JsApiParam params = JsApiManager.signature(url);
             resp.getWriter().write(JSON.toJSONString(params));
+            System.out.println("请求jsapi参数");
         }
     }
 }

@@ -73,11 +73,15 @@ public class HospitalSupport extends WechatSupport {
     @Override
     protected void subscribe() {
         String openId = wechatRequest.getFromUserName();
+        //获取微信token
         AccessToken token = WeiXinUtil.getAccessToken();
+        System.out.println(token);
         JSONObject jsonObject = WeiXinUtil.getWxuserInfo(token.getToken(), openId);
+        System.out.println(jsonObject+"\t");
         String result = jsonObject.toString();
 
         WeiXinUserBean bean = JSON.parseObject(result, WeiXinUserBean.class);
+        System.out.println("获取到的微信用户信息\t"+result);
         boolean k1 = IsWeixinUser.Isweixinuser(bean);
         responseText("您好，欢迎你关注普定县人民医院！我们将为你提供医学专业知识，分享品质生活资讯，" +
                 "让您了解医院新闻和动态，还可推荐医院相关专家，为您提供更专业的治疗方案！");

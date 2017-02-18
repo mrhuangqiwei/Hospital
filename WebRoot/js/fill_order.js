@@ -21,7 +21,7 @@ app.controller('myCtrl', function ($scope, $http) {
                 ['上班信息', $scope.doc.zcmc],
                 ['挂号费用', $scope.doc.ghfy + '元']
             ];
-            var url = "http://219.141.78.173/Hospital/GetFriendinfo?openid=" + openId;
+            var url = "http://pd.nnxzyyy.com/Hospital/GetFriendinfo?openid=" + openId;
             $http.get(url)
                 .success(function (data) {
                     $scope.friends = data;
