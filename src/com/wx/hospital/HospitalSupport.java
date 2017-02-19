@@ -5,6 +5,8 @@ import checkutil.IsWeixinUser;
 import com.alibaba.fastjson.JSON;
 import net.sf.json.JSONObject;
 import org.sword.wechat4j.WechatSupport;
+import org.sword.wechat4j.user.User;
+import org.sword.wechat4j.user.UserManager;
 import po.AccessToken;
 import utils.WeiXinUtil;
 
@@ -73,15 +75,20 @@ public class HospitalSupport extends WechatSupport {
     @Override
     protected void subscribe() {
         String openId = wechatRequest.getFromUserName();
-        //获取微信token
-        AccessToken token = WeiXinUtil.getAccessToken();
-        System.out.println(token);
-        JSONObject jsonObject = WeiXinUtil.getWxuserInfo(token.getToken(), openId);
-        System.out.println(jsonObject+"\t");
-        String result = jsonObject.toString();
-
-        WeiXinUserBean bean = JSON.parseObject(result, WeiXinUserBean.class);
-        System.out.println("获取到的微信用户信息\t"+result);
+        UserManager manager = new UserManager();
+        User user = manager.getUserInfo(openId);
+        WeiXinUserBean bean = new WeiXinUserBean();
+        bean.setNickname(user.getNickName());
+        bean.setOpenid(openId);
+        bean.setCity(user.getCity());
+        bean.setCountry(user.getCountry());
+        bean.setGroupid(String.valueOf(user.getGroupId()));
+        bean.setHeadimgurl(user.getHeadimgUrl());
+        bean.setLanguage(user.getLanguage().toString());
+        bean.setRemark(user.getRemark());
+        bean.setSex(String.valueOf(user.getSex()));
+        bean.setSubscribe(String.valueOf(user.getSubscribe()));
+        bean.setSubscribe_time(user.getSubscribeTime());
         boolean k1 = IsWeixinUser.Isweixinuser(bean);
         responseText("您好，欢迎你关注普定县人民医院！我们将为你提供医学专业知识，分享品质生活资讯，" +
                 "让您了解医院新闻和动态，还可推荐医院相关专家，为您提供更专业的治疗方案！");
