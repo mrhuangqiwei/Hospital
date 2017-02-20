@@ -448,7 +448,7 @@ for(int i=0;i<list3.size();i++){
 	      updatejsjl(csxh, ssrq,conn,stmt);
 	      sqlString=sqlString+ insertbrgh(ghxh, list3.get(i).getYyghid(),ghzlbm, ghfsbm, fbbm,list3.get(i).getBrid(), list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getYyghrq(), ghxq, list3.get(i).getYyks(), list3.get(i).getYyys(), sfjz, list3.get(i).getCzyks(), jzxe, list3.get(i).getBrnl(), list3.get(i).getBrnldw());
 	      sqlString=sqlString+"\t";
-	      sqlString=sqlString+updateYyghb(list3.get(i).getYyghid())+"\t"; 
+	      sqlString=sqlString+updateYyghb(list3.get(i).getYyghid(),ghxh)+"\t"; 
 	      sqlString =sqlString+inserjsjl(jsjlid, ghxh, list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getBrid(), fyhj, "0", fyhj, "0", "0", "0", "0", list3.get(i).getYyghrq(), list3.get(i).getCzyks());
 	      sqlString=sqlString +"\t";
 	      String sqlfyString="";
@@ -472,7 +472,7 @@ for(int i=0;i<list3.size();i++){
 	      
 	      sqlString=sqlString+ insertbrgh(ghxh,list3.get(i).getYyghid(), ghzlbm, ghfsbm, fbbm,list3.get(i).getBrid(), list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getYyghrq(), ghxq, list3.get(i).getYyks(), list3.get(i).getYyys(), sfjz, list3.get(i).getCzyks(), jzxe, list3.get(i).getBrnl(), list3.get(i).getBrnldw());
 	      sqlString=sqlString+"\t";
-	      sqlString =sqlString+updateYyghb(list3.get(i).getYyghid())+"\t";
+	      sqlString =sqlString+updateYyghb(list3.get(i).getYyghid(),ghxh)+"\t";
 	     
 	   sqlString=sqlString+ inserjsjl(jsjlid, ghxh, list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getBrid(), fyhj, "0", fyhj, "0", "0", "0", "0", list3.get(i).getYyghrq(), list3.get(i).getCzyks());
 	 sqlString=sqlString+"\t";
@@ -496,7 +496,7 @@ for(int i=0;i<list3.size();i++){
 	      updatejsjl(csxh, ssrq,conn,stmt);
 	      sqlString= sqlString+ insertbrgh(ghxh,list3.get(i).getYyghid(), ghzlbm, ghfsbm, fbbm,list3.get(i).getBrid(), list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getYyghrq(), ghxq, list3.get(i).getYyks(), list3.get(i).getYyys(), sfjz, list3.get(i).getCzyks(), jzxe, list3.get(i).getBrnl(), list3.get(i).getBrnldw());
 	      sqlString=sqlString+"\t";
-	      sqlString=sqlString+updateYyghb(list3.get(i).getYyghid())+"\t";
+	      sqlString=sqlString+updateYyghb(list3.get(i).getYyghid(),ghxh)+"\t";
 	   
 	     sqlString=sqlString+ inserjsjl(jsjlid, ghxh, list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getBrid(), fyhj, "0", fyhj, "0", "0", "0", "0", list3.get(i).getYyghrq(), list3.get(i).getCzyks());
 	     sqlString=sqlString+"\t";
@@ -519,7 +519,7 @@ for(int i=0;i<list3.size();i++){
 		    updatejsjl(jsxh1, ssrq,conn,stmt);
 		    sqlString=sqlString+insertbrgh(ghxh, list3.get(i).getYyghid(),ghzlbm, ghfsbm, fbbm,list3.get(i).getBrid(), list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getYyghrq(), ghxq, list3.get(i).getYyks(), list3.get(i).getYyys(), sfjz, list3.get(i).getCzyks(), jzxe, list3.get(i).getBrnl(), list3.get(i).getBrnldw());
 		     sqlString=sqlString+"\t";
-		   sqlString=sqlString+updateYyghb(list3.get(i).getYyghid())+"\t";
+		   sqlString=sqlString+updateYyghb(list3.get(i).getYyghid(),ghxh)+"\t";
     
 		    sqlString=sqlString+inserjsjl(jsjlid, ghxh, list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getBrid(), fyhj, "0", fyhj, "0", "0", "0", "0", list3.get(i).getYyghrq(), list3.get(i).getCzyks());
 	  	    sqlString=sqlString+"\t";
@@ -716,8 +716,8 @@ try {
 return list;
 }
 /**更新预约挂号表yyclbz**/
-public String updateYyghb(String yyghid ){
-	String sql="update ghb_yygh set yyclbz='1' where yyghid='"+yyghid+"'";
+public String updateYyghb(String yyghid,String ghxh ){
+	String sql="update ghb_yygh set yyclbz='1' ,ghxh='"+ghxh+"'   where yyghid='"+yyghid+"'";
  return sql;
 }
 

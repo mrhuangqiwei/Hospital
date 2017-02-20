@@ -37,6 +37,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -98,9 +99,9 @@ public class PayManager {
         JaxbParser responseParser = buildJAXBParser(UnifiedorderResponse.class);
         request.setSign(signature(request));
         String postData = requestParser.toXML(request);
-        logger.info("post data \n" + postData);
+        System.out.println("post data \n" + postData);
         String postResult = post(HTTPS_API_MCH_WEIXIN_QQ_COM_PAY_UNIFIEDORDER, postData);
-        logger.info("post result \n" + postResult);
+        System.out.println("post result \n" + postResult);
         checkAccess(postResult);
         checkBusiness(postResult);
         validResponseSign(postResult);
@@ -293,7 +294,7 @@ public class PayManager {
     public static PayResultNotifyResponse parsePayResultNotify(ServletRequest servletRequest, ServletResponse servletResponse) throws SignatureException, PayApiException, PayBusinessException {
         JaxbParser responseParser = buildJAXBParser(PayResultNotifyResponse.class);
         JaxbParser exceptionParser = buildJAXBParser(PayApiException.class);
-        PayApiException exception = new PayApiException(PayCode.SUCCESS, "OK");
+        PayNotify notify = new PayNotify(PayCode.SUCCESS, "OK");
         String postResult;
         try {
             int len;
@@ -306,17 +307,17 @@ public class PayManager {
             postResult = stream.toString(Consts.UTF_8.name());
         } catch (IOException e) {
             logger.error("支付结果通知数据解析失败", e);
-            exception = new PayApiException(PayCode.FAIL, "支付结果通知数据解析失败");
-            responseToWechat(servletResponse, exceptionParser.toXML(exception));
-            throw exception;
+            notify = new PayNotify(PayCode.FAIL, "支付结果通知数据解析失败");
+            responseToWechat(servletResponse, exceptionParser.toXML(notify));
+            throw new PayApiException(PayCode.FAIL, "支付结果通知数据解析失败");
         }
-        logger.info("result data \n" + postResult);
+        System.out.println("result data \n" + postResult);
         checkAccess(postResult);
         try {
             validResponseSign(postResult);
         } catch (SignatureException e) {
-            exception = new PayApiException(PayCode.FAIL, "签名校验失败");
-            responseToWechat(servletResponse, exceptionParser.toXML(exception));
+            notify = new PayNotify(PayCode.FAIL, "签名校验失败");
+            responseToWechat(servletResponse, exceptionParser.toXML(notify));
             throw e;
         }
         checkBusiness(postResult);
@@ -325,11 +326,11 @@ public class PayManager {
             parseCouponsForPayResultNotify(postResult, response);
         } catch (Exception e) {
             logger.error("解析代金券或立减优惠失败", e);
-            exception = new PayApiException(PayCode.FAIL, "解析代金券或立减优惠失败");
-            responseToWechat(servletResponse, exceptionParser.toXML(exception));
-            throw exception;
+            notify = new PayNotify(PayCode.FAIL, "解析代金券或立减优惠失败");
+            responseToWechat(servletResponse, exceptionParser.toXML(notify));
+            throw new PayApiException(PayCode.FAIL, "解析代金券或立减优惠失败");
         }
-        responseToWechat(servletResponse, exceptionParser.toXML(exception));
+        responseToWechat(servletResponse, exceptionParser.toXML(notify));
         return response;
     }
 

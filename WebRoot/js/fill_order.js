@@ -41,7 +41,7 @@ app.controller('myCtrl', function ($scope, $http) {
         }).success(function (req) {
             $scope.jsapiTicket = req.jsapiTicket;
             wx.config({
-                debug: true,
+                debug: false,
                 appId: req.appid,
                 timestamp: req.timeStamp,
                 nonceStr: req.nonceStr,
@@ -66,11 +66,11 @@ app.controller('myCtrl', function ($scope, $http) {
             }
         }).success(function (req) {
             wx.chooseWXPay({
-                timestamp: 0,
-                nonceStr: req.nonce_str,
-                package: req.prepay_id,
-                signType: 'MD5',
-                paySign: req.sign,
+                timestamp: req.timeStamp,
+                nonceStr: req.nonceStr,
+                package: req.packageWithPrepayId,
+                signType: req.signType,
+                paySign: req.paySign,
                 success: function (res) {
                     window.location.href = 'homepage';
                 }
@@ -78,7 +78,6 @@ app.controller('myCtrl', function ($scope, $http) {
         })
 
     };
-
     $scope.getParams();
     $scope.init();
 });

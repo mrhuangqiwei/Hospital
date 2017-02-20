@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 
 import org.sword.wechat4j.jsapi.JsApiManager;
 import org.sword.wechat4j.jsapi.JsApiParam;
+import org.sword.wechat4j.pay.H5PayParam;
 import org.sword.wechat4j.pay.PayManager;
 import org.sword.wechat4j.pay.exception.PayApiException;
 import org.sword.wechat4j.pay.exception.PayBusinessException;
@@ -46,14 +47,16 @@ public class OrderServlet extends BaseServlet {
         }
         /** 微信支付*/
         if (reqType.equals("weixin_pay")) {
-        	System.out.println("请求支付");
             UnifiedorderRequest request = new UnifiedorderRequest();
             String openId = req.getParameter("openid");
             request.setOpenid(openId);
-            request.setBody("挂号费用");
-            String tradeNo = simpleDateFormat.format(new Date()) + openId + RandomStringGenerator.generate(5);
+            request.setBody("");
+            String nonce_str = RandomStringGenerator.generate();
+            request.setNonce_str(nonce_str);
+            String tradeNo = simpleDateFormat.format(new Date()) + RandomStringGenerator.generate(10);
             request.setOut_trade_no(tradeNo);
             int totalFee = (int) (Float.parseFloat(req.getParameter("money")) * 100);
+            totalFee = 1;
             request.setTotal_fee(totalFee);
             String spbill_create_ip = req.getRemoteAddr();
             request.setSpbill_create_ip(spbill_create_ip);
@@ -62,7 +65,11 @@ public class OrderServlet extends BaseServlet {
             request.setNotify_url(notifyUrl);
             try {
                 UnifiedorderResponse respond = PayManager.unifiedorder(request);
-                String resultString = JSON.toJSONString(respond);
+                String timeStamp = Long.toString(System.currentTimeMillis() / 1000);
+                String nonceStr = respond.getNonce_str();
+                String prepayId = respond.getPrepay_id();
+                H5PayParam param = PayManager.buildH5PayConfig(timeStamp, nonceStr, prepayId);
+                String resultString = JSON.toJSONString(param);
                 System.out.println(resultString);
                 resp.getWriter().write(resultString);
             } catch (SignatureException | PayApiException | PayBusinessException e) {
@@ -71,8 +78,9 @@ public class OrderServlet extends BaseServlet {
         } else if (reqType.equals("get_jsapi_params")) {
             String url = SERVER_URL + "fillorder";
             JsApiParam params = JsApiManager.signature(url);
-            resp.getWriter().write(JSON.toJSONString(params));
-            System.out.println("请求jsapi参数");
+            String jsonString = JSON.toJSONString(params);
+            System.out.println(jsonString);
+            resp.getWriter().write(jsonString);
         }
     }
 }

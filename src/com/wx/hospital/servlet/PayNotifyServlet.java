@@ -24,9 +24,14 @@ public class PayNotifyServlet extends BaseServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PayResultNotifyResponse respond = null;
+        
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    	PayResultNotifyResponse respond = null;
         try {
-            PayManager.parsePayResultNotify(req, resp);
+        	respond = PayManager.parsePayResultNotify(req, resp);
         } catch (SignatureException e) {
             e.printStackTrace();
         } catch (PayApiException e) {
@@ -36,13 +41,7 @@ public class PayNotifyServlet extends BaseServlet {
         }
         String openId = respond.getOpenid();
         int totalFee = respond.getTotal_fee();
-        logger.debug(openId + "已经成功支付了" + totalFee + "分！");
-
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doGet(req, resp);
+        System.out.println(openId + "已经成功支付了" + totalFee + "分！");
     }
 
 }

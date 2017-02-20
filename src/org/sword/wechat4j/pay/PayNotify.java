@@ -1,4 +1,4 @@
-package org.sword.wechat4j.pay.exception;
+package org.sword.wechat4j.pay;
 
 
 import org.sword.wechat4j.pay.PayCode;
@@ -12,16 +12,19 @@ import javax.xml.bind.annotation.XmlRootElement;
  * Created by xuwen on 2015-12-11.
  */
 @XmlRootElement(name = "xml")
-public class PayApiException extends Exception{
-	private static final long serialVersionUID = 7110559305593213031L;
+public class PayNotify{
 	private String return_code;
     private String return_msg;
+    
+    public PayNotify(){
+    	
+    }
 
-    public PayApiException(PayCode payCode, String return_msg) {
+    public PayNotify(PayCode payCode, String return_msg) {
         this.return_code = payCode.toString();
         this.return_msg = return_msg;
     }
-    public PayApiException(String return_code, String return_msg) {
+    public PayNotify(String return_code, String return_msg) {
         this.return_code = return_code;
         this.return_msg = return_msg;
     }
