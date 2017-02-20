@@ -25,7 +25,8 @@ public static boolean Isweixinuser(WeiXinUserBean bean){
 	String sql="select Rtrim(userid)as userid from gyb_user";
 	weinxinsql sWeinxinsql=new weinxinsql();
 	list=sWeinxinsql.getjdbclist(sql);
-	System.out.print(list.toString());
+	System.out.println(list.toString());
+	System.out.println(JSON.toJSON(bean));
 	for(int i=0;i<list.size();i++){
 		if(bean.getOpenid().equals(list.get(i))){
 			ok=true;

@@ -446,7 +446,7 @@ for(int i=0;i<list3.size();i++){
 		  jsjlid=String.valueOf(id+1) ;
 	      updateYwxhb(csxh, ssrq,conn,stmt);
 	      updatejsjl(csxh, ssrq,conn,stmt);
-	      sqlString=sqlString+ insertbrgh(ghxh, ghzlbm, ghfsbm, fbbm,list3.get(i).getBrid(), list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getYyghrq(), ghxq, list3.get(i).getYyks(), list3.get(i).getYyys(), sfjz, list3.get(i).getCzyks(), jzxe, list3.get(i).getBrnl(), list3.get(i).getBrnldw());
+	      sqlString=sqlString+ insertbrgh(ghxh, list3.get(i).getYyghid(),ghzlbm, ghfsbm, fbbm,list3.get(i).getBrid(), list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getYyghrq(), ghxq, list3.get(i).getYyks(), list3.get(i).getYyys(), sfjz, list3.get(i).getCzyks(), jzxe, list3.get(i).getBrnl(), list3.get(i).getBrnldw());
 	      sqlString=sqlString+"\t";
 	      sqlString=sqlString+updateYyghb(list3.get(i).getYyghid())+"\t"; 
 	      sqlString =sqlString+inserjsjl(jsjlid, ghxh, list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getBrid(), fyhj, "0", fyhj, "0", "0", "0", "0", list3.get(i).getYyghrq(), list3.get(i).getCzyks());
@@ -470,7 +470,7 @@ for(int i=0;i<list3.size();i++){
 	      updateYwxhb(csxh, ssrq,conn,stmt);
 	      updatejsjl(jsxh1, ssrq,conn,stmt);
 	      
-	      sqlString=sqlString+ insertbrgh(ghxh, ghzlbm, ghfsbm, fbbm,list3.get(i).getBrid(), list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getYyghrq(), ghxq, list3.get(i).getYyks(), list3.get(i).getYyys(), sfjz, list3.get(i).getCzyks(), jzxe, list3.get(i).getBrnl(), list3.get(i).getBrnldw());
+	      sqlString=sqlString+ insertbrgh(ghxh,list3.get(i).getYyghid(), ghzlbm, ghfsbm, fbbm,list3.get(i).getBrid(), list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getYyghrq(), ghxq, list3.get(i).getYyks(), list3.get(i).getYyys(), sfjz, list3.get(i).getCzyks(), jzxe, list3.get(i).getBrnl(), list3.get(i).getBrnldw());
 	      sqlString=sqlString+"\t";
 	      sqlString =sqlString+updateYyghb(list3.get(i).getYyghid())+"\t";
 	     
@@ -494,7 +494,7 @@ for(int i=0;i<list3.size();i++){
 	      
 	      updateYwxhb(xh1, ssrq,conn,stmt);
 	      updatejsjl(csxh, ssrq,conn,stmt);
-	      sqlString= sqlString+ insertbrgh(ghxh, ghzlbm, ghfsbm, fbbm,list3.get(i).getBrid(), list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getYyghrq(), ghxq, list3.get(i).getYyks(), list3.get(i).getYyys(), sfjz, list3.get(i).getCzyks(), jzxe, list3.get(i).getBrnl(), list3.get(i).getBrnldw());
+	      sqlString= sqlString+ insertbrgh(ghxh,list3.get(i).getYyghid(), ghzlbm, ghfsbm, fbbm,list3.get(i).getBrid(), list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getYyghrq(), ghxq, list3.get(i).getYyks(), list3.get(i).getYyys(), sfjz, list3.get(i).getCzyks(), jzxe, list3.get(i).getBrnl(), list3.get(i).getBrnldw());
 	      sqlString=sqlString+"\t";
 	      sqlString=sqlString+updateYyghb(list3.get(i).getYyghid())+"\t";
 	   
@@ -517,7 +517,7 @@ for(int i=0;i<list3.size();i++){
 		    
 		    updateYwxhb(xh1, ssrq,conn,stmt);
 		    updatejsjl(jsxh1, ssrq,conn,stmt);
-		    sqlString=sqlString+insertbrgh(ghxh, ghzlbm, ghfsbm, fbbm,list3.get(i).getBrid(), list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getYyghrq(), ghxq, list3.get(i).getYyks(), list3.get(i).getYyys(), sfjz, list3.get(i).getCzyks(), jzxe, list3.get(i).getBrnl(), list3.get(i).getBrnldw());
+		    sqlString=sqlString+insertbrgh(ghxh, list3.get(i).getYyghid(),ghzlbm, ghfsbm, fbbm,list3.get(i).getBrid(), list3.get(i).getCzybm(), list3.get(i).getYwckbm(), list3.get(i).getYyghrq(), ghxq, list3.get(i).getYyks(), list3.get(i).getYyys(), sfjz, list3.get(i).getCzyks(), jzxe, list3.get(i).getBrnl(), list3.get(i).getBrnldw());
 		     sqlString=sqlString+"\t";
 		   sqlString=sqlString+updateYyghb(list3.get(i).getYyghid())+"\t";
     
@@ -586,16 +586,16 @@ public Map<String, String> getghzlbm(Connection conn ,Statement stmt){
 
 
 
-public String insertbrgh(String ghxh,String ghzlbm,String ghfsbm,String 
+public String insertbrgh(String ghxh,String yyghid,String ghzlbm,String ghfsbm,String 
 		fbbm,String brid,String czybm,String ywckbm,String ghrq, String ghxq,
 		String ghks,String jzys,String sfjz,String czyks,
 		String jzxe,String brnl,String brnldw){
 
-	String sql="INSERT INTO ghb_brgh ( ghxh, ghzlbm, ghfsbm, fbbm, brid, "
+	String sql="INSERT INTO ghb_brgh ( ghxh, ,yyghid,ghzlbm, ghfsbm, fbbm, brid, "
 			+ "czybm, ywckbm, ghrq,"
 			+ " ghxq, ghks,jzys,"
 			+ " sfjz, czyks, jzxe, brnl, brnldw)"
-			+ " VALUES ( '"+ghxh+"', '"+ghzlbm+"',"
+			+ " VALUES ( '"+ghxh+"','"+yyghid+"','"+ghzlbm+"',"
 			+ " '"+ghfsbm+"', '"+fbbm+"', '"+brid+"', '"+czybm+"', '"+ywckbm+"',"
 			+ "  '"+ghrq+"', "+ghxq+", '"+ghks+"', '"+jzys+"', "+sfjz+", "
 					+ "'"+czyks+"', 0.00, '"+brnl+"', '"+brnldw+"')";
