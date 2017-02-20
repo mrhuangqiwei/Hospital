@@ -25,13 +25,7 @@ public class AddFriend extends HttpServlet {
 		super();
 	}
 
-	/**
-	 * Destruction of the servlet. <br>
-	 */
-	public void destroy() {
-		super.destroy(); // Just puts "destroy" string in log
-		// Put your code here
-	}
+
 
 	/**
 	 * The doGet method of the servlet. <br>
@@ -130,13 +124,6 @@ public class AddFriend extends HttpServlet {
 doGet(request, response);
 	}
 
-	/**
-	 * Initialization of the servlet. <br>
-	 *
-	 * @throws ServletException if an error occurs
-	 */
-	public void init() throws ServletException {
-		// Put your code here
-	}
+
 
 }

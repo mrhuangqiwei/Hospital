@@ -85,6 +85,7 @@ public class YyghSql {
 		// 当预约挂号日期等于当天的日期时。
 		if (ConvertTime.datesdiferrent(yyghrq)) {
 			// 当日挂号
+			System.out.print("dajjjjjjjjjjjj\t");
 			ghxh=Yyghdrgh(yyghrq, brxm, brxb, brnl, sfzh, jtzz, sj, ysbm, yyks,
 					yydjrq, yyyxrq, ylkh, yyys, ghfsbm, ghybm, ghyks, ywckbm);
 		yyghBean yyghBean=new yyghBean(ghxh, yyid);

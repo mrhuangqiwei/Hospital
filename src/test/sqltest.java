@@ -28,6 +28,7 @@ import jdbc.StudentService;
 import jdbc.Userzyfymx;
 import jdbc.Ysbcsql;
 import jdbc.YyghSql;
+import jdbc.his_yycxsql;
 import jdbc.jycx;
 import jdbc.mzyjfjlsql;
 import jdbc.ris_report_sql;
@@ -61,7 +62,7 @@ public class sqltest {
 	String czybm="0269";
 	String ywckbm="888";
 	String yydjrq="2016-10-21 12:19:19.327";
-	String yyghrq="2017-02-15 12:19:19.327";
+	String yyghrq="2017-02-20 12:19:19.327";
 	String yyyxrq="2017-11-22 12:19:19.327";
 	String brxm="黄奇伟";
 	String   brxb="1";
@@ -89,6 +90,8 @@ public class sqltest {
       //  List<String> list= userzyfymx.getmzfymx("20100407000001"); 
 		//brghsql.zdgh();;
  //String ssString=ysbcsql.yspb("0004");
+	
+	//System.out.print(his_yycxsql.getyymx("", "513427196907132813"));
  /**
         List<String> list=getrq();             
      
@@ -140,7 +143,7 @@ public class sqltest {
 		System.out.print(json);
 		
 		/**/
-	System.out.print(mzyjfjlsql.getmzyjfy("20170216004865"));
+//	System.out.print(mzyjfjlsql.getmzyjfy("20170216004865"));
      /**
       * 
       for(int k=0;k<100;k++){
