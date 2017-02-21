@@ -50,7 +50,7 @@ public class OrderServlet extends BaseServlet {
             UnifiedorderRequest request = new UnifiedorderRequest();
             String openId = req.getParameter("openid");
             request.setOpenid(openId);
-            request.setBody("");
+            request.setBody("Hospital");
             String nonce_str = RandomStringGenerator.generate();
             request.setNonce_str(nonce_str);
             String tradeNo = simpleDateFormat.format(new Date()) + RandomStringGenerator.generate(10);

@@ -62,14 +62,14 @@ public class sqltest {
 	String czybm="0269";
 	String ywckbm="888";
 	String yydjrq="2016-10-21 12:19:19.327";
-	String yyghrq="2017-02-20 12:19:19.327";
+	String yyghrq="2017-02-21 12:19:19.327";
 	String yyyxrq="2017-11-22 12:19:19.327";
 	String brxm="黄奇伟";
 	String   brxb="1";
 	String brsr="1900-01-01 00:00:00.000";
 	String brnl="23";
 	String brnldw="1";
-	String sfzh="513427196907132813";   
+	String sfzh="513427196907132818";   
 	String sj="15577616194";
 	String yyys="00004";
 	String yyks="0004";
@@ -80,9 +80,15 @@ public class sqltest {
 
 //自动挂号	/
 //brghsql.zdgh();
-//String  yf=yyghSql.appointment(yyghrq, brxm, brxb, brnldw, sfzh, jtzz, sj, yyys, yyks, yydjrq, yyyxrq, mxfyxmbm, yyjfbz);
-		
+String  yf;
 
+
+for(int k=0;k<10;k++){
+	//System.out.print(k+"\t");	
+yyghSql.appointment(yyghrq, brxm, brxb, brnldw, sfzh, jtzz, sj, yyys, yyks, yydjrq, yyyxrq, mxfyxmbm, yyjfbz);
+
+
+}
 //List<YyxxBean> list=brghsql.getbuseryyxx();
 	//boolean ok=false;
 	//ok=deletefriend.deletefriendinfo("owEWzwQKO7G_uy4C0X_Wn2boPVI4", "558842685569842688", "");

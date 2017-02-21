@@ -452,23 +452,23 @@ public class JdbcUtilSql {
 	 * @param ylkh
 	 * @return
 	 */
-	public static String getuserghbrxx(String sfzh, String ylkh) {
+	public static String getuserghbrxx(String sfzh, String ylkh,Statement stmt) {
 		String brid = null;
-		Connection conn = JDBC.getConnection();
-		Statement stmt;
+		//Connection conn = JDBC.getConnection();
+		//Statement stmt;
 		String sql = "select top 1  Rtrim(brid) as brid from  v_ghb_zcxx where sfzh='"
 				+ sfzh
 				+ "' union all select top 1  Rtrim(brid) as brid from  ghb_mzylkxx where ylkh='"
 				+ ylkh + "'";
 		try {
-			stmt = conn.createStatement();
+			//stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			// 循环输出每一条记录
 			while (rs.next()) {
 				brid = rs.getString("brid");
 			}
-			stmt.close(); // 关闭连接状态对象
-			conn.commit();
+			//stmt.close(); // 关闭连接状态对象
+			//conn.commit();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -477,16 +477,25 @@ public class JdbcUtilSql {
 	}
 
 	/** 跟新业务序号表中挂号序号的xh 和 ssrq **/
-	public static boolean updateYwxhbghxh(String xh, String ssrq) {
-		Dao dao = Dao.getInstance();
+	public static boolean updateYwxhbghxh(String xh, String ssrq,Statement stmt) {
 		boolean ok = false;
 		String sql = "BEGIN TRAN update ghb_ywxhb Set xh ='" + xh
 				+ "' , ssrq ='" + ssrq + "' Where xhlx ='ghxh' COMMIT TRAN";
-		ok = dao.insert(sql);
-		if (ok == false) {
-			System.out.print("更新挂号序号失败");
+		try {
+			ok=stmt.execute(sql);
+			 if(ok==false){
+				 System.out.print("更新挂号表失败");
+			 }
+			//stmt1.close();								// 关闭连接状态对象
+			//conn1.commit();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		return ok;
+		
+		// ok=dao.insert(sql);
+		
+		  return ok;
 	}
 
 	/**
@@ -494,21 +503,21 @@ public class JdbcUtilSql {
 	 * 
 	 * @return
 	 */
-	public static Map<String, String> getghzlbm() {
+	public static Map<String, String> getghzlbm(Statement stmt) {
 		List<String> list = new ArrayList<String>();
-		Connection conn = JDBC.getConnection();
-		Statement stmt;
+		//Connection conn = JDBC.getConnection();
+		//Statement stmt;
 		String sql = "select Rtrim(gyb_czy.czybm)czybm,Rtrim(gyb_czy.ghzlbm)ghzlbm from gyb_czy,ghb_ghzl where gyb_czy.ghzlbm=ghb_ghzl.ghzlbm";
 		try {
-			stmt = conn.createStatement();
+			//stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			// 循环输出每一条记录
 			while (rs.next()) {
 				list.add(rs.getString("czybm"));
 				list.add(rs.getString("ghzlbm"));
 			}
-			stmt.close(); // 关闭连接状态对象
-			conn.commit();
+			//stmt.close(); // 关闭连接状态对象
+			//conn.commit();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

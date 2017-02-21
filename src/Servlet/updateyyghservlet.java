@@ -46,9 +46,9 @@ public class updateyyghservlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");//服务器编码
 		response.setHeader("content-type", "text/html;charset=UTF-8");//浏览器编码
 		String ghxh = new String(request.getParameter("ghxh").getBytes("ISO-8859-1"),"UTF-8");
-		String yyghid=new String(request.getParameter("ghxh").getBytes("ISO-8859-1"),"UTF-8");
+		String yyghid=new String(request.getParameter("yyghid").getBytes("ISO-8859-1"),"UTF-8");
 		boolean ok=false;
-		if(!ghxh.equals("")&&!ghxh.equals("当日挂号失败！"))
+		if(!ghxh.trim().equals("")&&!ghxh.trim().equals("当日挂号失败！"))
 			
 		{  ok=updateghbbrgh(ghxh);}
 		else{
@@ -57,7 +57,7 @@ public class updateyyghservlet extends HttpServlet {
 		
 		String kString="";
 		if(ok==true){
-			kString="";	
+			kString="true";	
 		}
 		else{kString="false";}
 		//Userzyfymx userzyfymx= new Userzyfymx();
