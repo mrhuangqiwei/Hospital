@@ -205,15 +205,4 @@
     <servlet-name>yyghcxservlet</servlet-name>
     <url-pattern>/yyghcxservlet</url-pattern>
   </servlet-mapping>
- 
-  <servlet>
-    <description></description>
-    <display-name>yycxservlet</display-name>
-    <servlet-name>yycxservlet</servlet-name>
-    <servlet-class>Servlet.yycxservlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>yycxservlet</servlet-name>
-    <url-pattern>/yycxservlet</url-pattern>
-  </servlet-mapping>
 </web-app>
