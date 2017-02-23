@@ -109,7 +109,7 @@
 <template>
     <div id='askOnline'>
         <div class='header'>
-            <mt-swipe :auto="0" class='carousel'>
+            <mt-swipe :auto="5000" class='carousel'>
                 <mt-swipe-item class='one'></mt-swipe-item>
                 <mt-swipe-item class='two'></mt-swipe-item>
             </mt-swipe>

@@ -61,7 +61,7 @@
                     border-right:1px solid #CCC;
                 }
                 .bindCard,.checkAppointment{
-                    padding-top: 1rem;
+                    padding-top: 0.5rem;
                     box-sizing:border-box;
                     text-align: center;
                     height: 50%;
@@ -206,7 +206,7 @@
             </div>
         </section>
         <section id='content'>
-            <mt-swipe :auto="0" class='carousel'>
+            <mt-swipe :auto="5000" class='carousel'>
                 <mt-swipe-item class='one'></mt-swipe-item>
                 <mt-swipe-item class='two'></mt-swipe-item>
                 <mt-swipe-item class='three'></mt-swipe-item>
@@ -216,7 +216,6 @@
             <div class="funcGroup">
                  <chipItem iconName='lisreport_icon' v-bind:doClick='getLisreport' name='检查查询'/>
                  <chipItem iconName='risReport_icon' v-bind:doClick='getRisReport' name='彩超报告查询'/>
-                 <chipItem iconName='department_icon' v-bind:doClick="getDepartmentNO" name='医生排班'/>
                  <chipItem iconName='hospitalFee_icon' v-bind:doClick="getHospitalFee" name='住院费用'/>
                  <chipItem iconName='department_icon' v-bind:doClick="getDepartmentNO" name='科室信息'/>
                  <chipItem iconName='patient_icon' v-bind:doClick="getCommonPatient" name='常用病人记录'/>
