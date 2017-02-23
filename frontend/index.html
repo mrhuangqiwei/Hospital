@@ -1,4 +1,18 @@
-<!DOCTYPE html><html><head><meta charset=utf-8><meta name=description content="stock vote on gfapp"><meta name=viewport content="width=device-width,maximum-scale=1,minimum-scale=1,initial-scale=1,user-scalable=no"><meta name=format-detection content="telephone=no"><meta name=apple-mobile-web-app-capable content=yes><meta name=x5-orientation content=portrait><meta name=full-screen content=yes><meta name=x5-fullscreen content=true><title>Hosiptal</title><link href=./static/css/app.e12394efd76832c62905fa63d3cd0602.css rel=stylesheet></head><script>document.addEventListener('touchmove', function (e) { // touchmove和touchend部分用于解决调出手机键盘后，点击其他区域，隐藏键盘
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="stock vote on gfapp">
+        <meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1, initial-scale=1, user-scalable=no">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="x5-orientation" content="portrait">
+        <meta name="full-screen" content="yes">
+        <meta name="x5-fullscreen" content="true">
+        <title>Hosiptal</title>
+    </head>
+    <script>
+        document.addEventListener('touchmove', function (e) { // touchmove和touchend部分用于解决调出手机键盘后，点击其他区域，隐藏键盘
             window.noBlurFromInput = true;
         }); 
         document.addEventListener('touchend', function (e) {
@@ -69,4 +83,11 @@
         
         function getTitle () {
             return localStorage.getItem('newsTitle') || 'XX医院';
-        }</script><body><div id=mount></div><script type=text/javascript src=./static/js/manifest.cdfcc0740881e20fd914.js></script><script type=text/javascript src=./static/js/vendor.3aad178293f79c572656.js></script><script type=text/javascript src=./static/js/app.02fcc87561a47639c07d.js></script></body></html>
+        }
+    </script>
+    <body>
+        <!-- built files will be auto injected -->
+        <div id="mount"></div>
+    </body>
+
+</html>

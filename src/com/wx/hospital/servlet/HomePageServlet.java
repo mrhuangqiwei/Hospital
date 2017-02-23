@@ -31,7 +31,7 @@ public class HomePageServlet extends BaseServlet {
             resp.sendRedirect(redirectUrl);
             return;
         }
-        req.getRequestDispatcher("index.html").forward(req, resp);
+        req.getRequestDispatcher("homepage.html").forward(req, resp);
     }
 
     @Override
