@@ -122,18 +122,42 @@
             background-size: cover !important;
             background: url('../img/pay.png') no-repeat center center;
         }
-        .bindCard_icon,.checkAppointment_icon{
-            height: 4rem;
-            width: 4rem;
-            margin: 0 auto;
-            background-size: cover !important;
-        }
         .bindCard_icon{
             margin-bottom: 0.5rem;
             background: url('../img/bindCard.png') no-repeat center center;
         }
         .checkAppointment_icon{
             background: url('../img/checkAppointment.png') no-repeat center center;
+        }
+        
+        .lisreport_icon{
+            background: url('../img/lisrepor.png') no-repeat center center;
+        }
+        .risReport_icon{
+            background: url('../img/risReport.png') no-repeat center center;
+        }
+        .department_icon{
+            background: url('../img/department.png') no-repeat center center;
+        }
+        .hospitalFee_icon{
+            background: url('../img/hospitalFee.png') no-repeat center center;
+        }
+        .patient_icon{
+            background: url('../img/patient.png') no-repeat center center;
+        }
+        .appointment_icon{
+            background: url('../img/checkAppointment.png') no-repeat center center;
+        }
+        .prescription_icon{
+            background: url('../img/prescription.png') no-repeat center center;
+        }
+
+        .pay_icon,.bindCard_icon,.checkAppointment_icon,.lisreport_icon,.prescription_icon,
+        .risReport_icon,.department_icon,.hospitalFee_icon,.patient_icon,.appointment_icon{
+            height: 4rem;
+            width: 4rem;
+            margin: 0 auto;
+            background-size:cover !important;
         }
 
         /* funcGroup */
@@ -190,14 +214,14 @@
         </section>
         <section id='footer'>
             <div class="funcGroup">
-                 <chipItem iconName='bindCard_icon' v-bind:doClick='getLisreport' name='检查查询1'/>
-                 <chipItem iconName='bindCard_icon' v-bind:doClick='getRisReport' name='彩超报告查询'/>
-                 <chipItem iconName='bindCard_icon' v-bind:doClick="getDepartmentNO" name='医生排班'/>
-                 <chipItem iconName='bindCard_icon' v-bind:doClick="getHospitalFee" name='住院费用'/>
-                 <chipItem iconName='bindCard_icon' v-bind:doClick="getDepartmentNO" name='科室信息'/>
-                 <chipItem iconName='bindCard_icon' v-bind:doClick="getCommonPatient" name='常用病人记录'/>
-                 <chipItem iconName='bindCard_icon' v-bind:doClick="getPatientAppointmentInfo" name='查询病人预约信息'/>
-                 <chipItem iconName='bindCard_icon' v-bind:doClick="getPrescription" name='处方查询'/>
+                 <chipItem iconName='lisreport_icon' v-bind:doClick='getLisreport' name='检查查询'/>
+                 <chipItem iconName='risReport_icon' v-bind:doClick='getRisReport' name='彩超报告查询'/>
+                 <chipItem iconName='department_icon' v-bind:doClick="getDepartmentNO" name='医生排班'/>
+                 <chipItem iconName='hospitalFee_icon' v-bind:doClick="getHospitalFee" name='住院费用'/>
+                 <chipItem iconName='department_icon' v-bind:doClick="getDepartmentNO" name='科室信息'/>
+                 <chipItem iconName='patient_icon' v-bind:doClick="getCommonPatient" name='常用病人记录'/>
+                 <chipItem iconName='appointment_icon' v-bind:doClick="getPatientAppointmentInfo" name='检查预约'/>
+                 <chipItem iconName='prescription_icon' v-bind:doClick="getPrescription" name='处方查询'/>
             </div>
         </section>
         <!--通用-->

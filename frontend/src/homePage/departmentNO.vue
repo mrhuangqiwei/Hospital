@@ -1,12 +1,23 @@
 <style lang="scss" scoped>
     #departmentNO{
         li{
-            height: 3rem;
-            line-height: 3rem;
+            height: 4rem;
+            line-height: 4rem;
             font-size: 1.7rem;
             text-indent: 3rem;
             border-bottom: 1px solid #838383;
             background-color: white;
+        }
+        span.arrow_icon{
+            background: url('../img/arrow.png') no-repeat center center;
+            height: 2rem;
+            width: 2rem;
+            background-size:cover !important;
+            display: inline-block;
+            float: right;
+            top: 1rem;
+            right: 1rem;
+            position: relative;
         }
     }
 </style>
@@ -17,6 +28,7 @@
             <li>科室名称</li>
             <li v-for='item in departmentInfo' :ksbm='item.ksbm' @click='getDoctorSchedule(item.ksbm)'>
                 {{item.ksmc}}
+                <span class="arrow_icon"></span>
             </li>
         </ul>
     </div>

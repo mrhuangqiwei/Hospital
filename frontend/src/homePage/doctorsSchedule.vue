@@ -1,7 +1,7 @@
-<style lang="scss">
+<style lang="scss" scoped>
     #doctorsSchedule{
         font-size:1.7rem;
-        .scheduleItem{
+        div.scheduleItem{
             display: flex;
             height: 7rem;
             background: white;

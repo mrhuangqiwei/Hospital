@@ -48,19 +48,18 @@
                 border: 1px solid;
             }
         }
-        .funcItem{
+        li.funcItem{
             background: white;
             border-bottom: 1px solid #EEE;
+            padding-left: 2rem;
+            height: 5rem;
+            line-height: 5rem;
             span{
                 display: inline-block;
             }
-            .bindCard_icon{
-                margin-left: 2rem;
-            }
             .name{
                 vertical-align: top;
-                margin-top: 1rem;
-                font-size: 2rem;
+                font-size: 1.8rem;
                 margin-left: 2rem;
             }
         }
@@ -78,14 +77,28 @@
         .funcGroup{
             background: white;
          }
-        .bindCard_icon{
+        .hospitalFee_icon,.prescription_icon,.pay_icon,.patient_icon,.checkAppointment_icon{
             height: 4rem;
             width: 4rem;
-            margin: 0 auto;
             background-size: cover !important;
-            margin-bottom: 0.5rem;
-            background: url('../img/bindCard.png') no-repeat center center;
+            margin: 0.5rem auto;
         }
+        .hospitalFee_icon{
+            background: url('../img/hospitalFee.png') no-repeat center center;
+        }
+        .prescription_icon{
+            background: url('../img/prescription.png') no-repeat center center;
+        }
+        .pay_icon{
+            background: url('../img/pay.png') no-repeat center center;
+        }
+        .patient_icon{
+            background: url('../img/patient.png') no-repeat center center;
+        }
+        .checkAppointment_icon{
+            background: url('../img/checkAppointment.png') no-repeat center center;
+        }
+
     }
 </style>
 
@@ -100,19 +113,19 @@
        <div clas='content'> 
             <ul>
                 <li class='funcItem' @click='getTreatSpend'>
-                    <span class='bindCard_icon'></span><span class='name'>门诊费用清单</span>
+                    <span class='hospitalFee_icon'></span><span class='name'>门诊费用清单</span>
                 </li>
                 <li class='funcItem' @click='medicalRecord'>
-                    <span class='bindCard_icon'></span><span class='name'>问诊纪录</span>
+                    <span class='prescription_icon'></span><span class='name'>问诊纪录</span>
                 </li>
                 <li class='funcItem' @click='shouldPay'>
-                    <span class='bindCard_icon'></span><span class='name'>应缴费用</span>
+                    <span class='pay_icon'></span><span class='name'>应缴费用</span>
                 </li>
                 <li class='funcItem' @click='editCommonPatient'>
-                    <span class='bindCard_icon'></span><span class='name'>管理就诊人</span>
+                    <span class='patient_icon'></span><span class='name'>管理就诊人</span>
                 </li>
                 <li class='funcItem' @click='gethasAppointedList'>
-                    <span class='bindCard_icon'></span><span class='name'>已挂号信息</span>
+                    <span class='checkAppointment_icon'></span><span class='name'>已挂号信息</span>
                 </li>
            </ul>
         </div>

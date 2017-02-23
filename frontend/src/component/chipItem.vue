@@ -1,5 +1,7 @@
 <style lang="scss" scoped>
-
+    div.name{
+        margin-top: 0.5rem;
+    }
 </style>
 
 <template>
