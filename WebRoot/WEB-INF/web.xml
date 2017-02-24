@@ -205,4 +205,15 @@
     <servlet-name>yyghcxservlet</servlet-name>
     <url-pattern>/yyghcxservlet</url-pattern>
   </servlet-mapping>
+  
+    <servlet>
+    <description></description>
+    <display-name>globalconfigservlet</display-name>
+    <servlet-name>globalconfigservlet</servlet-name>
+    <servlet-class>Servlet.globalconfigservlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>globalconfigservlet</servlet-name>
+    <url-pattern>/globalconfigservlet</url-pattern>
+  </servlet-mapping>
 </web-app>
