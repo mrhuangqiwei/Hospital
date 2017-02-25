@@ -3,6 +3,13 @@
         background-color: white;
         box-sizing: border-box;
         font-size:1.7rem;
+        height: 100%;
+        div.height100{
+            height:100%;
+        }
+        .flex1{
+            flex: 1;
+        }
         li{
             min-height:3rem;
             display:flex;
@@ -13,15 +20,31 @@
             span{
                 flex:2;
             }
-            
-            span.gg{
+        }
+        li.listHeader{
+            span{
+                display:inline-block;
+            }
+            i{
+                text-indent: 0;
                 text-align: center;
             }
+            i.item{
+                width: 25%;
+            }
+            i.gg,i.sl{
+                width:17%;
+            }
+            i.dj,i.je{
+                width: 20%;
+            }
         }
-       
+        span.gg{
+            text-align: center;
+        }
         div.header{
             div{
-                height:3rem;
+                min-height:3rem;
                 width:100%;
                 display:flex;
                 span{
@@ -37,40 +60,52 @@
 
 <template>
     <div id='hospitalizationFee'>
-        <ul v-if='step=="ONE"'>
-            <p class='title'>常用就诊人信息</p>
-            <li v-for='item in commonPatient' @click='getDetailInfo(item)'>
-                {{item.brxm}}
-            </li>
-        </ul>
-        <ul v-else-if='step=="TWO"'>
-            <p class='title'>就诊信息</p>
-            <li v-for='item in patientInfo' @click='getHospitalizationFee(item)' v-if='item.ylklxbm=="02"'>
-                <span>{{item.brxm}}</span><span>{{item.ghxh.substr(0,8)}}</span>
-            </li>
-        </ul>
+        <div v-if='step=="ONE"' class='height100'>
+            <patientList :doSomething='getPatient'/>
+        </div>  
+        <div v-else-if='step=="TWO"' class='height100'>
+            <patientDetailInfo :doSomething='getHospitalizationFee' :sfzh='sfzh' :ylkh='ylkh' :khStyle='02'/>
+        </div>
         <div v-else-if='step=="THREE"'>
-            <p class="title">住院费清单</p>
+            <p class="TITLE">住院费清单</p>
             <div class="header">
-                <div><span>住院号:{{fee.zyh}}</span><span>姓名:{{fee.brxm}}</span></div>
-                <div><span>科室:{{fee.ksmc}}</span></div>
-                <div><span>入院日期:{{fee.ryrq.substr(0,10)}}</span><span>出院日期:{{fee.cyrq.substr(0,10)}}</span></div>
-                <div><span>费用合计:{{(+fee.fyje).toFixed(3)}}</span><span>预交费用:{{(+fee.yjje).toFixed(3)}}</span></div>
-                <div><span>费别:{{fee.fbmc}}</span><span>家庭住址:{{fee.jtzz}}</span></div>
+                <div>
+                    <span><i>住院号:</i><i class='darkBlue'>{{fee.zyh}}</i></span>
+                    <span><i>姓名:</i><i class='darkBlue'>{{fee.brxm}}</i></span>
+                </div>
+                <div>
+                    <span><i>科室:</i><i class='darkBlue'>{{fee.ksmc}}</i></span>
+                </div>
+                <div>
+                    <span><i>入院日期:</i><i class='darkBlue'>{{fee.ryrq.substr(0,10)}}</i></span>
+                    <span><i>出院日期:</i><i class='darkBlue'>{{fee.cyrq.substr(0,10)}}</i></span>
+                </div>
+                <div>
+                     <span>
+                         <i>费用合计:</i><i class='gold'>{{(+fee.fyje).toFixed(2)}}</i>
+                     </span>
+                     <span>
+                         <i>预交费用:</i><i class='gold'>{{(+fee.yjje).toFixed(2)}}</i>
+                     </span>
+                </div>
+                <div>
+                    <span><i>费别:</i><i class='darkBlue'>{{fee.fbmc}}</i></span>
+                    <span><i>家庭住址:</i><i class='darkBlue'>{{fee.jtzz}}</i></span>
+                </div>
                 <ul>
-                    <li>
-                        <span class='item'>项目名称</span>
-                        <span class='gg flex1'>规格</span>
-                        <span class='sl'>数量</span>
-                        <span class='dj'>单价</span>
-                        <span class='je'>金额</span>
+                    <li class='listHeader'>
+                        <i class='item'>项目名称</i>
+                        <i class='gg'>规格</i>
+                        <i class='sl'>数量</i>
+                        <i class='dj'>单价</i>
+                        <i class='je'>金额</i>
                     </li>
                     <li v-for='item in fee.userfymx'>
-                        <span class='item'>{{item.ypmc}}</span>
-                        <span class='gg flex1'>{{item.fygg}}</span>
-                        <span class='sl'>{{item.fysl}}</span>
-                        <span class='dj'>{{(+item.fydj).toFixed(3)}}</span>
-                        <span class='je'>{{(+item.fyje).toFixed(3)}}</span>
+                        <span class='item darkBlue'>{{item.ypmc}}</span>
+                        <span class='gg  darkBlue'>{{item.fygg}}</span>
+                        <span class='sl  darkBlue'>{{item.fysl}}</span>
+                        <span class='dj  darkBlue'>{{(+item.fydj).toFixed(2)}}</span>
+                        <span class='je gold'>{{(+item.fyje).toFixed(2)}}</span>
                     </li>
                 </ul>
             </div>
@@ -94,11 +129,11 @@
             chipItem
         },
         methods:{
-            getDetailInfo(item){
-                api.getPatientDetailInfo(item.sfzh,item.ylkh).then((data)=>{
-                    this.patientInfo = JSON.parse(data);
-                    this.step = 'TWO';
-                })
+            getPatient(item){
+                this.sfzh = item.sfzh;
+                this.ylkh = item.ylkh;
+                this.$nextTick(function(item){});
+                this.step = 'TWO';
             },
         
             getHospitalizationFee(item){

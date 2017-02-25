@@ -389,6 +389,31 @@ var _backend = {
     },
 
     //彩超结果查询等 
+    // 返回参数说明：
+    // aGE ：年龄
+    // aGEUNIT ：年龄单位
+    // cHECKDATE:检查日期
+    // cHECKDOCTOR：检查医生
+    // cLASSNAME：检查设备
+    // cLIISINPAT：申请方式
+    // eNROLDATE：登记日期
+    // eNROLDOCTOR：登记医生
+    // iNPATIENTNO：住院号
+    // lODGEDATE:申请日期
+    // lODGEDOCTOR：申请医生
+    // lODGESECTION：申请科室
+    // laybe1：影像描述
+    // laybe2：结果建议
+    // nAME：病人姓名
+    // pARTOFCHECK：检查部位
+    // pATIENTID：病人编号
+    // pHOTONO:影像编号
+    // pINYIN：姓名拼音
+    // reportDate：报告日期
+    // reportDoctor：报告医生
+    // sEX：性别
+    // sTUDYID：研究id
+    // tOTALFEE：总费用
     getRisReport(zyh){
         return $.ajax({
             url: `${URL}/Hospital/RisReport?zyh=${zyh}&submit=%E6%8F%90%E4%BA%A4`,
@@ -398,8 +423,7 @@ var _backend = {
     },
 
     // 查询病人预约信息
-    // http://mrhuangqiwei.6655.la/Hospital/FreindsYyinfo?
-    // openid=owEWzwQKO7G_uy4C0X_Wn2boPVI4&%E6%8F%90%E4%BA%A4=%E6%8F%90%E4%BA%A4
+    // http://mrhuangqiwei.6655.la/Hospital/FreindsYyinfo?openid=owEWzwQKO7G_uy4C0X_Wn2boPVI4&%E6%8F%90%E4%BA%A4=%E6%8F%90%E4%BA%A4
     // 返回参数说明
     // brxm 病人姓名
     // sfzh 身份证号
@@ -476,7 +500,7 @@ var _backend = {
 
     gethasAppointedList(sfzh='',ylkh=''){
         return $.ajax({
-            url: `${URL}/Hospital/yycxservlet?sfzh=${sfzh}&ylkh=${ylkh}%5C`,
+            url: `${URL}/Hospital/yycxservlet?sfzh=${sfzh}&ylkh=${ylkh}&提交=提交`,
             method:'GET',
             contentType:'text/plain'
         })
@@ -608,7 +632,7 @@ var Store = {
         })
     },
     gethasAppointedList(sfzh,ylkh){
-        return _backend.getShouldPay(sfzh,ylkh).then((data)=>{
+        return _backend.gethasAppointedList(sfzh,ylkh).then((data)=>{
             return data;
         })
     }

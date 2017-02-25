@@ -215,10 +215,10 @@
         <section id='footer'>
             <div class="funcGroup">
                  <chipItem iconName='lisreport_icon' v-bind:doClick='getLisreport' name='检查查询'/>
-                 <chipItem iconName='risReport_icon' v-bind:doClick='getRisReport' name='彩超报告查询'/>
+                 <chipItem iconName='risReport_icon' v-bind:doClick='getRisReport' name='彩超查询'/>
                  <chipItem iconName='hospitalFee_icon' v-bind:doClick="getHospitalFee" name='住院费用'/>
                  <chipItem iconName='department_icon' v-bind:doClick="getDepartmentNO" name='科室信息'/>
-                 <chipItem iconName='patient_icon' v-bind:doClick="getCommonPatient" name='常用病人记录'/>
+                 <chipItem iconName='patient_icon' v-bind:doClick="getCommonPatient" name='管理就诊人'/>
                  <chipItem iconName='appointment_icon' v-bind:doClick="getPatientAppointmentInfo" name='检查预约'/>
                  <chipItem iconName='prescription_icon' v-bind:doClick="getPrescription" name='处方查询'/>
             </div>
@@ -300,16 +300,16 @@
                 })
             },
             getRisReport(){
-                api.getRisReport('2016003857').then((data)=>{
+                api.getRisReport('2016022823').then((data)=>{
                     this.unitCommit('SET_RISREPORT',data);
                     routerManager.routerTo('singel/risreport');
                 })
             },
             getPatientAppointmentInfo(){
-                api.getPatientAppointmentInfo('owEWzwQKO7G_uy4C0X_Wn2boPVI4').then((data)=>{
-                    this.unitCommit('SET_PATIENTAPPOINTMENTINFO',data);
+                api.getCommonPatient('owEWzwQKO7G_uy4C0X_Wn2boPVI4').then((data)=>{
+                    this.unitCommit('SET_COMMON_PATIENT',data);
                     routerManager.routerTo('singel/patientAppointmentInfo');
-                })
+                });
             },
             getPrescription(){
                 api.getCommonPatient('owEWzwQKO7G_uy4C0X_Wn2boPVI4').then((data)=>{

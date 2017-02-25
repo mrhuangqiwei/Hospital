@@ -1,5 +1,7 @@
 <style lang="scss" scoped>
     #prescription{
+        font-size: 1.8rem;
+        
         .center{
             text-align: center;
         }
@@ -9,13 +11,18 @@
         .right{
             text-align: right;
         }
-          
+        .height100{
+            height: 100%;
+        }
         li{
             display:flex;
             text-indent: 1rem;
             span{
                 flex:1;
             }
+        }
+        span{
+            padding:0.5rem;
         }
         .page{
             border-bottom: 1px solid #838383;
@@ -32,19 +39,14 @@
         ul.stepTwo,ul.stepOne{
             li{
                 background:white;
-                height: 4rem;
+                min-height: 4rem;
                 line-height: 4rem;
-                font-size: 1.7rem;
                 border-top:1px solid #838383;
-            }
-        }
-        ul.page{
-            li{
             }
         }
         div.header{
             overflow-y: auto;
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             span{
                 min-height: 3rem;
                 line-height: 3rem;
@@ -52,44 +54,52 @@
                 margin: 1px;
                 background:white;
             }
+            span.middle{
+                line-height: initial;
+            }
+        }
+        .empty{
+            text-align: center;
+            font-size: 2rem;
+            margin-top: 2rem;
         }
     }
 </style>
 
 <template>
     <div id='prescription'>
-        <ul v-if='step=="ONE"' class='stepOne'>
-            <p class='title center'>常用就诊人</p>
-            <li v-for='item in commonPatient' @click='getPatientDetailInfo(item)'>
-                {{item.brxm}}
-            </li>
-        </ul>
-        <ul v-else-if='step=="TWO"' class='stepTwo'>
-            <p class='title center'>就诊信息</p>
-            <li><span>就诊人</span><span>就诊日期</span></li>
-            <li v-for='item in patientInfo' @click='getPrescription(item)' v-if='item.ylklxbm=="01"'>
-                <span >{{item.brxm}}</span><span >{{item.ghxh.substr(0,8)}}</span>
-            </li>
-        </ul>
+        <div v-if='step=="ONE"' class='height100'>
+            <patientList :doSomething='getPatient'/>
+        </div>  
+        <div v-else-if='step=="TWO"' class='height100'>
+            <patientDetailInfo :doSomething='getPrescription' :sfzh='sfzh' :ylkh='ylkh' :khStyle='01'/>
+        </div>
         <div v-else-if='step=="THREE"' class="pageContent">
             <div class='empty' v-if='prescription.length==0'>
-                暂无记录
+                暂无记录!
             </div> 
             <div v-else>
-                <p class='title center'>西药处方</p>
+                <p class='TITLE'>西药处方</p>
                 <div class="header">
                     <ul v-for='script in prescription' class='page'>
-                        <li><span>临床诊断:{{script.mzzd}}</span></li>
-                        <li class='left'><span>姓名:{{script.brxm}}</span><span>处方金额:  {{script.cfje}}元</span></li>
-                        <li v-for="bean in script.yppfmxBeans">
+                        <li>
+                            <span>
+                                <i>临床诊断:</i><i class='darkBlue'>{{script.mzzd}}</i>
+                            </span>
+                        </li>
+                        <li class='left'>
+                            <span><i>姓名:</i><i class='darkBlue'>{{script.brxm}}</i></span>
+                            <span><i>处方金额:</i><i class='gold'>{{script.cfje}}元</i></span>
+                        </li>
+                        <li v-for="bean in script.yppfmxBeans" class='darkBlue'>
                             <span>{{bean.ypmc}}</span>
                             <span class='double'>
                                 <span>{{bean.ypgg}}</span>
                                 <span>{{bean.fyjl+' '+bean.jldwmc}}</span>
                             </span>
                             <span class='double'>
-                                <span>{{bean.zl+' '+bean.yfdwmc}}</span>
-                                <span>{{bean.yyffmc+' '+bean.pcmc}}</span>
+                                <span class='gold'>{{bean.zl+' '+bean.yfdwmc}}</span>
+                                <span class='middle'>{{bean.yyffmc+' '+bean.pcmc}}</span>
                             </span>
                         </li>
                     </ul>
@@ -114,16 +124,20 @@
         components:{
         },
         methods:{
-            getPatientDetailInfo(item){
-                 api.getPatientDetailInfo(item.sfzh,item.ylkh).then((data)=>{
-                    this.patientInfo = JSON.parse(data);
-                    this.step = 'TWO';
-                })
+            getPatient(item){
+                this.sfzh = item.sfzh;
+                this.ylkh = item.ylkh;
+                this.$nextTick(function(item){});
+                this.step = 'TWO';
             },
             getPrescription(item){
-                api.getPrescription(item.ghxh).then((data)=>{
-                    this.prescription = JSON.parse(data);
-                    this.$nextTick(function(item){});
+                api.getPrescription('20160809000077').then((data)=>{
+                    if(data==0){
+                        this.prescription = [];
+                    } else{
+                        this.prescription = JSON.parse(data);
+                        this.$nextTick(function(item){});
+                    }
                     this.step = 'THREE';
                 })
             }

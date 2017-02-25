@@ -1,7 +1,7 @@
 <style lang="scss" scoped>
     div.patientList{    
         height: 100%;
-
+        font-size: 1.8rem;
         i.avater{
             position: absolute;
             top: 0.9rem;
@@ -26,15 +26,11 @@
             background: white;
             min-height:4rem;
             line-height: 4rem;    
-            border-bottom: 1px solid #838383;     
+            border-bottom: 1px solid #dcd8d8;     
         }
         li.darkBlue{
             color:#295286;
         }
-        li:last-child{
-            border: none;
-        }
-
     }
 </style>
 
@@ -46,9 +42,6 @@
             <li><i></i><span class='name'>姓名</span><span class='cell'>电话号码</span></li>
             <li v-for='item in commonPatient' @click='outPutPatientList(item)' class='darkBlue'>
                 <i class="avater"></i><span class='name'>{{item.brxm}}</span><span class='cell'>{{item.brdh}}</span>
-            </li>
-            <li>
-                <button @click='goBack' class='GOBACK'>返 回</button>
             </li>
         </ul>
     </div>

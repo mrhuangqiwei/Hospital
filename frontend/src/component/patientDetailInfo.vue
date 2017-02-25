@@ -1,7 +1,7 @@
 <style lang="scss" scoped>
     div.patientDetailInfo{    
         height: 100%;
-  
+        font-size: 1.8rem;    
         span.name{
             text-align: center;
             flex:2;
@@ -16,15 +16,11 @@
             background: white;
             height:4rem;
             line-height: 4rem;    
-            border-bottom: 1px solid #838383;     
+            border-bottom: 1px solid #dcd8d8;     
         }
         li:not(:first-child){
             color:#295286;
         }
-        li:last-child{
-            border: none;
-        }
-
     }
 </style>
 
@@ -36,9 +32,6 @@
             <li><span class='name'>就诊人</span><span class='cell'>就诊日期</span></li>
             <li v-for='item in patientDetailInfo' @click='doSomething(item)' v-if='item.ylklxbm==khStyle'>
                 <span class='name'>{{item.brxm}}</span><span class='cell'>{{item.ghxh.substr(0,8)}}</span>
-            </li>
-            <li>
-                <button @click='goBack' class='GOBACK'>返 回</button>
             </li>
          </ul>
     </div>

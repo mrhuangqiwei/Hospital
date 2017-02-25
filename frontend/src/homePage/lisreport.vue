@@ -1,29 +1,69 @@
 <style lang="scss" scoped>
     #lisreport{
         height: 100%;
-        p.title{
-            border-radius: 4px;
+        font-size:1.8rem;
+        background: white;
+        .flex2{
+            flex: 2;
+        }
+        .flex3{
+            flex:3;
+        }
+        .state2{
+            background: url('../img/stateUp.png') no-repeat center center;
+        }
+        .state1{
+            background: url('../img/stateUp.png') no-repeat center center;
+        }
+        .state1,.state2{
+            display: inline-block !important;
+            background-size: cover;
+            height: 1.5rem;
+            width: 1.5rem;
+            vertical-align: text-bottom;
         }
         li{
-            height: 4rem;
-            font-size: 1.7rem;
+            min-height: 4rem;
             border-bottom: 1px solid #838383;
             box-sizing: border-box;
             padding-left:1rem;
             line-height: 4rem;
             background-color: white;
+            display:flex;
+            flex-direction:column;
+            div{
+                display:flex;
+            }
+            span{
+                flex:1;
+                min-height: 3rem;
+                line-height: 3rem;
+            }
         }
         ul.showArea{
             max-height: 30rem;
             overflow: scroll;
             box-sizing: border-box;
-        }
-        ul.reportList{
+            font-size:1.6rem;
             li{
-                height: 4rem;
-                font-size: 1.7rem;
+                flex-direction:row;
+                min-height:3rem;
+                line-height:3rem;
+                span{
+                    text-align: left;
+                }
+                i{
+                    display: inline;
+                }
+            }
+            li:nth-child(5){
+                border-bottom: 2px solid #838383;
             }
         }
+        ul.detailList{
+            border-bottom: 2px solid #838383;
+        }
+     
         ul.detailList:nth-child(odd){
             li{
                 background-color:#e3e3e3;
@@ -41,68 +81,104 @@
             }
         }
         
-        div.dialog{
-            li{
-                display:flex;
-                box-sizing: border-box;
-                justify-content:center;
-                span{
-                    flex:1;
-                    justify-content:center;
-                    display:inline-block;
-                    overflow: hidden;
-                    text-align: left;
-                    word-break: break-all;
-                    align-items:center;
-                    line-height: 4rem;
-                }
-                span.name{
-                    flex:3;
-                }
-                span.age,span.sex{
-                    flex:2;
-                }
-                span.jg_zt{
-                    width: 6rem;
-                    display: inline-block;
-                    flex: inherit;
-                }
-                span.jg_zwmc{
-                    flex:2;
-                }
-            }
-        }
     }
 </style>
 
 <template>
     <div id='lisreport'>
         <ul class="reportList">
-            <p class='title'>检查记录</p>
+            <p class='TITLE'>检查记录</p>
             <li v-for='item in lisreport' @click="showDetail(item)">
-                <span class='name'>姓名: {{item.brxm}}</span> 
-                <span class='date'>采样日期: {{item.cyrq.substr(0,10)}}</span> 
+                <div>
+                    <span><i>姓名:</i><i class='darkBlue'>{{item.brxm}}</i></span>
+                    <span><i>科室:</i><i class='darkBlue'>{{item.ksmc}}</i></span>
+                </div>
+                <div>
+                    <span><i>检查日期:</i><i class='darkBlue'>{{item.cyrq.substr(0,10)}}</i></span>
+                </div>
             </li>
             <li v-if='lisreport.length == 0' class='empty'><span>暂无数据！</span></li>
         </ul>
         <!--通用-->
         <my-dialog :show='showDialog' :cbClose='closeDialog'>
-            <div slot="title"><p class='title'>检查报告</p></div>
+            <div slot="title"><p class='TITLE'>检查报告</p></div>
             <ul slot='content' v-if='showItem' class='showArea'>
-                <li class='oneRow'><span class='name'>姓名: {{showItem.brxm}}</span><span class='sex'>性别: {{showItem.brxb=='1'?'男':'女'}}</span><span class='age'>年龄: {{showItem.brnl}}岁</span></li>
-                <li><span class=''>病案号: {{showItem.bah}}</span></li>
-                <li><span class='label'>住院号: {{showItem.cwh}}</span><span class='label'>科室: {{showItem.ksmc}}</span></li>
-                <li><span class='label'>项目: {{showItem.mc}}</span><span class='label'>执行医生: {{showItem.zxys}}</span></li>
-                <li><span class='label'>仪器: {{showItem.sbmc}}</span></li>
-                    <ul v-for='jg in showItem.jyjg' class='detailList'>
-                        <li><span class='jg_label'>检查序号: {{jg.jyxh}}</span></li>
-                        <li><span class='jg_label jg_zwmc'>项目: {{jg.zwmc}}</span><span class='jg_label jg_ywmc'>简称:{{jg.ywmc}}</span></li>
-                        <li><span class='jg_label'>结果: {{jg.jg}}</span><span class='jg_label'>单位: {{jg.dw}}</span></li>
-                        <li><span class='jg_label'>value_N: {{jg.value_N}}</span><span class='jg_label'>value_N_1: {{jg.value_N_1}}</span></li>
-                        <li><span class='jg_label'>参考范围: {{jg.ckz_t}}</span><span class='jg_label jg_zt'>状态: {{jg.zt}}</span></li>
-                    </ul>
-                <li><span class='label'>样本编码: {{showItem.ybbm}}</span><span class='label'>审核人员: {{showItem.shry}}</span></li>
-                <li><span class='label'>审核日期: {{showItem.shrq&&showItem.shrq.substr(0,10)}}</span></li>
+                <li>
+                    <span class='name'>
+                        <i>姓名:</i><i class='darkBlue'>{{showItem.brxm}}</i>
+                    </span>
+                    <span class='sex'>
+                        <i>性别:</i><i class='darkBlue'>{{showItem.brxb=='1'?'男':'女'}}</i>
+                    </span>
+                    <span class='age'>
+                        <i>年龄:</i><i class='darkBlue'>{{showItem.brnl}}岁</i>
+                    </span>
+                </li>
+                <li>
+                    <span class='label flex2'>
+                         <i>医生:</i><i class='darkBlue'>{{showItem.zxysxm}}</i>
+                    </span>
+                    <span class='flex3'>
+                        <i>病案号:</i><i class='darkBlue'>{{showItem.bah}}</i>
+                    </span>
+                </li>
+                <li>
+                    <span class='label'>
+                        <i>住院号:</i><i class='darkBlue'>{{showItem.cwh}}</i>
+                    </span>
+                    <span class='label'>
+                        <i>科室:</i><i class='darkBlue'>{{showItem.ksmc}}</i>
+                    </span>
+                </li>
+                <li>
+                    <span class='label'>
+                        <i>项目:</i><i class='darkBlue'>{{showItem.mc}}</i>
+                    </span>
+                </li>
+                <li>
+                    <span class='label'>
+                        <i>仪器:</i><i class='darkBlue'>{{showItem.sbmc}}</i>
+                    </span>
+                </li>
+                <ul v-for='jg in showItem.jyjg' class='detailList'>
+                    <li>
+                        <span class='jg_label jg_zwmc'>
+                            <i>项目:</i><i class='darkBlue'>{{jg.zwmc}}</i>
+                        </span>
+                        <span class='jg_label jg_ywmc'>
+                            <i>简称:</i><i class='darkBlue'>{{jg.ywmc}}</i>
+                        </span>
+                    </li>
+                    <li>
+                        <span class='jg_label'>
+                            <i>结果:</i><i class='gold'>{{jg.jg}}</i>
+                        </span>
+                        <span class='jg_label'>
+                            <i>单位:</i><i class='darkBlue'>{{jg.dw}}</i>
+                        </span>
+                    </li>
+                    <li>
+                        <span class='jg_label flex2'>
+                            <i>参考范围:</i><i class='darkBlue'>{{jg.ckz_t}}</i>
+                        </span>
+                        <span class='jg_label jg_zt'>
+                            <i>状态:</i><i v-bind:class='["state"+jg.zt]'></i>
+                        </span>
+                    </li>
+                </ul>
+                <li>
+                    <span class='label'>
+                        <i>样本编码:</i><i class='darkBlue'>{{showItem.ybbm}}</i>
+                    </span>
+                    <span class='label'>
+                        <i>审核人员:</i><i class='darkBlue'>{{showItem.shry}}</i>
+                    </span>
+                </li>
+                <li>
+                    <span class='label'>
+                         <i>审核日期:</i><i class='darkBlue'>{{showItem.shrq&&showItem.shrq.substr(0,10)}}</i>
+                    </span>
+                </li>
             </ul>
             <div slot='button' class='button'>
                 <button @click='closeDialog'>确定</button>
@@ -120,6 +196,11 @@
                 showDialog:false,
                 showItem:{},
                 lisreport:[]
+            }
+        },
+        computed:{
+            stateIcon(){
+
             }
         },
         components:{

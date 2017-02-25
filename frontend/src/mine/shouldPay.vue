@@ -32,6 +32,12 @@
         i{
             margin-right: 1rem;
         }
+        .half{
+            background: #58b5af;
+            color: white;
+            height: 3rem;
+            width: 12rem;
+        }
     }
 </style>
 
@@ -51,7 +57,6 @@
             </li>
             <li>
                 <span><i>总费用:</i><i class='gold'>{{total.pay}}</i></span>
-                <button class='doPay' @click='doPay'>付款</button>
             </li>
             <li><span class='flex2'>项目名称</span><span>数量</span><span>单价</span><span>金额</span></li>
             <li v-for='item in paylist'>
@@ -61,7 +66,8 @@
                 <span class='gold'>{{(+item.fyje).toFixed(2)}}</span>
             </li>
             <li>
-                <button class='GOBACK' @click='goBack'>返回</button>
+                <button class='half' @click='goBack'>返回</button>
+                <button class='half' @click='doPay'>付款</button>
             </li>
         </ul>
     </div>

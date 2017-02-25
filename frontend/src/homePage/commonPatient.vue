@@ -49,18 +49,15 @@
             :right="[
             {
                 content: 'Edit',
-                style: { background: 'grey', color: '#fff' },
+                style: { background: 'grey', color: '#fff', 'width':'3.5rem', 'text-align':'center'},
                 handler: () => editDialog(index)
             },
             {
                 content: 'Delete',
-                style: { background: 'red', color: '#fff' },
+                style: { background: 'red', color: '#fff','width':'3.5rem', 'text-align':'center'},
                 handler: () => deleteItem(index)
             }
         ]"></mt-cell-swipe>
-        <div>
-            <button @click='goBack' class='GOBACK'>返 回</button>
-        </div>
         <!--通用-->
         <my-dialog :show='showDialog' :cbClose='closeDialog'>
             <p slot="title" class='TITLE'>修改常用人信息</p>

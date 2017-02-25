@@ -63,6 +63,9 @@
         background: white;
         text-align: center;
         font-size:2.2rem;
+        border-top-right-radius: 4px;
+        border-top-left-radius: 4px;
+        border-bottom: 1px solid black;
     }
     input{
         font-size: 1.6rem;

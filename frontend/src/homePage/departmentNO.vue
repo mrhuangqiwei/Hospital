@@ -7,6 +7,7 @@
             text-indent: 3rem;
             border-bottom: 1px solid #838383;
             background-color: white;
+            color:#31B6AA;
         }
         span.arrow_icon{
             background: url('../img/arrow.png') no-repeat center center;
@@ -25,7 +26,7 @@
 <template>
     <div id='departmentNO'>
         <ul>
-            <li>科室名称</li>
+            <p class='TITLE'>科室名称</p>
             <li v-for='item in departmentInfo' :ksbm='item.ksbm' @click='getDoctorSchedule(item.ksbm)'>
                 {{item.ksmc}}
                 <span class="arrow_icon"></span>
