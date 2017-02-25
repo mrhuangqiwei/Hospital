@@ -1,17 +1,29 @@
 <style lang="scss" scoped>
     #treatSpend{
-        font-size:1.7rem;
-        .center{
-            text-align: center;
+        height: 100%;
+        font-size: 1.8rem;
+        background: white;
+        div{
+            height:100%;
         }
         p{
-            height: 3rem;
-            line-height: 3rem;
+            height: 5rem;
+            line-height: 5rem;
             background: white;
+            text-align: center;
+            font-size:2.2rem;
         }
        
         .flex2{
             flex:2;
+        }
+        li.label i:first-child,
+        li.title span{
+            color: #171526;
+        }
+
+        i{
+            font-style: normal;
         }
         ul{
             box-sizing: border-box;
@@ -20,79 +32,87 @@
             text-indent: 1rem;
             display:flex;
             background: white;
-            height:4rem;
+            min-height:4rem;
             line-height: 4rem;    
             border-bottom: 1px solid #838383;        
             span{
-                font-size:1.6rem;
                 flex:1;
             }
         }
+
     }
 </style>
 
 <template>
     <div id='treatSpend'>
-        <ul v-if='step=="ONE"' class='stepOne'>
-            <p class='title center'>常用就诊人</p>
-            <li v-for='item in commonPatient' @click='getPatientDetailInfo(item)'>
-                {{item.brxm}}
-            </li>
-        </ul>
-        <ul v-else-if='step=="TWO"' class='stepTwo'>
-           <p class='title center'>就诊信息</p>
-           <li><span>就诊人</span><span>就诊日期</span></li>
-           <li v-for='item in patientDetailInfo' @click='getTreatSpend(item)' v-if='item.ylklxbm=="01"'>
-               <span>{{item.brxm}}</span><span>{{item.ghxh.substr(0,8)}}</span>
-           </li>
-        </ul>
+        <div v-if='step=="ONE"'>
+            <patientList :doSomething='getPatient'/>
+        </div>  
+        <div v-else-if='step=="TWO"'>
+            <patientDetailInfo :doSomething='getTreatSpend' :sfzh='sfzh' :ylkh='ylkh' :khStyle='01'/>
+        </div>
         <ul v-else-if='step=="THREE"' class='stepThree'>
-            <p class='title center'>门诊费用清单</p>
-            <li><span>姓名:{{treatSpend.brxm}}</span><span>年龄:{{treatSpend.brnl}}</span></li>
-            <li><span class='flex2'>挂号日期:{{treatSpend.ghrq}}</span><span>金额:{{(+treatSpend.fyzj).toFixed(2)}}</span></li>
-            <li><span>家庭住址:{{ treatSpend.jtzz }}</span></li>
-            <li><span>项目名称</span><span>数量</span><span>单价</span><span>金额</span></li>
+            <p>门诊费用清单</p>
+            <li class='label'>
+                <span><i>姓名:</i><i class='darkBlue'>{{treatSpend.brxm}}</i></span>
+                <span><i>年龄:</i><i class='darkBlue'>{{treatSpend.brnl}}</i></span>
+            </li>
+            <li class='label'>
+                <span class='flex2'><i>挂号日期:</i><i class='darkBlue'>{{treatSpend.ghrq}}</i></span>
+                <span><i>金额:</i><i class='gold'>{{(+treatSpend.fyzj).toFixed(2)}}</i></span>
+            </li>
+            <li class='label'>
+                <span><i>家庭住址:</i><i class='darkBlue'>{{treatSpend.jtzz}}</i></span>
+            </li>
+            <li class='title'>
+                <span>项目名称</span><span>数量</span><span>单价</span><span>金额</span>
+            </li>
             <li v-for='item in treatSpend.mzfymxBeans'>
-                <span>{{item.ypmc}}</span><span>{{item.fysl}}</span><span>{{item.fydj}}</span><span>{{item.fyje}}</span>
+                <span class='darkBlue'>{{item.ypmc}}</span><span class='darkBlue'>{{item.fysl}}</span><span class='darkBlue'>{{item.fydj}}</span><span class='gold'>{{item.fyje}}</span>
+            </li>
+            <li>
+                <button class='GOBACK' @click='goBack'>返 回</button>
             </li>
         </ul>
+
     </div>
 </template>
 
 <script>
     import api from '../backend/api';
-
+    import patientList from '../component/patientList';
+    import patientDetailInfo from '../component/patientDetailInfo';
+    import routerManager from '../routerManager';
     export default {
         data: function () {
             return {
                 step:'ONE',
-                commonPatient:[],
-                patientDetailInfo:[],
+                patient:{},
+                detailInfo:{},
                 treatSpend:{}
             }
         },
 
-        components:{
-        },
-
         methods:{
+            getPatient(item){
+                this.sfzh = item.sfzh;
+                this.ylkh = item.ylkh;
+                this.$nextTick(function(item){});
+                this.step = 'TWO';
+            },
+
             getTreatSpend(item){
                 api.getTreatSpend(item.ghxh).then((data)=>{
                     this.treatSpend = JSON.parse(data);
                     this.step = 'THREE';
                 })
             },
-            
-            getPatientDetailInfo(item){
-                api.getPatientDetailInfo(item.sfzh,item.ylkh).then((data)=>{
-                    this.patientDetailInfo = JSON.parse(data);
-                    this.step = 'TWO';
-                })
+            goBack(){
+                routerManager.goBack();
             }
         },
 
         mounted(){
-            this.commonPatient = this.$store.getters.commonPatient;
         }
     }   
 </script>

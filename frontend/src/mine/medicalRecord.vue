@@ -1,6 +1,6 @@
 <style lang="scss" scoped>
     #medicalRecord{
-        font-size: 1.7rem;
+        font-size: 1.8rem;
         p.empty{
             text-align:center;
             margin-top:1rem;
@@ -53,7 +53,7 @@
             </li>
             <p class='empty'>暂无数据！</p>
         </ul>
-        <button @click='goBack'>返  回</button>
+        <button @click='goBack' class='GOBACK'>返  回</button>
     </div>
 </template>
 

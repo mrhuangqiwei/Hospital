@@ -1,19 +1,13 @@
 <style lang="scss" scoped>
     #shouldPay{
-        font-size:1.7rem;
-        .center{
-            text-align: center;
-        }
-        p{
-            height: 3rem;
-            line-height: 3rem;
-            background: white;
-        }
+        height: 100%;
+        background:white;
         .flex2{
             flex:2;
         }
         button.doPay{
-            background-color: #598ede;
+            background: #58b5af;
+            color: white;
             width: 5rem;
             margin: 0.5rem 2rem 0 0;
             height: 3rem;
@@ -25,42 +19,49 @@
             text-indent: 1rem;
             background: white;
             display:flex;
-            height:4rem;
+            min-height:4rem;
             line-height: 4rem;    
             border-bottom: 1px solid #838383;        
             span{
-                font-size:1.6rem;
                 flex:1;
             }
+        }
+        li:last-child{
+            border: none;
+        }
+        i{
+            margin-right: 1rem;
         }
     }
 </style>
 
 <template>
     <div id='shouldPay'>
-        <ul v-if='step=="ONE"' class='stepOne'>
-            <p class='title center'>常用就诊人</p>
-            <li v-for='item in commonPatient' @click='getPatientDetailInfo(item)'>
-                {{item.brxm}}
-            </li>
-        </ul>
-        <ul v-else-if='step=="TWO"' class='stepTwo'>
-           <p class='title center'>就诊信息</p>
-           <li><span>就诊人</span><span>就诊日期</span></li>
-           <li v-for='item in patientDetailInfo' @click='getShouldPay(item)' v-if='item.ylklxbm=="01"'>
-               <span>{{item.brxm}}</span><span>{{item.ghxh.substr(0,8)}}</span>
-           </li>
-        </ul>
+        <div v-if='step=="ONE"'>
+            <patientList :doSomething='getPatient'/>
+        </div>  
+        <div v-else-if='step=="TWO"'>
+            <patientDetailInfo :doSomething='getShouldPay' :sfzh='sfzh' :ylkh='ylkh' :khStyle='01'/>
+        </div>
         <ul v-else-if='step=="THREE"' class='stepThree'>
-            <p class='title center'>门诊费用应缴清单</p>
-            <li><span>姓名:{{total.patName}}</span><span>门诊医生:{{total.docName}}</span></li>
-            <li><span>总费用:{{total.pay}}</span><button class='doPay' @click='doPay'>付款</button></li>
+            <p class='TITLE'>门诊费用应缴清单</p>
+            <li>
+                <span><i>姓名:</i><i class='darkBlue'>{{total.patName}}</i></span>
+                <span><i>门诊医生:</i><i class='darkBlue'>{{total.docName}}</i></span>
+            </li>
+            <li>
+                <span><i>总费用:</i><i class='gold'>{{total.pay}}</i></span>
+                <button class='doPay' @click='doPay'>付款</button>
+            </li>
             <li><span class='flex2'>项目名称</span><span>数量</span><span>单价</span><span>金额</span></li>
             <li v-for='item in paylist'>
-                <span class='flex2'>{{item.mxfyxmmc}}</span>
-                <span>{{item.fysl}}</span>
-                <span>{{(+item.fydj).toFixed(2)}}</span>
-                <span>{{(+item.fyje).toFixed(2)}}</span>
+                <span class='flex2 darkBlue'>{{item.mxfyxmmc}}</span>
+                <span class='darkBlue'>{{item.fysl}}</span>
+                <span class='darkBlue'>{{(+item.fydj).toFixed(2)}}</span>
+                <span class='gold'>{{(+item.fyje).toFixed(2)}}</span>
+            </li>
+            <li>
+                <button class='GOBACK' @click='goBack'>返回</button>
             </li>
         </ul>
     </div>
@@ -68,13 +69,16 @@
 
 <script>
     import api from '../backend/api';
+    import patientList from '../component/patientList';
+    import patientDetailInfo from '../component/patientDetailInfo';
+    import routerManager from '../routerManager';
 
     export default {
         data: function () {
             return {
                 step:'ONE',
-                commonPatient:[],
-                patientDetailInfo:[],
+                patient:{},
+                detailInfo:{},
                 paylist:{},
                 total:{
                     pay:0
@@ -82,16 +86,16 @@
             }
         },
 
-        components:{
-        },
-
         methods:{
-            getPatientDetailInfo(item){
-                api.getPatientDetailInfo(item.sfzh,item.ylkh).then((data)=>{
-                    this.patientDetailInfo = JSON.parse(data);
-                    this.step = 'TWO';
-                })
+
+             getPatient(item){
+                this.sfzh = item.sfzh;
+                this.ylkh = item.ylkh;
+                this.$nextTick(function(item){});
+                this.step = 'TWO';
             },
+
+    
             getShouldPay(item){
                 api.getShouldPay('20170216004865').then((data)=>{
                     this.paylist = JSON.parse(data);
@@ -103,13 +107,15 @@
                     this.step = 'THREE';
                 })
             },
+            goBack(){
+                routerManager.goBack();
+            },
             doPay(){
 
             }
         },
 
         mounted(){
-            this.commonPatient = this.$store.getters.commonPatient;
         }
     }   
 </script>

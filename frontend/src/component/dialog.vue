@@ -39,9 +39,7 @@
   }
   
   .content{
-    padding: 2rem;
     word-break: break-all;
-    font-size: 1.4rem;
     min-height: 4rem;
     color: #666666;
   }

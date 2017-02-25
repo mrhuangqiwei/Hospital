@@ -155,10 +155,7 @@
                 })
             },
             getTreatSpend(){
-                api.getCommonPatient('owEWzwQKO7G_uy4C0X_Wn2boPVI4').then((data)=>{
-                    this.$store.commit('SET_COMMON_PATIENT',JSON.parse(data));
-                    routerManager.routerTo('singel/getTreatSpend');
-                });
+                routerManager.routerTo('singel/getTreatSpend');
             },
             updateUserInfo(info){
                 this.userInfo = info;

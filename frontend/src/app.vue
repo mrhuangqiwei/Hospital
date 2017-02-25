@@ -4,6 +4,7 @@
     $fontBlack: #000000;
 
     #app{
+        font-size:1.6rem;
         div.showView{
             height: calc(100% - 3rem);
             overflow-x: hidden;
@@ -41,13 +42,30 @@
         display:block;
         border-radius: 4px;
     }
-    p.title{
-        text-align: center;
-        font-size: 2rem;
+    button.GOBACK{
+        background: #58b5af;
+        color: white;
+        height: 3rem;
+    }
+
+    .gold{
+        color: #F49245 !important;
+    }
+    .darkBlue{
+        color: #295286;
+    }
+    i{
+        font-style: normal;
+    }
+    .TITLE{
         height: 5rem;
         line-height: 5rem;
         background: white;
-        border-bottom: 1px solid #838383;
+        text-align: center;
+        font-size:2.2rem;
+    }
+    input{
+        font-size: 1.6rem;
     }
 </style>
 

@@ -1,21 +1,19 @@
 <style lang="scss" scoped>
     #commonPatient{
         height: 100%;
-        p.header{
-            font-size:1.7rem; 
-            text-align: center;
-            height:3rem;
-            line-height:3rem;
-            background:white;
+        .TITLE{
+           border-radius: 4px;
         }
         div.dialog{
             .content{
                 height:30rem;
             }
         }
+        ul.editDialog{
+            padding: 0 1rem;
+        }
         ul.editDialog li{
             display: flex;
-            font-size: 1.6rem;
             text-align: left;
             height: 4rem;
             line-height: 4rem;
@@ -28,14 +26,13 @@
                 box-shadow: none;
             }
             span{
-                flex:1;
+                width: 8rem;
             }
             input{
                 margin-top: 0.5rem;
-                padding-left: 1rem;
+                padding-left: 0.5rem;
                 box-sizing: border-box;
-                flex:2;
-                font-size:1.6rem;
+                flex:1;
                 box-shadow: inset 0px 0px 1px;
                 border-radius: 4px;
                 height: 3rem;
@@ -46,7 +43,7 @@
 
 <template>
     <div id='commonPatient'>
-       <p class='header'>常用就诊人</p>
+       <p class='TITLE'>常用就诊人</p>
        <mt-cell-swipe v-for="(item,index) in commonPatient"  
             :title='item.brxm'
             :right="[
@@ -61,30 +58,33 @@
                 handler: () => deleteItem(index)
             }
         ]"></mt-cell-swipe>
+        <div>
+            <button @click='goBack' class='GOBACK'>返 回</button>
+        </div>
         <!--通用-->
         <my-dialog :show='showDialog' :cbClose='closeDialog'>
-            <p slot="title" class='title'>修改常用人信息</p>
+            <p slot="title" class='TITLE'>修改常用人信息</p>
             <div slot='content' class='content'>
                 <ul class="editDialog">
-                    <li><span class='icon name_icon'>姓名:</span><input v-model='editItem.brxm'/></li>
-                    <li><span class='icon sfzh_icon'>身份证号:</span><input  v-model='editItem.sfzh'/></li>
-                    <li><span class='icon card_icon'>医疗卡号:</span><span>{{editItem.ylkh}}</span></li>
+                    <li><span class='icon name_icon darkBlue'>姓名:</span><input v-model='editItem.brxm'/></li>
+                    <li><span class='icon sfzh_icon darkBlue'>身份证号:</span><input  v-model='editItem.sfzh'/></li>
+                    <li><span class='icon card_icon darkBlue'>医疗卡号:</span><span>{{editItem.ylkh}}</span></li>
                     <li>
                         <div>
                             <span class='icon sex_icon'></span>
-                            <label>请选择性别：</label>
+                            <label class='darkBlue'>请选择性别：</label>
                             <input class='sex' type='radio' v-model='editItem.brxb' value='1'/><label>男</label>
                             <input class='sex' type='radio' v-model='editItem.brxb' value='2'/><label>女</label>
                         </div>
                     </li>
-                    <li><span class='icon phone_icon'>手机号码:</span><input v-model='editItem.brdh' placeholder="请输入手机号"/></li>
-                    <li><span class='icon jtzz_icon'>家庭住址:</span><input v-model='editItem.jtzz' placeholder="请输入家庭住址"/></li>
-                    <li><span class='icon age_icon'>年龄:</span><input v-model='editItem.brnl' type='number' min="0" max="199" placeholder="请输入年龄(周岁)"/></li>
+                    <li><span class='icon phone_icon darkBlue'>手机号码:</span><input v-model='editItem.brdh' placeholder="请输入手机号"/></li>
+                    <li><span class='icon jtzz_icon darkBlue'>家庭住址:</span><input v-model='editItem.jtzz' placeholder="请输入家庭住址"/></li>
+                    <li><span class='icon age_icon darkBlue'>年龄:</span><input v-model='editItem.brnl' type='number' min="0" max="199" placeholder="请输入年龄(周岁)"/></li>
                 </ul>
             </div>
             <div slot='button' class='button'>
-                <button @click='editItemFunc'>确定</button>
-                <button @click='closeDialog'>取消</button>
+                <button @click='editItemFunc'>{{committing ? "提交中..." : "确定"}}</button>
+                <button @click='closeDialog' >取消</button>
             </div>
         </my-dialog>
     </div>
@@ -95,10 +95,12 @@
     import api from '../backend/api';
     import _ from 'underscore';
     import { Toast } from 'mint-ui';
+    import routerManager from '../routerManager';
     export default {
         data: function () {
             return {
                 commonPatient:[],
+                committing:false,
                 editItem:{
                     'brxm':'',
                     'brdh':'',
@@ -125,14 +127,30 @@
                     console.log('提示删除成功');
                 })
             },
+            
             editDialog(index){
-                this.editItem = _.extend({},this.commonPatient[index]);
+                this.index = index;
+                this.editItem = _.extend({},this.editItem,this.commonPatient[index]);
                 this.oldSfzh = this.commonPatient[index].sfzh;
                 this.showDialog = true;
             },
+            
             closeDialog(){
                 this.showDialog = false;
+                this.committing = false;
             },
+
+            updataPatient(){
+                this.$store.commit('UPDATE_COMMON_PATIENT',{
+                    index:this.index,
+                    load:this.editItem
+                });
+            },
+
+            goBack(){
+                routerManager.goBack();
+            },
+
             editItemFunc(){
                 var item = this.editItem;
                 if(!item.brxm||(!item.sfzh && !item.ylkh)){
@@ -143,9 +161,15 @@
                     });
                     return;
                 }
+                if(this.committing)
+                    return;
+
+                this.committing = true;
                 api.editCommonPatient('owEWzwQKO7G_uy4C0X_Wn2boPVI4',item.sfzh,this.oldSfzh,item.ylkh,item.brxm,item.brxb,item.jtzz,item.brdh,item.nl)
                    .then((data)=>{
-                       this.showDialog = false;
+                       this.closeDialog();
+                },(err)=>{
+                       this.closeDialog();
                 })
             }
         },

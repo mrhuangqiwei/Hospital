@@ -29,9 +29,6 @@
                 flex:1;
             }
         }
-        .pageContent{
-            font-size: 1.5rem;
-        }
         ul.stepTwo,ul.stepOne{
             li{
                 background:white;

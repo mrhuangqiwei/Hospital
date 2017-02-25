@@ -25,7 +25,6 @@
                 height: 3rem;
                 width: 15rem;
                 padding-left: 1rem;
-                font-size: 1.5rem;
                 border-radius: 0.5rem;
             }
         }
