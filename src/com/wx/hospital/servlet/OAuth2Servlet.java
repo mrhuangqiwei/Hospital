@@ -1,20 +1,17 @@
 package com.wx.hospital.servlet;
 
+import bean.WeiXinUserBean;
 import com.wx.hospital.HospitalConfig;
-
-import org.apache.log4j.Logger;
 import org.sword.wechat4j.oauth.OAuthException;
 import org.sword.wechat4j.oauth.OAuthManager;
 import org.sword.wechat4j.oauth.protocol.get_access_token.GetAccessTokenRequest;
 import org.sword.wechat4j.oauth.protocol.get_access_token.GetAccessTokenResponse;
+import org.sword.wechat4j.oauth.protocol.get_userinfo.GetUserinfoRequest;
+import org.sword.wechat4j.oauth.protocol.get_userinfo.GetUserinfoResponse;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.*;
 import java.io.IOException;
 
 import static com.wx.hospital.HospitalConfig.SERVER_URL;
@@ -26,28 +23,45 @@ import static com.wx.hospital.HospitalConfig.SERVER_URL;
 @WebServlet("/oauth2")
 public class OAuth2Servlet extends HttpServlet {
 
-    private static Logger logger = Logger.getLogger(OAuthManager.class);
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String code = req.getParameter("code");
         String state = req.getParameter("state");
-        System.out.print("call oath2: " + state);
         if (code == null) {
-            logger.error("不同意授权!");
+            System.out.println("不同意授权!");
         } else {
             GetAccessTokenResponse token;
             try {
                 token = OAuthManager.getAccessToken(new GetAccessTokenRequest(code));
-                System.out.println(token);
-                Cookie cookie = new Cookie(HospitalConfig.COOKIES_OPENID, token.getOpenid());
-                resp.addCookie(cookie);
+                getUserInfo(token,req, resp);
                 resp.sendRedirect(SERVER_URL + state);
             } catch (OAuthException e) {
                 e.printStackTrace();
                 System.out.println("获取token出错!");
             }
         }
+    }
+
+    protected void getUserInfo(GetAccessTokenResponse token,HttpServletRequest req,  HttpServletResponse resp) throws OAuthException {
+        GetUserinfoRequest request = new GetUserinfoRequest(token.getAccess_token(), token.getOpenid());
+        GetUserinfoResponse user = OAuthManager.getUserinfo(request);
+
+        HttpSession session = req.getSession(true);
+        session.setMaxInactiveInterval(3600 * 3);
+        session.setAttribute("token", token);
+        session.setAttribute("userInfo", user);
+
+        WeiXinUserBean bean = new WeiXinUserBean();
+        bean.setNickname(user.getNickname());
+        bean.setOpenid(request.getOpenid());
+        bean.setCity(user.getCity());
+        bean.setCountry(user.getCountry());
+        bean.setHeadimgurl(user.getHeadimgurl());
+        bean.setLanguage(request.getLang());
+        bean.setSex(String.valueOf(user.getSex()));
+
+        Cookie cookie = new Cookie(HospitalConfig.COOKIES_OPENID, token.getOpenid());
+        resp.addCookie(cookie);
     }
 
     @Override

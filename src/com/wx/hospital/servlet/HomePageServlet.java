@@ -25,13 +25,11 @@ public class HomePageServlet extends BaseServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String openId = getOpenId(req);
         if (openId == null || TextUtils.isBlank(openId)) {
-            String redirectUrl = OAuthManager.generateRedirectURI(SERVER_URL+ "oauth2",
-                    "snsapi_userinfo", "homepage");
-            System.out.println("获取到的微信用户信息\t"+redirectUrl);
+            String redirectUrl = OAuthManager.generateRedirectURI(SERVER_URL+ "oauth2", "snsapi_userinfo", "homepage");
             resp.sendRedirect(redirectUrl);
             return;
         }
-        req.getRequestDispatcher("homepage.html").forward(req, resp);
+        req.getRequestDispatcher("index.html").forward(req, resp);
     }
 
     @Override
