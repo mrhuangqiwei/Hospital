@@ -47,12 +47,20 @@
         color: white;
         height: 3rem;
     }
-
+    .darkGreen{
+        color:#31B6AA;
+    }
+    .red{
+        color: red;
+    }
     .gold{
         color: #F49245 !important;
     }
     .darkBlue{
         color: #295286;
+    }
+    .fontGray{
+        color:#A3A3A3;
     }
     i{
         font-style: normal;

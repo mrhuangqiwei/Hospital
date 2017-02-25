@@ -276,10 +276,7 @@
                 })
             },
             getDepartmentNO(){
-                api.getDepartmentNO().then((data)=>{
-                    this.unitCommit('SET_DEPARTMENT_NO',data);
-                    routerManager.routerTo('singel/departmentNO');
-                })
+                routerManager.routerTo('singel/departmentNO');
             },
             getHospitalFee(){
                 api.getCommonPatient('owEWzwQKO7G_uy4C0X_Wn2boPVI4').then((data)=>{

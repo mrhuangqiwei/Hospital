@@ -39,25 +39,85 @@
     import chipItem from '../component/chipItem';
     import api from '../backend/api';
     import routerManager from '../routerManager';
+    var _hash_data = {};
+    
     export default {
         data: function () {
             return {
-                departmentInfo:[]
+                departmentInfo:[],
             }
         },
         components:{
             chipItem
         },
         methods:{
+            addToHash(id,time,obj){
+                if(id in _hash_data){
+                    _hash_data[id][time] = obj;
+                } else{
+                    _hash_data[id] = {};
+                    _hash_data[id][time] = obj;
+                }
+            },
+            
+            addToHashPM(id,time,obj){
+                if(id in _hash_data){
+                    // 找到了直接赋值 没找到插入后排序
+                    if(_hash_data[id][time]){
+                        _hash_data[id][time].pm = obj;
+                    } else{
+                       this.addToHash(swId,timeAM,{'pm':swData});
+                    }
+                } else{
+                    this.addToHash(swId,timeAM,{'pm':swData});
+                }
+            },
+            getHashData(){
+                return _hash_data;
+            },
             getDoctorSchedule(ksbm){
+               _hash_data={};
                api.getDoctorSchedule(ksbm).then((data)=>{
-                    this.$store.commit('SET_DOCTORS_SCHEDULE',JSON.parse(data));
+                    var srcData = JSON.parse(data);
+                    let swpb = srcData.swpb;
+                    let xwpb = srcData.xwpb;
+                    if(swpb.length==0)
+                        return;
+                    let lenSW = swpb.length;
+                    // 以上午为准，找下午排班
+                    for(let i = 0; i < lenSW; i++){
+                        let swData = swpb[i];
+                        // 医生编码
+                        let swId = swData.czybm;
+                        // 做Key值
+                        let dateAM = swData.yzrq.substring(0,10);
+                        // 毫秒做key 方便排序
+                        let timeAM = (new Date(dateAM)).getTime()+'';
+                        this.addToHash(swId,timeAM,{'am':swData});
+                    }
+
+                    let lenXW = xwpb.length;
+                    for(let i = 0; i < lenSW; i++){
+                        let xwData = xwpb[i];
+                        let xwId = xwData.czybm;
+                        let datePM = xwData.yzrq.substring(0,10);
+                        let timePM = (new Date(datePM)).getTime();
+                        this.addToHashPM(xwId,timePM,xwData);
+                    }
+                    this.$store.commit('SET_DOCTORS_SCHEDULE',this.getHashData());
                     routerManager.routerTo('singel/doctorsSchedule');
                })
             }
         },
         mounted(){
-           this.departmentInfo = this.$store.getters.departmentNO;
+            if(this.$store.getters.departmentNO.length == 0){
+                api.getDepartmentNO().then((data)=>{
+                    this.$store.commit('SET_DEPARTMENT_NO',JSON.parse(data));
+                    this.departmentInfo = JSON.parse(data);
+                })
+            } else{
+                this.departmentInfo = this.$store.getters.departmentNO;
+            }
         }
     }   
 </script>
