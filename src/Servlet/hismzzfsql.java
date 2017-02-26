@@ -28,9 +28,9 @@ public class hismzzfsql extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");//服务器编码
 		response.setHeader("content-type", "text/html;charset=UTF-8");//浏览器编码
 		mzzfsql mzzfsql=new mzzfsql();
-		mzzfsql.mzjf(ghxh, brid, fyhj);
+		String json=mzzfsql.mzjf(ghxh, brid, fyhj);
 		// System.out.print(json);
-		response.getOutputStream().write("yyy".getBytes("UTF-8"));
+		response.getOutputStream().write(json.getBytes("UTF-8"));
 	}
 
 	

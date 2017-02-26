@@ -17,7 +17,7 @@ import utils.JsonHelper;
  *
  */
 public class mzzfsql {
-	public void mzjf(String ghxh,String brid,String fyhj) {
+	public String  mzjf(String ghxh,String brid,String fyhj) {
 		
 		List<String> list=new ArrayList<String>();
 		Connection conn = JDBC.getConnection();	
@@ -186,9 +186,17 @@ public class mzzfsql {
 			
 			stmt.close();								// 关闭连接状态对象
 			conn.commit();
+			return"true";
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			try {
+				conn.rollback();
+				return"false";
+			} catch (SQLException e1) {
+				
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				return"false";
+			}
 		}
 		
 	}

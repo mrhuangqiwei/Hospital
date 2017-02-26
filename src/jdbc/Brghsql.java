@@ -544,8 +544,15 @@ for(int i=0;i<list3.size();i++){
 		stmt.close();								// 关闭连接状态对象
 		conn.commit();
 	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+		try {
+			conn.rollback();
+			return;
+		} catch (SQLException e1) {
+			
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			return;
+		}
 	}
 	
 	
