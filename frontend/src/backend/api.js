@@ -340,6 +340,15 @@ var _backend = {
          })
     },
 
+    getOpenId(){
+        return $.ajax({
+            // url:`http://mrhuangqiwei.6655.la/Hospital/getOpenId
+            url: `${URL}/Hospital/getOpenId`,
+            method:'GET',
+            contentType:'text/plain'
+        })
+    },
+
     /** 检查查询 Lisreport
      * 提交地址：http://mrhuangqiwei.6655.la/Hospital/Lisreport?zyh=2016003850&%E6%8F%90%E4%BA%A4=%E6%8F%90%E4%BA%A4
      * @param {string}
@@ -509,18 +518,21 @@ var _backend = {
 
 var Store = {
     login(){
-        return new Promise(function(resolve,reject){
-                    var info = {
-                        openid:'owEWzwQKO7G_uy4C0X_Wn2boPVI4',
-                        sfzh:'513427199309232717',
-                        brxm:'黄启位',
-                        brxb:'1',
-                        brjtzz:'四川',
-                        lxdh:'15577616194',
-                        nl:'23'
-                    }
-                    resolve( info );
-                });
+        return _backend.getOpenId().then((data)=>{
+            return data;
+        });
+        // return new Promise(function(resolve,reject){
+        //             var info = {
+        //                 openid:'owEWzwQKO7G_uy4C0X_Wn2boPVI4',
+        //                 sfzh:'513427199309232717',
+        //                 brxm:'黄启位',
+        //                 brxb:'1',
+        //                 brjtzz:'四川',
+        //                 lxdh:'15577616194',
+        //                 nl:'23'
+        //             }
+        //             resolve( info );
+        //         });
     },
 
     // 绑卡
