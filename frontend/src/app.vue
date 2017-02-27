@@ -116,7 +116,7 @@
          },
          created(){
              api.login().then((data)=>{
-                 this.$store.commit('SIGNIN',{'openid':data.openId});
+                 this.$store.commit('SIGNIN',{'openid':JSON.parse(data).openId});
                  this.isLogin = true;
                  var store = this.$store;
                  if(store.getters.userInfo && store.getters.userInfo.userid){
