@@ -15,6 +15,13 @@ public class GlobalConfigUtil {
  private static String fbbm="1";
  private static String ghxq="3";
  private static  String jscs="1";
+ private static String hospitalid="1";
+public static String getHospitalid() {
+	return hospitalid;
+}
+public static void setHospitalid(String hospitalid) {
+	GlobalConfigUtil.hospitalid = hospitalid;
+}
 public static String getJscs() {
 	return jscs;
 }

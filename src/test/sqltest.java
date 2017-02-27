@@ -34,6 +34,7 @@ import jdbc.mzyjfjlsql;
 import jdbc.ris_report_sql;
 import jdbc.weinxinsql;
 import net.sf.json.JSONObject;
+import platform.platformbrxx;
 import po.AccessToken;
 import utils.ConvertTime;
 import utils.GlobalConfigUtil;
@@ -43,6 +44,7 @@ public class sqltest {
 	 static Connection conn = JDBC.getConnection();	
 	 static Statement stmt;
 	public static void main(String[] args){
+		platformbrxx platformbrxx=new platformbrxx();
 		mzyjfjlsql  mzyjfjlsql=new mzyjfjlsql();
 		weinxinsql weinxinsql=new weinxinsql();
 		Ysbcsql ysbcsql =new Ysbcsql();
@@ -81,14 +83,14 @@ public class sqltest {
 //自动挂号	/
 //brghsql.zdgh();
 String  yf;
-
+/**
 
 for(int k=0;k<10;k++){
 	//System.out.print(k+"\t");	
 yyghSql.appointment(yyghrq, brxm, brxb, brnldw, sfzh, jtzz, sj, yyys, yyks, yydjrq, yyyxrq, mxfyxmbm, yyjfbz);
 
 
-}
+} **/
 //List<YyxxBean> list=brghsql.getbuseryyxx();
 	//boolean ok=false;
 	//ok=deletefriend.deletefriendinfo("owEWzwQKO7G_uy4C0X_Wn2boPVI4", "558842685569842688", "");
@@ -167,7 +169,7 @@ yyghSql.appointment(yyghrq, brxm, brxb, brnldw, sfzh, jtzz, sj, yyys, yyks, yydj
           }
       }.start();
       **/
-      
+      System.out.print(platformbrxx.brxx());
 	
 	//System.out.print(updateyyghservlet.updateghbbrgh("20170216004864"));
 	

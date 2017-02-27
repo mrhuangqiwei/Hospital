@@ -205,8 +205,7 @@
     <servlet-name>yyghcxservlet</servlet-name>
     <url-pattern>/yyghcxservlet</url-pattern>
   </servlet-mapping>
-  
-    <servlet>
+  <servlet>
     <description></description>
     <display-name>globalconfigservlet</display-name>
     <servlet-name>globalconfigservlet</servlet-name>
@@ -216,4 +215,16 @@
     <servlet-name>globalconfigservlet</servlet-name>
     <url-pattern>/globalconfigservlet</url-pattern>
   </servlet-mapping>
+  
+   <servlet>
+    <description></description>
+    <display-name>currencyservlet</display-name>
+    <servlet-name>currencyservlet</servlet-name>
+    <servlet-class>platform.currencyservlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>currencyservlet</servlet-name>
+    <url-pattern>/currencyservlet</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

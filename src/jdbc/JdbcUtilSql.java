@@ -681,5 +681,150 @@ list.get(k+9), list.get(k+10),list.get(k+11), list.get(k+12));
 		 }
 		  return ok;
 	}
+	/**
+	 * 获取国籍编码
+	 * @return
+	 */
+	public static Map<String, String> gjmap() {
+		List<String> list = new ArrayList<String>();
+		Connection conn = JDBC.getConnection();
+		Statement stmt;
+		String sql = "select RTRIM(gjbm)gjbm,RTRIM(gjmc) gjmc from gyb_gj where qyzt<>1";
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			// 循环输出每一条记录
+			while (rs.next()) {
+				list.add(rs.getString("gjbm"));
+				list.add(rs.getString("gjmc"));
+			}
+			stmt.close(); // 关闭连接状态对象
+			conn.commit();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Map<String, String> map = new HashMap<String, String>();
+		for (int i = 0; i < list.size(); i = i + 2) {
+			map.put(list.get(i), list.get(i + 1));
+		}
+		return map;
+	}
+	/**
+	 * 获取名族编码
+	 * @return
+	 */
+	public static Map<String, String> mzmp() {
+		List<String> list = new ArrayList<String>();
+		Connection conn = JDBC.getConnection();
+		Statement stmt;
+		String sql = "select RTRIM(mzbm)mzbm,RTRIM(mzmc) mzmc  from gyb_mz where qyzt<>1";
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			// 循环输出每一条记录
+			while (rs.next()) {
+				list.add(rs.getString("mzbm"));
+				list.add(rs.getString("mzmc"));
+			}
+			stmt.close(); // 关闭连接状态对象
+			conn.commit();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Map<String, String> map = new HashMap<String, String>();
+		for (int i = 0; i < list.size(); i = i + 2) {
+			map.put(list.get(i), list.get(i + 1));
+		}
+		return map;
+	}
+	/**
+	 * 获取籍贯编码
+	 * @return
+	 */
+	public static Map<String, String>jgmp() {
+		List<String> list = new ArrayList<String>();
+		Connection conn = JDBC.getConnection();
+		Statement stmt;
+		String sql = "select RTRIM(jgbm)jgbm,RTRIM(jgmc) jgmc from gyb_jg where qyzt<>1";
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			// 循环输出每一条记录
+			while (rs.next()) {
+				list.add(rs.getString("jgbm"));
+				list.add(rs.getString("jgmc"));
+			}
+			stmt.close(); // 关闭连接状态对象
+			conn.commit();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Map<String, String> map = new HashMap<String, String>();
+		for (int i = 0; i < list.size(); i = i + 2) {
+			map.put(list.get(i), list.get(i + 1));
+		}
+		return map;
+	}
+	/**
+	 * 获取职务编码
+	 * @return
+	 */
+	public static Map<String, String>zwmp() {
+		List<String> list = new ArrayList<String>();
+		Connection conn = JDBC.getConnection();
+		Statement stmt;
+		String sql = " select RTRIM(zwbm)zwbm,RTRIM(zwmc)zwmc  from gyb_zw where qyzt<>1";
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			// 循环输出每一条记录
+			while (rs.next()) {
+				list.add(rs.getString("zwbm"));
+				list.add(rs.getString("zwmc"));
+			}
+			stmt.close(); // 关闭连接状态对象
+			conn.commit();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Map<String, String> map = new HashMap<String, String>();
+		for (int i = 0; i < list.size(); i = i + 2) {
+			map.put(list.get(i), list.get(i + 1));
+		}
+		return map;
+	}
+	/**
+	 * 获取职业编码
+	 * @return
+	 */
+	public static Map<String, String>zymp() {
+		List<String> list = new ArrayList<String>();
+		Connection conn = JDBC.getConnection();
+		Statement stmt;
+		String sql = " select RTRIM(zybm)zybm,RTRIM(zymc) zymc from gyb_zy  where qyzt<>1";
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			// 循环输出每一条记录
+			while (rs.next()) {
+				list.add(rs.getString("zybm"));
+				list.add(rs.getString("zymc"));
+			}
+			stmt.close(); // 关闭连接状态对象
+			conn.commit();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Map<String, String> map = new HashMap<String, String>();
+		for (int i = 0; i < list.size(); i = i + 2) {
+			map.put(list.get(i), list.get(i + 1));
+		}
+		return map;
+	}
 	
 }
