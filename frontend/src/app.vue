@@ -1,22 +1,23 @@
 <style lang="scss">
     @import './css/main';
-    $boderGray: #838383;
+    $boderGray: #dcd8d8;
     $fontBlack: #000000;
 
     #app{
         font-size:1.6rem;
         div.showView{
-            height: calc(100% - 3rem);
+            height: calc(100% - 4rem);
             overflow-x: hidden;
         }
 
         div.nav{
+            background: white;
             color: #000000;
             width: 100%;
             display: flex;
             position: relative;
             bottom: 0;
-            height: 3rem;
+            height: 4rem;
             border-top: 1px solid $boderGray;
             box-sizing: border-box;
             .homePageLink,
@@ -26,8 +27,9 @@
             a{
                 flex: 1;
                 text-align: center;
-                line-height: 3rem;
-                font-size: 1.7rem;
+                line-height: 4rem;
+                font-size: 1.9rem;
+                color:#000000;
             }
             a:focus,a:visited,a:hover,a:active{
                 color:#000000;
