@@ -25,7 +25,7 @@ import static com.wx.hospital.HospitalConfig.SERVER_URL;
 /**
  * Created by hzy on 2/28/17.
  */
-@WebServlet("wechatPay")
+@WebServlet("/wechatPay")
 public class WechatPayServlet extends BaseServlet {
 
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
