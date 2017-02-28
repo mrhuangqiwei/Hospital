@@ -6,7 +6,7 @@
         text-align: center;
         input{
             height: 3rem;
-            width: 24rem;
+            width: calc(100% - 8rem);
             text-indent: 4.5rem;
             line-height:3rem;
             border-radius: 4px;
@@ -17,7 +17,7 @@
             li{
                 margin: 0 auto;
                 height: 3rem;
-                width: 24rem;
+                /*width: 24rem;*/
                 position: relative;
             }
             div{
@@ -26,9 +26,16 @@
         }
         .useID{
             padding-top: 2rem;
+            span:first-child{
+                display:inline-block;
+                width: 8rem;
+                text-align: left;
+                padding-left:0.5rem;
+            }
             input{
                 text-indent:1rem;
                 padding: 0.5rem;
+                width:17rem;
             }
             li{
                 margin-bottom:1rem;
@@ -39,17 +46,18 @@
                     top: 0.2rem;
                 }
                 div{
+                    display: inline-block;
                     background: white;
                     text-align: left;
                     font-size: 1.7rem;
                     line-height: 3rem;
                     margin: 0 auto;
                     height: 3rem;
-                    width: 24rem;
+                    width: 17rem;
+                    padding: 0.5rem;
                     position: relative;
                     label{
                         color:rgb(51, 51, 51);
-;
                         margin-left:0.5rem;
                     }
                     input.sex + label{
@@ -101,25 +109,25 @@
     <div id='bindCard'>
         <div v-if='useCard' class="useCard">
             <div>
-                <li><span class=' card_icon'></span><input v-model='cardNumber' placeholder="请输入医疗卡号"/></li>
+                <li><span class='card_icon'></span><input v-model='cardNumber' placeholder="请输入医疗卡号"/></li>
             </div>
             <button @click='bindWithCard' class='doBind'>立刻绑定</button>
             <button @click='useID' class='bggray'>还没有卡，去绑定身份证</button>
         </div>
         <div v-else class="useID">
             <ul>
-                <li><span class=' name_icon'></span><input v-model='name' placeholder="请输入姓名"/></li>
-                <li><span class=' sfzh_icon'></span><input  v-model='sfzh' placeholder="请输入身份证号"/></li>
+                <li><span>姓名:</span><span class='name_icon'></span><input v-model='name' placeholder="请输入姓名"/></li>
+                <li><span>身份证号:</span><span class='sfzh_icon'></span><input  v-model='sfzh' placeholder="请输入身份证号"/></li>
                 <li>
+                    <span>选择性别:</span>
                     <div>
-                        <label>请选择性别：</label>
                         <input class='sex' type='radio' v-model='sex' value='1'/><label>男</label>
                         <input class='sex' type='radio' v-model='sex' value='2'/><label>女</label>
                     </div>
                 </li>
-                <li><span class=' phone_icon'></span><input v-model='phone' placeholder="请输入手机号"/></li>
-                <li><span class=' jtzz_icon'></span><input v-model='jtzz' placeholder="请输入家庭住址"/></li>
-                <li><span class=' age_icon'></span><input v-model='age' type='number' min="0" max="199" placeholder="请输入年龄(周岁)"/></li>
+                <li><span>手机号:</span><span class='phone_icon'></span><input v-model='phone' placeholder="请输入手机号"/></li>
+                <li><span>家庭住址:</span><span class='jtzz_icon'></span><input v-model='jtzz' placeholder="请输入家庭住址"/></li>
+                <li><span>年龄:</span><span class='age_icon'></span><input v-model='age' type='number' min="0" max="199" placeholder="请输入年龄(周岁)"/></li>
             </ul>
             <button @click='bindWithID' class='doBind'>确 定</button>
         </div>

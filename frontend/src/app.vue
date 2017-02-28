@@ -5,6 +5,7 @@
 
     #app{
         font-size:1.6rem;
+        color: #333333;
         div.showView{
             height: calc(100% - 4rem);
             overflow-x: hidden;
@@ -53,13 +54,15 @@
         color:#31B6AA;
     }
     .red{
-        color: red;
+        color: #ff3c23;
     }
     .gold{
         color: #F49245 !important;
     }
     .darkBlue{
-        color: #295286;
+        /*color: #295286;*/
+        color: #14387d;
+        font-weight: 500;
     }
     .fontGray{
         color:#A3A3A3;
@@ -68,11 +71,12 @@
         font-style: normal;
     }
     .TITLE{
+        color:#336666;
         height: 5rem;
         line-height: 5rem;
         background: white;
         text-align: center;
-        font-size:2.2rem;
+        font-size:2.6rem;
         border-top-right-radius: 4px;
         border-top-left-radius: 4px;
         border-bottom: 1px solid black;
@@ -117,6 +121,7 @@
              authen
          },
          created(){
+             this.isLogin = true;
              api.login().then((data)=>{
                  this.$store.commit('SIGNIN',{'openid':JSON.parse(data).openId});
                  this.isLogin = true;

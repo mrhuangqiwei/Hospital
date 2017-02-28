@@ -7,7 +7,7 @@
         .header{
             /*height: 18rem;*/
             margin-bottom: 1rem;
-            
+            background: white; 
             .userInfo{
                 height: 10rem;
                 span{
@@ -42,11 +42,9 @@
                 border: 1px solid;
             }
         }
-        .content{
-            li{
-                height: 3rem;
-                border: 1px solid;
-            }
+        .bgWhite{
+            background: white;
+            height: calc(100% - 11rem);
         }
         li.funcItem{
             background: white;
@@ -110,7 +108,7 @@
               <span class='name'>{{userInfo.username}}</span>
             </div>
        </div>
-       <div clas='content'> 
+       <div class='bgWhite'> 
             <ul>
                 <li class='funcItem' @click='getTreatSpend'>
                     <span class='hospitalFee_icon'></span><span class='name'>门诊费用清单</span>

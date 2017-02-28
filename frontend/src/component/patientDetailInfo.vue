@@ -10,7 +10,18 @@
             flex:3;
             text-align: center;
         }
+        span.avater{
+            position: absolute;
+            top: 0.9rem;
+            left: 1rem;
+            display:inline-block;
+            height:2rem;
+            width:2rem;
+            background-size:cover !important; 
+            background: url('../img/avater.png') no-repeat center center;
+        }
         li{
+            position: relative;
             text-indent: 1rem;
             display:flex;
             background: white;
@@ -31,7 +42,7 @@
         <ul v-else>
             <li><span class='name'>就诊人</span><span class='cell'>就诊日期</span></li>
             <li v-for='item in patientDetailInfo' @click='doSomething(item)' v-if='item.ylklxbm==khStyle'>
-                <span class='name'>{{item.brxm}}</span><span class='cell'>{{item.ghxh.substr(0,8)}}</span>
+                <span class='avater'></span><span class='name'>{{item.brxm}}</span><span class='cell'>{{item.ghxh.substr(0,8)}}</span>
             </li>
          </ul>
     </div>

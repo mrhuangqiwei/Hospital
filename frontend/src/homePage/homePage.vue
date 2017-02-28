@@ -5,17 +5,19 @@
         display: flex;
         flex-direction: column;
         #header{
-            min-height: 17rem;
-        }
-
-        #content{
             min-height: 16rem;
+        }
+        #footer{
+            background: white;
+        }
+        #content{
+            height: calc(100% - 32rem);
             display: block;
             .mint-swipe.carousel{
                 height: 100%;
             }
             .mint-swipe-items-wrap{
-                min-height: 16rem;
+                /*min-height: 12rem;*/
             }
         }
 
@@ -23,7 +25,7 @@
             display: flex;
             .mainFunc{
                 border-right: 1px solid #CCC;
-                width: 10rem;
+                flex:1;
                 .register{
                     height: 100%;
                     text-align: center;
@@ -47,7 +49,7 @@
              }
 
             .secondlyFunc{
-                flex:1;
+                flex:2;
                 display: flex;
                 flex-direction: column;
                 .pay{

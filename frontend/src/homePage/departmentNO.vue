@@ -7,7 +7,8 @@
             text-indent: 3rem;
             border-bottom: 1px solid #838383;
             background-color: white;
-            color:#31B6AA;
+            color: #336633;
+            font-weight: 400;
         }
         span.arrow_icon{
             background: url('../img/arrow.png') no-repeat center center;
@@ -39,6 +40,7 @@
     import chipItem from '../component/chipItem';
     import api from '../backend/api';
     import routerManager from '../routerManager';
+    import { Toast } from 'mint-ui';
     var _hash_data = {};
     
     export default {
@@ -81,8 +83,14 @@
                     var srcData = JSON.parse(data);
                     let swpb = srcData.swpb;
                     let xwpb = srcData.xwpb;
-                    if(swpb.length==0)
+                    if(swpb.length==0){
+                        Toast({
+                            message: '暂无数据!',
+                            duration: 2000,
+                            className:'zIndex11000'
+                        });
                         return;
+                    }
                     let lenSW = swpb.length;
                     // 以上午为准，找下午排班
                     for(let i = 0; i < lenSW; i++){

@@ -5,7 +5,7 @@
         i.avater{
             position: absolute;
             top: 0.9rem;
-            left: 2rem;
+            left: 1rem;
             display:inline-block;
             height:2rem;
             width:2rem;
