@@ -5,11 +5,18 @@
         display: flex;
         flex-direction: column;
         #header{
-            height: 15rem;
+            min-height: 17rem;
         }
 
-        #footer,#content{
-            flex:1;
+        #content{
+            min-height: 16rem;
+            display: block;
+            .mint-swipe.carousel{
+                height: 100%;
+            }
+            .mint-swipe-items-wrap{
+                min-height: 16rem;
+            }
         }
 
         #header{
@@ -30,6 +37,7 @@
                         .dic{
                             color: #838383;
                             margin-top: 0.5rem;
+                            font-size:1.3rem;
                             span{
                                 display:block;
                             }
@@ -40,8 +48,10 @@
 
             .secondlyFunc{
                 flex:1;
+                display: flex;
+                flex-direction: column;
                 .pay{
-                    height: 50%;
+                    flex:1;
                     border-bottom: 1px solid #CCC;
                     box-sizing: border-box;
                     .name{
@@ -56,6 +66,9 @@
                         position: relative;
                         color: #838383;
                     }
+                }
+                .secondlyFunc{
+                    flex:1;
                 }
                 .bindCard{
                     border-right:1px solid #CCC;
@@ -106,8 +119,8 @@
         /* 挂号 */
         .register_icon{
             margin: 0 auto;
-            height: 6rem;
-            width: 6rem;
+            height: 4.5rem;
+            width: 4.5rem;
             display: block;
             background-size: cover !important;
             background: url('../img/resigter.png') no-repeat center center;
@@ -197,11 +210,13 @@
                         </div>
                     </chipItem>
                 </div>
-                <div class='bindCard'>
-                    <chipItem iconName='bindCard_icon' name='绑卡' v-bind:doClick="doBindCard"/>
-                </div>
-                <div class='checkAppointment'>
-                    <chipItem iconName='checkAppointment_icon' name='检查预约'/>
+                <div class="down">
+                    <div class='bindCard'>
+                        <chipItem iconName='bindCard_icon' name='绑卡' v-bind:doClick="doBindCard"/>
+                    </div>
+                    <div class='checkAppointment'>
+                        <chipItem iconName='checkAppointment_icon' v-bind:doClick='getLisreport' name='检查预约'/>
+                    </div>
                 </div>
             </div>
         </section>

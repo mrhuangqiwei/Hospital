@@ -1,9 +1,6 @@
 <style lang="scss" scoped>
     #commonPatient{
         height: 100%;
-        .TITLE{
-           border-radius: 4px;
-        }
         div.dialog{
             .content{
                 height:30rem;

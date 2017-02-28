@@ -14,7 +14,7 @@ import jdbc.Userzyfymx;
 /**
  * 全局参数设置
  */
-@WebServlet("/globalconfigservlet")
+//@WebServlet("/globalconfigservlet")
 public class globalconfigservlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

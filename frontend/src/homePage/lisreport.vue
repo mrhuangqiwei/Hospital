@@ -64,7 +64,7 @@
             border-bottom: 2px solid #838383;
         }
      
-        ul.detailList:nth-child(odd){
+        /*ul.detailList:nth-child(odd){
             li{
                 background-color:#e3e3e3;
             }
@@ -73,7 +73,7 @@
             li{
                 background-color:white;
             }
-        }
+        }*/
         .empty{
             border: none;
             span{

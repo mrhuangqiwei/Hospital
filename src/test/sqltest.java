@@ -169,7 +169,11 @@ yyghSql.appointment(yyghrq, brxm, brxb, brnldw, sfzh, jtzz, sj, yyys, yyks, yydj
           }
       }.start();
       **/
+<<<<<<< HEAD
       //System.out.print(platformbrxx.brxx());
+=======
+//      System.out.print(platformbrxx.brxx());
+>>>>>>> d4ed344999d25dfddd76f03a53c96f3517b00bea
 	
 	//System.out.print(updateyyghservlet.updateghbbrgh("20170216004864"));
 	
