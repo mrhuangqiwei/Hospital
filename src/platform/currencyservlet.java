@@ -21,7 +21,7 @@ import jdbc.JDBC;
 /**
  * Servlet implementation class currencyservlet
  */
-@WebServlet("/currencyservlet")
+//@WebServlet("/currencyservlet")
 //平台通用servlet用来接收查询语句返回json
 public class currencyservlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

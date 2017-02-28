@@ -47,7 +47,7 @@ public class OAuth2Servlet extends HttpServlet {
         GetUserinfoResponse user = OAuthManager.getUserinfo(request);
 
         HttpSession session = req.getSession(true);
-        session.setMaxInactiveInterval(3600 * 3);
+        session.setMaxInactiveInterval(3600);
         session.setAttribute("token", token);
         session.setAttribute("userInfo", user);
 
@@ -61,6 +61,7 @@ public class OAuth2Servlet extends HttpServlet {
         bean.setSex(String.valueOf(user.getSex()));
 
         Cookie cookie = new Cookie(HospitalConfig.COOKIES_OPENID, token.getOpenid());
+        cookie.setMaxAge(14400);
         resp.addCookie(cookie);
     }
 
