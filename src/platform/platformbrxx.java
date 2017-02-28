@@ -48,10 +48,10 @@ public   String brxx(String ksrq,String jsrq){
 		}else{zwmc="";}
 		if(zymap.containsKey(list.get(i+6))){zymc=zymap.get(list.get(i+6));
 		}else{zymc="";}
-		String sql="insert into zcb_zcxx (hospitalid,brid,mzmc,jgmc,zwmc,ywckbm,zymc,brxm,"
-				+ "pydm,brsr,brnl,brnldw,brxx,sfzh,ylkh,jtzz,gzdw,dwdh,sj,zcrq)"
-				+ "values('"+hospitalid+"','"+list.get(i+1)+"','"+mzmc+"','"+jgmc+"','"+zwmc+"','"+list.get(i)+5+"','"+zymc+"','"+list.get(i+8)+"',"
-		+ "'"+list.get(i+9)+"','"+list.get(i+11)+"','"+list.get(i+12)+"','"+list.get(i+13)+"','"+list.get(i+14)+"','"+list.get(i+15)+"'"
+		String sql="insert into zcb_zcxx (gjmc,hospitalid,brid,mzmc,jgmc,zwmc,ywckbm,zymc,brxm,"
+				+ "pydm,brxb,brsr,brnl,brnldw,brxx,sfzh,ylkh,jtzz,gzdw,dwdh,sj,zcrq)"
+				+ "values('"+gjmc+"','"+hospitalid+"','"+list.get(i+1)+"','"+mzmc+"','"+jgmc+"','"+zwmc+"','"+list.get(i)+5+"','"+zymc+"','"+list.get(i+8)+"',"
+		+ "'"+list.get(i+9)+"','"+list.get(i+10)+"','"+list.get(i+11)+"','"+list.get(i+12)+"','"+list.get(i+13)+"','"+list.get(i+14)+"','"+list.get(i+15)+"'"
 				+ ",'"+list.get(i)+"','"+list.get(i+16)+"','"+list.get(i+17)+"','"+list.get(i+18)+"','"+list.get(i+19)+"','"+list.get(i+20)+"')";
 	sqlString=sqlString+sql+"\t";
 			
@@ -60,11 +60,9 @@ public   String brxx(String ksrq,String jsrq){
 	return sqlString;
 }	
 	
-	/**
- * 获取门诊病人信息
- * @param ghxh
- * @return
- */
+
+
+
 public List<String>getmzfymx(String kssj,String jssj){
 	List<String> list=new ArrayList<String>();
 	Connection conn = JDBC.getConnection();	
@@ -107,4 +105,6 @@ public List<String>getmzfymx(String kssj,String jssj){
 	}
 	return list;
 }
+
+
 }
