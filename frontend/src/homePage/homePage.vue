@@ -279,7 +279,7 @@
             },
            
             shouldPay(){
-                api.getCommonPatient('owEWzwQKO7G_uy4C0X_Wn2boPVI4').then((data)=>{
+                api.getCommonPatient(this.$store.getters.weChatInfo.openid).then((data)=>{
                     this.unitCommit('SET_COMMON_PATIENT',data);
                     routerManager.routerTo('singel/shouldPay');
                 });
@@ -294,13 +294,13 @@
                 routerManager.routerTo('singel/departmentNO');
             },
             getHospitalFee(){
-                api.getCommonPatient('owEWzwQKO7G_uy4C0X_Wn2boPVI4').then((data)=>{
+                api.getCommonPatient(this.$store.getters.weChatInfo.openid).then((data)=>{
                     this.unitCommit('SET_COMMON_PATIENT',data);
                     routerManager.routerTo('singel/hospitalizationFee');
                 });
             },
             getCommonPatient(){
-                api.getCommonPatient('owEWzwQKO7G_uy4C0X_Wn2boPVI4').then((data)=>{
+                api.getCommonPatient(this.$store.getters.weChatInfo.openid).then((data)=>{
                     this.unitCommit('SET_COMMON_PATIENT',data);
                     routerManager.routerTo('singel/commonPatient');
                 });
@@ -318,13 +318,13 @@
                 })
             },
             getPatientAppointmentInfo(){
-                api.getCommonPatient('owEWzwQKO7G_uy4C0X_Wn2boPVI4').then((data)=>{
+                api.getCommonPatient(this.$store.getters.weChatInfo.openid).then((data)=>{
                     this.unitCommit('SET_COMMON_PATIENT',data);
                     routerManager.routerTo('singel/patientAppointmentInfo');
                 });
             },
             getPrescription(){
-                api.getCommonPatient('owEWzwQKO7G_uy4C0X_Wn2boPVI4').then((data)=>{
+                api.getCommonPatient(this.$store.getters.weChatInfo.openid).then((data)=>{
                     this.unitCommit('SET_COMMON_PATIENT',data);
                     routerManager.routerTo('singel/getPrescription');
                 })

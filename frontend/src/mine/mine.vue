@@ -167,19 +167,19 @@
                  routerManager.routerTo('singel/userInfo');
             },
             shouldPay(){
-                api.getCommonPatient('owEWzwQKO7G_uy4C0X_Wn2boPVI4').then((data)=>{
+                api.getCommonPatient(this.$store.getters.weChatInfo.openid).then((data)=>{
                     this.$store.commit('SET_COMMON_PATIENT',JSON.parse(data));
                     routerManager.routerTo('singel/shouldPay');
                 });
             },
             editCommonPatient(){
-                api.getCommonPatient('owEWzwQKO7G_uy4C0X_Wn2boPVI4').then((data)=>{
+                api.getCommonPatient(this.$store.getters.weChatInfo.openid).then((data)=>{
                     this.$store.commit('SET_COMMON_PATIENT',JSON.parse(data));
                     routerManager.routerTo('singel/commonPatient');
                 });
             },
             gethasAppointedList(){
-                 api.getPatientAppointmentInfo('owEWzwQKO7G_uy4C0X_Wn2boPVI4').then((data)=>{
+                 api.getPatientAppointmentInfo(this.$store.getters.weChatInfo.openid).then((data)=>{
                     this.$store.commit('SET_PATIENTAPPOINTMENTINFO',JSON.parse(data));
                     routerManager.routerTo('singel/patientAppointmentInfo');
                 });
