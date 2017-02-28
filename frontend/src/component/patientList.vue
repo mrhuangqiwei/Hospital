@@ -83,7 +83,8 @@
             if(getters.commonPatient.length!=0){
                 this.setCommonPatient(getters.commonPatient);
             } else{
-                api.getCommonPatient('owEWzwQKO7G_uy4C0X_Wn2boPVI4').then((data)=>{
+//                api.getCommonPatient('owEWzwQKO7G_uy4C0X_Wn2boPVI4').then((data)=>{
+                api.getCommonPatient(getters.weChatInfo.openid).then((data)=>{
                     this.setCommonPatient( JSON.parse(data) );
                     this.$store.commit('SET_COMMON_PATIENT',JSON.parse(data));
                 });

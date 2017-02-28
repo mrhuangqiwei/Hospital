@@ -117,7 +117,7 @@
                 this.$store.commit('DELETE_COMMON_PATIENT',index);
                 var sfzh = tmp.sfzh;
                 var ylkh = tmp.ylkh; 
-                api.deleteCommonPatient('owEWzwQKO7G_uy4C0X_Wn2boPVI4',sfzh,ylkh).then((data)=>{
+                api.deleteCommonPatient(this.$store.getters.weChatInfo.openid,sfzh,ylkh).then((data)=>{
                     console.log('提示删除成功');
                 })
             },
@@ -159,7 +159,7 @@
                     return;
 
                 this.committing = true;
-                api.editCommonPatient('owEWzwQKO7G_uy4C0X_Wn2boPVI4',item.sfzh,this.oldSfzh,item.ylkh,item.brxm,item.brxb,item.jtzz,item.brdh,item.nl)
+                api.editCommonPatient(this.$store.getters.weChatInfo.openid,item.sfzh,this.oldSfzh,item.ylkh,item.brxm,item.brxb,item.jtzz,item.brdh,item.nl)
                    .then((data)=>{
                        this.closeDialog();
                 },(err)=>{

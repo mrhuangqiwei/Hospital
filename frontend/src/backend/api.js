@@ -513,7 +513,57 @@ var _backend = {
             method:'GET',
             contentType:'text/plain'
         })
+    },
+
+    /**
+     * 获取支付参数
+     * @param url 需要支付页面的准确URL
+     * @returns
+     private String appid;
+     private String url;
+     private String jsapiTicket;
+     private String nonceStr;
+     private String timeStamp;
+     private String signature;
+     */
+    getWeChatPayParams(url) {
+        return $.ajax({
+            url: `${URL}/Hospital/wechatPay`,
+            method:'GET',
+            data:{
+                'url':url,
+                'type':'get_jsapi_params'
+            },
+            contentType:'text/plain'
+        })
+    },
+
+
+    /**
+     *请求微信服务器下统一订单，返回支付参数
+     * @param openid
+     * @param money 要付多少钱，单位是元
+     * @returns
+     private String appid ;
+     private String timeStamp;
+     private String nonceStr;
+     private String packageWithPrepayId; // 参数名package
+     private String signType = "MD5";
+     private String paySign;
+     */
+    requestWechatOrder(openid, money) {
+        return $.ajax({
+            url: `${URL}/Hospital/wechatPay`,
+            method:'GET',
+            data:{
+                'type':'get_jsapi_params',
+                'openid': openid,
+                'money': money,
+            },
+            contentType:'text/plain'
+        })
     }
+
  };
 
 var Store = {
