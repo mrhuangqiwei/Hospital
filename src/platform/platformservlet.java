@@ -59,7 +59,13 @@ public class platformservlet extends HttpServlet {
 			 platbridsj plzd=JSON.parseObject(sql, platbridsj.class);
 			 String resmzzd=zd.getmzzd(ConvertTime.stampToDate(plzd.getKssj()),ConvertTime.stampToDate(plzd.getJssj()));
 			 response.getOutputStream().write(resmzzd.getBytes("UTF-8"));
-			 System.out.print(resmzzd);
+			// System.out.print(resmzzd);
+			 break;
+		 case "4":
+			 platform_yfb_yppcf ypcf=new platform_yfb_yppcf();
+			 platbridsj plyp=JSON.parseObject(sql, platbridsj.class);
+			 String ypcfstring=ypcf.getypcf(ConvertTime.stampToDate(plyp.getKssj()),ConvertTime.stampToDate(plyp.getJssj()));
+			 response.getOutputStream().write(ypcfstring.getBytes("UTF-8"));
 			 break;
 		 default:break; 
 		}
