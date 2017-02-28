@@ -41,7 +41,7 @@ public class platformservlet extends HttpServlet {
 		String sql = new String(request.getParameter("sql").getBytes("ISO-8859-1"),"UTF-8");
 		String cs = new String(request.getParameter("cs").getBytes("ISO-8859-1"),"UTF-8");
 		System.out.print(sql+"\t"+cs);
-		switch(cs){
+		switch(cs.trim()){
 		case "1":
 			platformbrxx pla=new platformbrxx();
 		 platbridsj platbridsj=JSON.parseObject(sql, platbridsj.class);
@@ -53,6 +53,14 @@ public class platformservlet extends HttpServlet {
 		 platbridsj platghsj=JSON.parseObject(sql, platbridsj.class);
 		 String resgxh=platformghb.getbrghxx(ConvertTime.stampToDate(platghsj.getKssj()),ConvertTime.stampToDate(platghsj.getJssj()));
 		 response.getOutputStream().write(resgxh.getBytes("UTF-8"));
+		 break;
+		 case "3":
+			 platformmzzd zd=new platformmzzd();
+			 platbridsj plzd=JSON.parseObject(sql, platbridsj.class);
+			 String resmzzd=zd.getmzzd(ConvertTime.stampToDate(plzd.getKssj()),ConvertTime.stampToDate(plzd.getJssj()));
+			 response.getOutputStream().write(resmzzd.getBytes("UTF-8"));
+			 System.out.print(resmzzd);
+			 break;
 		 default:break; 
 		}
 		// String json=getresultjson(sql);
