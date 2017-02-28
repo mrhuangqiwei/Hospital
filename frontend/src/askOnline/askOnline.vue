@@ -42,17 +42,42 @@
                 box-sizing: border-box;
                 color: black;
 
-                .bindCard_icon{
+                .more_icon,.chaosheng_icon,.chanke_icon,.fuke_icon,
+                .ertongke_icon,.shengzhi_icon,.yousheng_icon,.erke_icon{
                     height: 4rem;
                     width: 4rem;
                     margin: 0 auto;
                     margin-bottom: 0.5rem;
                     background-size: cover !important;
-                    background: url('../img/bindCard.png') no-repeat center center;
+                }
+                .chaosheng_icon{
+                    background: url('../img/chaosheng.png') no-repeat center center;
+                }
+                .chanke_icon{
+                    background: url('../img/chanke.png') no-repeat center center;
+                }
+                .fuke_icon{
+                    background: url('../img/fuke.png') no-repeat center center;
+                }
+                .ertongke_icon{
+                    background: url('../img/ertongke.png') no-repeat center center;
+                }
+                .shengzhi_icon{
+                    background: url('../img/shengzhi.png') no-repeat center center;
+                }
+                .yousheng_icon{
+                    background: url('../img/yousheng.png') no-repeat center center;
+                }
+                .erke_icon{
+                    background: url('../img/erke.png') no-repeat center center;
+                }
+                .more_icon{
+                    background: url('../img/more.png') no-repeat center center;
                 }
             }
         }
         .doctors{
+            background: white;
             .header{
                 font-size: 2rem;
                 position: relative;
@@ -97,10 +122,10 @@
                     li{
                         height: 2rem;
                         line-height: 2rem;
-                        padding-left: 2rem;
                     }
                 }
             }
+
         }
     }
 </style>
@@ -114,28 +139,23 @@
             </mt-swipe>
         </div>
         <div class='funcGroup'>
-            <chipItem iconName='bindCard_icon' name='产科'/>
-            <chipItem iconName='bindCard_icon' name='妇科'/>
-            <chipItem iconName='bindCard_icon' name='儿科'/>
-            <chipItem iconName='bindCard_icon' name='计划生育'/>
-            <chipItem iconName='bindCard_icon' name='优生学科'/>
-            <chipItem iconName='bindCard_icon' name='生殖医学'/>
-            <chipItem iconName='bindCard_icon' name='超声科'/>
-            <chipItem iconName='bindCard_icon' name='更多'/>
+            <chipItem iconName='chanke_icon' name='产科' v-bind:doClick="PopupTip"/>
+            <chipItem iconName='fuke_icon' name='妇科' v-bind:doClick="PopupTip"/>
+            <chipItem iconName='ertongke_icon' name='儿科' v-bind:doClick="PopupTip"/>
+            <chipItem iconName='erke_icon' name='五官科' v-bind:doClick="PopupTip"/>
+            <chipItem iconName='yousheng_icon' name='优生学科' v-bind:doClick="PopupTip"/>
+            <chipItem iconName='shengzhi_icon' name='生殖医学' v-bind:doClick="PopupTip"/>
+            <chipItem iconName='chaosheng_icon' name='超声科' v-bind:doClick="PopupTip"/>
+            <chipItem iconName='more_icon' name='更多' v-bind:doClick="PopupTip"/>
         </div>
         <div class='doctors'>
             <div class='header'>
-                推荐医生 
+                科室 
                 <p class='more'>更多</p>
             </div>
             <ul>
-               <docInfo name='张三' title='医师' skilful='XXXXXXXXXX'/>
-               <docInfo name='张三' title='医师' skilful='XXXXXXXXXX'/>
-               <docInfo name='张三' title='医师' skilful='XXXXXXXXXX'/>
-               <docInfo name='张三' title='医师' skilful='XXXXXXXXXX'/>
-               <docInfo name='张三' title='医师' skilful='XXXXXXXXXX'/>
-               <docInfo name='张三' title='医师' skilful='XXXXXXXXXX'/>
-               <docInfo name='张三' title='医师' skilful='XXXXXXXXXX'/>
+               <docInfo name='梁厚萍' title='主任医师' skilful='主任医师，教授，博士生导师'/>
+               <docInfo name='吴胜松' title='主任医师' skilful='主任医师，教授，博士生导师'/>
             </ul>
         </div>
     </div>
@@ -143,7 +163,7 @@
 
 <script>
     import chipItem from '../component/chipItem';
-
+    import { Toast } from 'mint-ui';
     var docInfo = {
         props:['name','title','skilful'],
         template: "<li class='docInfo'>\
@@ -159,6 +179,15 @@
         components:{
             chipItem,
             docInfo
+        },
+        methods:{
+            PopupTip(){
+                Toast({
+                    message: '开发中，敬请期待!',
+                    duration: 2000,
+                    className:'zIndex11000'
+                });
+            }
         },
         data: function (){
             return {

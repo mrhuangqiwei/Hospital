@@ -12,6 +12,26 @@
         .flex4{
             flex:4;
         }
+        span.icon{
+            width: 6rem;
+        }
+        span.photo{
+            position: relative;
+            top: 1.5rem;
+            left: 1rem;
+            border-radius: 4px;
+            height: 4rem; 
+            width: 4rem;
+            display: inline-block;
+            background-size: contain !important;
+            background: url('../img/doc.png') no-repeat center center;
+        }
+        span.detailBtn{
+            width:6rem;
+        }
+        span.docDetail{
+            width: calc(100% - 12rem);
+        }
         li{
             display:flex;
             min-height: 7rem;
@@ -21,7 +41,6 @@
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            width: 20rem;
         }
         .btn{
             height: 2rem;
@@ -53,6 +72,7 @@
                 height: 3rem;
                 line-height: 3rem;
                 font-size: 2.5rem;
+                margin-bottom: 5px;
             }
         }
         div.middleBtn{
@@ -131,15 +151,15 @@
         <ul class='doctorList' v-if='step=="ONE"'>
             <p class='TITLE'>医生列表</p>
             <li v-for='item in docIntroduce'>
-                <span class='flex1'>
-                    <p class='photo'></p>
+                <span class="icon">
+                    <span class='photo'></span>
                 </span>
-                <span class='flex4'>
+                <span class='docDetail'>
                     <p class='name'>{{item.czyxm}}</p>
                     <p class='fontGray'>职称:{{item.zcmc}}</p>
                     <p class='fontGray dot'>介绍:{{item.czyjj.substring(0,22)}}</p>
                 </span>
-                <span class='flex1'><i class='btn' @click='lookDetail(item)'>详情</i></span>
+                <span class='detailBtn'><i class='btn' @click='lookDetail(item)'>详情</i></span>
             </li>
             <p v-if='docIntroduce.length==0' class='center'>暂无数据！</p>
         </ul>

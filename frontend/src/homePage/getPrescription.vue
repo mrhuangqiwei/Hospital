@@ -1,7 +1,8 @@
 <style lang="scss" scoped>
     #prescription{
         font-size: 1.8rem;
-        
+        height: 100%;
+        background: white;
         .center{
             text-align: center;
         }
@@ -74,35 +75,41 @@
         <div v-else-if='step=="TWO"' class='height100'>
             <patientDetailInfo :doSomething='getPrescription' :sfzh='sfzh' :ylkh='ylkh' :khStyle='01'/>
         </div>
-        <div v-else-if='step=="THREE"' class="pageContent">
-            <div class='empty' v-if='prescription.length==0'>
-                暂无记录!
-            </div> 
-            <div v-else>
-                <p class='TITLE'>西药处方</p>
-                <div class="header">
-                    <ul v-for='script in prescription' class='page'>
-                        <li>
-                            <span>
-                                <i>临床诊断:</i><i class='darkBlue'>{{script.mzzd}}</i>
-                            </span>
-                        </li>
-                        <li class='left'>
-                            <span><i>姓名:</i><i class='darkBlue'>{{script.brxm}}</i></span>
-                            <span><i>处方金额:</i><i class='gold'>{{script.cfje}}元</i></span>
-                        </li>
-                        <li v-for="bean in script.yppfmxBeans" class='darkBlue'>
-                            <span>{{bean.ypmc}}</span>
-                            <span class='double'>
-                                <span>{{bean.ypgg}}</span>
-                                <span>{{bean.fyjl+' '+bean.jldwmc}}</span>
-                            </span>
-                            <span class='double'>
-                                <span class='gold'>{{bean.zl+' '+bean.yfdwmc}}</span>
-                                <span class='middle'>{{bean.yyffmc+' '+bean.pcmc}}</span>
-                            </span>
-                        </li>
-                    </ul>
+        <div v-else-if='step=="THREE"' class="pageContent height100">
+            <p class='TITLE'>西药处方</p>
+            <div v-if='loading'  class='height100'>
+                <loader />
+            </div>
+            <div v-else  class='height100'>
+               
+                <div class='empty' v-if='prescription.length==0'>
+                    暂无记录!
+                </div> 
+                <div>
+                    <div class="header">
+                        <ul v-for='script in prescription' class='page'>
+                            <li>
+                                <span>
+                                    <i>临床诊断:</i><i class='darkBlue'>{{script.mzzd}}</i>
+                                </span>
+                            </li>
+                            <li class='left'>
+                                <span><i>姓名:</i><i class='darkBlue'>{{script.brxm}}</i></span>
+                                <span><i>处方金额:</i><i class='gold'>{{script.cfje}}元</i></span>
+                            </li>
+                            <li v-for="bean in script.yppfmxBeans" class='darkBlue'>
+                                <span>{{bean.ypmc}}</span>
+                                <span class='double'>
+                                    <span>{{bean.ypgg}}</span>
+                                    <span>{{bean.fyjl+' '+bean.jldwmc}}</span>
+                                </span>
+                                <span class='double'>
+                                    <span class='gold'>{{bean.zl+' '+bean.yfdwmc}}</span>
+                                    <span class='middle'>{{bean.yyffmc+' '+bean.pcmc}}</span>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -118,7 +125,8 @@
                 step:"ONE",
                 commonPatient:[],
                 patientInfo:{},
-                prescription:[]
+                prescription:[],
+                loading:true
             }
         },
         components:{
@@ -131,6 +139,7 @@
                 this.step = 'TWO';
             },
             getPrescription(item){
+                this.step = 'THREE';
                 api.getPrescription('20160809000077').then((data)=>{
                     if(data==0){
                         this.prescription = [];
@@ -138,7 +147,7 @@
                         this.prescription = JSON.parse(data);
                         this.$nextTick(function(item){});
                     }
-                    this.step = 'THREE';
+                    this.loading = false;
                 })
             }
         },
