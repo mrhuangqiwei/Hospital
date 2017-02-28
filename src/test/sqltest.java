@@ -82,7 +82,6 @@ public class sqltest {
 
 //自动挂号	/
 //brghsql.zdgh();
-String  yf;
 /**
 
 for(int k=0;k<10;k++){
@@ -169,6 +168,14 @@ yyghSql.appointment(yyghrq, brxm, brxb, brnldw, sfzh, jtzz, sj, yyys, yyks, yydj
           }
       }.start();
       **/
+<<<<<<< HEAD
+
+      //System.out.print(platformbrxx.brxx());
+
+//      System.out.print(platformbrxx.brxx());
+
+=======
+>>>>>>> 447dd3b14b0aeb9efb71e5fa624e7fb630d57281
 	
 	//System.out.print(updateyyghservlet.updateghbbrgh("20170216004864"));
 	
