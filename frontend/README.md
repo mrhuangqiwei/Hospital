@@ -79,3 +79,4 @@ You can find all loaders in this [list](http://webpack.github.io/docs/list-of-lo
 常用就诊人组件 完成
 2017.2.17
 添加多个组件
+优化组件UI完毕
