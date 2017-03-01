@@ -42,6 +42,7 @@
     word-break: break-all;
     min-height: 4rem;
     color: #666666;
+    font-size: 1.7rem;
   }
   div.button{
     display: flex;
