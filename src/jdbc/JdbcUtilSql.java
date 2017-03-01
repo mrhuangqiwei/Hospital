@@ -102,6 +102,8 @@ public class JdbcUtilSql {
 		}
 
 	}
+	
+	public String get
 
 	/**
 	 * 获取用药方法
