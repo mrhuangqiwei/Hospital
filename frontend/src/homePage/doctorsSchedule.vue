@@ -286,7 +286,7 @@
             },
             showDetailDig(data){
                  this.chooseOne = data;
-                 api.getCommonPatient('owEWzwQKO7G_uy4C0X_Wn2boPVI4').then((data)=>{
+                 api.getCommonPatient(this.$store.getters.weChatInfo.openid).then((data)=>{
                     this.$store.commit('SET_COMMON_PATIENT',JSON.parse(data));
                     this.patient = JSON.parse(data);
                     this.showDialogPatient = true;
