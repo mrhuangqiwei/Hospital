@@ -2,6 +2,12 @@ package Servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +18,7 @@ import bean.Brjbxxbean;
 
 import com.alibaba.fastjson.JSON;
 
+import jdbc.JDBC;
 import jdbc.StudentService;
 import jdbc.weinxinsql;
 import checkutil.IsWeixinUser;
@@ -58,7 +65,13 @@ public class AddFriend extends HttpServlet {
 		
 				
 				+ "'"+nldw+"'-----'"+sj+"'----");
-	
+		List<String> list=new ArrayList<String>();
+		list= getuserxx(Openid);
+		int y=Integer.parseInt(list.get(1));
+		if(y==3){
+			response.getOutputStream().write("您的就诊人已超过三人不能添加！".getBytes("UTF-8"));	
+		}
+		else{
 		int k=0;
 		weinxinsql weinxinsql=new weinxinsql();
 		
@@ -107,7 +120,7 @@ public class AddFriend extends HttpServlet {
 		String m=String.valueOf(k);
 		System.out.print("------'"+k+"'----");
 		response.getOutputStream().write(m.getBytes("UTF-8"));
-	}
+	}}
 
 	/**
 	 * The doPost method of the servlet. <br>
@@ -124,6 +137,27 @@ public class AddFriend extends HttpServlet {
 doGet(request, response);
 	}
 
-
+	public List<String> getuserxx(String openid){
+		List<String> list=new ArrayList<String>();
+		Connection conn = JDBC.getConnection();	
+		Statement stmt;
+		String sql="select isaddbz ,isfriendbz from gyb_user where userid='"+openid+"'";
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs=stmt.executeQuery(sql);
+			//循环输出每一条记录
+			while(rs.next())
+			{
+			list.add(rs.getString("isaddbz"));
+			list.add(rs.getString("isfriendbz"));
+			}
+			stmt.close();								// 关闭连接状态对象
+			conn.commit();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+		}
 
 }
