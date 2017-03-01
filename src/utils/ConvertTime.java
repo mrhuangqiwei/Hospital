@@ -67,6 +67,37 @@ public static String stampToDate(String s){
     res = simpleDateFormat.format(date);
     return res;
 }
+
+/* 
+ * 将时间戳转换为时间格式如2017-02-23
+ */
+public static String stampToDateyyddmm(String s){
+    String res;
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    long lt = new Long(s);
+    Date date = new Date(lt);
+    res = simpleDateFormat.format(date);
+    return res;
+}
+/* 
+ * 将时间戳转换为时间格式如date
+ */
+public static Date stampToDateyyddmmdate(String s){
+    String res;
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    long lt = new Long(s);
+    Date date = new Date(lt);
+    res = simpleDateFormat.format(date);
+    Date date2 = null;
+	try {
+		date2 = simpleDateFormat.parse(res);
+	} catch (ParseException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+    return date2;
+}
+
  public static boolean  datesdiferrent(String ghrq) {
 	 
 	 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd ");

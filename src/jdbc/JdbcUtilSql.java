@@ -15,6 +15,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 
 import utils.ConvertTime;
+import utils.GlobalConfigUtil;
 import bean.GhfyxmbmBean;
 import bean.MzcfBean;
 import bean.YppfmxBean;
@@ -103,7 +104,7 @@ public class JdbcUtilSql {
 
 	}
 	
-	public String get
+
 
 	/**
 	 * 获取用药方法
@@ -284,6 +285,97 @@ public class JdbcUtilSql {
 		return list;
 	}
 
+	/**
+	 * 获取平台配方
+	 * @param sj
+	 * @return
+	 */
+	public static String platformcfmx(String sj){
+		List<String> mzcfmx = new ArrayList<String>();
+		// mzcftt=GetpycfTT(list.get(i));
+		// System.out.print(mzcftt+"\t");
+		mzcfmx = Getptpycfmx(sj);
+		// 用药方法
+					Map<String, String> yyffMap = new HashMap<String, String>();
+					// 频次方法
+					Map<String, String> pcffMap = new HashMap<String, String>();
+					// 剂量单位
+                    Map<String, String> jldwmMap = new HashMap<String, String>();
+					yyffMap = getYyff();
+					pcffMap = getPc();
+					jldwmMap = getjldwmc();
+					String hospitalid=GlobalConfigUtil.getHospitalid();
+	String sqlString="";			
+for (int k = 0; k < mzcfmx.size(); k = k + 11) {
+						String jldwmc, yyffmc, pcmc, yfdwmc;
+						if (jldwmMap.containsKey(mzcfmx.get(k + 3))) {
+							jldwmc = jldwmMap.get(mzcfmx.get(k + 3));
+						} else {
+							jldwmc = "";
+						}
+						if (jldwmMap.containsKey(mzcfmx.get(k + 10))) {
+							yfdwmc = jldwmMap.get(mzcfmx.get(k + 10));
+						} else {
+							yfdwmc = "";
+						}
+						if (pcffMap.containsKey(mzcfmx.get(k + 8))) {
+							pcmc = pcffMap.get(mzcfmx.get(k + 8));
+						} else {
+							pcmc = "";
+						}
+						if (yyffMap.containsKey(mzcfmx.get(k + 6))) {
+							yyffmc = yyffMap.get(mzcfmx.get(k + 6));
+						} else {
+							yyffmc = "";
+						}
+String sql="insert into platform_yppf(hospitalid,cfh,xssx,ypmc,jldwmc,zl,yyffmc,ypgg,pcmc,fyjl,fydwmc)"
++ "values('"+hospitalid+"','"+mzcfmx.get(k)+"','"+mzcfmx.get(k+1)+"','"+mzcfmx.get(k+5)+"','"+jldwmc+"','"+mzcfmx.get(k+4)+"','"+yyffmc+"',"
+		+ "'"+mzcfmx.get(k+7)+"','"+pcmc+"','"+mzcfmx.get(k+9)+"','"+yfdwmc+"')";	
+		sqlString=sqlString+sql+"\t";			
+}			
+	return sqlString;				
+	}
+	
+	/**
+ * 获取平台处方明细
+ * @param cfh
+ * @return
+ */
+	public static List<String> Getptpycfmx(String sj) {
+		System.out.print(sj);
+		List<String> list = new ArrayList<String>();
+		Connection conn = JDBC.getConnection();
+		Statement stmt;
+		String sql = "select Rtrim(cfh)as cfh,Rtrim(isnull(xssx,'')) as xssx ,Rtrim(isnull(ryypbm,'')) as ryypbm,Rtrim(isnull(jldw,''))as jldw ,Rtrim(zl) as zl  ,Rtrim(isnull(ypmc,''))as ypmc ,Rtrim(isnull(yyff,''))as yyff ,"
+				+ "Rtrim(isnull(ypgg,''))as ypgg ,Rtrim(isnull(pcbm,''))as pcbm ,Rtrim(isnull(fyjl,''))"
+				+ "fyjl,Rtrim(isnull(fydw,''))as fydw from view_yppf where cfh like '"+sj+"' ";
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			// 循环输出每一条记录
+			while (rs.next()) {
+				list.add(rs.getString("cfh"));
+				list.add(rs.getString("xssx"));
+				list.add(rs.getString("ryypbm"));
+				list.add(rs.getString("jldw"));
+				list.add(rs.getString("zl"));
+				list.add(rs.getString("ypmc"));
+				list.add(rs.getString("yyff"));
+				list.add(rs.getString("ypgg"));
+				list.add(rs.getString("pcbm"));
+				list.add(rs.getString("fyjl"));
+				list.add(rs.getString("fydw"));
+
+			}
+			stmt.close(); // 关闭连接状态对象
+			conn.commit();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
 	/**
 	 * 获取医生挂号费用map
 	 * 

@@ -1,12 +1,20 @@
 package platform;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import jdbc.JDBC;
+import jdbc.JdbcUtilSql;
 
 import com.alibaba.fastjson.JSON;
 
@@ -42,18 +50,21 @@ public class platformservlet extends HttpServlet {
 		String cs = new String(request.getParameter("cs").getBytes("ISO-8859-1"),"UTF-8");
 		System.out.print(sql+"\t"+cs);
 		switch(cs.trim()){
+		//注册
 		case "1":
 			platformbrxx pla=new platformbrxx();
 		 platbridsj platbridsj=JSON.parseObject(sql, platbridsj.class);
 		 String res=pla.brxx(ConvertTime.stampToDate(platbridsj.getKssj()),ConvertTime.stampToDate(platbridsj.getJssj()));
 		 response.getOutputStream().write(res.getBytes("UTF-8"));
 		 break;
+		 //挂号
 		case "2":
 			Platformghb platformghb=new Platformghb();
 		 platbridsj platghsj=JSON.parseObject(sql, platbridsj.class);
 		 String resgxh=platformghb.getbrghxx(ConvertTime.stampToDate(platghsj.getKssj()),ConvertTime.stampToDate(platghsj.getJssj()));
 		 response.getOutputStream().write(resgxh.getBytes("UTF-8"));
 		 break;
+		 //诊断
 		 case "3":
 			 platformmzzd zd=new platformmzzd();
 			 platbridsj plzd=JSON.parseObject(sql, platbridsj.class);
@@ -61,11 +72,21 @@ public class platformservlet extends HttpServlet {
 			 response.getOutputStream().write(resmzzd.getBytes("UTF-8"));
 			// System.out.print(resmzzd);
 			 break;
+		//处方
 		 case "4":
 			 platform_yfb_yppcf ypcf=new platform_yfb_yppcf();
 			 platbridsj plyp=JSON.parseObject(sql, platbridsj.class);
 			 String ypcfstring=ypcf.getypcf(ConvertTime.stampToDate(plyp.getKssj()),ConvertTime.stampToDate(plyp.getJssj()));
 			 response.getOutputStream().write(ypcfstring.getBytes("UTF-8"));
+			 break;
+		//配方
+		 case "5":
+			 platbridsj plpf=JSON.parseObject(sql, platbridsj.class);
+			 String pfsj=getrqid(ConvertTime.stampToDateyyddmm(plpf.getKssj()))+"%";
+			String sjsj= pfsj.replace("-","");
+			 String respf=JdbcUtilSql.platformcfmx(sjsj);
+			 response.getOutputStream().write(respf.getBytes("UTF-8"));
+			 
 			 break;
 		 default:break; 
 		}
@@ -79,5 +100,30 @@ public class platformservlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	doGet(request, response);
 	}
+	//获取时间id如
+	private String  getrqid(String rq){ 
+		String fString="";
+			Connection conn = JDBC.getConnection();	
+			Statement stmt;
+			String sql="select CONVERT(varchar(12) , '"+rq+"', 112 ) as yyid";
+			try {
+				stmt = conn.createStatement();
+				ResultSet rs=stmt.executeQuery(sql);
+				//循环输出每一条记录
+				while(rs.next())
+				{
+				fString=rs.getString("yyid");
+				}
+				stmt.close();								// 关闭连接状态对象
+				conn.commit();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+		return fString ;
+		}
+	
 
 }
