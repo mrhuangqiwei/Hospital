@@ -90,6 +90,10 @@ export default [
                     {
                         path:'hasAppointedList',
                         component:resolve => require(['./mine/hasAppointedList'],resolve)
+                    },
+                    {
+                        path:'hospitalInfo',
+                        component:resolve => require(['./homePage/hospitalInfo'],resolve)
                     }
                 ]
             },

@@ -175,8 +175,11 @@
         .prescription_icon{
             background: url('../img/prescription.png') no-repeat center center;
         }
+        .hospital_icon{
+            background: url('../img/hospital.png') no-repeat center center;
+        }
 
-        .pay_icon,.bindCard_icon,.checkAppointment_icon,.lisreport_icon,.prescription_icon,
+        .pay_icon,.bindCard_icon,.checkAppointment_icon,.lisreport_icon,.prescription_icon,.hospital_icon,
         .risReport_icon,.department_icon,.hospitalFee_icon,.patient_icon,.appointment_icon{
             height: 4rem;
             width: 4rem;
@@ -247,6 +250,7 @@
                  <chipItem iconName='patient_icon' v-bind:doClick="getCommonPatient" name='管理就诊人'/>
                  <chipItem iconName='appointment_icon' v-bind:doClick="getPatientAppointmentInfo" name='检查预约'/>
                  <chipItem iconName='prescription_icon' v-bind:doClick="getPrescription" name='处方查询'/>
+                 <chipItem iconName='hospital_icon' v-bind:doClick="showHospitalInfo" name='医院简介'/>
             </div>
         </section>
         <!--通用-->
@@ -357,6 +361,9 @@
                     this.unitCommit('SET_COMMON_PATIENT',data);
                     routerManager.routerTo('singel/getPrescription');
                 })
+            },
+            showHospitalInfo(){
+                routerManager.routerTo('singel/hospitalInfo');
             }
         },
     }   

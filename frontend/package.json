@@ -1,8 +1,8 @@
 {
-  "name": "stock-vote",
+  "name": "hospital",
   "version": "1.0.0",
-  "description": "stock vote ",
-  "author": "maqinghua@gf.com.cn",
+  "description": "hospital",
+  "author": "JoeSmile",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
