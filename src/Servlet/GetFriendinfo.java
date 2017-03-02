@@ -47,6 +47,7 @@ public class GetFriendinfo extends HttpServlet {
 		response.setHeader("content-type", "text/html;charset=UTF-8");//浏览器编码
 		weinxinsql weinxinsql=new weinxinsql();
 		String json=weinxinsql.Getfriendsinfo(Openid);
+		System.out.print("获取常用就诊人呗调用openID是："+Openid);
 		 System.out.print(json);
 		response.getOutputStream().write(json.getBytes("UTF-8"));
 	}

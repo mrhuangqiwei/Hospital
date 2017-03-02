@@ -23,6 +23,7 @@ public class FreindsYyinfo extends HttpServlet {
 		String openid = new String(request.getParameter("openid").getBytes("ISO-8859-1"),"UTF-8");
 		//String ylkh = new String(request.getParameter("ylkh").getBytes("ISO-8859-1"),"UTF-8");
 		GetFriendsYyInfo getFriendsYyInfo=new GetFriendsYyInfo();
+		System.out.print("获取常用就诊人被调用openID是：\t"+openid);
 		String json=getFriendsYyInfo.getfriendsYyinfo(openid);
 		//System.out.print(json);
 		response.getOutputStream().write(json.getBytes("UTF-8"));

@@ -86,7 +86,28 @@ public class platformservlet extends HttpServlet {
 			String sjsj= pfsj.replace("-","");
 			 String respf=JdbcUtilSql.platformcfmx(sjsj);
 			 response.getOutputStream().write(respf.getBytes("UTF-8"));
-			 
+			 break;
+		 //门诊表，病人费用
+		 case "6":
+			 platformmzfy mzbrfy=new platformmzfy();
+			 platbridsj mbrfy=JSON.parseObject(sql, platbridsj.class);
+			 String mzfy=mzbrfy.getplatformmzbffy(ConvertTime.stampToDate(mbrfy.getKssj()),ConvertTime.stampToDate(mbrfy.getJssj()));
+			 response.getOutputStream().write(mzfy.getBytes("UTF-8"));
+			 break;
+			 //检验明细
+		 case "7":
+			 platform_lis_jymx lis_jymx=new platform_lis_jymx();
+			 platbridsj platjymx=JSON.parseObject(sql, platbridsj.class);
+			 String jymx=lis_jymx.platformjymx(ConvertTime.stampToDate(platjymx.getKssj()),ConvertTime.stampToDate(platjymx.getJssj()));
+			System.out.print(jymx);
+			 response.getOutputStream().write(jymx.getBytes("UTF-8")); 
+			 break;
+		 case "8":
+			platform_lis_jydj jydj=new platform_lis_jydj();
+			 platbridsj platjydj=JSON.parseObject(sql, platbridsj.class);
+			 String jydjs=jydj.getplatformjydj(ConvertTime.stampToDate( platjydj.getKssj()),ConvertTime.stampToDate( platjydj.getJssj()));
+			System.out.print(jydjs);
+			 response.getOutputStream().write(jydjs.getBytes("UTF-8")); 
 			 break;
 		 default:break; 
 		}
