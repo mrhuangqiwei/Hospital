@@ -15,6 +15,9 @@
         span.icon{
             width: 6rem;
         }
+        .TITLE{
+            font-size: 2rem;
+        }
         span.photo{
             position: relative;
             top: 1.5rem;
@@ -229,7 +232,7 @@
 <script>
     import api from '../backend/api';
     import routerManager from '../routerManager';
-
+    import { Toast } from 'mint-ui';
     var scheduleItem = {
         props:['schedule','title'],
         template: `<div class='scheduleItem' v-on:click='doShowDetail'>
@@ -287,8 +290,17 @@
             showDetailDig(data){
                  this.chooseOne = data;
                  api.getCommonPatient(this.$store.getters.weChatInfo.openid).then((data)=>{
-                    this.$store.commit('SET_COMMON_PATIENT',JSON.parse(data));
-                    this.patient = JSON.parse(data);
+                    var ret = JSON.parse(data);
+                    if(ret.length == 0){
+                         Toast({
+                            message: '请先绑卡!',
+                            duration: 2000,
+                            className:'zIndex11000'
+                        });
+                        return;
+                    }
+                    this.$store.commit('SET_COMMON_PATIENT',ret);
+                    this.patient = ret;
                     this.showDialogPatient = true;
                 });
             },

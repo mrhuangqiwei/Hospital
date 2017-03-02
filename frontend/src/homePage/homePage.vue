@@ -10,6 +10,12 @@
         #footer{
             background: white;
         }
+        .title{
+            line-height: 5rem;
+        }
+        .content{
+            font-size: 1.7rem;
+        }
         #content{
             height: calc(100% - 32rem);
             display: block;
@@ -17,7 +23,10 @@
                 height: 100%;
             }
             .mint-swipe-items-wrap{
-                /*min-height: 12rem;*/
+               height: 100%;
+            }
+            .mint-swipe-item{
+                height: 100%;
             }
         }
 
@@ -196,7 +205,7 @@
         <section id='header'>
             <div class="mainFunc">
                 <div class='register'>
-                    <chipItem iconName='register_icon' name='挂号' v-bind:doClick="getDepartmentNO">
+                    <chipItem iconName='register_icon' name='挂号' v-bind:doClick="makeAppointment">
                         <div class='dic' slot='dic'>
                             <span>足不出户快速挂</span>
                             <span>当日号和预约号</span>
@@ -273,7 +282,14 @@
             },
 
             doBindCard(){
-                routerManager.routerTo('singel/bindCard');
+                api.getCommonPatient(this.$store.getters.weChatInfo.openid).then((data)=>{
+                    if(JSON.parse(data).length >= 3){
+                        this.showDialog = true;
+                        this.showResult = '常用就诊人已达上限';
+                        return;
+                    }
+                    routerManager.routerTo('singel/bindCard');
+                });
             },
 
             closeDialog(){
@@ -291,6 +307,17 @@
                     this.unitCommit('SET_DOCTORS_SCHEDULE',data);
                     routerManager.routerTo('singel/doctorsSchedule');
                 })
+            },
+            makeAppointment(){
+                 api.getCommonPatient(this.$store.getters.weChatInfo.openid).then((data)=>{
+                    if(JSON.parse(data).length == 0){
+                        this.showResult = '请先添加就诊人';
+                        this.showDialog = true;
+                        return;
+                    }
+                    this.unitCommit('SET_COMMON_PATIENT',data);
+                    routerManager.routerTo('singel/departmentNO');
+                });
             },
             getDepartmentNO(){
                 routerManager.routerTo('singel/departmentNO');

@@ -4,14 +4,7 @@
         height: 100%;
         background: white;
         text-align: center;
-        input{
-            height: 3rem;
-            width: calc(100% - 8rem);
-            text-indent: 4.5rem;
-            line-height:3rem;
-            border-radius: 4px;
-            border: 1px solid #dcdcdc;
-        }
+     
         .useCard{
             padding-top: 1rem;
             li{
@@ -24,6 +17,32 @@
                 height: 4rem;
             }
         }
+        .inputCardNumber {
+            div{
+                position:relative;
+                width:24rem;
+                margin: 0 auto;
+            }
+            .card_icon{
+                height: 2rem;
+                width: 2rem;
+                display: inline-block;
+                background-size: cover;
+                position: absolute;
+                top: 0.6rem;
+                left: 1rem;
+                background:url('../img/card.png') no-repeat center center;
+            }
+            input{
+                width:24rem;
+                height: 3rem;
+                text-indent: 4.5rem;
+                line-height:3rem;
+                border-radius: 4px;
+                border: 1px solid #dcdcdc;
+            }
+        }
+
         .useID{
             padding-top: 2rem;
             span:first-child{
@@ -34,16 +53,22 @@
             }
             input{
                 text-indent:1rem;
-                padding: 0.5rem;
-                width:17rem;
+                width: 100%;
+                border: 1px solid #dcdcdc;
+                height: 3rem;
+                border-radius: 4px;
             }
             li{
                 margin-bottom:1rem;
+                display: flex;
                 input.sex{
                     height: 1.5rem;
                     width: 1.5rem;
                     position: relative; 
                     top: 0.2rem;
+                }
+                div:first-child{
+                    width: 8rem;
                 }
                 div{
                     display: inline-block;
@@ -53,8 +78,8 @@
                     line-height: 3rem;
                     margin: 0 auto;
                     height: 3rem;
-                    width: 17rem;
-                    padding: 0.5rem;
+                    width: calc(100% - 9rem);
+                    padding-right: 1rem;
                     position: relative;
                     label{
                         color:rgb(51, 51, 51);
@@ -108,26 +133,67 @@
 <template>
     <div id='bindCard'>
         <div v-if='useCard' class="useCard">
-            <div>
-                <li><span class='card_icon'></span><input v-model='cardNumber' placeholder="请输入医疗卡号"/></li>
+            <div class='inputCardNumber'>
+                <li>
+                    <div>
+                        <span class='card_icon'></span><input v-model='cardNumber' placeholder="请输入医疗卡号"/>
+                    </div>
+                </li>
             </div>
             <button @click='bindWithCard' class='doBind'>立刻绑定</button>
             <button @click='useID' class='bggray'>还没有卡，去绑定身份证</button>
         </div>
         <div v-else class="useID">
             <ul>
-                <li><span>姓名:</span><span class='name_icon'></span><input v-model='name' placeholder="请输入姓名"/></li>
-                <li><span>身份证号:</span><span class='sfzh_icon'></span><input  v-model='sfzh' placeholder="请输入身份证号"/></li>
                 <li>
-                    <span>选择性别:</span>
+                    <div>
+                        <span>姓名:</span><span class='name_icon'></span>
+                    </div>
+                    <div>
+                        <input v-model='name' placeholder="请输入姓名"/>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <span>身份证号:</span><span class='sfzh_icon'></span>
+                    </div>
+                    <div>
+                        <input  v-model='sfzh' placeholder="请输入身份证号"/>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <span>选择性别:</span>
+                    </div>
                     <div>
                         <input class='sex' type='radio' v-model='sex' value='1'/><label>男</label>
                         <input class='sex' type='radio' v-model='sex' value='2'/><label>女</label>
                     </div>
                 </li>
-                <li><span>手机号:</span><span class='phone_icon'></span><input v-model='phone' placeholder="请输入手机号"/></li>
-                <li><span>家庭住址:</span><span class='jtzz_icon'></span><input v-model='jtzz' placeholder="请输入家庭住址"/></li>
-                <li><span>年龄:</span><span class='age_icon'></span><input v-model='age' type='number' min="0" max="199" placeholder="请输入年龄(周岁)"/></li>
+                <li>
+                    <div>
+                        <span>手机号:</span><span class='phone_icon'></span>
+                    </div>
+                    <div>
+                        <input v-model='phone' placeholder="请输入手机号"/>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <span>家庭住址:</span><span class='jtzz_icon'></span>
+                    </div>
+                    <div>
+                        <input v-model='jtzz' placeholder="请输入家庭住址"/>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <span>年龄:</span><span class='age_icon'></span>
+                    </div>
+                    <div>
+                        <input v-model='age' type='number' min="0" max="199" placeholder="请输入年龄(周岁)"/>
+                    </div>
+                </li>
             </ul>
             <button @click='bindWithID' class='doBind'>确 定</button>
         </div>

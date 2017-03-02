@@ -1,5 +1,6 @@
 <style lang="scss">
     @import './css/main';
+   
     $boderGray: #dcd8d8;
     $fontBlack: #000000;
 
@@ -123,7 +124,9 @@
          created(){
              this.isLogin = true;
              api.login().then((data)=>{
-                 this.$store.commit('SIGNIN',{'openid':JSON.parse(data).openId});
+                 var openId = JSON.parse(data).openId;
+                 alert("openid: "+openId);
+                 this.$store.commit('SIGNIN',{'openid': openId});
                  this.isLogin = true;
                  var store = this.$store;
                  if(store.getters.userInfo && store.getters.userInfo.userid){
