@@ -1,5 +1,6 @@
 <style lang="scss">
     @import './css/main';
+   
     $boderGray: #dcd8d8;
     $fontBlack: #000000;
 

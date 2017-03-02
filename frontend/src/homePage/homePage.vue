@@ -23,7 +23,10 @@
                 height: 100%;
             }
             .mint-swipe-items-wrap{
-                /*min-height: 12rem;*/
+               height: 100%;
+            }
+            .mint-swipe-item{
+                height: 100%;
             }
         }
 
