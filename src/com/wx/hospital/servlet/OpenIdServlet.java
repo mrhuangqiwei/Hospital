@@ -33,6 +33,7 @@ public class OpenIdServlet extends BaseServlet {
             } catch (Exception e) {
             }
         }
+        System.out.println("获取openid: " + openId);
         resp.getWriter().print(String.format("{\"openId\":\"%s\"}", openId));
     }
 
