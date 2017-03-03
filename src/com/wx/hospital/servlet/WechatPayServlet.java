@@ -62,6 +62,7 @@ public class WechatPayServlet extends BaseServlet {
                 String prepayId = respond.getPrepay_id();
                 H5PayParam param = PayManager.buildH5PayConfig(timeStamp, nonceStr, prepayId);
                 String resultString = JSON.toJSONString(param);
+                System.out.println("订单详情： " + resultString);
                 resp.getWriter().write(resultString);
             } catch (SignatureException | PayApiException | PayBusinessException e) {
                 e.printStackTrace();
@@ -70,6 +71,7 @@ public class WechatPayServlet extends BaseServlet {
             String url = req.getParameter("url");
             JsApiParam params = JsApiManager.signature(url);
             String jsonString = JSON.toJSONString(params);
+            System.out.println("获取支付参数： " + jsonString);
             resp.getWriter().write(jsonString);
         }
     }
