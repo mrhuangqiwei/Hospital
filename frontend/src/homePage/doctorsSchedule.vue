@@ -346,6 +346,7 @@
                         signature: ret.signature,
                         jsApiList: ['chooseWXPay']
                     });
+                    alert(wx);
                 });
             },
             confirmToPay() {
