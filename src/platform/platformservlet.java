@@ -25,7 +25,6 @@ import bean.platbridsj;
 /**
  * Servlet implementation class platformservlet
  */
-@WebServlet("/platformservlet")
 public class platformservlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

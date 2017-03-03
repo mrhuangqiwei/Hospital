@@ -22,6 +22,7 @@ public class OpenIdServlet extends BaseServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
         resp.setHeader("content-type", "text/html;charset=UTF-8");//浏览器编码
+        resp.setHeader("Access-Control-Allow-Credentials","true");
         String openId = getOpenId(req);
         if (TextUtils.isBlank(openId)) {
             try {
