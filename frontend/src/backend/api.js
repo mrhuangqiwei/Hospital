@@ -557,7 +557,7 @@ var _backend = {
             url: `${URL}/Hospital/wechatPay`,
             method:'GET',
             data:{
-                'type':'get_jsapi_params',
+                'type':'weixin_pay',
                 'openid': openid,
                 'money': money,
             },
