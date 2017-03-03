@@ -24,11 +24,12 @@ public class HomePageServlet extends BaseServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String openId = getOpenId(req);
-        if (openId == null || TextUtils.isBlank(openId)) {
-            String redirectUrl = OAuthManager.generateRedirectURI(SERVER_URL+ "oauth2", "snsapi_userinfo", "homepage");
+        if (TextUtils.isBlank(openId)) {
+            String redirectUrl = OAuthManager.generateRedirectURI(SERVER_URL + "oauth2", "snsapi_userinfo", "homepage");
             resp.sendRedirect(redirectUrl);
             return;
         }
+        System.out.print("首页 openid： " + openId);
         req.getRequestDispatcher("index.html").forward(req, resp);
     }
 

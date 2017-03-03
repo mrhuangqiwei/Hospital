@@ -23,12 +23,13 @@ public class OpenIdServlet extends BaseServlet {
         resp.setCharacterEncoding("UTF-8");
         resp.setHeader("content-type", "text/html;charset=UTF-8");//浏览器编码
         String openId = getOpenId(req);
-        if (TextUtils.isEmpty(openId)) {
+        if (TextUtils.isBlank(openId)) {
             try {
                 HttpSession session = req.getSession();
                 if (session != null) {
                     GetUserinfoResponse user = (GetUserinfoResponse) session.getAttribute("userInfo");
                     openId = user.getOpenid();
+                    System.out.println("From session openid: " + openId);
                 }
             } catch (Exception e) {
             }
