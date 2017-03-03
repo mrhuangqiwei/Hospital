@@ -338,9 +338,8 @@
                 var curUrl = "/Hospital/homepage?from=singlemessage#/singel/doctorsSchedule";
                 api.getWeChatPayParams(curUrl).then((data)=>{
                     var ret = JSON.parse(data);
-                    alert(ret);
                     wx.config({
-                        debug: true,
+                        debug: false,
                         appId: ret.appid,
                         timestamp: parseInt(ret.timeStamp),
                         nonceStr: ret.nonceStr,
@@ -354,7 +353,6 @@
                 var openId = this.$store.getters.weChatInfo.openid;
                 api.requestWechatOrder(openId, this.chooseOne.ghfy).then((data)=>{
                     var ret = JSON.parse(data);
-                    alert(ret);
                     wx.chooseWXPay({
                         timestamp: parseInt(ret.timeStamp),
                         nonceStr: ret.nonceStr,

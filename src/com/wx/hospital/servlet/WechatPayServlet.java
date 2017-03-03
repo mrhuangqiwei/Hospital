@@ -47,7 +47,6 @@ public class WechatPayServlet extends BaseServlet {
             String tradeNo = simpleDateFormat.format(new Date()) + RandomStringGenerator.generate(10);
             request.setOut_trade_no(tradeNo);
             int totalFee = (int) (Float.parseFloat(req.getParameter("money")) * 100);
-            totalFee = 1;
             request.setTotal_fee(totalFee);
             String spbill_create_ip = req.getRemoteAddr();
             request.setSpbill_create_ip(spbill_create_ip);
