@@ -223,7 +223,7 @@
                 <li><span>就诊日期:</span><span class='darkGreen'>{{chooseOne.yydjsj&&chooseOne.yydjsj.substr(0,10)}}</span></li>
             </div>
             <div slot='button' class='button'>
-                <button @click='closeDialog'>确定挂号</button>
+                <button @click='confirmToPay'>确定挂号</button>
             </div>
         </my-dialog>
     </div>
@@ -233,6 +233,8 @@
     import api from '../backend/api';
     import routerManager from '../routerManager';
     import { Toast } from 'mint-ui';
+    import wx from 'weixin-js-sdk';
+
     var scheduleItem = {
         props:['schedule','title'],
         template: `<div class='scheduleItem' v-on:click='doShowDetail'>
@@ -331,11 +333,44 @@
                 this.selectedPatient = item;
                 this.closeDialogPatient();
                 this.showDialog = true;
+            },
+            initWeixin() {
+                var curUrl = "/Hospital/homepage?from=singlemessage#/singel/doctorsSchedule";
+                api.getWeChatPayParams(curUrl).then((data)=>{
+                    var ret = JSON.parse(data);
+                    wx.config({
+                        debug: true,
+                        appId: ret.appid,
+                        timestamp: ret.timeStamp,
+                        nonceStr: ret.nonceStr,
+                        signature: ret.signature,
+                        jsApiList: ['chooseWXPay']
+                    });
+                });
+            },
+            confirmToPay() {
+                this.showDialog = false;
+                var openId = this.$store.getters.weChatInfo.openid;
+                api.requestWechatOrder(openId, this.chooseOne.ghfy).then((data)=>{
+                    alert("支付 " + this.chooseOne.ghfy);
+                    var ret = JSON.parse(data);
+                    wx.chooseWXPay({
+                        timestamp: ret.timeStamp,
+                        nonceStr: ret.nonceStr,
+                        package: ret.packageWithPrepayId,
+                        signType: ret.signType,
+                        paySign: ret.paySign,
+                        success: function (res) {
+                            alert("支付成功！")
+                        }
+                    });
+                });
             }
         },
         mounted(){
            this.scheduleAll = this.$store.getters.doctorSchedule;
            this.parseDocDate(this.scheduleAll);
+           this.initWeixin();
         }
     }   
 </script>

@@ -125,7 +125,6 @@
              this.isLogin = true;
              api.login().then((data)=>{
                  var openId = JSON.parse(data).openId;
-                 alert("openid: "+openId);
                  this.$store.commit('SIGNIN',{'openid': openId});
                  this.isLogin = true;
                  var store = this.$store;
