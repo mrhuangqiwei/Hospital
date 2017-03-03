@@ -360,14 +360,12 @@
                         signType: ret.signType,
                         paySign: ret.paySign,
                         success: function (res) {
-                            alert("支付成功！")
                         }
                     });
                 });
             }
         },
         mounted(){
-            alert("mounted!");
             this.initWeixin();
             this.scheduleAll = this.$store.getters.doctorSchedule;
             this.parseDocDate(this.scheduleAll);
