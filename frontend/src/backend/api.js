@@ -7,7 +7,7 @@ var QUER_MENU_URL="https://api.weixin.qq.com/cgi-bin/menu/get?access_token=ACCES
 var DELETE_MENU_URL="https://api.weixin.qq.com/cgi-bin/menu/delete?access_token=ACCESS_TOKEN";
 var GET_WXUSER_INFO="https://api.weixin.qq.com/cgi-bin/user/info?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
 
-var URL = 'http://219.141.78.173';//'http://mrhuangqiwei.6655.la';
+var URL = 'http://pd.nnxzyyy.com';//'http://mrhuangqiwei.6655.la';
 var _backend = {
     /**
      * 绑定卡
@@ -344,7 +344,8 @@ var _backend = {
         return $.ajax({
             // url:`http://mrhuangqiwei.6655.la/Hospital/getOpenId
             url: `${URL}/Hospital/getOpenId`,
-            method:'GET',
+            method:'POST',
+            xhrFields:{withCredentials: true},
             contentType:'text/plain'
         })
     },
