@@ -518,7 +518,7 @@ var _backend = {
 
     /**
      * 获取支付参数
-     * @param url 需要支付页面的准确URL
+     * @param url 需要支付页面的sub URL
      * @returns
      private String appid;
      private String url;
@@ -530,9 +530,9 @@ var _backend = {
     getWeChatPayParams(url) {
         return $.ajax({
             url: `${URL}/Hospital/wechatPay`,
-            method:'GET',
+            method:'POST',
             data:{
-                'url':url,
+                'url': `${URL}${url}`,
                 'type':'get_jsapi_params'
             },
             contentType:'text/plain'
@@ -696,6 +696,16 @@ var Store = {
     },
     gethasAppointedList(sfzh,ylkh){
         return _backend.gethasAppointedList(sfzh,ylkh).then((data)=>{
+            return data;
+        })
+    },
+    getWeChatPayParams(url) {
+        return _backend.getWeChatPayParams(url).then((data)=>{
+            return data;
+        })
+    },
+    requestWechatOrder(openid, money) {
+        return _backend.requestWechatOrder(openid, money).then((data)=>{
             return data;
         })
     }
