@@ -235,7 +235,6 @@
     <servlet-name>platformservlet</servlet-name>
     <url-pattern>/platformservlet</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
     <display-name>ksxx</display-name>
@@ -246,5 +245,4 @@
     <servlet-name>ksxx</servlet-name>
     <url-pattern>/ksxx</url-pattern>
   </servlet-mapping>
-  
 </web-app>

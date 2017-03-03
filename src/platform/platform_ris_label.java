@@ -17,8 +17,12 @@ public String getRislabel(String rid){
 	String hospitalid=GlobalConfigUtil.getHospitalid();
 	String sqlString="";
 	for(int i=0;i<list.size();i=i+6){
-		
+		String sql=" insert into platform_ris_label(hospitalid,id,studyReportID,labelid,labelno,"
+	+ "labelname,labelvalue) values('"+hospitalid+"','"+list.get(i)+"',"
+	+ "'"+list.get(i+1)+"','"+list.get(i+2)+"','"+list.get(i+3)+"','"+list.get(i+4)+"','"+list.get(i+5)+"')";
+	sqlString=sqlString+sql+"\t";
 	}
+	return sqlString;
 }
 	
 	
@@ -41,7 +45,7 @@ public String getRislabel(String rid){
 			list.add(rs.getString("labelid"));
 			list.add(rs.getString("labelno"));
 			list.add(rs.getString("labelname"));
-			list.add(rs.getString("labelvalue"));
+			list.add(rs.getString("labelvalue").replace("'", "、"));
 			}
 			stmt.close();								// 关闭连接状态对象
 			conn.commit();
