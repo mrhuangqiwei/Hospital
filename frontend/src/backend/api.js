@@ -530,7 +530,7 @@ var _backend = {
     getWeChatPayParams(url) {
         return $.ajax({
             url: `${URL}/Hospital/wechatPay`,
-            method:'POST',
+            method:'GET',
             data:{
                 'url': `${URL}${url}`,
                 'type':'get_jsapi_params'
@@ -555,7 +555,7 @@ var _backend = {
     requestWechatOrder(openid, money) {
         return $.ajax({
             url: `${URL}/Hospital/wechatPay`,
-            method:'POST',
+            method:'GET',
             data:{
                 'type':'weixin_pay',
                 'openid': openid,
