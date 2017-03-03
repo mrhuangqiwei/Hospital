@@ -101,6 +101,7 @@ public class platformservlet extends HttpServlet {
 			System.out.print(jymx);
 			 response.getOutputStream().write(jymx.getBytes("UTF-8")); 
 			 break;
+		 //检验登记
 		 case "8":
 			platform_lis_jydj jydj=new platform_lis_jydj();
 			 platbridsj platjydj=JSON.parseObject(sql, platbridsj.class);
@@ -108,6 +109,13 @@ public class platformservlet extends HttpServlet {
 			System.out.print(jydjs);
 			 response.getOutputStream().write(jydjs.getBytes("UTF-8")); 
 			 break;
+		case "9":
+	platform_ris_dj   risdj=new platform_ris_dj();
+	 platbridsj platrisdj=JSON.parseObject(sql, platbridsj.class);
+	 String risString=risdj.getPartformrisdj(ConvertTime.stampToDate( platrisdj.getKssj()),ConvertTime.stampToDate( platrisdj.getJssj()));
+			System.out.print(risString);
+			 response.getOutputStream().write(risString.getBytes("UTF-8")); 
+			break;
 		 default:break; 
 		}
 		// String json=getresultjson(sql);
