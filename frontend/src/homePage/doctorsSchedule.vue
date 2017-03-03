@@ -369,9 +369,10 @@
             }
         },
         mounted(){
-           this.scheduleAll = this.$store.getters.doctorSchedule;
-           this.parseDocDate(this.scheduleAll);
-           this.initWeixin();
+            alert("mounted!");
+            this.initWeixin();
+            this.scheduleAll = this.$store.getters.doctorSchedule;
+            this.parseDocDate(this.scheduleAll);
         }
     }   
 </script>

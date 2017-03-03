@@ -555,7 +555,7 @@ var _backend = {
     requestWechatOrder(openid, money) {
         return $.ajax({
             url: `${URL}/Hospital/wechatPay`,
-            method:'GET',
+            method:'POST',
             data:{
                 'type':'weixin_pay',
                 'openid': openid,
