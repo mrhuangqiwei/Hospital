@@ -39,7 +39,6 @@ app.controller('myCtrl', function ($scope, $http) {
             url: url,
             params: {type: 'get_jsapi_params'}
         }).success(function (req) {
-            $scope.jsapiTicket = req.jsapiTicket;
             wx.config({
                 debug: false,
                 appId: req.appid,

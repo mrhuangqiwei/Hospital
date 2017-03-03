@@ -25,13 +25,12 @@ public class JsApiManager {
         String nonceStr = RandomStringGenerator.generate();
         String timestamp = Long.toString(System.currentTimeMillis() / 1000);
         String jsapiTicket = TokenProxy.jsApiTicket();
+        System.out.println("jsapiTicket: " + jsapiTicket);
         signatureSource.append("jsapi_ticket=").append(jsapiTicket);
         signatureSource.append("&noncestr=").append(nonceStr);
         signatureSource.append("&timestamp=").append(timestamp);
         signatureSource.append("&url=").append(url);
-        logger.info("sign source : " + signatureSource);
         String signature = DigestUtils.sha1Hex(signatureSource.toString());
-        logger.info("sign : " + signature);
         return new JsApiParam(url, jsapiTicket, nonceStr, timestamp, signature);
     }
 

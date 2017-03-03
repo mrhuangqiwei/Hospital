@@ -338,25 +338,25 @@
                 var curUrl = "/Hospital/homepage?from=singlemessage#/singel/doctorsSchedule";
                 api.getWeChatPayParams(curUrl).then((data)=>{
                     var ret = JSON.parse(data);
+                    alert(ret);
                     wx.config({
                         debug: true,
                         appId: ret.appid,
-                        timestamp: ret.timeStamp,
+                        timestamp: parseInt(ret.timeStamp),
                         nonceStr: ret.nonceStr,
                         signature: ret.signature,
                         jsApiList: ['chooseWXPay']
                     });
-                    alert(wx);
                 });
             },
             confirmToPay() {
                 this.showDialog = false;
                 var openId = this.$store.getters.weChatInfo.openid;
                 api.requestWechatOrder(openId, this.chooseOne.ghfy).then((data)=>{
-                    alert("支付 " + this.chooseOne.ghfy);
                     var ret = JSON.parse(data);
+                    alert(ret);
                     wx.chooseWXPay({
-                        timestamp: ret.timeStamp,
+                        timestamp: parseInt(ret.timeStamp),
                         nonceStr: ret.nonceStr,
                         package: ret.packageWithPrepayId,
                         signType: ret.signType,
