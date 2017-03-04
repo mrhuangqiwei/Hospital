@@ -1,4 +1,4 @@
-<style lang="scss">
+<style lang="scss" > 
     #askOnline{
         overflow: auto;
         height: 100%;
@@ -43,7 +43,8 @@
                 color: black;
 
                 .more_icon,.chaosheng_icon,.chanke_icon,.fuke_icon,
-                .ertongke_icon,.shengzhi_icon,.yousheng_icon,.erke_icon{
+                .ertongke_icon,.shengzhi_icon,.yousheng_icon,.erke_icon,.faremenzhen_icon,
+                .tijianzhongxin_icon,.neiyike_icon,.yibaomenzhen_icon,.shoushushi_icon{
                     height: 4rem;
                     width: 4rem;
                     margin: 0 auto;
@@ -73,6 +74,21 @@
                 }
                 .more_icon{
                     background: url('../img/more.png') no-repeat center center;
+                }
+                .tijianzhongxin_icon{
+                    background: url('../img/tijianzhongxin.png') no-repeat center center;
+                }
+                .neiyike_icon{
+                    background: url('../img/neiyike.png') no-repeat center center;
+                }
+                .yibaomenzhen_icon{
+                    background: url('../img/yibaomenzhen.png') no-repeat center center;
+                }
+                .shoushushi_icon{
+                    background: url('../img/shoushushi.png') no-repeat center center;
+                }
+                .faremenzhen_icon{
+                    background: url('../img/faremenzhen.png') no-repeat center center;
                 }
             }
         }
@@ -125,7 +141,22 @@
                     }
                 }
             }
-
+        }
+        .dialog-content{
+            section{
+                padding: 0 1rem 1rem 1rem;
+            }
+            p{
+                text-align: left;
+                text-indent: 2rem;
+            }
+            p.title{
+                line-height:5rem;
+                text-align: center;
+            }
+            p.department_floor{
+                margin-top:1rem;
+            }
         }
     }
 </style>
@@ -139,14 +170,14 @@
             </mt-swipe>
         </div>
         <div class='funcGroup'>
-            <chipItem iconName='chanke_icon' name='产科' v-bind:doClick="PopupTip"/>
-            <chipItem iconName='fuke_icon' name='妇科' v-bind:doClick="PopupTip"/>
-            <chipItem iconName='ertongke_icon' name='儿科' v-bind:doClick="PopupTip"/>
-            <chipItem iconName='erke_icon' name='五官科' v-bind:doClick="PopupTip"/>
-            <chipItem iconName='yousheng_icon' name='优生学科' v-bind:doClick="PopupTip"/>
-            <chipItem iconName='shengzhi_icon' name='生殖医学' v-bind:doClick="PopupTip"/>
-            <chipItem iconName='chaosheng_icon' name='超声科' v-bind:doClick="PopupTip"/>
-            <chipItem iconName='more_icon' name='更多' v-bind:doClick="PopupTip"/>
+            <chipItem iconName='neiyike_icon' name='内一科' v-bind:doClick="showDepartmentInfo.bind(this,'0002')"/>
+            <chipItem iconName='yibaomenzhen_icon' name='医保门诊' v-bind:doClick="showDepartmentInfo.bind(this,'0011')"/>
+            <chipItem iconName='shoushushi_icon' name='手术室' v-bind:doClick="showDepartmentInfo.bind(this,'0015')"/>
+            <chipItem iconName='ertongke_icon' name='计生门诊' v-bind:doClick="showDepartmentInfo.bind(this,'0031')"/>
+            <chipItem iconName='faremenzhen_icon' name='发热门诊' v-bind:doClick="showDepartmentInfo.bind(this,'0039')"/>
+            <chipItem iconName='chanke_icon' name='产科门诊' v-bind:doClick="showDepartmentInfo.bind(this,'0041')"/>
+            <chipItem iconName='tijianzhongxin_icon' name='体检中心' v-bind:doClick="showDepartmentInfo.bind(this,'0056')"/>
+            <chipItem iconName='more_icon' name='更多' v-bind:doClick="showMore"/>
         </div>
         <div class='doctors'>
             <div class='header'>
@@ -158,12 +189,32 @@
                <docInfo name='吴胜松' title='主任医师' skilful='主任医师，教授，博士生导师'/>
             </ul>
         </div>
+        <!--通用-->
+        <my-dialog :show='showDialog' :cbClose='closeDialog'>
+            <p slot="title" class='title'>{{departmentInfo.ksmc}}</p>
+            <div slot='content' class='content'>
+                <section>
+                    <p class='department_introduce'>
+                        介绍:{{departmentInfo.ksjj}}
+                    </p>
+                    <p class='department_floor'>
+                        地址:{{departmentInfo.ksms}}
+                    </p>
+                </section>
+            </div>
+            <div slot='button' class='button'>
+                <button @click='closeDialog'>确定</button>
+            </div>
+        </my-dialog>
     </div>
 </template>
 
 <script>
     import chipItem from '../component/chipItem';
+    import api from '../backend/api';
     import { Toast } from 'mint-ui';
+    import routerManager from '../routerManager';
+    
     var docInfo = {
         props:['name','title','skilful'],
         template: "<li class='docInfo'>\
@@ -187,10 +238,47 @@
                     duration: 2000,
                     className:'zIndex11000'
                 });
+            },
+            closeDialog(){
+                this.showDialog = false;
+            },
+            showDialogFunc(){
+                this.showDialog = true;
+            },
+            showMore(){
+                routerManager.routerTo('singel/departmentInfo');
+            },
+            getIntroduce(ksbm){
+                var allInfo = this.$store.getters.departmentInfo;
+                for(var i=0; i<allInfo.length;i++){
+                    if(allInfo[i].ksbm == ksbm){
+                        this.departmentInfo = allInfo[i];
+                        // this.$nextTick(function(){});
+                        this.showDialogFunc();
+                        break;
+                    }
+                }
+            },
+            showDepartmentInfo(ksbm){
+                if(this.$store.getters.departmentInfo && this.$store.getters.departmentInfo.length == 0){
+                    api.getDepartmentInfo().then((data)=>{
+                        var info = JSON.parse(data);
+                        this.$store.commit('SET_DEPARTMENT_INFO',info);
+                        this.getIntroduce(ksbm);
+                    })
+                } else{
+                    this.getIntroduce(ksbm);
+                }
             }
         },
         data: function (){
             return {
+                showDialog:false,
+                departmentInfo:{
+                    ksmc:'',
+                    ksjj:'',
+                    ksms:''
+                }
             }
         }
     }

@@ -94,6 +94,10 @@ export default [
                     {
                         path:'hospitalInfo',
                         component:resolve => require(['./homePage/hospitalInfo'],resolve)
+                    },
+                    {
+                        path:'departmentInfo',
+                        component:resolve => require(['./askOnline/departmentInfo'],resolve)
                     }
                 ]
             },

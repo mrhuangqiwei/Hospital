@@ -243,8 +243,8 @@
         </section>
         <section id='footer'>
             <div class="funcGroup">
-                 <chipItem iconName='lisreport_icon' v-bind:doClick='getLisreport' name='检查查询'/>
-                 <chipItem iconName='risReport_icon' v-bind:doClick='getRisReport' name='彩超查询'/>
+                 <chipItem iconName='lisreport_icon' v-bind:doClick='getLisreport' name='检验报告'/>
+                 <chipItem iconName='risReport_icon' v-bind:doClick='getRisReport' name='检查报告'/>
                  <chipItem iconName='hospitalFee_icon' v-bind:doClick="getHospitalFee" name='住院费用'/>
                  <chipItem iconName='department_icon' v-bind:doClick="getDepartmentNO" name='科室信息'/>
                  <chipItem iconName='patient_icon' v-bind:doClick="getCommonPatient" name='管理就诊人'/>

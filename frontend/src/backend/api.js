@@ -563,6 +563,17 @@ var _backend = {
             },
             contentType:'text/plain'
         })
+    },
+
+    /**
+     * 获取科室信息 返回所有信息
+     * */ 
+    departmentInfo(){
+          return $.ajax({
+            url: `${URL}/Hospital/ksxx`,
+            method:'GET',
+            contentType:'text/plain'
+        })
     }
 
  };
@@ -706,6 +717,11 @@ var Store = {
     },
     requestWechatOrder(openid, money) {
         return _backend.requestWechatOrder(openid, money).then((data)=>{
+            return data;
+        })
+    },
+    getDepartmentInfo(){
+        return _backend.departmentInfo().then((data)=>{
             return data;
         })
     }

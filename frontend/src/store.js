@@ -36,7 +36,9 @@ var store = new Vuex.Store({
                 // 门诊费用
                 treatSpend:{},
                 // 就诊人信息
-                patientDetailInfo:[]
+                patientDetailInfo:[],
+                // 科室信息
+                departmentInfo:[]
                 
             },
             getters:{
@@ -75,7 +77,8 @@ var store = new Vuex.Store({
                 },
                 patientDetailInfo(state){
                     return state.patientDetailInfo;
-                }
+                },
+                departmentInfo:(state) => state.departmentInfo
             },
             mutations: {
                 /**
@@ -142,8 +145,10 @@ var store = new Vuex.Store({
                 },
                 SET_PATIENT_DETAILINFO(state,data){
                     state.patientDetailInfo = data;
+                },
+                SET_DEPARTMENT_INFO(state,data){
+                    state.departmentInfo = data;
                 }
-              
             },
             actions: {
                 SIGNIN({commit}, user) {
